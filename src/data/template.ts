@@ -7,7 +7,7 @@ export const parent = {
   childrens: [3, 4, 6, 5],
 } as folder;
 
-export const data = [
+export const childrens = [
   {
     id: 3,
     title: "front-end",

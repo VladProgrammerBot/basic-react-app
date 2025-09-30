@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { parent, data } from "../data/template";
-import type { folder } from "../types/folder";
+import { parent, childrens } from "../data/template";
 
 import {
   DndContext,
@@ -10,6 +9,7 @@ import {
   useSensor,
   useSensors,
   DragOverlay,
+  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -22,9 +22,9 @@ import { SortableItem } from "./SortableItem";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 export const Edit = () => {
-  const [parentData, setParent] = useState<folder>(parent);
-  const [childrens, setChildrens] = useState<folder[]>(data);
-  const [select, setSelect] = useState<number | null>();
+  // const [parentData, setParent] = useState<folder>(parent);
+  // const [childrens, setChildrens] = useState<folder[]>(data);
+  const [select, setSelect] = useState<number | null>(null);
 
   const [items, setItems] = useState(parent.childrens);
   const sensors = useSensors(
@@ -34,10 +34,10 @@ export const Edit = () => {
     })
   );
 
-  function handleDragEnd(event) {
+  function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (active.id !== over?.id && over) {
       setItems((items) => {
         const oldIndex = items.indexOf(active.id);
         const newIndex = items.indexOf(over.id);
@@ -53,22 +53,32 @@ export const Edit = () => {
   };
 
   return (
-    <div className="cursor-grabbing h-screen p-2">
+    <div className="cursor-grabbing h-screen p-2 max-w-4xl m-auto bg-neutral-800">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]}
-        onDragStart={(e) => setSelect(e.active.id)}
+        onDragStart={(e) => setSelect(Number(e.active.id))}
+        onDragCancel={() => console.log(1)}
       >
         <SortableContext items={items} strategy={verticalListSortingStrategy}>
           {items.map((id) => {
-            const data = getFolderById(id)
-            return <SortableItem key={id} id={id} data={data} />;
+            const data = getFolderById(id);
+            return (
+              <SortableItem key={id} id={id} data={data} select={select} />
+            );
           })}
         </SortableContext>
         <DragOverlay>
-          <SortableItem key={4} id={4} data={getFolderById(select)} />
+          {select && (
+            <SortableItem
+              key={999}
+              id={999}
+              data={getFolderById(select)}
+              select={select}
+            />
+          )}
         </DragOverlay>
       </DndContext>
     </div>
