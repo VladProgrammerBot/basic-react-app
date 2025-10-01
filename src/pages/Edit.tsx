@@ -1,6 +1,4 @@
 import { DndContext, closestCenter, DragOverlay } from "@dnd-kit/core";
-import { FaArrowsRotate } from "react-icons/fa6";
-import { RiPencilFill } from "react-icons/ri";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -15,7 +13,7 @@ import { useFolders } from "../hooks/useFolders";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { GoTrash } from "react-icons/go";
 import { BsPlusLg } from "react-icons/bs";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export const Edit = () => {
   const { select, setSelect, items, sensors, handleDragEnd, getFolderById } =
@@ -44,24 +42,24 @@ export const Edit = () => {
     },
   ];
 
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          alert("You clicked outside of me!");
-        }
-      }
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
+  // function useOutsideAlerter(ref) {
+  //   useEffect(() => {
+  //     /**
+  //      * Alert if clicked on outside of element
+  //      */
+  //     function handleClickOutside(event) {
+  //       if (ref.current && !ref.current.contains(event.target)) {
+  //         alert("You clicked outside of me!");
+  //       }
+  //     }
+  //     // Bind the event listener
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //     return () => {
+  //       // Unbind the event listener on clean up
+  //       document.removeEventListener("mousedown", handleClickOutside);
+  //     };
+  //   }, [ref]);
+  // }
 
   return (
     <div className="h-screen space-y-2 m-auto">
