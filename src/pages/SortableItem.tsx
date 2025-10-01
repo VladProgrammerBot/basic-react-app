@@ -28,9 +28,9 @@ export function SortableItem(props: {
         onClick={() => console.log(1)}
       className={`${props.className} ${
         isDragging && "opacity-30 select-none"
-      } duration-200 border-black/0 hover:shadow-md shadow-neutral-900 hover:scale-101 hover:bg-neutral-700 ${
-        props.select === props.data?.id && "bg-neutral-700"
-      } py-2 pr-4 cursor-pointer border-b-1 border-neutral-700 flex items-center`}
+      } uration-200 border-black/0 hover:shadow-md shadow-neutral-900 hover:bg-neutral-800 ${
+        props.select === props.data?.id && "bg-neutral-800"
+      } py-2 pr-4 cursor-pointer border-b-1 border-neutral-800 flex items-center`}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -39,7 +39,7 @@ export function SortableItem(props: {
       <div className="p-1 text-neutral-500">
         {props.data?.childrens.length ? <RiArrowRightSLine fontSize={24}/> : <div className="w-[24px]"></div>}
       </div>
-      <p>{props.data?.title}</p>
+      <p className="text-white">{props.data?.title}</p>
     </div>
   );
 }
