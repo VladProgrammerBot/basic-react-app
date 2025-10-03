@@ -10,7 +10,7 @@ export const Panel = () => {
   return (
     <div
       className={`flex text-white flex-col duration-300 bg-neutral-800 justify-between h-full overflow-x-hidden w-14 ${
-        isOpen && "w-full md:w-70"
+        isOpen && "w-60 max-w-full"
       }`}
     >
       <div
