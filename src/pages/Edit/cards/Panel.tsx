@@ -38,7 +38,7 @@ export const Panel = () => {
           >
             <div
               className={`border-neutral-700 px-4 ${
-                index !== 0 && "border-l-1"
+                index !== 0 && "border-l-0"
               }`}
             >
               {elem.icon}
