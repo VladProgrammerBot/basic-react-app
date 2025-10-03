@@ -6,7 +6,7 @@ import { LuSettings } from "react-icons/lu";
 
 export const Panel = () => {
   const [isOpen, setIsOpen] = useState<boolean>();
-
+//try to fix bugs with domen view by change ios styles
   return (
     <div
       className={`flex text-white py-2 flex-col duration-300 bg-neutral-800 px-1 justify-between h-full overflow-x-hidden w-13 ${
