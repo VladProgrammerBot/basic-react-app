@@ -13,7 +13,7 @@ export const childrens = [
   },
   {
     id: 4,
-    title: "back-end",
+    title: "Back-end",
     parent: 2,
     childrens: [7, 8, 9],
   },

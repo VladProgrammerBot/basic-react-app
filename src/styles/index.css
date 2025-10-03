@@ -67,10 +67,14 @@ a:hover {
 body {
   margin: 0;
   background-color: #111111;
-  /* display: flex; */
-  /* place-items: center; */
   min-height: 100vh;
+  height: 100vh;
+}
+
+html,
+body {
   overflow-y: hidden;
+  position: relative;
 }
 
 h1 {
