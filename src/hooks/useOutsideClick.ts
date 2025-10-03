@@ -1,6 +1,8 @@
 import { useEffect, useRef, type RefObject } from "react";
+import foldersState from "../state/foldersState";
 
 export const useOutsideClick = () => {
+  const { setSelect } = foldersState()
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOutsideAlerter(wrapperRef);
 
@@ -9,6 +11,7 @@ export const useOutsideClick = () => {
       function handleClickOutside(event: MouseEvent) {
         if (ref.current && !ref.current.contains(event.target as Node)) {
           console.log(1);
+          setSelect(null)
         }
       }
       document.addEventListener("mousedown", handleClickOutside);

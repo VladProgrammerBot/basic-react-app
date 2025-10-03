@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { parent, childrens } from "../data/template";
-
 import {
   KeyboardSensor,
   PointerSensor,
@@ -8,15 +5,12 @@ import {
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  sortableKeyboardCoordinates,
-} from "@dnd-kit/sortable";
+import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import foldersState from "../state/foldersState";
 
 export const useFolders = () => {
-  const [select, setSelect] = useState<number | null>(null);
+  const { folders, childrens, setChildrens } = foldersState();
 
-  const [items, setItems] = useState(parent.childrens);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -26,21 +20,20 @@ export const useFolders = () => {
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
+    if (!childrens || !setChildrens) return;
 
     if (active.id !== over?.id && over) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(Number(active.id));
-        const newIndex = items.indexOf(Number(over.id));
+      const oldIndex = childrens.indexOf(Number(active.id));
+      const newIndex = childrens.indexOf(Number(over.id));
 
-        return arrayMove(items, oldIndex, newIndex);
-      });
+      setChildrens(arrayMove(childrens, oldIndex, newIndex));
     }
   }
 
   const getFolderById = (id: number) => {
-    const data = childrens.find((child) => child.id === id);
+    const data = folders.find((child) => child.id === id);
     return data;
   };
 
-  return {select, setSelect, items, sensors, handleDragEnd, getFolderById}
-}
+  return { sensors, handleDragEnd, getFolderById };
+};

@@ -7,10 +7,11 @@ import { SortableItem } from "./SortableItem";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { useFolders } from "../hooks/useFolders";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import foldersState from "../state/foldersState";
 
 export const Folders = () => {
-  const { select, setSelect, items, sensors, handleDragEnd, getFolderById } =
-  useFolders();
+  const { sensors, handleDragEnd, getFolderById } = useFolders();
+  const { childrens, select, setSelect } = foldersState();
   const wrapperRef = useOutsideClick();
 
   return (
@@ -19,36 +20,40 @@ export const Folders = () => {
       onDoubleClick={() => console.log(1)}
       ref={wrapperRef}
     >
-      <div className="">
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-          modifiers={[restrictToVerticalAxis]}
-          onDragStart={(e) => setSelect(Number(e.active.id))}
-          onDragCancel={() => console.log(1)}
-        >
-          <SortableContext items={items} strategy={verticalListSortingStrategy}>
-            {items.map((id) => {
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+        onDragStart={(e) => setSelect(Number(e.active.id))}
+        onDragCancel={() => console.log(1)}
+      >
+        {childrens && (
+          <SortableContext
+            items={childrens}
+            strategy={verticalListSortingStrategy}
+          >
+            {childrens?.map((id: number) => {
               const data = getFolderById(id);
+
               return (
                 <SortableItem key={id} id={id} data={data} select={select} />
               );
             })}
           </SortableContext>
-          <DragOverlay>
-            {select && (
-              <SortableItem
-                key={999}
-                id={999}
-                data={getFolderById(select)}
-                select={select}
-                className="duration-0"
-              />
-            )}
-          </DragOverlay>
-        </DndContext>
-      </div>
+        )}
+        <DragOverlay>
+          {select && (
+            <SortableItem
+              key={999}
+              id={999}
+              data={getFolderById(select)}
+              select={select}
+              className="duration-0"
+            />
+          )}
+        </DragOverlay>
+      </DndContext>
     </div>
   );
 };
