@@ -6,10 +6,10 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-import foldersState from "../state/foldersState";
+import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrens, setChildrens } = foldersState();
+  const { folders, childrens, setChildrens, select, pushPath, reducePath } = foldersState();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -35,5 +35,20 @@ export const useFolders = () => {
     return data;
   };
 
-  return { sensors, handleDragEnd, getFolderById };
+  const moveInto = () => {
+    if (!select) return;
+    const newParent = getFolderById(select);
+    if (!newParent) return;
+
+    pushPath(newParent)
+    setChildrens(newParent.childrens);
+  };
+
+  const moveOut = (data: folder, index: number) => {
+    // pushPath(data)
+    reducePath(index)
+    setChildrens(data.childrens)
+  }
+
+  return { sensors, handleDragEnd, getFolderById, moveInto, moveOut };
 };

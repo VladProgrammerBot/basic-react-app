@@ -1,5 +1,3 @@
-import type { folder } from "../types/folder";
-
 export const childrens = [
   {
     id: 1,

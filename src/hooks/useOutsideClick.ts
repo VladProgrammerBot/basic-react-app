@@ -1,5 +1,5 @@
 import { useEffect, useRef, type RefObject } from "react";
-import foldersState from "../state/foldersState";
+import foldersState from "../state/stateFolders";
 
 export const useOutsideClick = () => {
   const { setSelect } = foldersState()
@@ -10,7 +10,6 @@ export const useOutsideClick = () => {
     useEffect(() => {
       function handleClickOutside(event: MouseEvent) {
         if (ref.current && !ref.current.contains(event.target as Node)) {
-          console.log(1);
           setSelect(null)
         }
       }
