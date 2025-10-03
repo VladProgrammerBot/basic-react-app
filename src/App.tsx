@@ -1,4 +1,4 @@
-import { Edit } from "./pages/Edit";
+import { Edit } from "./pages/Edit/Edit";
 
 function App() {
   return (

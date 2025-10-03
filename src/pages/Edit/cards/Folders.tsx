@@ -4,10 +4,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./SortableItem";
-import { useOutsideClick } from "../hooks/useOutsideClick";
-import { useFolders } from "../hooks/useFolders";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { useFolders } from "../../../hooks/useFolders";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import foldersState from "../state/foldersState";
+import foldersState from "@/state/foldersState";
 
 export const Folders = () => {
   const { sensors, handleDragEnd, getFolderById } = useFolders();

@@ -4,10 +4,11 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-    "compilerOptions": {
-    "baseUrl": ".",
+
+  "compilerOptions": {
+    "baseUrl": ".", // Defines the base directory for resolving module names
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"] // Maps the "@" alias to the "src" directory
     }
   }
 }
