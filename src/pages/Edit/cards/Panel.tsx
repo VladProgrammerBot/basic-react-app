@@ -9,12 +9,12 @@ export const Panel = () => {
 
   return (
     <div
-      className={`flex text-white flex-col duration-300 bg-neutral-800 justify-between h-full overflow-x-hidden w-14 ${
+      className={`flex text-white py-2 flex-col duration-300 bg-neutral-800 px-1 justify-between h-full overflow-x-hidden w-13 ${
         isOpen && "w-60 max-w-full"
       }`}
     >
       <div
-        className={`w-full flex py-2 pr-[6px] justify-end cursor-pointer`}
+        className={`w-full flex pr-[px] justify-end cursor-pointer`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="duration-150 hover:bg-neutral-700 p-3 rounded-md">
@@ -57,13 +57,13 @@ interface item {
 const Item = ({ elem }: { elem: item }) => {
   return (
     <button
-      className={`flex w-full items-center duration-150 hover:bg-neutral-700 py-3 cursor-pointer px-1 justify-between`}
+      className={`flex w-full items-center rounded-md duration-150 hover:bg-neutral-700 py-3 cursor-pointer px-1 justify-between`}
     >
       <div className="flex items-center">
-        <p className="min-w-12 flex justify-center w-12">{elem.icon}</p>
+        <p className="min-w-9 flex justify-center w-9">{elem.icon}</p>
         <p className="pl-2 w-fit">{elem.title}</p>
       </div>
-      <p className="text-neutral-500 text-sm px-4">{elem.key}</p>
+      <p className="text-neutral-500 text-sm px-6">{elem.key}</p>
     </button>
   );
 };

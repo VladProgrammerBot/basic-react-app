@@ -9,7 +9,7 @@ export const Path = () => {
   return (
     <div className="border-neutral-700 py-2 flex flex-wrap border-b- px-2 w-full">
       {path.map((elem, index) => {
-        const maxLength = 20
+        const maxLength = 10 
 
         return (
           <div className="flex items-center" key={index}>
