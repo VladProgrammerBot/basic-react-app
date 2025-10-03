@@ -32,7 +32,6 @@ export function SortableItem(props: {
 
   return (
     <div
-      // onDoubleClick={() => console.log(select)}
       onClick={() => console.log(1)}
       className={`${props.className} ${
         isDragging && "opacity-30 select-none"

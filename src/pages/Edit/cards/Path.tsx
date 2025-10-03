@@ -7,7 +7,7 @@ export const Path = () => {
   const { moveOut } = useFolders()
 
   return (
-    <div className="max-lg:px-2 max-w-4xl py-2 m-auto flex flex-wrap">
+    <div className="border-neutral-700 py-2 flex flex-wrap border-b- w-full">
       {path.map((elem, index) => {
         return (
           <div className="flex items-center" key={index}>
