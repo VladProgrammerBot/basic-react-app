@@ -19,7 +19,7 @@ export const childrens = [
   },
   {
     id: 5,
-    title: "devOps",
+    title: "DevOps",
     parent: 2,
     childrens: [],
   },
