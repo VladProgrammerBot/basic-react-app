@@ -16,7 +16,7 @@ export const Folders = () => {
 
     return (
         <div
-            className=" border-neutral-800 max-w-4xl mx-auto"
+            className="border-t-1 border-neutral-800 max-w-4xl mx-auto"
             onDoubleClick={() => moveInto()}
             ref={wrapperRef}
         >

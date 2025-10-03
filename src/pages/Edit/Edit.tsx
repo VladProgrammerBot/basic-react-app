@@ -8,7 +8,7 @@ export const Edit = () => {
       <div className="w-fit">
         <Panel />
       </div>
-      <div className="w-full px-3 space-y-4">
+      <div className="w-full px-2 space-y-4">
         <Path />
         <Folders />
       </div>

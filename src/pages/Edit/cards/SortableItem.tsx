@@ -6,7 +6,6 @@ import { RiArrowRightSLine } from "react-icons/ri";
 
 export function SortableItem(props: {
   select: number | null;
-  // data: folder | undefined | null;
   id: number;
   className?: string;
 }) {
@@ -35,8 +34,8 @@ export function SortableItem(props: {
       onClick={() => console.log(1)}
       className={`${props.className} ${
         isDragging && "opacity-30 select-none"
-      } uration-200 border-black/0 hover:shadow-md shadow-neutral-900 hover:bg-neutral-800 ${
-        props.select === data?.id && "bg-neutral-800"
+      } border-black/0 hover:shadow-md shadow-neutral-900  ${
+        props.select === data?.id ? "bg-neutral-800" : "hover:bg-neutral-900"
       } py-2 pr-4 cursor-pointer border-b-1 border-neutral-800 flex items-center`}
       ref={setNodeRef}
       style={style}

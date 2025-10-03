@@ -28,7 +28,7 @@ export const childrens = [
     title:
       "there is more examples than one, but thats not a problem, for example i can make a lot of jumps and don`t cry like baby:)",
     parent: 2,
-    childrens: [],
+    childrens: [4],
   },
   {
     id: 7,
