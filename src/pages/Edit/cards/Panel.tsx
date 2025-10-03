@@ -1,64 +1,69 @@
-import { IoMove } from "react-icons/io5";
-import { GoPencil } from "react-icons/go";
-import { IoSearchOutline } from "react-icons/io5";
-import { GoTrash } from "react-icons/go";
-import { BsPlusLg } from "react-icons/bs";
-import { RxQuestionMark } from "react-icons/rx";
+import { FaRegUser } from "react-icons/fa6";
+import { useState, type JSX } from "react";
+import { menu } from "@/data/sidebar";
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { LuSettings } from "react-icons/lu";
 
 export const Panel = () => {
-  const menu = [
-    {
-      icon: <GoTrash />,
-      title: "Remove",
-      key: "ctrl+d",
-    },
-    {
-      icon: <GoPencil />,
-      title: "Change",
-      key: "c",
-    },
-    {
-      icon: <IoMove />,
-      title: "Replace",
-      key: "r",
-    },
-    {
-      icon: <BsPlusLg color="white" fontSize={20} />,
-      title: "Add",
-      key: "a",
-    },
-    {
-      icon: <IoSearchOutline color="white" />,
-      title: "Search",
-      key: "s",
-    },
-    {
-      icon: <RxQuestionMark />,
-      title: "Help",
-      key: "?",
-    },
-  ];
+  const [isOpen, setIsOpen] = useState<boolean>();
 
   return (
-    <div className="flex flex-col duration-300 bg-neutral-800 justify-between h-full overflow-x-hidden w-14 hover:w-70 lg:w-70">
-      <div></div>
+    <div
+      className={`flex text-white flex-col duration-300 bg-neutral-800 justify-between h-full overflow-x-hidden w-14 ${
+        isOpen && "w-full md:w-70"
+      }`}
+    >
+      <div
+        className={`w-full flex py-2 pr-[6px] justify-end cursor-pointer`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="duration-150 hover:bg-neutral-700 p-3 rounded-md">
+          {isOpen ? (
+            <MdOutlineKeyboardDoubleArrowLeft fontSize={20} />
+          ) : (
+            <MdOutlineKeyboardDoubleArrowRight fontSize={20} />
+          )}
+        </div>
+      </div>
       <div className="w-full">
-        {menu.map((elem, index) => {
-          return (
-            <button
-              className={`flex w-full items-center text-lg duration-300 text-white hover:bg-neutral-700 py-3 cursor-pointer px-1 justify-between`}
-              key={index}
-            >
-              <div className="flex items-center">
-                <p className="min-w-12 flex justify-center w-12">{elem.icon}</p>
-                <p className="pl-2 w-fit">{elem.title}</p>
-              </div>
-              <p className="text-neutral-500 text-sm px-4">{elem.key}</p>
-            </button>
-          );
+        {menu.map((elem: item, index) => {
+          return <Item elem={elem} key={index} />;
         })}
       </div>
-      <div></div>
+      <div>
+        <Item
+          elem={{
+            icon: <LuSettings fontSize={20}/>,
+            title: "Settings",
+          }}
+        />
+        <Item
+          elem={{
+            icon: <FaRegUser fontSize={19}/>,
+            title: "User228",
+          }}
+        />
+      </div>
     </div>
+  );
+};
+
+interface item {
+  icon: JSX.Element;
+  title?: string;
+  key?: string;
+}
+
+const Item = ({ elem }: { elem: item }) => {
+  return (
+    <button
+      className={`flex w-full items-center duration-150 hover:bg-neutral-700 py-3 cursor-pointer px-1 justify-between`}
+    >
+      <div className="flex items-center">
+        <p className="min-w-12 flex justify-center w-12">{elem.icon}</p>
+        <p className="pl-2 w-fit">{elem.title}</p>
+      </div>
+      <p className="text-neutral-500 text-sm px-4">{elem.key}</p>
+    </button>
   );
 };
