@@ -70,7 +70,7 @@ body {
   /* display: flex; */
   /* place-items: center; */
   min-height: 100vh;
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
 }
 
 h1 {

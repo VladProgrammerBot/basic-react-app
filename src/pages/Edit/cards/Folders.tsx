@@ -25,7 +25,9 @@ export const Folders = () => {
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
                 modifiers={[restrictToVerticalAxis]}
-                onDragStart={(e) => setSelect(Number(e.active.id))}
+                onDragStart={(e) => {
+                    setSelect(Number(e.active.id))
+                }}
                 onDragCancel={() => console.log(1)}
             >
                 {childrens && (

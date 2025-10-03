@@ -40,8 +40,8 @@ export const useFolders = () => {
     const newParent = getFolderById(select);
     if (!newParent) return;
 
-    pushPath(newParent)
     setChildrens(newParent.childrens);
+    pushPath(newParent)
   };
 
   const moveOut = (data: folder, index: number) => {
