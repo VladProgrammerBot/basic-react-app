@@ -20,36 +20,9 @@ export const Folders = () => {
       onDoubleClick={() => moveInto()}
       ref={wrapperRef}
     >
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-        modifiers={[restrictToVerticalAxis]}
-        onDragStart={(e) => {
-          setSelect(Number(e.active.id));
-        }}
-      >
-        {childrens && (
-          <SortableContext
-            items={childrens}
-            strategy={verticalListSortingStrategy}
-          >
-            {childrens?.map((id: number) => {
-              return <SortableItem key={id} id={id} select={select} />;
-            })}
-          </SortableContext>
-        )}
-        {/* <DragOverlay>
-                    {select && (
-                        <SortableItem
-                            key={999}
-                            id={select}
-                            select={select}
-                            className="duration-0"
-                        />
-                    )}
-                </DragOverlay> */}
-      </DndContext>
+      {childrens?.map((id: number) => {
+        return <SortableItem key={id} id={id} select={select} />;
+      })}
     </div>
   );
 };

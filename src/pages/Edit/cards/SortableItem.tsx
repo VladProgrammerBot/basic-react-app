@@ -3,7 +3,9 @@ import stateMenu from "@/state/stateMenu";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useEffect, useState } from "react";
-import { RiArrowRightSLine } from "react-icons/ri";
+import { LuTextCursor } from "react-icons/lu";
+import { RiArrowRightSLine, RiDeleteBinLine } from "react-icons/ri";
+import { LuPencil } from "react-icons/lu";
 
 export function SortableItem(props: {
   select: number | null;
@@ -34,6 +36,7 @@ export function SortableItem(props: {
 
   return (
     <div
+      onContextMenu={() => setMenuValue(props.id)}
       onTouchStart={(e) =>
         setTouch({ x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY })
       }
@@ -54,7 +57,7 @@ export function SortableItem(props: {
       }}
       className={`${props.className} ${
         isDragging && "opacity-30 select-none"
-      } border-black/0 hover:hadow-md shadow-neutral-900 ${
+      } border-black/0 hover:hadow-md shadow-neutral-900 relative ${
         props.select === data?.id ? "bg-neutral-800" : "hover:bg-neutral-900"
       } cursor-pointer justify-between border-b-1 border-neutral-800 flex`}
       ref={setNodeRef}
@@ -70,15 +73,15 @@ export function SortableItem(props: {
             <div className="w-[24px]"></div>
           )}
         </div>
-        <p className="text-white overflow-x-hidden">{data?.title}</p>
+        <p className={`text-white max-w-80 duration-300 ${openMenu === props.id && 'opacity-50'}`}>{data?.title}</p>
       </div>
       <div
-        className={`bg-blue-500 w-0 duration-300 overflow-x-hidden flex ${
-          openMenu === props.id && "w-1/2"
+        className={`bg-neutral-800 w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 text-white text-lg ${
+          openMenu === props.id && "w-50 min-w-50"
         }`}
       >
-        <div className="flex-1 bg-green-500" onTouchStart={() => console.log("menu")}>a</div>
-        <div className="flex-1 bg-amber-600">b</div>
+        <div className="flex-1 bg-orange-500 flex gap-2 items-center justify-center border-r-1 border-neutral-100" onTouchStart={() => console.log("menu")}><LuPencil /></div>
+        <div className="flex-1 bg-red-500 flex items-center gap-2 justify-center"><RiDeleteBinLine/></div>
       </div>
     </div>
   );
