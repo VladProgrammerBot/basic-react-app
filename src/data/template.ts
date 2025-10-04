@@ -26,7 +26,7 @@ export const childrens = [
   {
     id: 6,
     title:
-      "there is more examples than one, but thats not a problem, for example i can make a lot of jumps and don`t cry like baby:)",
+      "TOUCH SUPPORT examples than one, but thats not a problem, for example i can make a lot of jumps and don`t cry like baby:)",
     parent: 2,
     childrens: [4],
   },

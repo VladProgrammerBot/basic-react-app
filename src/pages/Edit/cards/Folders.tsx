@@ -1,7 +1,7 @@
 import { DndContext, closestCenter, DragOverlay } from "@dnd-kit/core";
 import {
-    SortableContext,
-    verticalListSortingStrategy,
+  SortableContext,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./SortableItem";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
@@ -10,39 +10,36 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import foldersState from "@/state/stateFolders";
 
 export const Folders = () => {
-    const { sensors, handleDragEnd, moveInto } = useFolders();
-    const { childrens, select, setSelect } = foldersState();
-    const wrapperRef = useOutsideClick();
+  const { sensors, handleDragEnd, moveInto } = useFolders();
+  const { childrens, select, setSelect } = foldersState();
+  const wrapperRef = useOutsideClick();
 
-    return (
-        <div
-            className="border-t-1 border-neutral-800 max-w-4xl mx-auto"
-            onDoubleClick={() => moveInto()}
-            ref={wrapperRef}
-        >
-            <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToVerticalAxis]}
-                onDragStart={(e) => {
-                    setSelect(Number(e.active.id))
-                }}
-                onDragCancel={() => console.log(1)}
-            >
-                {childrens && (
-                    <SortableContext
-                        items={childrens}
-                        strategy={verticalListSortingStrategy}
-                    >
-                        {childrens?.map((id: number) => {
-                            return (
-                                <SortableItem key={id} id={id} select={select} />
-                            );
-                        })}
-                    </SortableContext>
-                )}
-                <DragOverlay>
+  return (
+    <div
+      className="border-t-1 border-neutral-800 max-w-4xl mx-auto"
+      onDoubleClick={() => moveInto()}
+      ref={wrapperRef}
+    >
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+        onDragStart={(e) => {
+          setSelect(Number(e.active.id));
+        }}
+      >
+        {childrens && (
+          <SortableContext
+            items={childrens}
+            strategy={verticalListSortingStrategy}
+          >
+            {childrens?.map((id: number) => {
+              return <SortableItem key={id} id={id} select={select} />;
+            })}
+          </SortableContext>
+        )}
+        {/* <DragOverlay>
                     {select && (
                         <SortableItem
                             key={999}
@@ -51,8 +48,8 @@ export const Folders = () => {
                             className="duration-0"
                         />
                     )}
-                </DragOverlay>
-            </DndContext>
-        </div>
-    );
+                </DragOverlay> */}
+      </DndContext>
+    </div>
+  );
 };
