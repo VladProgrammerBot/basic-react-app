@@ -1,6 +1,6 @@
 import { useFolders } from "@/hooks/useFolders";
 import { useEffect, useState } from "react";
-import { RiArrowRightSLine, RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri";
 import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
