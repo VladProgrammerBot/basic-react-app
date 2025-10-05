@@ -6,8 +6,12 @@ export const Path = () => {
   const { path } = stateFolders();
   const { moveOut } = useFolders()
 
+  // document.addEventListener('mouseover', (e) => {
+  //   console.log(e.clientX, e.clientY);
+  // })
+
   return (
-    <div className="border-neutral-700 py-2 flex flex-wrap border-b- px-2 w-full">
+    <div className="py-2 flex flex-wrap border-b- px-2 w-full">
       {path.map((elem, index) => {
         const maxLength = 10 
 

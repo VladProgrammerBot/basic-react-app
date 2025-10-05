@@ -9,7 +9,7 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrens, setChildrens, select, pushPath, reducePath } = foldersState();
+  const { folders, childrens, setChildrens, pushPath, reducePath } = foldersState();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -35,9 +35,9 @@ export const useFolders = () => {
     return data;
   };
 
-  const moveInto = () => {
-    if (!select) return;
-    const newParent = getFolderById(select);
+  const moveInto = (id: number) => {
+    // if (!select) return;
+    const newParent = getFolderById(id);
     if (!newParent) return;
 
     setChildrens(newParent.childrens);

@@ -8,6 +8,7 @@ type State = {
   childrens: number[] | null;
   path: folder[];
   select: number | null;
+  openMenu: number | null
 };
 
 type Actions = {
@@ -15,6 +16,7 @@ type Actions = {
   setSelect: (number: number | null) => void;
   pushPath: (folder: folder) => void;
   reducePath: (index: number) => void
+  setMenuValue: (value: number | null) => void;
 };
 
 const stateFolders = create<State & Actions>((set) => ({
@@ -25,7 +27,9 @@ const stateFolders = create<State & Actions>((set) => ({
   setChildrens: (array) => set({ childrens: array }),
   setSelect: (number) => set({ select: number }),
   pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
-  reducePath: (index) => set((state) => ({ path: state.path.splice(0, index + 1)}))
+  reducePath: (index) => set((state) => ({ path: state.path.splice(0, index + 1)})),
+  openMenu: null,
+  setMenuValue: (value) => set({ openMenu: value})
 }));
 
 export default stateFolders;
