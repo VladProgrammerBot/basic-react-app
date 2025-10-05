@@ -33,8 +33,11 @@ export function SortableItem(props: {
           openMenu !== props.id && "hover:bg-neutral-800/50"
         } w-full duration-200`}
         onClick={() => {
-          setMenuValue(null);
-          if (openMenu !== props.id) moveInto(props.id);
+          if (openMenu !== props.id){
+            
+            setMenuValue(null);
+            moveInto(props.id);
+          } 
         }}
         onContextMenu={() => setMenuValue(props.id)}
       >
@@ -57,9 +60,9 @@ export function SortableItem(props: {
             openMenu === props.id && "w-70 min-w-70"
           }`}
         >
-          {menuData.map((item) => {
+          {menuData.map((item, index) => {
             return (
-              <div className="bg-neutral-800/50 hover:bg-neutral-700/50 duration-150 border-l-1 border-neutral-800 flex-1 flex gap-2 items-center justify-center">
+              <div className={`bg-neutral-800 hover:bg-neutral-700 duration-150 ${index !== 0 && "border-l-1"} border-neutral-700 flex-1 flex gap-2 items-center justify-center`}>
                 {item}
               </div>
             );
