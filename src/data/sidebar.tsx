@@ -1,9 +1,10 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import { HiPencilAlt } from "react-icons/hi";
-import { LuTextCursor } from "react-icons/lu";
+import { LuPencil, LuTextCursor } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
-import { IoMdMove } from "react-icons/io";
+import { IoIosMove, IoMdMove } from "react-icons/io";
 import { IoMdHelp } from "react-icons/io";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export const menu = [
     {
@@ -37,3 +38,11 @@ export const menu = [
       key: "?",
     },
   ];
+
+export const menuData = [
+  <IoIosMove />,
+  <FaAngleUp />,
+  <FaAngleDown />,
+  <LuPencil />,
+  <RiDeleteBinLine />,
+];
