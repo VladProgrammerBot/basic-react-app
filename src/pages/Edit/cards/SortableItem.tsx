@@ -1,11 +1,7 @@
 import { useFolders } from "@/hooks/useFolders";
 import { useEffect, useState } from "react";
-import { RiArrowRightSLine, RiDeleteBinLine } from "react-icons/ri";
-import { LuPencil } from "react-icons/lu";
+import { RiArrowRightSLine } from "react-icons/ri";
 import stateFolders from "@/state/stateFolders";
-import { FaAngleUp } from "react-icons/fa";
-import { FaAngleDown } from "react-icons/fa";
-import { IoIosMove } from "react-icons/io";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { menuData } from "@/data/sidebar";
 
@@ -16,7 +12,6 @@ export function SortableItem(props: {
 }) {
   const { getFolderById } = useFolders();
   const [data, setData] = useState<folder>();
-  const [touch, setTouch] = useState<{ x: number; y: number } | null>();
   const { openMenu, setMenuValue } = stateFolders();
   const { moveInto } = useFolders();
 
@@ -30,14 +25,13 @@ export function SortableItem(props: {
     >
       <div
         className={`flex py-2 relative items-center ${
-          openMenu !== props.id && "hover:bg-neutral-800/50"
-        } w-full duration-200`}
+          openMenu !== props.id && "hover:bg-neutral-800/80"
+        } w-full duration-150`}
         onClick={() => {
-          if (openMenu !== props.id){
-            
+          if (openMenu !== props.id) {
             setMenuValue(null);
             moveInto(props.id);
-          } 
+          }
         }}
         onContextMenu={() => setMenuValue(props.id)}
       >
@@ -57,12 +51,16 @@ export function SortableItem(props: {
         </p>
         <div
           className={` w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 text-white text-lg shadow-sm shadow-neutral-950 ${
-            openMenu === props.id && "w-70 min-w-70"
+            openMenu === props.id && "w-60 min-w-60"
           }`}
         >
           {menuData.map((item, index) => {
             return (
-              <div className={`bg-neutral-800 hover:bg-neutral-700 duration-150 ${index !== 0 && "border-l-1"} border-neutral-700 flex-1 flex gap-2 items-center justify-center`}>
+              <div
+                className={`bg-neutral-800 hover:bg-neutral-700 duration-150 ${
+                  index !== 0 && "border-l-1"
+                } border-neutral-700 flex-1 flex gap-2 items-center justify-center`}
+              >
                 {item}
               </div>
             );

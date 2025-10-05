@@ -1,4 +1,5 @@
 import { Folders } from "./cards/Folders";
+// import { InputForm } from "./cards/InputForm";
 import { Path } from "./cards/Path";
 
 export const Edit = () => {
@@ -9,6 +10,7 @@ export const Edit = () => {
     <div className="h-screen max-w-4xl mx-auto">
       <Path />
       <Folders />
+      {/* <InputForm /> */}
     </div>
   );
 };
