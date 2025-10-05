@@ -6,7 +6,7 @@ export const Edit = () => {
     e.preventDefault();
   });
   return (
-    <div className="h-screen max-w-4xl space-y-4 mx-auto">
+    <div className="h-screen max-w-4xl mx-auto">
       <Path />
       <Folders />
     </div>

@@ -50,11 +50,11 @@ export function SortableItem(props: {
       className={`${props.className} hover:bg-neutral-800 cursor-pointer duration-200 shadow-neutral-900 relative justify-between border-b-1 border-neutral-800 flex`}
     >
       <div className="flex py-2 items-center pr-4 ">
-        <div className="p-1 text-neutral-500">
+        <div className="px-1 text-neutral-500">
           {data?.childrens.length ? (
             <RiArrowRightSLine fontSize={24} />
           ) : (
-            <div className="w-[24px]"></div>
+            <div className="w-6"></div>
           )}
         </div>
         <p
