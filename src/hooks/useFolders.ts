@@ -51,13 +51,18 @@ export const useFolders = () => {
   };
 
   const moveFolderVertical = (index: number, dir: number) => {
-    const futureIndex = index + dir
-    if (!childrens || futureIndex + 1 > childrens.length || futureIndex < 0) return;
+    const futureIndex = index + dir;
+    if (!childrens || futureIndex + 1 > childrens.length || futureIndex < 0)
+      return;
     const temparr = childrens;
     const tempIndexValue = temparr[futureIndex];
     temparr[futureIndex] = temparr[index];
     temparr[index] = tempIndexValue;
     setChildrens(temparr);
+  };
+
+  const addFolder = (value: string): void => {
+    
   };
 
   return {
@@ -67,5 +72,6 @@ export const useFolders = () => {
     getFolderById,
     moveInto,
     moveOut,
+    addFolder,
   };
 };

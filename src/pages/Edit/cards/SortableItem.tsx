@@ -36,12 +36,8 @@ export function SortableItem(props: {
         }}
         onContextMenu={() => setMenuValue(props.id)}
       >
-        <div className="px-1 text-neutral-500">
-          {data?.childrens.length ? (
-            <RiArrowRightSLine fontSize={24} />
-          ) : (
-            <div className="w-6"></div>
-          )}
+        <div className="px-1 text-neutral-600 w-8 min-w-8 text-center">
+          {data && data?.childrens.length > 0 && data.childrens.length}
         </div>
         <p
           className={`text-white duration-300 select-none ${
