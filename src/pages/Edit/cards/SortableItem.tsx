@@ -58,7 +58,7 @@ export function SortableItem(props: {
           )}
         </div>
         <p
-          className={`text-white max-w-80 duration-300 select-none ${
+          className={`text-white duration-300 select-none ${
             openMenu === props.id && "opacity-50"
           }`}
         >
