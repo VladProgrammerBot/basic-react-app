@@ -2,7 +2,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import foldersState from "../state/stateFolders";
 
 export const useOutsideClick = () => {
-  const { setSelect } = foldersState()
+  const { setMenuValue } = foldersState()
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOutsideAlerter(wrapperRef);
 
@@ -10,7 +10,7 @@ export const useOutsideClick = () => {
     useEffect(() => {
       function handleClickOutside(event: MouseEvent) {
         if (ref.current && !ref.current.contains(event.target as Node)) {
-          setSelect(null)
+          setMenuValue(null)
         }
       }
       document.addEventListener("mousedown", handleClickOutside);

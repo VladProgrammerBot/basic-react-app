@@ -9,11 +9,11 @@ export const Folders = () => {
 
   return (
     <div
-      className="border-t-1 border-neutral-800"
+      className="md:border-x-1 border-t-1 border-neutral-800"
       ref={wrapperRef}
     >
-      {childrens?.map((id: number) => {
-        return <SortableItem key={id} id={id} select={select} />;
+      {childrens?.map((id: number, index: number) => {
+        return <SortableItem key={id} id={id} select={select} folderIndex={index} />;
       })}
     </div>
   );

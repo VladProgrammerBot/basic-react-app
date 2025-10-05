@@ -9,7 +9,8 @@ import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrens, setChildrens, pushPath, reducePath } = foldersState();
+  const { folders, childrens, setChildrens, pushPath, reducePath } =
+    foldersState();
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -41,14 +42,30 @@ export const useFolders = () => {
     if (!newParent) return;
 
     setChildrens(newParent.childrens);
-    pushPath(newParent)
+    pushPath(newParent);
   };
 
   const moveOut = (data: folder, index: number) => {
-    // pushPath(data)
-    reducePath(index)
-    setChildrens(data.childrens)
-  }
+    reducePath(index);
+    setChildrens(data.childrens);
+  };
 
-  return { sensors, handleDragEnd, getFolderById, moveInto, moveOut };
+  const moveFolderVertical = (index: number, dir: number) => {
+    const futureIndex = index + dir
+    if (!childrens || futureIndex + 1 > childrens.length || futureIndex < 0) return;
+    const temparr = childrens;
+    const tempIndexValue = temparr[futureIndex];
+    temparr[futureIndex] = temparr[index];
+    temparr[index] = tempIndexValue;
+    setChildrens(temparr);
+  };
+
+  return {
+    sensors,
+    moveFolderVertical,
+    handleDragEnd,
+    getFolderById,
+    moveInto,
+    moveOut,
+  };
 };

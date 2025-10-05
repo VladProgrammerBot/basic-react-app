@@ -1,19 +1,21 @@
 import { useFolders } from "@/hooks/useFolders";
 import { useEffect, useState } from "react";
-import { RiArrowRightSLine } from "react-icons/ri";
+import { RiArrowRightSLine, RiDeleteBinLine } from "react-icons/ri";
 import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { menuData } from "@/data/sidebar";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export function SortableItem(props: {
   select: number | null;
   id: number;
   className?: string;
+  folderIndex: number;
 }) {
-  const { getFolderById } = useFolders();
+  const { getFolderById, moveFolderVertical, moveInto } = useFolders();
   const [data, setData] = useState<folder>();
   const { openMenu, setMenuValue } = stateFolders();
-  const { moveInto } = useFolders();
+  const itemStyles =
+    "bg-neutral-800 hover:bg-neutral-700 duration-150 border-neutral-700 flex-1 flex gap-2 items-center justify-center";
 
   useEffect(() => {
     setData(getFolderById(props.id));
@@ -54,17 +56,24 @@ export function SortableItem(props: {
             openMenu === props.id && "w-60 min-w-60"
           }`}
         >
-          {menuData.map((item, index) => {
-            return (
-              <div
-                className={`bg-neutral-800 hover:bg-neutral-700 duration-150 ${
-                  index !== 0 && "border-l-1"
-                } border-neutral-700 flex-1 flex gap-2 items-center justify-center`}
-              >
-                {item}
-              </div>
-            );
-          })}
+          <div
+            onClick={() => moveFolderVertical(props.folderIndex, -1)}
+            className={itemStyles}
+          >
+            <FaAngleUp />
+          </div>
+          <div
+            onClick={() => moveFolderVertical(props.folderIndex, 1)}
+            className={itemStyles}
+          >
+            <FaAngleDown />
+          </div>
+          <div
+            onClick={() => moveFolderVertical(props.folderIndex, -1)}
+            className={itemStyles}
+          >
+            <RiDeleteBinLine />
+          </div>
         </div>
       </div>
       <div
