@@ -9,7 +9,7 @@ export const Folders = () => {
 
   return (
     <div
-      className="md:border-x-1 border-t-1 border-neutral-800"
+      className="border-x-1 border-t-1 border-neutral-800"
       ref={wrapperRef}
     >
       {childrens?.map((id: number, index: number) => {

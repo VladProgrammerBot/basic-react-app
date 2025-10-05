@@ -9,6 +9,7 @@ type State = {
   path: folder[];
   select: number | null;
   openMenu: number | null
+  
 };
 
 type Actions = {

@@ -8,7 +8,6 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 export function SortableItem(props: {
   select: number | null;
   id: number;
-  className?: string;
   folderIndex: number;
 }) {
   const { getFolderById, moveFolderVertical, moveInto } = useFolders();
@@ -23,7 +22,7 @@ export function SortableItem(props: {
 
   return (
     <div
-      className={`${props.className} cursor-pointer shadow-neutral-900 relative justify-between border-b-1 border-neutral-800 flex`}
+      className={`cursor-pointer shadow-neutral-900 relative justify-between border-b-1 border-neutral-800 flex`}
     >
       <div
         className={`flex py-2 relative items-center ${

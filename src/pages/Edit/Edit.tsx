@@ -1,5 +1,7 @@
 import { Folders } from "./cards/Folders";
 // import { InputForm } from "./cards/InputForm";
+import { IoIosSearch } from "react-icons/io";
+import { IoAddOutline } from "react-icons/io5";
 import { Path } from "./cards/Path";
 
 export const Edit = () => {
@@ -7,8 +9,14 @@ export const Edit = () => {
     e.preventDefault();
   });
   return (
-    <div className="h-screen max-w-4xl mx-auto">
+    <div className="h-screen max-w-4xl max-lg:px-2 mx-auto">
       <Path />
+      <div className="text-white space-x-2 flex justify-end mb-2">
+        <button className="hover:bg-neutral-800 border-1 border-neutral-800 duration-150 cursor-pointer py-1 px-4">Filter</button>
+        <button className="over:bg-neutral-800 text-neutral-700 border-1 border-neutral-800 duration-150 ursor-pointer py-1 px-4">Paste</button>
+        <button className="hover:bg-neutral-800 border-1 border-neutral-800 duration-150 cursor-pointer py-1 px-4"><IoIosSearch fontSize={20}/></button>
+        <button className="hover:bg-neutral-800 border-1 border-neutral-800 duration-150 cursor-pointer py-1 px-4"><IoAddOutline fontSize={23}/></button>
+      </div>
       <Folders />
       {/* <InputForm /> */}
     </div>
