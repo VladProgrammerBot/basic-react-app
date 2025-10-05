@@ -62,7 +62,7 @@ export const useFolders = () => {
   };
 
   const addFolder = (value: string): void => {
-    
+    console.log(value)
   };
 
   return {
