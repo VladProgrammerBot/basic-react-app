@@ -1,7 +1,7 @@
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrensId, setChildrens, pushPath, reducePath } =
+  const { folders, childrensId, setChildrens, pushPath, reducePath, pushFolder, path, pushChildren, updateFolder } =
     foldersState();
 
   const getFolderById = (id: number) => {
@@ -33,8 +33,21 @@ export const useFolders = () => {
     setChildrens(temparr);
   };
 
+  const generateId = () => {
+    return Math.floor(Math.random() * 5000)
+  }
+
   const addFolder = (value: string): void => {
-    console.log(value)
+    const id = generateId()
+    const parentId = path[path.length-1].id
+    pushFolder({
+      id: id,
+      parent: parentId,
+      childrens: [],
+      title: value
+    })
+    pushChildren(id)
+    updateFolder(parentId)
   };
 
   return {

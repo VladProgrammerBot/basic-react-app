@@ -15,12 +15,13 @@ type State = {
 type Actions = {
   setChildrens: (array: number[]) => void;
   setSelect: (number: number | null) => void;
+  setMenuValue: (value: number | null) => void;
+  setMode: (mode: mode) => void;
   pushPath: (folder: folder) => void;
   pushFolder: (folder: folder) => void;
   pushChildren: (child: number) => void;
   reducePath: (index: number) => void;
-  setMenuValue: (value: number | null) => void;
-  setMode: (mode: mode) => void;
+  updateFolder: (id: number) => void;
 };
 
 const stateFolders = create<State & Actions>((set) => ({
@@ -37,6 +38,15 @@ const stateFolders = create<State & Actions>((set) => ({
     set((state) => ({ folders: [...state.folders, folder] })),
   pushChildren: (child) =>
     set((state) => ({ childrensId: [...state.childrensId, child] })),
+  updateFolder: (parentId) => set((state) => ({folders: state.folders.map((folder) => {
+    if (folder.id === parentId) {
+      return {
+        ...folder,
+        childrens: state.childrensId
+      }
+    }
+    return folder
+  })})),
   reducePath: (index) =>
     set((state) => ({ path: state.path.splice(0, index + 1) })),
   setMenuValue: (value) => set({ openMenu: value }),
