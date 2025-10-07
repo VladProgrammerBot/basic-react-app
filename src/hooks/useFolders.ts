@@ -11,6 +11,7 @@ export const useFolders = () => {
     path,
     pushChildren,
     setParentChildrens,
+    setMode,
   } = foldersState();
 
   const getFolderById = (id: number) => {
@@ -25,12 +26,14 @@ export const useFolders = () => {
 
     setChildrens(newParent.childrens);
     pushPath(newParent);
+    window.scrollTo(0, 0);
   };
 
   const moveOut = (data: folder, index: number) => {
     setParentChildrens(path.length - 1, childrensId);
     reducePath(index);
     setChildrens(data.childrens);
+    window.scrollTo(0, 0);
   };
 
   const moveFolderVertical = (index: number, dir: number) => {
@@ -49,6 +52,7 @@ export const useFolders = () => {
   };
 
   const addFolder = (value: string): void => {
+    setMode("normal");
     const id = generateId();
     const parentId = path[path.length - 1].id;
     pushFolder(
@@ -62,12 +66,7 @@ export const useFolders = () => {
       id
     );
     pushChildren(id);
-    console.log(childrensId)
   };
-
-  // useEffect(() => {
-  //   console.log(path, childrensId);
-  // }, [path, childrensId]);
 
   return {
     moveFolderVertical,

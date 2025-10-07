@@ -35,15 +35,20 @@ const stateFolders = create<State & Actions>((set) => ({
   setSelect: (number) => set({ select: number }),
   pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
   pushFolder: (folder, childrens, id) =>
-    set((state) => ({ folders: [...state.folders.map((item) => {
-      if (item.id === folder.parent) {
-        return {
-          ...item,
-          childrens: [...childrens, id]
-        }
-      }
-      return item
-    }), folder] })),
+    set((state) => ({
+      folders: [
+        ...state.folders.map((item) => {
+          if (item.id === folder.parent) {
+            return {
+              ...item,
+              childrens: [...childrens, id],
+            };
+          }
+          return item;
+        }),
+        folder,
+      ],
+    })),
   pushChildren: (child) =>
     set((state) => ({ childrensId: [...state.childrensId, child] })),
   reducePath: (index) =>

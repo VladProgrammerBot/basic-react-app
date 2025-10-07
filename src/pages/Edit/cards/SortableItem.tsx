@@ -3,6 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { IoAddOutline, IoAirplane, IoLaptop } from "react-icons/io5";
 
 export function SortableItem({
   data,
@@ -47,6 +48,18 @@ export function SortableItem({
             openMenu === data.id && "w-60 min-w-60"
           }`}
         >
+          <div
+            onClick={() => moveFolderVertical(folderIndex, -1)}
+            className={itemStyles}
+          >
+            <IoAddOutline />
+          </div>
+          <div
+            onClick={() => moveFolderVertical(folderIndex, 1)}
+            className={itemStyles}
+          >
+            <IoAirplane />
+          </div>
           <div
             onClick={() => moveFolderVertical(folderIndex, -1)}
             className={itemStyles}

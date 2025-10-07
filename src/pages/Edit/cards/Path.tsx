@@ -7,10 +7,6 @@ export const Path = () => {
   const { path } = stateFolders();
   const { moveOut } = useFolders();
 
-  // document.addEventListener('mouseover', (e) => {
-  //   console.log(e.clientX, e.clientY);
-  // })
-
   return (
     <div className="p-2 flex gap-4 flex-wrap justify-between items-center w-full">
       <div className="flex flex-wrap flex-1">

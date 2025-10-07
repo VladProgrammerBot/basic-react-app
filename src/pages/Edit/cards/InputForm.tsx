@@ -1,12 +1,17 @@
 import { useFolders } from "@/hooks/useFolders";
 import stateFolders from "@/state/stateFolders";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
 
 export const InputForm = () => {
   const { setMode, mode } = stateFolders();
   const { addFolder } = useFolders()
   const ref = useRef<HTMLTextAreaElement | null>(null);
+
+  //focus input
+  useEffect(() => {
+    ref.current?.focus()
+  }, [])
 
   return (
     <div className="left-0 top-0 p-4 flex items-center justify-center w-screen h-screen fixed">
