@@ -5,7 +5,7 @@ type mode = "normal" | "Add Folder";
 
 type State = {
   folders: folder[];
-  childrens: number[];
+  childrensId: number[];
   path: folder[];
   select: number | null;
   openMenu: number | null;
@@ -25,18 +25,18 @@ type Actions = {
 
 const stateFolders = create<State & Actions>((set) => ({
   folders: childrens,
-  childrens: childrens[0].childrens,
+  childrensId: childrens[0].childrens,
   path: [childrens[0]],
   select: null,
   openMenu: null,
   mode: "normal",
-  setChildrens: (array) => set({ childrens: array }),
+  setChildrens: (array) => set({ childrensId: array }),
   setSelect: (number) => set({ select: number }),
   pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
   pushFolder: (folder) =>
     set((state) => ({ folders: [...state.folders, folder] })),
   pushChildren: (child) =>
-    set((state) => ({ childrens: [...state.childrens, child] })),
+    set((state) => ({ childrensId: [...state.childrensId, child] })),
   reducePath: (index) =>
     set((state) => ({ path: state.path.splice(0, index + 1) })),
   setMenuValue: (value) => set({ openMenu: value }),

@@ -1,35 +1,8 @@
-import {
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-} from "@dnd-kit/core";
-import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrens, setChildrens, pushPath, reducePath } =
+  const { folders, childrensId, setChildrens, pushPath, reducePath } =
     foldersState();
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
-
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (!childrens || !setChildrens) return;
-
-    if (active.id !== over?.id && over) {
-      const oldIndex = childrens.indexOf(Number(active.id));
-      const newIndex = childrens.indexOf(Number(over.id));
-
-      setChildrens(arrayMove(childrens, oldIndex, newIndex));
-    }
-  }
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);
@@ -37,7 +10,6 @@ export const useFolders = () => {
   };
 
   const moveInto = (id: number) => {
-    // if (!select) return;
     const newParent = getFolderById(id);
     if (!newParent) return;
 
@@ -52,9 +24,9 @@ export const useFolders = () => {
 
   const moveFolderVertical = (index: number, dir: number) => {
     const futureIndex = index + dir;
-    if (!childrens || futureIndex + 1 > childrens.length || futureIndex < 0)
+    if (!childrensId || futureIndex + 1 > childrensId.length || futureIndex < 0)
       return;
-    const temparr = childrens;
+    const temparr = childrensId;
     const tempIndexValue = temparr[futureIndex];
     temparr[futureIndex] = temparr[index];
     temparr[index] = tempIndexValue;
@@ -66,9 +38,7 @@ export const useFolders = () => {
   };
 
   return {
-    sensors,
     moveFolderVertical,
-    handleDragEnd,
     getFolderById,
     moveInto,
     moveOut,
