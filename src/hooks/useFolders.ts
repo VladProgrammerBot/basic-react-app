@@ -1,8 +1,17 @@
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
-  const { folders, childrensId, setChildrens, pushPath, reducePath, pushFolder, path, pushChildren, updateFolder } =
-    foldersState();
+  const {
+    folders,
+    childrensId,
+    setChildrens,
+    pushPath,
+    reducePath,
+    pushFolder,
+    path,
+    pushChildren,
+    setParentChildrens,
+  } = foldersState();
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);
@@ -10,6 +19,7 @@ export const useFolders = () => {
   };
 
   const moveInto = (id: number) => {
+    setParentChildrens(path.length - 1, childrensId);
     const newParent = getFolderById(id);
     if (!newParent) return;
 
@@ -18,6 +28,7 @@ export const useFolders = () => {
   };
 
   const moveOut = (data: folder, index: number) => {
+    setParentChildrens(path.length - 1, childrensId);
     reducePath(index);
     setChildrens(data.childrens);
   };
@@ -34,21 +45,29 @@ export const useFolders = () => {
   };
 
   const generateId = () => {
-    return Math.floor(Math.random() * 5000)
-  }
+    return Math.floor(Math.random() * 5000);
+  };
 
   const addFolder = (value: string): void => {
-    const id = generateId()
-    const parentId = path[path.length-1].id
-    pushFolder({
-      id: id,
-      parent: parentId,
-      childrens: [],
-      title: value
-    })
-    pushChildren(id)
-    updateFolder(parentId)
+    const id = generateId();
+    const parentId = path[path.length - 1].id;
+    pushFolder(
+      {
+        id: id,
+        parent: parentId,
+        childrens: [],
+        title: value,
+      },
+      childrensId,
+      id
+    );
+    pushChildren(id);
+    console.log(childrensId)
   };
+
+  // useEffect(() => {
+  //   console.log(path, childrensId);
+  // }, [path, childrensId]);
 
   return {
     moveFolderVertical,

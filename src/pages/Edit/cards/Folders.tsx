@@ -5,19 +5,23 @@ import foldersState from "@/state/stateFolders";
 import { useMemo } from "react";
 
 export const Folders = () => {
-  const { childrensId, folders, path, setChildrens } = foldersState();
+  const { childrensId, folders, path } = foldersState();
   const wrapperRef = useOutsideClick();
+  // console.log(1)
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(childrensId.length);
     const parent = path[path.length - 1].id
+    // let tempChildrens = [] as number[]
     folders.forEach((folder) => {
       if (folder.parent === parent) {
         sortedChildrens[childrensId.indexOf(folder.id)] = folder;
       } else if (folder.id === parent) {
-        setChildrens(folder.childrens)
+        // console.log(folder)
+        // tempChildrens = folder.childrens
       }
     });
+    // setChildrens(tempChildrens)
 
     return sortedChildrens;
   }, [childrensId, folders]);
