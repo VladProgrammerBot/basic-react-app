@@ -22,6 +22,8 @@ type Actions = {
   pushChildren: (child: number) => void;
   reducePath: (index: number) => void;
   setParentChildrens: (index: number, childrensId: number[]) => void;
+  foldersRemove: (id: number, parentId: number) => void;
+  childrensRemove: (id: number) => void;
 };
 
 const stateFolders = create<State & Actions>((set) => ({
@@ -67,6 +69,27 @@ const stateFolders = create<State & Actions>((set) => ({
     })),
   setMenuValue: (value) => set({ openMenu: value }),
   setMode: (mode) => set({ mode: mode }),
+
+  childrensRemove: (id) => {
+    set((state) => ({
+      childrensId: state.childrensId.filter((child) => child !== id)
+    }))
+  },
+  foldersRemove: (id, parentId) => {
+    set((state) => ({
+      folders: state.folders.filter((folder) => {
+        return folder.id !== id;
+      }).map((folder) => {
+        if (folder.id === parentId) {
+          return {
+            ...folder,
+            childrens: folder.childrens.filter((child) => child !== id)
+          }
+        }
+        return folder
+      }),
+    }));
+  },
 }));
 
 export default stateFolders;

@@ -17,6 +17,8 @@ export const Folders = () => {
       }
     });
 
+    console.log(1)
+
     return sortedChildrens;
   }, [childrensId, folders]);
 

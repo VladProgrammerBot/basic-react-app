@@ -12,6 +12,8 @@ export const useFolders = () => {
     pushChildren,
     setParentChildrens,
     setMode,
+    foldersRemove,
+    childrensRemove,
   } = foldersState();
 
   const getFolderById = (id: number) => {
@@ -23,14 +25,12 @@ export const useFolders = () => {
     setParentChildrens(path.length - 1, childrensId);
     const newParent = getFolderById(id);
     if (!newParent) return;
-
     setChildrens(newParent.childrens);
     pushPath(newParent);
     window.scrollTo(0, 0);
   };
 
   const moveOut = (data: folder, index: number) => {
-    setParentChildrens(path.length - 1, childrensId);
     reducePath(index);
     setChildrens(data.childrens);
     window.scrollTo(0, 0);
@@ -68,11 +68,17 @@ export const useFolders = () => {
     pushChildren(id);
   };
 
+  const removeFolder = (id: number, parent: number) => {
+    foldersRemove(id, parent);
+    childrensRemove(id);
+  };
+
   return {
     moveFolderVertical,
     getFolderById,
     moveInto,
     moveOut,
     addFolder,
+    removeFolder,
   };
 };

@@ -3,7 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { IoAddOutline, IoAirplane, IoLaptop } from "react-icons/io5";
+import { IoAddOutline, IoAirplane } from "react-icons/io5";
 
 export function SortableItem({
   data,
@@ -12,7 +12,7 @@ export function SortableItem({
   data: folder;
   folderIndex: number;
 }) {
-  const { moveFolderVertical, moveInto } = useFolders();
+  const { moveFolderVertical, moveInto, removeFolder } = useFolders();
   const { openMenu, setMenuValue } = stateFolders();
   const itemStyles =
     "bg-neutral-800 hover:bg-neutral-700 duration-150 border-neutral-700 flex-1 flex gap-2 items-center justify-center";
@@ -73,7 +73,7 @@ export function SortableItem({
             <FaAngleDown />
           </div>
           <div
-            onClick={() => moveFolderVertical(folderIndex, -1)}
+            onClick={() => removeFolder(data.id, data.parent)}
             className={itemStyles}
           >
             <RiDeleteBinLine />
