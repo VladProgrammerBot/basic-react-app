@@ -82,7 +82,7 @@ export function SortableItem({
       </div>
       <div
         onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-        className="text-lg text-white hover:bg-neutral-800 border-l-1 border-neutral-800 duration-150 flex items-center px-1"
+        className="text-lg text-white hover:bg-neutral-800  border-neutral-800 duration-150 flex items-center px-1"
       >
         <BsThreeDotsVertical />
       </div>

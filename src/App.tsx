@@ -1,4 +1,4 @@
-import { Edit } from "./pages/Edit/Edit";
+import { Edit } from "./pages/workspace/Edit";
 
 function App() {
   return (
