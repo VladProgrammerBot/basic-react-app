@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { 
+import {
   Form,
   FormControl,
   FormField,
@@ -31,8 +30,23 @@ export const Login = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const api = import.meta.env.VITE_API;
+
+    try {
+      const res = await fetch(api + "/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+    // console.log(values.username);
   }
 
   return (

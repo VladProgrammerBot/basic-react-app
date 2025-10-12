@@ -8,6 +8,7 @@ import { Home } from "./pages/home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Login } from "./pages/auth/Login.tsx";
 
+
 const authMiddleware = () => {
   throw redirect("/login");
 };
