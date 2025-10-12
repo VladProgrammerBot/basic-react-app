@@ -10,20 +10,18 @@ export const Folders = () => {
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(childrensId.length);
-    const parent = path[path.length - 1].id
+    const parent = path[path.length - 1].id;
     folders.forEach((folder) => {
       if (folder.parent === parent) {
         sortedChildrens[childrensId.indexOf(folder.id)] = folder;
       }
     });
 
-    console.log(1)
-
     return sortedChildrens;
   }, [childrensId, folders]);
 
   return (
-    <div className="border-x-1 border-t-1 border-neutral-800 h-fit" ref={wrapperRef}>
+    <div className="border-t-1 border-neutral-800 h-fit" ref={wrapperRef}>
       {childrensData.map((data, index: number) => {
         return <SortableItem key={data.id} data={data} folderIndex={index} />;
       })}

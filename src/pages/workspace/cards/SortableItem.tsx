@@ -15,7 +15,7 @@ export function SortableItem({
   const { moveFolderVertical, moveInto, removeFolder } = useFolders();
   const { openMenu, setMenuValue } = stateFolders();
   const itemStyles =
-    "bg-neutral-800 hover:bg-neutral-700 duration-150 border-neutral-700 flex-1 flex gap-2 items-center justify-center";
+    "bg-neutral-800 hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
   return (
     <div
@@ -23,7 +23,7 @@ export function SortableItem({
     >
       <div
         className={`flex py-2 relative items-center ${
-          openMenu !== data.id && "hover:bg-neutral-800/80"
+          openMenu !== data.id && "hover:bg-neutral-800"
         } w-full duration-150`}
         onClick={() => {
           if (openMenu !== data.id) {

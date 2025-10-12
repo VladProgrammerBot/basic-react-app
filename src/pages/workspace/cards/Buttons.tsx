@@ -10,7 +10,7 @@ export const Buttons = () => {
       <button className="hover:bg-neutral-800 border-1 border-neutral-800 duration-150 cursor-pointer py-1 px-4">
         Filter
       </button>
-      <button className="over:bg-neutral-800 text-neutral-700 border-1 border-neutral-800 duration-150 ursor-pointer py-1 px-4">
+      <button className="text-neutral-700 border-1 border-neutral-800 duration-150 ursor-pointer py-1 px-4">
         Paste
       </button>
       <button className="hover:bg-neutral-800 border-1 border-neutral-800 duration-150 cursor-pointer py-1 px-4">
