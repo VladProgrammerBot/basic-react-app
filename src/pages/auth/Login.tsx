@@ -12,6 +12,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import stateFolders from "@/state/stateFolders";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -23,6 +25,7 @@ const formSchema = z.object({
 });
 
 export const Login = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,23 +33,34 @@ export const Login = () => {
     },
   });
 
+  const { setFolders, setChildrens, pushPath } = stateFolders();
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const api = import.meta.env.VITE_API;
+    const api = import.meta.env.VITE_API_LOCAL;
 
     try {
-      const res = await fetch(api + "/auth/login", {
+      await fetch(api + "/auth/login", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      });
+      })
+        .then((res) => res.json())
+        .then((data: folder[]) => {
+          const parent = data.find((folder) => folder.parent === null);
 
-      console.log(res)
+          if (!parent) return;
+
+          setFolders(data);
+          pushPath(parent);
+          setChildrens(parent?.childrens);
+          navigate("/workspace");
+        });
     } catch (error) {
       console.log(error);
     }
-    // console.log(values.username);
   }
 
   return (

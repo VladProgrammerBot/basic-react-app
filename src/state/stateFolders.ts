@@ -24,15 +24,17 @@ type Actions = {
   setParentChildrens: (index: number, childrensId: number[]) => void;
   foldersRemove: (id: number, parentId: number) => void;
   childrensRemove: (id: number) => void;
+  setFolders: (data: folder[]) => void;
 };
 
 const stateFolders = create<State & Actions>((set) => ({
-  folders: childrens,
+  folders: [],
   childrensId: childrens[0].childrens,
   path: [childrens[0]],
   select: null,
   openMenu: null,
   mode: "normal",
+  setFolders: (data) => set({ folders: data }),
   setChildrens: (array) => set({ childrensId: array }),
   setSelect: (number) => set({ select: number }),
   pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
@@ -72,22 +74,24 @@ const stateFolders = create<State & Actions>((set) => ({
 
   childrensRemove: (id) => {
     set((state) => ({
-      childrensId: state.childrensId.filter((child) => child !== id)
-    }))
+      childrensId: state.childrensId.filter((child) => child !== id),
+    }));
   },
   foldersRemove: (id, parentId) => {
     set((state) => ({
-      folders: state.folders.filter((folder) => {
-        return folder.id !== id;
-      }).map((folder) => {
-        if (folder.id === parentId) {
-          return {
-            ...folder,
-            childrens: folder.childrens.filter((child) => child !== id)
+      folders: state.folders
+        .filter((folder) => {
+          return folder.id !== id;
+        })
+        .map((folder) => {
+          if (folder.id === parentId) {
+            return {
+              ...folder,
+              childrens: folder.childrens.filter((child) => child !== id),
+            };
           }
-        }
-        return folder
-      }),
+          return folder;
+        }),
     }));
   },
 }));
