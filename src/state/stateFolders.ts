@@ -17,6 +17,7 @@ type Actions = {
   setMenuValue: (value: number | null) => void;
   setMode: (mode: mode) => void;
   pushPath: (folder: folder) => void;
+  setPath: (folder: folder) => void;
   pushFolder: (folder: folder, childrens: number[], newId: number) => void;
   pushChildren: (child: number) => void;
   reducePath: (index: number) => void;
@@ -37,6 +38,7 @@ const stateFolders = create<State & Actions>((set) => ({
   setChildrens: (array) => set({ childrensId: array }),
   setSelect: (number) => set({ select: number }),
   pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
+  setPath: (folder) => set({ path: [folder] }),
   pushFolder: (folder, childrens, id) =>
     set((state) => ({
       folders: [

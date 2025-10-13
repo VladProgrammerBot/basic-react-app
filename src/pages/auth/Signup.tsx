@@ -1,10 +1,10 @@
-import stateFolders from "@/state/stateFolders";
 import { AuthForm } from "./AuthForm";
 import type { authForm } from "@/hooks/useAuthForm";
 import { useNavigate } from "react-router";
+import { useFolders } from "@/hooks/useFolders";
 
 export const Signup = () => {
-  const { setFolders, setChildrens, pushPath } = stateFolders();
+  const { setFirstState } = useFolders();
   const navigate = useNavigate();
 
   const submit = async (values: authForm) => {
@@ -21,13 +21,7 @@ export const Signup = () => {
       })
         .then((res) => res.json())
         .then((data: folder[]) => {
-          const parent = data.find((folder) => folder.parent === null);
-
-          if (!parent) return;
-
-          setFolders(data);
-          pushPath(parent);
-          setChildrens(parent.childrens);
+          setFirstState(data);
           navigate("/workspace");
         });
     } catch (error) {
@@ -35,5 +29,7 @@ export const Signup = () => {
     }
   };
 
-  return <AuthForm title="Sign up" descript="Create new account" submit={submit} />;
+  return (
+    <AuthForm title="Sign up" descript="Create new account" submit={submit} />
+  );
 };
