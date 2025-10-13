@@ -80,8 +80,6 @@ export const useFolders = () => {
 
     if (!parent) return;
 
-    console.log(parent);
-
     setFolders(data);
     setPath(parent);
     setChildrens(parent.childrens);
@@ -94,6 +92,6 @@ export const useFolders = () => {
     moveOut,
     addFolder,
     removeFolder,
-    setFirstState
+    setFirstState,
   };
 };

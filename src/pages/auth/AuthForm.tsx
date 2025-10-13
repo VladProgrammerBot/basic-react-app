@@ -27,7 +27,7 @@ export const AuthForm = ({
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="space-y-2">
           <p className="text-4xl">{title}</p>
-          <p className="text-lg text-neutral-500">{descript}</p>
+          <p className="text-md cursor-pointer hover:text-neutral-400 duration-150 text-neutral-500 underline underline-offset-2">{descript}</p>
         </div>
         <div className="space-y-2">
           <FormField
