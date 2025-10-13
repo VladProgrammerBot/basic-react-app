@@ -14,7 +14,9 @@ import { useLogin, type authForm } from "@/hooks/useAuthForm";
 export const AuthForm = ({
   submit,
   title,
+  descript,
 }: {
+  descript?: string;
   submit: (data: authForm) => void;
   title: string;
 }) => {
@@ -23,7 +25,10 @@ export const AuthForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <p className="text-4xl">{title}</p>
+        <div className="space-y-2">
+          <p className="text-4xl">{title}</p>
+          <p className="text-lg text-neutral-500">{descript}</p>
+        </div>
         <div className="space-y-2">
           <FormField
             control={form.control}
