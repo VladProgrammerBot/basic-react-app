@@ -23,7 +23,7 @@ export const Folders = () => {
   }, [childrensId, folders]);
 
   const getFolders = async () => {
-    const api = import.meta.env.VITE_API_LOCAL;
+    const api = import.meta.env.VITE_API;
 
     try {
       await fetch(api + "/folders", {

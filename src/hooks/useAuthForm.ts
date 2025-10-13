@@ -27,7 +27,7 @@ export const useLogin = (type: authType) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const api = import.meta.env.VITE_API_LOCAL;
+    const api = import.meta.env.VITE_API;
 
     try {
       await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
