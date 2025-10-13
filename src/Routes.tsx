@@ -1,9 +1,8 @@
 import { createBrowserRouter, redirect } from "react-router";
 import { Home } from "./pages/home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
-import { Login } from "./pages/auth/Login.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
-import { Signup } from "./pages/auth/Signup.tsx";
+import { AuthForm } from "./pages/auth/AuthForm.tsx";
 
 const authMiddleware = () => {
   if (!document.cookie) throw redirect("/login");
@@ -27,11 +26,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "login",
-            Component: Login,
+            element: <AuthForm type="Log in" />,
           },
           {
             path: "signup",
-            Component: Signup,
+            element: <AuthForm type="Sign up" />,
           },
         ],
       },

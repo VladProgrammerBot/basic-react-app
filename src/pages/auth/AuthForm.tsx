@@ -9,25 +9,29 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useLogin, type authForm } from "@/hooks/useAuthForm";
+import { useLogin } from "@/hooks/useAuthForm";
+import { NavLink } from "react-router";
 
-export const AuthForm = ({
-  submit,
-  title,
-  descript,
-}: {
-  descript?: string;
-  submit: (data: authForm) => void;
-  title: string;
-}) => {
-  const { onSubmit, form } = useLogin(submit);
+export type authType = "Log in" | "Sign up";
+
+export const AuthForm = ({ type }: { type: authType }) => {
+  const { onSubmit, form } = useLogin(type);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="space-y-2">
-          <p className="text-4xl">{title}</p>
-          <p className="text-md cursor-pointer hover:text-neutral-400 duration-150 text-neutral-500 underline underline-offset-2">{descript}</p>
+          <p className="text-4xl">{type}</p>
+          <p className="text-md cursor-pointer  underline underline-offset-2">
+            {type === "Log in" ? (
+              <NavLink to={"/signup"}>Create new account</NavLink>
+            ) : (
+
+              <NavLink to={"/login"}>
+                Login into account
+              </NavLink>
+            )}
+          </p>
         </div>
         <div className="space-y-2">
           <FormField
@@ -57,7 +61,7 @@ export const AuthForm = ({
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{type}</Button>
       </form>
     </Form>
   );

@@ -1,6 +1,9 @@
+import type { authType } from "@/pages/auth/AuthForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useFolders } from "./useFolders";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -13,7 +16,9 @@ const formSchema = z.object({
 
 export type authForm = z.infer<typeof formSchema>;
 
-export const useLogin = (submit: (data: authForm) => void) => {
+export const useLogin = (type: authType) => {
+  const { setFirstState } = useFolders();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -22,7 +27,25 @@ export const useLogin = (submit: (data: authForm) => void) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    submit(values);
+    const api = import.meta.env.VITE_API_LOCAL;
+
+    try {
+      await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setFirstState(data);
+          navigate("/workspace");
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return { form, onSubmit };
