@@ -1,4 +1,4 @@
-  declare interface folder {
+declare interface folder {
   id: number;
   title: string;
   parent: number;

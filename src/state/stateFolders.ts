@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { childrens } from "../data/template";
 
 type mode = "normal" | "Add Folder";
 
@@ -29,8 +28,8 @@ type Actions = {
 
 const stateFolders = create<State & Actions>((set) => ({
   folders: [],
-  childrensId: childrens[0].childrens,
-  path: [childrens[0]],
+  childrensId: [],
+  path: [],
   select: null,
   openMenu: null,
   mode: "normal",

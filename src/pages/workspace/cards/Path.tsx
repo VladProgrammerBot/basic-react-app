@@ -10,7 +10,7 @@ export const Path = () => {
   return (
     <div className="p-2 flex gap-4 flex-wrap justify-between items-center w-full">
       <div className="flex flex-wrap flex-1">
-        {path.map((elem, index) => {
+        {path?.map((elem, index) => {
           const maxLength = 10;
 
           return (
