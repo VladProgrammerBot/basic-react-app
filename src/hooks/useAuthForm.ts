@@ -33,13 +33,18 @@ export const useLogin = (type: authType) => {
       await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
         method: "POST",
         credentials: "include",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res, 1);
+          return res.json();
+        })
         .then((data) => {
+          console.log(data, 2);
           setFirstState(data);
           navigate("/workspace");
         });
