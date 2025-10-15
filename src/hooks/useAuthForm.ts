@@ -33,7 +33,7 @@ export const useLogin = (type: authType) => {
       await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
         method: "POST",
         credentials: "include",
-        mode: "cors",
+        // mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
