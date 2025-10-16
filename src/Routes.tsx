@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
