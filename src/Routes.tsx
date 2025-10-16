@@ -1,12 +1,12 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import { Home } from "./pages/home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 
 const authMiddleware = () => {
-  // if (!document.cookie) throw redirect("/login");
-  console.log(document.cookie)
+  console.log(document.cookie);
+  if (!document.cookie) throw redirect("/login");
 };
 
 export const router = createBrowserRouter([
