@@ -29,10 +29,10 @@ export const Folders = () => {
       await fetch(api + "/folders", {
         method: "GET",
         credentials: "include",
-        mode: "cors",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
+        // mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
         .then((res) => res.json())
         .then((data) => setFirstState(data));

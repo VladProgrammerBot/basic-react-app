@@ -5,7 +5,8 @@ import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 
 const authMiddleware = () => {
-  if (!document.cookie) throw redirect("/login");
+  // if (!document.cookie) throw redirect("/login");
+  console.log(document.cookie)
 };
 
 export const router = createBrowserRouter([
