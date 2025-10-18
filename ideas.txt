@@ -1,0 +1,6 @@
+bar:
+    auth
+        log out
+        account settings
+        account title & image (or profile icon)
+    settings

@@ -18,7 +18,7 @@ export const Edit = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl max-lg:px-2 mx-auto">
+    <div className="">
       {path.length === 0 ? (
         <p className="p-2">
           Loading...
@@ -26,8 +26,10 @@ export const Edit = () => {
       ) : (
         <>
           <Path />
-          <Buttons />
-          <Folders />
+          <div className="max-w-4xl max-lg:px-2 mx-auto">
+            <Buttons />
+            <Folders />
+          </div>
 
         </>
       )}

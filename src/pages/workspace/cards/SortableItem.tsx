@@ -19,12 +19,12 @@ export function SortableItem({
 
   return (
     <div
-      className={`cursor-pointer shadow-neutral-900 relative justify-between border-b-1 border-neutral-800 flex`}
+      className={`min-h-12 cursor-pointer border-b-1 border-neutral-800 flex ${
+        openMenu !== data.id && "hover:bg-neutral-800 duration-150"}
+      `}
     >
       <div
-        className={`flex py-2 relative items-center ${
-          openMenu !== data.id && "hover:bg-neutral-800"
-        } w-full duration-150`}
+        className={`flex py-2 relative items-center  w-full`}
         onClick={() => {
           if (openMenu !== data.id) {
             setMenuValue(null);
@@ -82,7 +82,7 @@ export function SortableItem({
       </div>
       <div
         onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-        className="text-lg text-white hover:bg-neutral-800  border-neutral-800 duration-150 flex items-center px-1"
+        className="text-lg text-white flex items-center px-1"
       >
         <BsThreeDotsVertical />
       </div>

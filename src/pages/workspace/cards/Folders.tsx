@@ -7,7 +7,7 @@ export const Folders = () => {
   const { childrensData } = useFolders()
 
   return (
-    <div className="border-t-1 border-neutral-800 h-fit" ref={wrapperRef}>
+    <div className="border-t-1 border-neutral-800 h-fit mb-12" ref={wrapperRef}>
       {childrensData?.map((data, index: number) => {
         return <SortableItem key={data.id} data={data} folderIndex={index} />;
       })}
