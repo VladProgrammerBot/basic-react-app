@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import foldersState from "../state/stateFolders";
 
 export const useFolders = () => {
@@ -75,14 +76,44 @@ export const useFolders = () => {
     childrensRemove(id);
   };
 
-  const setFirstState = (data: folder[]) => {
-    const parent = data.find((folder) => folder.parent === null);
+  const childrensData = useMemo(() => {
+    const sortedChildrens = new Array(childrensId.length);
+    const parent = path[path.length - 1]?.id;
+    folders?.forEach((folder) => {
+      if (folder.parent === parent) {
+        sortedChildrens[childrensId.indexOf(folder.id)] = folder;
+      }
+    });
 
-    if (!parent) return;
+    return sortedChildrens;
+  }, [childrensId, folders]);
 
-    setFolders(data);
-    setPath(parent);
-    setChildrens(parent.childrens);
+  const getFolders = async () => {
+    const api = import.meta.env.VITE_API;
+
+    try {
+      await fetch(api + "/folders/get", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: localStorage.getItem("token")
+        })
+      })
+        .then((res) => res.json())
+        .then((data: folder[]) => {
+          const parent = data.find((folder) => folder.parent === null);
+
+          if (!parent) return;
+
+          setFolders(data);
+          setChildrens(parent.childrens);
+          setPath(parent);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return {
@@ -92,6 +123,7 @@ export const useFolders = () => {
     moveOut,
     addFolder,
     removeFolder,
-    setFirstState,
+    childrensData,
+    getFolders
   };
 };
