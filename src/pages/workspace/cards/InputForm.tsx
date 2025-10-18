@@ -28,11 +28,11 @@ export const InputForm = () => {
         <textarea
           ref={ref}
           placeholder="Enter folder name"
-          className="p-2 border-1 min-h-20 max-h-100 border-neutral-800 outline-none ounded-md"
+          className="p-2 border-1 min-h-20 max-h-100 border-neutral-700 outline-none ounded-md"
         />
         <button
           onClick={() => ref.current && addFolder(ref.current.value)}
-          className="border-1 border-neutral-800 py-2 px-4 ounded-lg cursor-pointer hover:bg-neutral-800 duration-200"
+          className="border-1 border-neutral-700 py-2 px-4 ounded-lg cursor-pointer hover:bg-neutral-800 duration-200"
         >
           Submit
         </button>

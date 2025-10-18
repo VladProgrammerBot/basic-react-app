@@ -19,7 +19,7 @@ export function SortableItem({
 
   return (
     <div
-      className={`min-h-12 cursor-pointer border-b-1 border-neutral-800 flex ${
+      className={`min-h-12 cursor-pointer border-b-1 border-neutral-700 flex ${
         openMenu !== data.id && "hover:bg-neutral-800 duration-150"}
       `}
     >
@@ -33,7 +33,7 @@ export function SortableItem({
         }}
         onContextMenu={() => setMenuValue(data.id)}
       >
-        <div className="px-1 text-neutral-600 w-8 min-w-8 text-center">
+        <div className="px-1 text-neutral-500 w-8 min-w-8 text-center">
           {data && data?.childrens.length > 0 && data.childrens.length}
         </div>
         <p

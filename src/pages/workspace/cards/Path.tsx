@@ -8,7 +8,7 @@ export const Path = () => {
   const { moveOut } = useFolders();
 
   return (
-    <div className="px-4 border-b-1 border-neutral-800 py-4 mb-2 flex gap-4 flex-wrap justify-between items-center w-full">
+    <div className="px-4 border-b-1 border-neutral-700 py-4 mb-2 flex gap-4 flex-wrap justify-between items-center w-full">
       <div className="flex flex-wrap flex-1">
         {path?.map((elem, index) => {
           const maxLength = 10;
@@ -34,7 +34,7 @@ export const Path = () => {
           );
         })}
       </div>
-      <FiMenu fontSize={20} className="mx-2" color="white"/>
+      {/* <FiMenu fontSize={20} className="mx-2" color="white"/> */}
     </div>
   );
 };
