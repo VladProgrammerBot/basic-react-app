@@ -1,7 +1,6 @@
 import { useFolders } from "@/hooks/useFolders";
 import stateFolders from "@/state/stateFolders";
 import { RiArrowRightSLine } from "react-icons/ri";
-import { FiMenu } from "react-icons/fi";
 
 export const Path = () => {
   const { path } = stateFolders();
