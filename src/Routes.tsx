@@ -5,8 +5,7 @@ import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 
 const authMiddleware = () => {
-  console.log(document.cookie);
-  if (!document.cookie) throw redirect("/login");
+  if (!localStorage.getItem("token")) throw redirect("/login");
 };
 
 export const router = createBrowserRouter([

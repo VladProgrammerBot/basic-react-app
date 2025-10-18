@@ -26,13 +26,14 @@ export const Folders = () => {
     const api = import.meta.env.VITE_API;
 
     try {
-      await fetch(api + "/folders", {
-        method: "GET",
-        credentials: "include",
-        // mode: "cors",
+      await fetch(api + "/folders/get", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          token: localStorage.getItem("token")
+        })
       })
         .then((res) => res.json())
         .then((data) => setFirstState(data));
@@ -42,9 +43,7 @@ export const Folders = () => {
   };
 
   useEffect(() => {
-    if (folders.length === 0) {
-      getFolders();
-    }
+    getFolders();
   }, []);
 
   return (

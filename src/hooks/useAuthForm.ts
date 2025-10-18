@@ -2,7 +2,6 @@ import type { authType } from "@/pages/auth/AuthForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useFolders } from "./useFolders";
 import { useNavigate } from "react-router";
 
 const formSchema = z.object({
@@ -17,7 +16,6 @@ const formSchema = z.object({
 export type authForm = z.infer<typeof formSchema>;
 
 export const useLogin = (type: authType) => {
-  const { setFirstState } = useFolders();
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,19 +31,17 @@ export const useLogin = (type: authType) => {
       await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
         method: "POST",
         credentials: "include",
-        // mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       })
         .then((res) => {
-          console.log(res, 1);
           return res.json();
         })
         .then((data) => {
-          console.log(data, 2);
-          setFirstState(data);
+          console.log(data);
+          localStorage.setItem("token", data)
           navigate("/workspace");
         });
     } catch (error) {
