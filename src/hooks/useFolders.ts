@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import foldersState from "../state/stateFolders";
+const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
   const {
@@ -54,11 +55,11 @@ export const useFolders = () => {
     return Math.floor(Math.random() * 5000);
   };
 
-  const addFolder = (value: string): void => {
-    
-    setMode("normal");
+  const addFolder = async (value: string) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
+
+    setMode("normal");
     pushFolder(
       {
         id: id,
@@ -70,6 +71,24 @@ export const useFolders = () => {
       id
     );
     pushChildren(id);
+
+    try {
+      await fetch(api + "/folders/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          title: value,
+          parent: parentId,
+          token: localStorage.getItem("token")
+        })
+      }).then((res) => res.json())
+        .then((data) => console.log(data))
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const removeFolder = (id: number, parent: number) => {
@@ -90,8 +109,6 @@ export const useFolders = () => {
   }, [childrensId, folders]);
 
   const getFolders = async () => {
-    const api = import.meta.env.VITE_API;
-
     try {
       await fetch(api + "/folders/get", {
         method: "POST",
