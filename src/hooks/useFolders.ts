@@ -91,9 +91,25 @@ export const useFolders = () => {
     }
   };
 
-  const removeFolder = (id: number, parent: number) => {
+  const removeFolder = async (id: number, parent: number) => {
     foldersRemove(id, parent);
     childrensRemove(id);
+
+    try {
+      await fetch(api + "/folders/remove", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          token: localStorage.getItem("token")
+        })
+      }).then((res) => res.json())
+        .then((data) => console.log(data))
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const childrensData = useMemo(() => {

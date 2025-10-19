@@ -73,7 +73,7 @@ export function SortableItem({
             <FaAngleDown />
           </div>
           <div
-            onClick={() => removeFolder(data.id, data.parent)}
+            onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
             className={itemStyles}
           >
             <RiDeleteBinLine />
