@@ -4,3 +4,9 @@ bar:
         account settings
         account title & image (or profile icon)
     settings
+
+history
+    it can be used:
+        -by user, when he need to escape some of actions
+        -also by render on client before get response from req to server on endpoints like "add", "remove". 
+        it slove problem by not needing to wait for res to do action, if res is reject, program do action "undo",

@@ -55,6 +55,7 @@ export const useFolders = () => {
   };
 
   const addFolder = (value: string): void => {
+    
     setMode("normal");
     const id = generateId();
     const parentId = path[path.length - 1].id;

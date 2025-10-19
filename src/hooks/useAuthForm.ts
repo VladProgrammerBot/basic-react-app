@@ -40,7 +40,6 @@ export const useLogin = (type: authType) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
           localStorage.setItem("token", data)
           navigate("/workspace");
         });
