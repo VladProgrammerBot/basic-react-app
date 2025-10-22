@@ -10,12 +10,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useLogin } from "@/hooks/useAuthForm";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 export type authType = "Log in" | "Sign up";
 
 export const AuthForm = ({ type }: { type: authType }) => {
   const { onSubmit, form } = useLogin(type);
+  const navigate = useNavigate()
 
   return (
     <Form {...form}>
@@ -61,7 +62,10 @@ export const AuthForm = ({ type }: { type: authType }) => {
             )}
           />
         </div>
-        <Button type="submit">{type}</Button>
+        <div className="w-full flex justify-end gap-2">
+          <Button type="button" variant={"outline"} onClick={() => navigate("/")}>Cancel</Button>
+          <Button type="submit">{type}</Button>
+        </div>
       </form>
     </Form>
   );

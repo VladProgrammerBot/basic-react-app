@@ -16,13 +16,13 @@ export function SortableItem({
   const { moveFolderVertical, moveInto, removeFolder } = useFolders();
   const { openMenu, setMenuValue } = stateFolders();
   const itemStyles =
-    "bg-neutral-900 hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
+    "bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
   return (
     <ItemLayout
       filled
       className={`px-3 flex ${
-        openMenu !== data.id && "hover:bg-neutral-900 duration-150"}
+        openMenu !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-900 duration-150"}
       `}
     >
       <div
@@ -39,14 +39,14 @@ export function SortableItem({
           {data && data?.childrens.length > 0 && data.childrens.length}
         </div>
         <p
-          className={`text-white duration-300 select-none ${
+          className={`text-black dark:text-white duration-300 select-none ${
             openMenu === data.id && "opacity-50"
           }`}
         >
           {data?.title}
         </p>
         <div
-          className={` w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 text-white text-lg shadow-sm shadow-neutral-950 ${
+          className={`w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 dark:text-white text-lg shadow-sm shadow-neutral-500 dark:shadow-neutral-950 ${
             openMenu === data.id && "w-60 min-w-60"
           }`}
         >
@@ -84,7 +84,7 @@ export function SortableItem({
       </div>
       <div
         onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-        className="text-lg px-1 text-white flex items-center"
+        className="text-lg px-1 text-black dark:text-white flex items-center"
       >
         <BsThreeDotsVertical />
       </div>

@@ -11,14 +11,14 @@ export const Folders = () => {
   const { setMode, mode } = stateFolders()
 
   return (
-    <div className="space-y-2 h-fit mb-[60vh]" ref={wrapperRef}>
+    <div className="space-y-2 h-fit pb-[60vh]" ref={wrapperRef}>
       {childrensData?.map((data, index: number) => {
         return <SortableItem key={data.id} data={data} folderIndex={index} />;
       })}
 
       <ItemLayout>
         {mode === "normal" ? (
-          <div onClick={() => setMode("Add Folder")} className="w-full h-14 flex justify-center items-center text-neutral-700 hover:text-neutral-500">
+          <div onClick={() => setMode("Add Folder")} className="w-full h-14 flex justify-center items-center text-neutral-400 hover:text-neutral-500 dark:text-neutral-700 dark:hover:text-neutral-500">
             + New
           </div>
         ) : (

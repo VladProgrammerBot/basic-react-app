@@ -7,7 +7,7 @@ export const Path = () => {
   const { moveOut } = useFolders();
 
   return (
-    <div className="px-4 order-b-1 border-neutral-700 py-4 flex gap-4 flex-wrap justify-between items-center w-full">
+    <div className="px-4 py-4 flex gap-4 flex-wrap justify-between items-center w-full">
       <div className="flex flex-wrap flex-1">
         {path?.map((elem, index) => {
           const maxLength = 10;
@@ -22,7 +22,7 @@ export const Path = () => {
                 className={` ${
                   path.length - 1 !== index
                     ? "text-neutral-500 hover:text-neutral-300 duration-150 cursor-pointer"
-                    : "text-white"
+                    : "dark:text-white"
                 }`}
               >
                 {elem.title.length > maxLength

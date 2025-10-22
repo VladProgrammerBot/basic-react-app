@@ -63,6 +63,7 @@ a:hover {
 
 body {
   background-color: #000000;
+  min-height: 100vh;
   /* min-height: 100vh; */
   /* height: 100vh; */
   -webkit-overflow-scrolling: touch;
@@ -85,15 +86,8 @@ h1 {
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  body {
+    background-color: white;
   }
 }
 
