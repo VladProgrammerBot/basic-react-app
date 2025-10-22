@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
-import stateFolders from "@/state/stateFolders";
 import { useNavigate } from "react-router";
 
 export const Buttons = () => {
-  const { setMode } = stateFolders();
   const navigate = useNavigate()
 
   return (
