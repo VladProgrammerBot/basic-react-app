@@ -16,7 +16,7 @@ export function SortableItem({
   const { moveFolderVertical, moveInto, removeFolder } = useFolders();
   const { openMenu, setMenuValue } = stateFolders();
   const itemStyles =
-    "bg-neutral-800 hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
+    "bg-neutral-900 hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
   return (
     <ItemLayout
