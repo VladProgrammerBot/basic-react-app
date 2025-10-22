@@ -22,7 +22,7 @@ export function SortableItem({
     <ItemLayout
       filled
       className={`px-3 flex ${
-        openMenu !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-900 duration-150"}
+        openMenu !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
       `}
     >
       <div
@@ -35,11 +35,11 @@ export function SortableItem({
         }}
         onContextMenu={() => setMenuValue(data.id)}
       >
-        <div className="text-neutral-500 w-8 min-w-8 text-center">
+        <div className="text-neutral-400 dark:text-neutral-700 w-8 min-w-8 text-center">
           {data && data?.childrens.length > 0 && data.childrens.length}
         </div>
         <p
-          className={`text-black dark:text-white duration-300 select-none ${
+          className={`text-black dark:text-neutral-200 duration-300 select-none ${
             openMenu === data.id && "opacity-50"
           }`}
         >
