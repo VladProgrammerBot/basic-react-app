@@ -4,6 +4,7 @@ import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { IoAddOutline, IoAirplane } from "react-icons/io5";
+import { ItemLayout } from "./ItemLayout";
 
 export function SortableItem({
   data,
@@ -18,9 +19,10 @@ export function SortableItem({
     "bg-neutral-800 hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
   return (
-    <div
-      className={`min-h-14 px-3 cursor-pointer flex bg-neutral-900 rounded-4xl ${
-        openMenu !== data.id && "hover:bg-neutral-800 duration-150"}
+    <ItemLayout
+      filled
+      className={`px-3 flex ${
+        openMenu !== data.id && "hover:bg-neutral-900 duration-150"}
       `}
     >
       <div
@@ -86,6 +88,6 @@ export function SortableItem({
       >
         <BsThreeDotsVertical />
       </div>
-    </div>
+    </ItemLayout>
   );
 }

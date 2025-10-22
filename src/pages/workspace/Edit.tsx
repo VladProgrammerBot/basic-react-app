@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Buttons } from "./cards/Buttons";
 import { Folders } from "./cards/Folders";
-import { InputForm } from "./cards/InputForm";
+import { InputForm } from "./cards/InputForm2";
 import { Path } from "./cards/Path";
 import stateFolders from "@/state/stateFolders";
 import { useFolders } from "@/hooks/useFolders";
@@ -30,10 +30,8 @@ export const Edit = () => {
             <Buttons />
             <Folders />
           </div>
-
         </>
-      )}
-      {mode !== "normal" && <InputForm />}
+      )}      
     </div>
   );
 };

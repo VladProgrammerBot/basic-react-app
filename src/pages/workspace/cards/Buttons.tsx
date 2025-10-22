@@ -20,7 +20,7 @@ export const Buttons = () => {
       >
         <IoAddOutline fontSize={23} />
       </Button> */}
-      <Button onClick={() => {
+      <Button variant={"outline"} onClick={() => {
         localStorage.clear()
         navigate("/login")
       }}>

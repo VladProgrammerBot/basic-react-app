@@ -15,13 +15,13 @@ export const Path = () => {
           return (
             <div className="flex items-center" key={index}>
               {index !== 0 && (
-                <RiArrowRightSLine fontSize={24} className="text-neutral-500" />
+                <RiArrowRightSLine fontSize={24} className="text-neutral-800"/>
               )}
               <div
                 onClick={() => moveOut(elem, index)}
                 className={` ${
                   path.length - 1 !== index
-                    ? "text-neutral-500 hover:text-neutral-300 duration-150 cursor-pointer underline underline-offset-2"
+                    ? "text-neutral-500 hover:text-neutral-300 duration-150 cursor-pointer"
                     : "text-white"
                 }`}
               >
