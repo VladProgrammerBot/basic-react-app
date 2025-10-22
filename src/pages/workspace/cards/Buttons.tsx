@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import stateFolders from "@/state/stateFolders";
-import { IoAddOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
 
 export const Buttons = () => {
@@ -8,7 +7,7 @@ export const Buttons = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="text-white space-x-2 flex justify-end mb-2">
+    <div className="text-white space-x-2 flex justify-end">
       {/* <Button>
         Filter
       </Button>
@@ -18,11 +17,11 @@ export const Buttons = () => {
       {/* <Button>
         <IoIosSearch fontSize={20} />
       </Button> */}
-      <Button
+      {/* <Button
         onClick={() => setMode("Add Folder")}
       >
         <IoAddOutline fontSize={23} />
-      </Button>
+      </Button> */}
       <Button onClick={() => {
         localStorage.clear()
         navigate("/login")

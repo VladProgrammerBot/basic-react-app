@@ -26,7 +26,7 @@ export const Edit = () => {
       ) : (
         <>
           <Path />
-          <div className="max-w-4xl max-lg:px-2 mx-auto">
+          <div className="max-w-4xl text-lg max-lg:px-2 mx-auto space-y-2">
             <Buttons />
             <Folders />
           </div>
