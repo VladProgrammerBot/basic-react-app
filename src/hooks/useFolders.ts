@@ -18,6 +18,8 @@ export const useFolders = () => {
     childrensRemove,
     setFolders,
     setPath,
+    moveBuffer,
+    setMoveFolder
   } = foldersState();
 
   const getFolderById = (id: number) => {
@@ -150,6 +152,15 @@ export const useFolders = () => {
     }
   };
 
+  const moveFolder = () => {
+    // moveBuffer?.id
+    // moveBuffer?.parent
+    // path[path.length - 1].id
+    if (!moveBuffer) return
+
+    setMoveFolder(moveBuffer.id, moveBuffer.parent, path[path.length - 1].id)
+  }
+
   return {
     moveFolderVertical,
     getFolderById,
@@ -158,6 +169,7 @@ export const useFolders = () => {
     addFolder,
     removeFolder,
     childrensData,
-    getFolders
+    getFolders,
+    moveFolder
   };
 };

@@ -41,7 +41,7 @@ export function SortableItem({
           {data?.title}
         </p>
         
-      <ItemMenu openMenu={openMenu} data={data} />
+      <ItemMenu data={data} />
       </div>
       <div
         onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}

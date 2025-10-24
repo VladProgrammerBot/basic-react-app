@@ -1,13 +1,16 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { IoAddOutline, IoAirplane } from "react-icons/io5";
+import { IoAddOutline } from "react-icons/io5";
 import { useFolders } from "@/hooks/useFolders";
+import { MdOutlineShortcut } from "react-icons/md";
+import stateFolders from "@/state/stateFolders";
 
-export const ItemMenu = ({data, openMenu}: {data: folder, openMenu: number | null}) => {
+export const ItemMenu = ({ data }: { data: folder }) => {
     const itemStyles =
         "bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
     const { removeFolder } = useFolders()
+    const { setBuffer, openMenu, setMenuValue } = stateFolders()
 
     return (
         <div
@@ -20,9 +23,13 @@ export const ItemMenu = ({data, openMenu}: {data: folder, openMenu: number | nul
                 <IoAddOutline />
             </div>
             <div
+                onClick={() => {
+                    setBuffer(data.id, data.parent)
+                    setMenuValue(null)
+                }}
                 className={itemStyles}
             >
-                <IoAirplane />
+                <MdOutlineShortcut />
             </div>
             <div
                 className={itemStyles}

@@ -9,6 +9,7 @@ type State = {
   select: number | null;
   openMenu: number | null;
   mode: mode;
+  moveBuffer: { id: number; parent: number } | null
 };
 
 type Actions = {
@@ -25,6 +26,8 @@ type Actions = {
   foldersRemove: (id: number, parentId: number) => void;
   childrensRemove: (id: number) => void;
   setFolders: (data: folder[]) => void;
+  setBuffer: (id: number, parent: number) => void
+  setMoveFolder: (id: number, parent: number, futureParent: number) => void
 };
 
 const stateFolders = create<State & Actions>((set) => ({
@@ -34,6 +37,7 @@ const stateFolders = create<State & Actions>((set) => ({
   select: null,
   openMenu: null,
   mode: "normal",
+  moveBuffer: null,
   setFolders: (data) => set({ folders: data }),
   setChildrens: (array) => set({ childrensId: array }),
   setSelect: (number) => set({ select: number }),
@@ -72,7 +76,6 @@ const stateFolders = create<State & Actions>((set) => ({
     })),
   setMenuValue: (value) => set({ openMenu: value }),
   setMode: (mode) => set({ mode: mode }),
-
   childrensRemove: (id) => {
     set((state) => ({
       childrensId: state.childrensId.filter((child) => child !== id),
@@ -95,6 +98,31 @@ const stateFolders = create<State & Actions>((set) => ({
         }),
     }));
   },
+  setBuffer: (id, parent) => {
+    set({ moveBuffer: { id: id, parent: parent } })
+  },
+  setMoveFolder: (id, parent, futureParent) => {
+    set((state) => ({folders: state.folders.map((folder) => {
+      if (folder.id === futureParent) {
+        return {
+          ...folder,
+          childrens: [...folder.childrens, id]
+        }
+      } else if (folder.id === id) {
+        return {
+          ...folder,
+          parent: futureParent
+        }
+      } else if (folder.id === parent) {
+        return {
+          ...folder,
+          childrens: folder.childrens.filter((child) => child !== id)
+        }
+      }
+
+      return folder
+    })}))
+  }
 }));
 
 export default stateFolders;
