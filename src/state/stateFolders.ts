@@ -28,6 +28,7 @@ type Actions = {
   setFolders: (data: folder[]) => void;
   setBuffer: (id: number, parent: number) => void
   setMoveFolder: (id: number, parent: number, futureParent: number) => void
+  resetMoveBuffer: () => void
 };
 
 const stateFolders = create<State & Actions>((set) => ({
@@ -102,27 +103,30 @@ const stateFolders = create<State & Actions>((set) => ({
     set({ moveBuffer: { id: id, parent: parent } })
   },
   setMoveFolder: (id, parent, futureParent) => {
-    set((state) => ({folders: state.folders.map((folder) => {
-      if (folder.id === futureParent) {
-        return {
-          ...folder,
-          childrens: [...folder.childrens, id]
+    set((state) => ({
+      folders: state.folders.map((folder) => {
+        if (folder.id === futureParent) {
+          return {
+            ...folder,
+            childrens: [...folder.childrens, id]
+          }
+        } else if (folder.id === id) {
+          return {
+            ...folder,
+            parent: futureParent
+          }
+        } else if (folder.id === parent) {
+          return {
+            ...folder,
+            childrens: folder.childrens.filter((child) => child !== id)
+          }
         }
-      } else if (folder.id === id) {
-        return {
-          ...folder,
-          parent: futureParent
-        }
-      } else if (folder.id === parent) {
-        return {
-          ...folder,
-          childrens: folder.childrens.filter((child) => child !== id)
-        }
-      }
 
-      return folder
-    })}))
-  }
+        return folder
+      })
+    }))
+  },
+  resetMoveBuffer: () => set({ moveBuffer: null })
 }));
 
 export default stateFolders;

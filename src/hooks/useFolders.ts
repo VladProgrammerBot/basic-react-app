@@ -19,7 +19,8 @@ export const useFolders = () => {
     setFolders,
     setPath,
     moveBuffer,
-    setMoveFolder
+    setMoveFolder,
+    resetMoveBuffer
   } = foldersState();
 
   const getFolderById = (id: number) => {
@@ -152,14 +153,31 @@ export const useFolders = () => {
     }
   };
 
-  const moveFolder = () => {
-    // moveBuffer?.id
-    // moveBuffer?.parent
-    // path[path.length - 1].id
+  const moveFolder = async () => {
     if (!moveBuffer) return
+    const futureParent = path[path.length - 1].id
 
-    setMoveFolder(moveBuffer.id, moveBuffer.parent, path[path.length - 1].id)
+    setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
     pushChildren(moveBuffer.id)
+    resetMoveBuffer()
+
+    try {
+      await fetch(api + "/folders/move", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: moveBuffer.id,
+          parentId: moveBuffer.parent,
+          future_parent: futureParent,
+          token: localStorage.getItem("token")
+        })
+      }).then((res) => res.json())
+        .then((data) => console.log(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return {
