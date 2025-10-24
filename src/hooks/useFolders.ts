@@ -159,6 +159,7 @@ export const useFolders = () => {
     if (!moveBuffer) return
 
     setMoveFolder(moveBuffer.id, moveBuffer.parent, path[path.length - 1].id)
+    pushChildren(moveBuffer.id)
   }
 
   return {
