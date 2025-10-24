@@ -6,20 +6,9 @@ export const Buttons = () => {
 
   return (
     <div className="text-white space-x-2 flex justify-end">
-      {/* <Button>
-        Filter
-      </Button>
-      <Button>
+      <Button variant={"outlineNotActive"}>
         Paste
-      </Button> */}
-      {/* <Button>
-        <IoIosSearch fontSize={20} />
-      </Button> */}
-      {/* <Button
-        onClick={() => setMode("Add Folder")}
-      >
-        <IoAddOutline fontSize={23} />
-      </Button> */}
+      </Button>
       <Button variant={"outline"} onClick={() => {
         localStorage.clear()
         navigate("/login")

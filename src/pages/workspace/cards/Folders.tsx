@@ -12,8 +12,8 @@ export const Folders = () => {
 
   return (
     <div className="space-y-2 h-fit pb-[60vh]" ref={wrapperRef}>
-      {childrensData?.map((data, index: number) => {
-        return <SortableItem key={data.id} data={data} folderIndex={index} />;
+      {childrensData?.map((data) => {
+        return <SortableItem key={data.id} data={data} />;
       })}
 
       <ItemLayout>
