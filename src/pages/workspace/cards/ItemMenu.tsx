@@ -1,8 +1,8 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import { IoAddOutline } from "react-icons/io5";
 import { useFolders } from "@/hooks/useFolders";
 import { MdOutlineShortcut } from "react-icons/md";
+import { LuPencil } from "react-icons/lu";
 import store from "@/state/store";
 
 export const ItemMenu = ({ data }: { data: folder }) => {
@@ -24,7 +24,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
                     setRenameBuffer(data.id)
                 }}
             >
-                <IoAddOutline />
+                <LuPencil />
             </div>
             <div
                 onClick={() => {
