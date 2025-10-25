@@ -187,6 +187,23 @@ export const useFolders = () => {
     if (!renameBuffer) return
     setRenameFolder(renameBuffer, title)
     setRenameBuffer(null)
+
+    try {
+      await fetch(api + "/folders/rename", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: renameBuffer,
+          title: title,
+          token: localStorage.getItem("token")
+        })
+      }).then((res) => res.json())
+        .then((data) => console.log(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return {
