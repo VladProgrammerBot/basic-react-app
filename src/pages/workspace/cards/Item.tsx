@@ -14,8 +14,7 @@ export function Item({
   const openMenu = store.use.openMenu()
   const renameBuffer = store.use.renameBuffer()
   const setMenuValue = store(state => state.setMenuValue)
-
-
+  const setRenameBuffer = store.use.setRenameBuffer()
 
   const handleClick = () => {
     if (openMenu !== data.id) {
@@ -59,7 +58,7 @@ export function Item({
           </div>
         </>
       ) : (
-        <InputForm />
+        <InputForm cancelFunc={() => setRenameBuffer(null)} defaultValue={data.title} />
         //<ItemRename title={data.title} />
       )}
     </ItemLayout>

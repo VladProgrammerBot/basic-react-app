@@ -7,7 +7,7 @@ import store from "@/state/store";
 
 export const Folders = () => {
   const wrapperRef = useOutsideClick();
-  const { childrensData } = useFolders()
+  const { childrensData, addFolder } = useFolders()
   const setMode = store(state => state.setMode)
   const mode = store(state => state.mode)
 
@@ -23,7 +23,7 @@ export const Folders = () => {
             + New
           </div>
         ) : (
-          <InputForm />
+          <InputForm cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
         )}
       </ItemLayout>
     </div>
