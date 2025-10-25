@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 export const Buttons = () => {
   const navigate = useNavigate()
-  const moveBuffer = store((state) => state.moveBuffer)
+  const moveBuffer = store.use.moveBuffer()
   const { moveFolder } = useFolders()
 
   return (

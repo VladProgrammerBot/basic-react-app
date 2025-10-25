@@ -38,3 +38,8 @@ export interface moveBufferSlice {
     setBuffer: (id: number, parent: number) => void
     resetMoveBuffer: () => void
 }
+
+export interface renameBufferSlice {
+    renameBuffer: number | null
+    setRenameBuffer: (value: number | null) => void
+}

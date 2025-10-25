@@ -6,7 +6,7 @@ import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
 
 export const Edit = () => {
-  const path = store((state) => state.path);
+  const path = store.use.path();
   const { getFolders } = useFolders()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();

@@ -10,7 +10,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
         "bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
     const { removeFolder } = useFolders()
-    const { setBuffer, openMenu, setMenuValue } = store()
+    const { setBuffer, openMenu, setMenuValue, setRenameBuffer } = store()
 
     return (
         <div
@@ -19,6 +19,10 @@ export const ItemMenu = ({ data }: { data: folder }) => {
         >
             <div
                 className={itemStyles}
+                onClick={() => {
+                    setMenuValue(null)
+                    setRenameBuffer(data.id)
+                }}
             >
                 <IoAddOutline />
             </div>
