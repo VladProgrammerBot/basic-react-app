@@ -23,7 +23,7 @@ export const Folders = () => {
             + New
           </div>
         ) : (
-          <InputForm cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
+          <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
         )}
       </ItemLayout>
     </div>

@@ -58,7 +58,7 @@ export function Item({
           </div>
         </>
       ) : (
-        <InputForm cancelFunc={() => setRenameBuffer(null)} defaultValue={data.title} />
+        <InputForm submitTitle="rename" cancelFunc={() => setRenameBuffer(null)} submitFunc={(value) => console.log(value)} defaultValue={data.title} />
         //<ItemRename title={data.title} />
       )}
     </ItemLayout>
