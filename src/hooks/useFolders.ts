@@ -189,7 +189,7 @@ export const useFolders = () => {
     setRenameBuffer(null)
 
     try {
-      await fetch(api + "/folders/rename", {
+      await fetch(api + "/folders/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
