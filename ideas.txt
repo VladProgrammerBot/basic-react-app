@@ -1,10 +1,3 @@
-bar:
-    auth
-        log out
-        account settings
-        account title & image (or profile icon)
-    settings
-
 history
     it can be used:
         -by user, when he need to escape some of actions
