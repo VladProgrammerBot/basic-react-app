@@ -19,16 +19,16 @@ type Actions = {
   setMode: (mode: mode) => void;
   pushPath: (folder: folder) => void;
   setPath: (folder: folder) => void;
-  pushFolder: (folder: folder, childrens: number[], newId: number) => void;
   pushChildren: (child: number) => void;
   reducePath: (index: number) => void;
   setParentChildrens: (index: number, childrensId: number[]) => void;
-  foldersRemove: (id: number, parentId: number) => void;
   childrensRemove: (id: number) => void;
-  setFolders: (data: folder[]) => void;
   setBuffer: (id: number, parent: number) => void
-  setMoveFolder: (id: number, parent: number, futureParent: number) => void
   resetMoveBuffer: () => void
+  pushFolder: (folder: folder, childrens: number[], newId: number) => void;
+  setFolders: (data: folder[]) => void;
+  setMoveFolder: (id: number, parent: number, futureParent: number) => void
+  foldersRemove: (id: number, parentId: number) => void;
 };
 
 const stateFolders = create<State & Actions>((set) => ({

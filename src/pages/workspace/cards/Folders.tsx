@@ -1,5 +1,5 @@
 import { useOutsideClick } from "@/hooks/useOutsideClick";
-import { SortableItem } from "./SortableItem";
+import { Item } from "./Item";
 import { useFolders } from "@/hooks/useFolders";
 import { ItemLayout } from "./ItemLayout";
 import stateFolders from "@/state/stateFolders";
@@ -13,7 +13,7 @@ export const Folders = () => {
   return (
     <div className="space-y-2 h-fit pb-[60vh]" ref={wrapperRef}>
       {childrensData?.map((data) => {
-        return <SortableItem key={data.id} data={data} />;
+        return <Item key={data.id} data={data} />;
       })}
 
       <ItemLayout>
