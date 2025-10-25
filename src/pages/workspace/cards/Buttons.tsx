@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useFolders } from "@/hooks/useFolders";
-import stateFolders from "@/state/stateFolders";
+import store from "@/state/store";
 import { useNavigate } from "react-router";
 
 export const Buttons = () => {
   const navigate = useNavigate()
-  const { moveBuffer } = stateFolders()
+  const moveBuffer = store((state) => state.moveBuffer)
   const { moveFolder } = useFolders()
 
   return (

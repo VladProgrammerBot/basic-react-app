@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import foldersState from "../state/stateFolders";
+import store from "@/state/store";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
@@ -21,7 +21,7 @@ export const useFolders = () => {
     moveBuffer,
     setMoveFolder,
     resetMoveBuffer
-  } = foldersState();
+  } = store();
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);

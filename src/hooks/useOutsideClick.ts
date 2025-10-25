@@ -1,8 +1,8 @@
 import { useEffect, useRef, type RefObject } from "react";
-import foldersState from "../state/stateFolders";
+import store from "@/state/store";
 
 export const useOutsideClick = () => {
-  const { setMenuValue } = foldersState()
+  const { setMenuValue } = store()
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOutsideAlerter(wrapperRef);
 

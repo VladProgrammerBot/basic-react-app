@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Buttons } from "./cards/Buttons";
 import { Folders } from "./cards/Folders";
 import { Path } from "./cards/Path";
-import stateFolders from "@/state/stateFolders";
 import { useFolders } from "@/hooks/useFolders";
+import store from "@/state/store";
 
 export const Edit = () => {
-  const { path } = stateFolders();
+  const path = store((state) => state.path);
   const { getFolders } = useFolders()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();

@@ -1,8 +1,8 @@
 import { useFolders } from "@/hooks/useFolders";
-import stateFolders from "@/state/stateFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ItemLayout } from "./ItemLayout";
 import { ItemMenu } from "./ItemMenu";
+import store from "@/state/store";
 
 export function Item({
   data
@@ -10,7 +10,8 @@ export function Item({
   data: folder;
 }) {
   const { moveInto } = useFolders();
-  const { openMenu, setMenuValue } = stateFolders();
+  const openMenu = store(state => state.openMenu)
+  const setMenuValue = store(state => state.setMenuValue)
 
   const handleClick = () => {
     if (openMenu !== data.id) {

@@ -2,13 +2,14 @@ import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { Item } from "./Item";
 import { useFolders } from "@/hooks/useFolders";
 import { ItemLayout } from "./ItemLayout";
-import stateFolders from "@/state/stateFolders";
 import { InputForm } from "./InputForm";
+import store from "@/state/store";
 
 export const Folders = () => {
   const wrapperRef = useOutsideClick();
   const { childrensData } = useFolders()
-  const { setMode, mode } = stateFolders()
+  const setMode = store(state => state.setMode)
+  const mode = store(state => state.mode)
 
   return (
     <div className="space-y-2 h-fit pb-[60vh]" ref={wrapperRef}>

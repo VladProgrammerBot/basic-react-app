@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { useFolders } from "@/hooks/useFolders";
-import stateFolders from "@/state/stateFolders";
+import store from "@/state/store";
 import { useEffect, useRef } from "react";
 
 export const InputForm = () => {
     const ref = useRef<HTMLTextAreaElement | null>(null);
     const { addFolder } = useFolders()
-    const { setMode } = stateFolders()
+    const setMode = store(state => state.setMode)
 
     useEffect(() => {
         ref.current?.focus()

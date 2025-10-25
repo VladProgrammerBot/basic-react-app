@@ -3,14 +3,14 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";
 import { useFolders } from "@/hooks/useFolders";
 import { MdOutlineShortcut } from "react-icons/md";
-import stateFolders from "@/state/stateFolders";
+import store from "@/state/store";
 
 export const ItemMenu = ({ data }: { data: folder }) => {
     const itemStyles =
         "bg-neutral-100 hover:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-700 duration-150 flex-1 flex gap-2 items-center justify-center";
 
     const { removeFolder } = useFolders()
-    const { setBuffer, openMenu, setMenuValue } = stateFolders()
+    const { setBuffer, openMenu, setMenuValue } = store()
 
     return (
         <div
