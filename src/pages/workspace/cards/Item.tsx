@@ -10,7 +10,7 @@ export function Item({
 }: {
   data: folder;
 }) {
-  const { moveInto } = useFolders();
+  const { moveInto, renameFolder } = useFolders();
   const openMenu = store.use.openMenu()
   const renameBuffer = store.use.renameBuffer()
   const setMenuValue = store(state => state.setMenuValue)
@@ -58,8 +58,12 @@ export function Item({
           </div>
         </>
       ) : (
-        <InputForm submitTitle="rename" cancelFunc={() => setRenameBuffer(null)} submitFunc={(value) => console.log(value)} defaultValue={data.title} />
-        //<ItemRename title={data.title} />
+        <InputForm
+          submitTitle="rename"
+          cancelFunc={() => setRenameBuffer(null)}
+          submitFunc={renameFolder}
+          defaultValue={data.title}
+        />
       )}
     </ItemLayout>
   );

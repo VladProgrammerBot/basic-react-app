@@ -60,4 +60,17 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
             })
         }))
     },
+    setRenameFolder: (id, title) => {
+        set((state) => ({
+            folders: state.folders.map((folder) => {
+                if (folder.id === id) {
+                    return {
+                        ...folder,
+                        title: title
+                    }
+                }
+                return folder
+            })
+        }))
+    }
 })

@@ -20,7 +20,10 @@ export const useFolders = () => {
     setPath,
     moveBuffer,
     setMoveFolder,
-    resetMoveBuffer
+    resetMoveBuffer,
+    setRenameFolder,
+    renameBuffer,
+    setRenameBuffer
   } = store();
 
   const getFolderById = (id: number) => {
@@ -180,6 +183,12 @@ export const useFolders = () => {
     }
   }
 
+  const renameFolder = async (title: string) => {
+    if (!renameBuffer) return
+    setRenameFolder(renameBuffer, title)
+    setRenameBuffer(null)
+  }
+
   return {
     moveFolderVertical,
     getFolderById,
@@ -189,6 +198,7 @@ export const useFolders = () => {
     removeFolder,
     childrensData,
     getFolders,
-    moveFolder
+    moveFolder,
+    renameFolder
   };
 };
