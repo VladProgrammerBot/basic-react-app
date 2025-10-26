@@ -10,7 +10,7 @@ export const Path = () => {
   const isBarOpen = store.use.isBarOpen()
 
   return (
-    <div className="flex text-lg w-full max-w-full items-center">
+    <div className="flex text-lg w-full max-w-full items-center fixed bg-black z-100 p-2">
       {!isBarOpen && (
         <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
           <HiOutlineMenuAlt1 />

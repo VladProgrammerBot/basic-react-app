@@ -13,7 +13,7 @@ export const Folders = () => {
   const moveBuffer = store.use.moveBuffer()
 
   return (
-    <div className="space-y-2 h-fit pb-[60vh]" ref={wrapperRef}>
+    <div className="space-y-2 h-fit pb-[60vh] pt-15" ref={wrapperRef}>
       {childrensData?.map((data) => {
         return <Item key={data.id} data={data} />;
       })}
