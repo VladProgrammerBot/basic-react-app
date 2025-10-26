@@ -64,10 +64,7 @@ a:hover {
 
 body {
   background-color: #000000;
-  min-height: 100vh;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: hidden;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 html,
