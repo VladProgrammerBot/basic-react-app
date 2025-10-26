@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
 const buttonVariants = cva(
-  "rounded-4xl inline-flex min-w-14 items-center cursor-pointer justify-center gap-2 whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive",
+  "rounded-4xl inline-flex min-w-14 items-center cursor-pointer justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-6 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -13,14 +13,15 @@ const buttonVariants = cva(
         destructive:
           "text-white",
         outline:
-          "border-2 text-black dark:text-white border-neutral-300 hover:border-neutral-400 dark:border-neutral-900 dark:hover:border-neutral-700",
+          "border-1 text-black dark:text-white border-neutral-300 hover:border-neutral-400 dark:border-neutral-900 dark:hover:border-neutral-700",
         outlineNotActive:
-          "border-2 text-black dark:text-white border-neutral-300 dark:border-neutral-900 cursor-auto text-neutral-400 dark:text-neutral-800",
+          "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900 cursor-auto text-neutral-400 dark:text-neutral-800",
+          
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
+        ghost2:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+        ghost: "hover:bg-neutral-800 duration-150",
       },
       size: {
         default: "px-6 py-2 has-[>svg]:px-4",

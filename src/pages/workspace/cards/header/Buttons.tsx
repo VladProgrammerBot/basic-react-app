@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
 import { useNavigate } from "react-router";
+import { TiHome } from "react-icons/ti";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 export const Buttons = () => {
   const navigate = useNavigate()
@@ -19,10 +21,15 @@ export const Buttons = () => {
       }}>
         Logout
       </Button>
-      <Button onClick={() => {
+      <Button className="text-4xl" onClick={() => {
         navigate("/")
       }}>
-        Home
+        <TiHome />
+      </Button>
+      <Button variant={"ghost"} className="text-4xl" onClick={() => {
+        navigate("/")
+      }}>
+        <HiOutlineMenuAlt3 />
       </Button>
     </div>
   );

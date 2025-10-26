@@ -2,6 +2,7 @@ import { useFolders } from "@/hooks/useFolders";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ItemLayout } from "./ItemLayout";
 import { ItemMenu } from "./ItemMenu";
+import { IoClose } from "react-icons/io5";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
 
@@ -28,13 +29,13 @@ export function Item({
   return (
     <ItemLayout
       filled={renameBuffer !== data.id}
-      className={`px-3 flex justify-end ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
+      className={`flex justify-end overflow-clip ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
       `}
     >
       {renameBuffer !== data.id ? (
         <>
           <div
-            className={`flex py-2 relative items-center space-x-2 w-full`}
+            className={`flex pl-3 py-2 relative items-center space-x-2 w-full`}
             onClick={handleClick}
             onContextMenu={() => setMenuValue(data.id)}
           >
@@ -47,14 +48,17 @@ export function Item({
             >
               {data?.title}
             </p>
-
             <ItemMenu data={data} />
           </div>
           <div
             onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-            className="text-lg px-1 text-black dark:text-white flex items-center"
+            className={`text-lg pl-3 pr-4 text-black ${openMenu === data.id && "dark:bg-neutral-800"} duration-150 dark:text-white flex items-center`}
           >
-            <BsThreeDotsVertical />
+            {openMenu !== data.id ? (
+              <BsThreeDotsVertical />
+            ) : (
+              <IoClose className="text-neutral-500"/>
+            )}
           </div>
         </>
       ) : (

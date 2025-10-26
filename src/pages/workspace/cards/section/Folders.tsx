@@ -17,7 +17,7 @@ export const Folders = () => {
         return <Item key={data.id} data={data} />;
       })}
 
-      <ItemLayout className="px-2">
+      <ItemLayout>
         {mode === "normal" ? (
           <div onClick={() => setMode("Add Folder")} className="w-full h-14 flex justify-center items-center text-neutral-400 hover:text-neutral-500 dark:text-neutral-700 dark:hover:text-neutral-500">
             + New

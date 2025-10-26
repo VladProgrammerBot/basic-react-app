@@ -67,6 +67,7 @@ body {
   /* min-height: 100vh; */
   /* height: 100vh; */
   -webkit-overflow-scrolling: touch;
+  overflow-y: hidden;
 }
 
 /* html,
