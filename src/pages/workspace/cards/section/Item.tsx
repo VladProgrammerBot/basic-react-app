@@ -29,7 +29,7 @@ export function Item({
   return (
     <ItemLayout
       filled={renameBuffer !== data.id}
-      className={`flex justify-end overflow-clip ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
+      className={`flex justify-end overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
       `}
     >
       {renameBuffer !== data.id ? (
