@@ -27,7 +27,7 @@ export const Edit = () => {
       ) : (
         <>
           <Bar />
-          <div className="flex-1 flex flex-col max-w-full h-screen">
+          <div className="flex-1 flex flex-col max-w-full h-full">
             <div className="p-2 w-full">
               <Path />
             </div>
