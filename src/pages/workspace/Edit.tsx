@@ -24,26 +24,26 @@ export const Edit = () => {
 
   return (
     <div className="flex">
-      <Bar />
-      <div className="flex-1 flex flex-col h-screen">
-        <div className="p-2 w-full">
-          <Path />
-        </div>
-        <div className="overflow-auto relative">
-          <div className="max-w-4xl text-lg max-xl:px-2 mx-auto ">
-            {path.length === 0 ? (
-              <p className="p-2">
-                Loading...
-              </p>
-            ) : (
-              <>
+      {path.length === 0 ? (
+        <p className="p-2">
+          Loading...
+        </p>
+      ) : (
+        <>
+          <Bar />
+          <div className="flex-1 flex flex-col max-w-full h-screen">
+            <div className="p-2 w-full">
+              <Path />
+            </div>
+            <div className="overflow-auto relative">
+              <div className="max-w-4xl text-lg max-xl:px-2 mx-auto ">
                 <Folders />
                 <Footer />
-              </>
-            )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

@@ -10,18 +10,18 @@ export const Path = () => {
   const isBarOpen = store.use.isBarOpen()
 
   return (
-    <div className="flex text-lg w-full items-center border-1">
-      {/* {!isBarOpen && (
+    <div className="flex text-lg w-full max-w-full items-center">
+      {!isBarOpen && (
         <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
           <HiOutlineMenuAlt1 />
         </div>
-      )} */}
-      <div className="flex p-2 w-full">
+      )}
+      <div className="flex p-2 max-w-full w-full overflow-hidden">
         {path?.map((elem, index) => {
           const maxLength = 10;
 
           return (
-            <div className={`${index !== path.length - 1 && "max-w-fit flex-1"} relative flex overflow-hidden items-center`} key={index}>
+            <div className={`${index !== path.length - 1 && "max-w-fit flex-1"} flex overflow-hidden items-center`} key={index}>
               <div>
 
                 {index !== 0 && (
