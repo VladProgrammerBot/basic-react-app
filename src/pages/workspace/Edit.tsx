@@ -1,14 +1,10 @@
 import { useEffect } from "react";
-import { Buttons } from "./cards/header/Buttons";
 import { Folders } from "./cards/section/Folders";
-import { Path } from "./cards/header/Path";
+import { Path } from "./cards/Path";
 import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
-import { Footer } from "./cards/footer/footer";
-import { IoClose } from "react-icons/io5";
-import { Button } from "@/components/ui/button";
-import { TiHome } from "react-icons/ti";
-import { useNavigate } from "react-router";
+import { Footer } from "./cards/footer";
+
 import { Bar } from "./cards/Bar";
 
 export const Edit = () => {
@@ -25,7 +21,7 @@ export const Edit = () => {
   return (
     <div className="flex">
       {path.length === 0 ? (
-        <p className="p-2">
+        <p className="p-4">
           Loading...
         </p>
       ) : (

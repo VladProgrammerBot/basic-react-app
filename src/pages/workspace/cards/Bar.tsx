@@ -25,7 +25,10 @@ export const Bar = () => {
                     <p className="text-2xl text-center p-2 rounded-4xl mt-2">user228</p>
                 </div>
                 <div className="">
-                    <Button variant={"outline"} className="w-full">Log out</Button>
+                    <Button variant={"outline"} className="w-full" onClick={() => {
+                        localStorage.clear()
+                        navigate("/login")
+                    }}>Log out</Button>
                 </div>
             </div>
         </div>
