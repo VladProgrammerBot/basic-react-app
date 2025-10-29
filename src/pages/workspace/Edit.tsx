@@ -28,7 +28,7 @@ export const Edit = () => {
         <>
           <Path />
           <Bar />
-          <div className="w-full px-2">
+          <div className="w-full max-w-4xl mx-auto px-2">
             <Folders />
             <Footer />
           </div>

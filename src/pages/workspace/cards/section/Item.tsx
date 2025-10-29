@@ -29,7 +29,7 @@ export function Item({
   return (
     <ItemLayout
       filled={renameBuffer !== data.id}
-      className={`flex justify-end overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
+      className={`flex justify-end group/item overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
       `}
     >
       {renameBuffer !== data.id ? (
@@ -52,7 +52,7 @@ export function Item({
           </div>
           <div
             onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-            className={`text-lg pl-3 pr-4 text-black ${openMenu === data.id && "dark:bg-neutral-800"} duration-150 dark:text-white flex items-center`}
+            className={`text-lg pl-3 pr-4 text-black ${openMenu === data.id ? "dark:bg-neutral-800" : "group-hover/item:opacity-100 md:opacity-0"} duration-150 dark:text-white flex items-center`}
           >
             {openMenu !== data.id ? (
               <BsThreeDotsVertical />

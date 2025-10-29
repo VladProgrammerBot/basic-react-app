@@ -7,15 +7,12 @@ export const Path = () => {
   const path = store(state => state.path);
   const { moveOut } = useFolders();
   const toggleBar = store.use.toggleBar()
-  const isBarOpen = store.use.isBarOpen()
 
   return (
     <div className="flex text-lg w-full max-w-full items-center fixed bg-black z-100 p-2">
-      {!isBarOpen && (
-        <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
-          <HiOutlineMenuAlt1 />
-        </div>
-      )}
+      <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
+        <HiOutlineMenuAlt1 />
+      </div>
       <div className="flex p-2 max-w-full w-full overflow-hidden">
         {path?.map((elem, index) => {
           const maxLength = 10;
@@ -25,7 +22,7 @@ export const Path = () => {
               <div>
 
                 {index !== 0 && (
-                  <RiArrowRightSLine fontSize={24} className="text-neutral-800" />
+                  <RiArrowRightSLine className="text-neutral-800 text-sm sm:text-2xl" />
                 )}
               </div>
               <div

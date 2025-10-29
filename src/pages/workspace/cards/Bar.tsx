@@ -9,8 +9,8 @@ export const Bar = () => {
     const toggleBar = store.use.toggleBar()
 
     return (
-        <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} fixed bg-black z-100 duration-300 overflow-hidden`}>
-            <div className="border-r-1 p-2 h-screen border-neutral-900 flex flex-col justify-between">
+        <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} h-screen pb-12 overflow-y-scroll fixed bg-black z-100 duration-300`}>
+            <div className="border-r-1 space-y-4 p-2 border-neutral-900">
                 <div>
                     <div className="flex justify-between items-center">
                         <div className="text-xl p-2 font-bold cursor-pointer" onClick={() => {
