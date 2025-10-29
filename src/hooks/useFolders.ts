@@ -58,7 +58,7 @@ export const useFolders = () => {
   };
 
   const generateId = () => {
-    return Math.floor(Math.random() * 5000);
+    return Math.floor(Math.random() * 30000);
   };
 
   const addFolder = async (value: string) => {
