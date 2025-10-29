@@ -1,5 +1,4 @@
 import { RiDeleteBinLine } from "react-icons/ri";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { useFolders } from "@/hooks/useFolders";
 import { MdOutlineShortcut } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
