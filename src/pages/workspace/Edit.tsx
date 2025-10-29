@@ -8,7 +8,7 @@ import { Footer } from "./cards/footer";
 import { Bar } from "./cards/Bar";
 
 export const Edit = () => {
-  const path = store.use.path();
+  const folders = store.use.folders();
   const { getFolders } = useFolders()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
@@ -20,10 +20,8 @@ export const Edit = () => {
 
   return (
     <div className="flex">
-      {path.length === 0 ? (
-        <p className="p-4">
-          Loading...
-        </p>
+      {folders.length === 0 ? (
+        <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
         <>
           <Path />

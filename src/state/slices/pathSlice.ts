@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-import type { pathSlice } from "../storeTypes";
+import type { pathSlice } from "../../types/storeTypes";
 
 export const createPathSlice: StateCreator<pathSlice> = (set) => ({
     path: [],

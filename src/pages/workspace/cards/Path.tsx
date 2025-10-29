@@ -9,8 +9,8 @@ export const Path = () => {
   const toggleBar = store.use.toggleBar()
 
   return (
-    <div className="flex text-lg w-full max-w-full items-center fixed bg-black z-100 p-2">
-      <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
+    <div className="flex text-lg w-full max-w-full items-center fixed bg-white dark:bg-black z-100 p-2">
+      <div className="text-2xl cursor-pointer p-2 hover:bg-neutral-200 dark:hover:bg-neutral-800 duration-150 rounded-full" onClick={toggleBar}>
         <HiOutlineMenuAlt1 />
       </div>
       <div className="flex p-2 max-w-full w-full overflow-hidden">
@@ -22,7 +22,7 @@ export const Path = () => {
               <div>
 
                 {index !== 0 && (
-                  <RiArrowRightSLine className="text-neutral-800 text-sm sm:text-2xl" />
+                  <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-sm sm:text-2xl" />
                 )}
               </div>
               <div

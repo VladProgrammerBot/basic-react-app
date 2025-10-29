@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createFoldersSlice } from "./slices/foldersSlice"
-import type { barSlice, childrensSlice, foldersSlice, itemMenuSlice, modeSlice, moveBufferSlice, pathSlice, renameBufferSlice } from "./storeTypes";
+import type { barSlice, childrensSlice, foldersSlice, itemMenuSlice, modeSlice, moveBufferSlice, pathSlice, renameBufferSlice } from "../types/storeTypes";
 import { createChildrensSlice } from "./slices/childrensSlice";
 import { createMenuSlice } from "./slices/itemMenuSlice";
 import { createModeSlice } from "./slices/modeSlice";

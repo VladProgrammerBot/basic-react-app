@@ -7,14 +7,18 @@ export const Bar = () => {
     const navigate = useNavigate()
     const isBarOpen = store.use.isBarOpen()
     const toggleBar = store.use.toggleBar()
+    const closeBar = store.use.closeBar()
+    const setFolders = store.use.setFolders()
 
     return (
-        <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} h-screen pb-12 overflow-y-scroll fixed bg-black z-100 duration-300`}>
-            <div className="border-r-1 space-y-4 p-2 border-neutral-900">
+        <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} h-screen border-r-1 border-neutral-200 dark:border-neutral-900 pb-12 overflow-y-scroll fixed bg-white dark:bg-black z-100 duration-300`}>
+            <div className="space-y-4 p-2">
                 <div>
                     <div className="flex justify-between items-center">
                         <div className="text-xl p-2 font-bold cursor-pointer" onClick={() => {
                             navigate("/")
+                            setFolders([])
+                            closeBar()
                         }}>
                             Strukt
                         </div>
@@ -25,7 +29,7 @@ export const Bar = () => {
                     <p className="text-2xl text-center p-2 rounded-4xl mt-2">user228</p>
                 </div>
                 <div className="">
-                    <Button variant={"outline"} className="w-full" onClick={() => {
+                    <Button variant={"outline"} className="w-full border-red-500 text-red-500" onClick={() => {
                         localStorage.clear()
                         navigate("/login")
                     }}>Log out</Button>

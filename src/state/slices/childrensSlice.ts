@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-import type { childrensSlice } from "../storeTypes";
+import type { childrensSlice } from "../../types/storeTypes";
 
 export const createChildrensSlice: StateCreator<childrensSlice> = (set) => ({
     childrensId: [],

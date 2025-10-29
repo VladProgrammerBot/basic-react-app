@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-import type { itemMenuSlice } from "../storeTypes";
+import type { itemMenuSlice } from "../../types/storeTypes";
 
 export const createMenuSlice: StateCreator<itemMenuSlice> = (set) => ({
     openMenu: null,

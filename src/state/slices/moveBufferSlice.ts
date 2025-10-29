@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-import type { moveBufferSlice } from "../storeTypes";
+import type { moveBufferSlice } from "../../types/storeTypes";
 
 export const createMoveBufferSlice: StateCreator<moveBufferSlice> = (set) => ({
     moveBuffer: null,

@@ -48,5 +48,6 @@ export interface renameBufferSlice {
 export interface barSlice {
     isBarOpen: boolean,
     toggleBar: () => void,
+    closeBar: () => void
 }
 

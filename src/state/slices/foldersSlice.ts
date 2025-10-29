@@ -1,5 +1,5 @@
 import type { StateCreator } from "zustand";
-import type { foldersSlice } from "../storeTypes";
+import type { foldersSlice } from "../../types/storeTypes";
 
 export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
     folders: [],
