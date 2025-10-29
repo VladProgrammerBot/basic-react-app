@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -16,6 +17,7 @@ const formSchema = z.object({
 export type authForm = z.infer<typeof formSchema>;
 
 export const useLogin = (type: authType) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -25,6 +27,7 @@ export const useLogin = (type: authType) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
     const api = import.meta.env.VITE_API;
 
     try {
@@ -40,13 +43,15 @@ export const useLogin = (type: authType) => {
           return res.json();
         })
         .then((data) => {
+          setIsLoading(false)
           localStorage.setItem("token", data)
           navigate("/workspace");
         });
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
     }
   }
 
-  return { form, onSubmit };
+  return { form, onSubmit, isLoading };
 };

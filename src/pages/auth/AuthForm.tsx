@@ -15,7 +15,7 @@ import { NavLink, useNavigate } from "react-router";
 export type authType = "Log in" | "Sign up";
 
 export const AuthForm = ({ type }: { type: authType }) => {
-  const { onSubmit, form } = useLogin(type);
+  const { onSubmit, form, isLoading } = useLogin(type);
   const navigate = useNavigate()
 
   return (
@@ -64,7 +64,11 @@ export const AuthForm = ({ type }: { type: authType }) => {
         </div>
         <div className="w-full flex justify-end gap-2">
           <Button type="button" variant={"outline"} onClick={() => navigate("/")}>Cancel</Button>
-          <Button type="submit">{type}</Button>
+          {isLoading ? (
+            <Button variant={"disactive"} type="submit"><span className="auth-loader"></span>{type}</Button>
+          ) : (
+            <Button type="submit">{type}</Button>
+          )}
         </div>
       </form>
     </Form>

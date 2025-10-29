@@ -31,6 +31,8 @@ export const Bar = () => {
                 <div className="">
                     <Button variant={"outline"} className="w-full border-red-500 text-red-500" onClick={() => {
                         localStorage.clear()
+                        setFolders([])
+                        closeBar()
                         navigate("/login")
                     }}>Log out</Button>
                 </div>
