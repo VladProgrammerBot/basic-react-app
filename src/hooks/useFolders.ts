@@ -90,8 +90,7 @@ export const useFolders = () => {
           parent: parentId,
           token: localStorage.getItem("token")
         })
-      }).then((res) => res.json())
-        .then((data) => console.log(data))
+      })
     } catch (error) {
       console.log(error)
     }
@@ -111,8 +110,7 @@ export const useFolders = () => {
           id: id,
           token: localStorage.getItem("token")
         })
-      }).then((res) => res.json())
-        .then((data) => console.log(data))
+      })
     } catch (error) {
       console.log(error)
     }
@@ -176,8 +174,7 @@ export const useFolders = () => {
           future_parent: futureParent,
           token: localStorage.getItem("token")
         })
-      }).then((res) => res.json())
-        .then((data) => console.log(data))
+      })
     } catch (error) {
       console.log(error)
     }
@@ -199,8 +196,7 @@ export const useFolders = () => {
           title: title,
           token: localStorage.getItem("token")
         })
-      }).then((res) => res.json())
-        .then((data) => console.log(data))
+      })
     } catch (error) {
       console.log(error)
     }

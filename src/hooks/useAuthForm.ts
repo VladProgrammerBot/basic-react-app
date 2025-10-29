@@ -18,6 +18,7 @@ export type authForm = z.infer<typeof formSchema>;
 
 export const useLogin = (type: authType) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isError, setIsError] = useState<boolean>(false)
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -27,6 +28,7 @@ export const useLogin = (type: authType) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsError(false)
     setIsLoading(true)
     const api = import.meta.env.VITE_API;
 
@@ -48,10 +50,11 @@ export const useLogin = (type: authType) => {
           navigate("/workspace");
         });
     } catch (error) {
+      console.log(error)
+      setIsError(true)
       setIsLoading(false)
-      console.log(error);
     }
   }
 
-  return { form, onSubmit, isLoading };
+  return { form, onSubmit, isLoading, isError };
 };

@@ -15,12 +15,12 @@ import { NavLink, useNavigate } from "react-router";
 export type authType = "Log in" | "Sign up";
 
 export const AuthForm = ({ type }: { type: authType }) => {
-  const { onSubmit, form, isLoading } = useLogin(type);
+  const { onSubmit, form, isLoading, isError } = useLogin(type);
   const navigate = useNavigate()
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-2">
           <p className="text-4xl">{type}</p>
           <p className="text-md cursor-pointer  underline underline-offset-2">
@@ -34,6 +34,7 @@ export const AuthForm = ({ type }: { type: authType }) => {
             )}
           </p>
         </div>
+        {isError && <p className="text-red-500 text-lg">Failed to {type}</p>}
         <div className="space-y-2">
           <FormField
             control={form.control}

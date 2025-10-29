@@ -14,7 +14,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
 
     return (
         <div
-            className={`rounded-l-4xl bg-neutral-100 dark:bg-neutral-800 w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 dark:text-white text-lg ${openMenu === data.id && "w-60 min-w-60"
+            className={`rounded-l-4xl bg-neutral-100 dark:bg-neutral-800 w-0 min-w-0 duration-300 overflow-x-hidden flex absolute h-full right-0 dark:text-white text-lg ${openMenu === data.id && "min-w-40"
                 }`}
         >
             <div
@@ -35,7 +35,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
             >
                 <MdOutlineShortcut />
             </div>
-            <div
+            {/* <div
                 className={itemStyles}
             >
                 <FaAngleUp />
@@ -44,16 +44,13 @@ export const ItemMenu = ({ data }: { data: folder }) => {
                 className={itemStyles}
             >
                 <FaAngleDown />
-            </div>
+            </div> */}
             <div
                 onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
-                className={itemStyles}
+                className={itemStyles + (data.childrens.length !== 0 ? " text-neutral-500 cursor-auto":"")}
             >
                 <RiDeleteBinLine />
             </div>
-            {/* <div className={itemStyles + " text-neutral-500"} onClick={() => setMenuValue(null)}>
-                <IoClose />
-            </div> */}
         </div>
     )
 }

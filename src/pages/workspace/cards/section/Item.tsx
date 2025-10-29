@@ -16,6 +16,7 @@ export function Item({
   const renameBuffer = store.use.renameBuffer()
   const setMenuValue = store(state => state.setMenuValue)
   const setRenameBuffer = store.use.setRenameBuffer()
+  const moveBuffer = store.use.moveBuffer()
 
   const handleClick = () => {
     if (openMenu !== data.id) {
@@ -29,7 +30,7 @@ export function Item({
   return (
     <ItemLayout
       filled={renameBuffer !== data.id}
-      className={`flex justify-end group/item overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
+      className={`flex group/item overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
       `}
     >
       {renameBuffer !== data.id ? (
@@ -44,7 +45,7 @@ export function Item({
               {childrensLength}
             </div>
             <p
-              className={`text-black dark:text-neutral-200 duration-300 ${openMenu === data.id && "opacity-50"}`}
+              className={`text-black dark:text-neutral-200 duration-300 ${openMenu === data.id || moveBuffer?.id === data.id && "opacity-50"}`}
             >
               {data?.title}
             </p>
