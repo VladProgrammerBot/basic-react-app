@@ -41,16 +41,16 @@ export const Path = () => {
         <HiOutlineMenuAlt1 />
       </div>
       <div className="flex p-2 max-w-full w-full items-center">
-        <Breadcrumb elem={root} index={0} />
+        <Breadcrumb elem={root} index={0} current={path.length === 1} />
         {hidden().length !== 0 && <>
           <div className="flex relative cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-lg sm:text-2xl" />...
+            <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-2xl" />...
             {isMenuOpen && <div onClick={() => setIsMenuOpen(false)} className="left-0 absolute top-full p-2">
-              <div className="bg-black w-full rounded-3xl border-1 border-neutral-800 min-w-30 px-3 py-2 space-y-1">
+              <div className="bg-white dark:bg-black w-full rounded-3xl border-1 border-neutral-300 dark:border-neutral-800 min-w-30 px-3 py-2 space-y-1">
                 {hidden().map((crumb, index) => {
                   return (
                     <div key={index} className="flex pr-4 text-nowrap">
-                      <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-lg sm:text-2xl" />
+                      <RiArrowRightSLine className="text-neutral-300 text-xl dark:text-neutral-800" />
                       <Breadcrumb key={index} elem={crumb} index={index + 1} />
                     </div>
                   )
@@ -62,7 +62,7 @@ export const Path = () => {
         {visible().map((crumb, index) => {
           return (
             <div key={index} className="flex">
-              {index + 1 !== 0 && <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-lg sm:text-2xl" />}
+              {index + 1 !== 0 && <RiArrowRightSLine className="text-neutral-300 dark:text-neutral-800 text-2xl" />}
               <Breadcrumb key={index} elem={crumb} index={index + Math.max(path.length - 2, 1)} current={path.length > 2 && index === 1 || path.length <= 2 && !index} />
             </div>
           )
