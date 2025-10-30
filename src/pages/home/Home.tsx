@@ -11,7 +11,7 @@ export const Home = () => {
         </p>
         <div className="flex gap-2 text-lg">
           <NavLink to="about">
-            <Button variant={"outline"}>About</Button>
+            <Button variant={"outline"}>Manual</Button>
           </NavLink>
           <NavLink to="workspace">
             <Button>Get started</Button>
