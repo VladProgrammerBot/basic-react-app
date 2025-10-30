@@ -10,6 +10,12 @@ export const Bar = () => {
     const closeBar = store.use.closeBar()
     const setFolders = store.use.setFolders()
 
+    // const token = localStorage.getItem("token")
+    // const body = token?.split(".")
+    // if (typeof token === "string" && body?.length === 3) {
+    //     console.log(JSON.parse(atob(body[1])).userId)
+    // }
+
     return (
         <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} h-screen border-r-1 border-neutral-200 dark:border-neutral-900 pb-12 overflow-x-hidden fixed bg-white dark:bg-black z-100 duration-300`}>
             <div className="space-y-4 p-2">

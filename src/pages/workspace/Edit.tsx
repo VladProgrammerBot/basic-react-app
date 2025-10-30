@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Folders } from "./cards/section/Folders";
-import { Path } from "./cards/Path";
+import { Path } from "./cards/header/Path";
 import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
 import { Footer } from "./cards/footer";

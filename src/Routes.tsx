@@ -1,5 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router";
-import { Home } from "./pages/home/Home.tsx";
+import { Home } from "./pages/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
