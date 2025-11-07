@@ -1,13 +1,13 @@
-import { createBrowserRouter, redirect } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
 
-const authMiddleware = () => {
-  if (!localStorage.getItem("token")) throw redirect("/login");
-};
+// const authMiddleware = () => {
+//   if (!localStorage.getItem("token")) throw redirect("/login");
+// };
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "workspace",
-        middleware: [authMiddleware],
+        // middleware: [authMiddleware],
         Component: Edit,
       },
       {

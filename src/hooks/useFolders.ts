@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import store from "@/state/store";
+import { useDB } from "./useDB";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
@@ -25,6 +26,8 @@ export const useFolders = () => {
     renameBuffer,
     setRenameBuffer
   } = store();
+
+  const fold = useDB()
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);

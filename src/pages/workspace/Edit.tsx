@@ -14,9 +14,9 @@ export const Edit = () => {
     e.preventDefault();
   });
 
-  useEffect(() => {
-    getFolders();
-  }, []);
+  // useEffect(() => {
+  //   getFolders();
+  // }, []);
 
   return (
     <div className="flex">
