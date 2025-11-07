@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import store from "@/state/store";
-import { useDB } from "./useDB";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
+  console.log(1)
   const {
     folders,
     childrensId,
@@ -26,8 +26,6 @@ export const useFolders = () => {
     renameBuffer,
     setRenameBuffer
   } = store();
-
-  const fold = useDB()
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);
@@ -67,7 +65,14 @@ export const useFolders = () => {
   const addFolder = async (value: string) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
-
+    const newFolder = {
+      id: id,
+      parent: parentId,
+      childrens: [],
+      title: value,
+    }
+    // pushChildrenDB(parentId, id)
+    // pushDB(newFolder)
     setMode("normal");
     pushFolder(
       {
@@ -80,23 +85,6 @@ export const useFolders = () => {
       id
     );
     pushChildren(id);
-
-    try {
-      await fetch(api + "/folders/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-          title: value,
-          parent: parentId,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      console.log(error)
-    }
   };
 
   const removeFolder = async (id: number, parent: number) => {

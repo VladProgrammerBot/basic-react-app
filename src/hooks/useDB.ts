@@ -1,81 +1,101 @@
-// import store from "@/state/store";
 import store from "@/state/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useDB = () => {
-    const [openRequest] = useState(indexedDB.open("folders_db", 3));
+    const [openRequest, setReq] = useState<IDBDatabase>();
     const setFolders = store.use.setFolders()
     const setChildrens = store.use.setChildrens()
     const setPath = store.use.setPath()
 
-    openRequest.onupgradeneeded = function (event) {
-        let db = openRequest.result;
-        if (!db.objectStoreNames.contains('folders')) {
-            db.createObjectStore('folders', { keyPath: 'id' });
+    useEffect(() => {
+        if (openRequest) return
 
-            let transaction = db.transaction("folders", "readwrite");
+        const req = indexedDB.open("folders_db", 3)
+
+        req.onupgradeneeded = function (event) {
+            let db = req.result;
+            if (!db.objectStoreNames.contains('folders')) {
+                db.createObjectStore('folders', { keyPath: 'id' });
+
+                let transaction = db.transaction("folders", "readwrite");
+                let folders = transaction.objectStore("folders"); // (2)
+
+                folders.add({
+                    id: 1,
+                    parent: null,
+                    childrens: [],
+                    title: "Root"
+                })
+            }
+        };
+
+        req.onsuccess = function () {
+            const db = req.result
+
+            let transaction = db.transaction("folders", "readonly");
+
+            db.onversionchange = function () {
+                db.close();
+                alert("База даних застаріла, перезавантажте сторінку.")
+            };
+
+            setReq(req.result)
             let folders = transaction.objectStore("folders"); // (2)
 
-            folders.add({
-                id: 1,
-                parent: null,
-                childrens: [],
-                title: "Root"
-            })
+            const request = folders.getAll()
+            
+            request.onsuccess = function () {
+                const parent = request.result.find((folder) => folder.parent === null);
+
+                if (!parent) return;
+
+                setFolders(request.result)
+                setChildrens(parent.childrens);
+                setPath(parent);
+            };
+
+            request.onerror = function () {
+                console.log("Помилка", request.error);
+            };
         }
-    };
+    }, [openRequest])
 
-    openRequest.onsuccess = function () {
-        const db = openRequest.result
+    function pushDB(newFolder: folder) {
+        const transaction = openRequest.transaction("folders", "readwrite");
+        let folders = transaction.objectStore("folders");
 
-        let transaction = db.transaction("folders", "readonly");
+        let request = folders.add(newFolder);
 
-        db.onversionchange = function () {
-            db.close();
-            alert("База даних застаріла, перезавантажте сторінку.")
-        };
-
-        let folders = transaction.objectStore("folders"); // (2)
-
-        // const request = folders.clear()
-        const request = folders.getAll()
         request.onsuccess = function () {
-            const parent = request.result.find((folder) => folder.parent === null);
-
-            console.log(parent)
-            if (!parent) return;
-
-            setFolders(request.result)
-            setChildrens(parent.childrens);
-            setPath(parent);
+            console.log("folders: ", request.result);
         };
-
         request.onerror = function () {
             console.log("Помилка", request.error);
         };
-    }
+    };
 
-    // function push() {
-    //     const db = openRequest.result;
-    //     const transaction = db.transaction("folders", "readwrite"); // (1)
-    //     let folders = transaction.objectStore("folders"); // (2)
+    const pushChildrenDB = (parentId: number, childId: number) => {
+        const transaction = openRequest.transaction("folders", "readwrite");
+        let folders = transaction.objectStore("folders");
 
-    //     let folder = {
-    //         id: Math.random(),
-    //         price: 10,
-    //         created: new Date()
-    //     };
+        let parent = folders.get(parentId)
 
-    //     let request = folders.add(folder); // (3)
+        parent.onsuccess = function () {
+            let putReq = folders.put({ ...parent.result, childrens: [...parent.result.childrens, childId] })
 
-    //     request.onsuccess = function () { // (4)
-    //         console.log("folders: ", request.result);
-    //         // setData([...data, folder])
-    //     };
-    //     request.onerror = function () {
-    //         console.log("Помилка", request.error);
-    //     };
-    // };
+            putReq.onsuccess = () => {
+                console.log("success")
+            }
+            putReq.onerror = () => {
+                console.log("error")
+            }
+            // console.log("parent: ", parent.result);
+            // setData([...data, folder])
+        };
+        parent.onerror = function () {
+            console.log("Помилка", parent.error);
+        };
+    };
 
     // function remove() {
     //     let db = openRequest.result;
@@ -93,5 +113,5 @@ export const useDB = () => {
     //     };
     // };
 
-    return {}
+    return { pushChildrenDB, pushDB }
 }

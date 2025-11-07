@@ -6,17 +6,14 @@ import store from "@/state/store";
 import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
+import { useDB } from "@/hooks/useDB";
 
 export const Edit = () => {
   const folders = store.use.folders();
-  const { getFolders } = useFolders()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   });
-
-  // useEffect(() => {
-  //   getFolders();
-  // }, []);
+  useDB()
 
   return (
     <div className="flex">
