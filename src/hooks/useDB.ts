@@ -1,18 +1,19 @@
 import store from "@/state/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useDB = () => {
-    const [openRequest, setReq] = useState<IDBDatabase>();
     const setFolders = store.use.setFolders()
     const setChildrens = store.use.setChildrens()
     const setPath = store.use.setPath()
+    const DB = store.use.db()
+    const setDB = store.use.setDB()
 
     useEffect(() => {
-        if (openRequest) return
+        if (DB) return
 
         const req = indexedDB.open("folders_db", 3)
 
-        req.onupgradeneeded = function (event) {
+        req.onupgradeneeded = function () {
             let db = req.result;
             if (!db.objectStoreNames.contains('folders')) {
                 db.createObjectStore('folders', { keyPath: 'id' });
@@ -31,6 +32,7 @@ export const useDB = () => {
 
         req.onsuccess = function () {
             const db = req.result
+            setDB(req.result)
 
             let transaction = db.transaction("folders", "readonly");
 
@@ -39,11 +41,10 @@ export const useDB = () => {
                 alert("База даних застаріла, перезавантажте сторінку.")
             };
 
-            setReq(req.result)
-            let folders = transaction.objectStore("folders"); // (2)
+            let folders = transaction.objectStore("folders");
 
             const request = folders.getAll()
-            
+
             request.onsuccess = function () {
                 const parent = request.result.find((folder) => folder.parent === null);
 
@@ -58,10 +59,10 @@ export const useDB = () => {
                 console.log("Помилка", request.error);
             };
         }
-    }, [openRequest])
+    }, [DB])
 
     function pushDB(newFolder: folder) {
-        const transaction = openRequest.transaction("folders", "readwrite");
+        const transaction = DB.transaction("folders", "readwrite");
         let folders = transaction.objectStore("folders");
 
         let request = folders.add(newFolder);
@@ -75,7 +76,7 @@ export const useDB = () => {
     };
 
     const pushChildrenDB = (parentId: number, childId: number) => {
-        const transaction = openRequest.transaction("folders", "readwrite");
+        const transaction = DB.transaction("folders", "readwrite");
         let folders = transaction.objectStore("folders");
 
         let parent = folders.get(parentId)

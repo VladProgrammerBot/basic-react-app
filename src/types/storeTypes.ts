@@ -51,3 +51,7 @@ export interface barSlice {
     closeBar: () => void
 }
 
+export interface dbSlice {
+    db: IDBDatabase | null,
+    setDB: (value: IDBDatabase) => void,
+}
