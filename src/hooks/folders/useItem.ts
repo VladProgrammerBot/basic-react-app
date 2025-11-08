@@ -14,12 +14,12 @@ export const useItem = () => {
     setRenameBuffer
   } = store();
   
-  const getFolderById = (id: number) => {
+  const getFolderById = (id: string) => {
     const data = folders.find((child) => child.id === id);
     return data;
   };
 
-  const moveInto = (id: number) => {
+  const moveInto = (id: string) => {
     setParentChildrens(path.length - 1, childrensId);
     const newParent = getFolderById(id);
     if (!newParent) return;

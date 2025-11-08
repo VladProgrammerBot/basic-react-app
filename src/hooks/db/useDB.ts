@@ -11,22 +11,27 @@ export const useDB = () => {
     useEffect(() => {
         if (DB) return
 
-        const req = indexedDB.open("folders_db", 3)
-
+        const req = indexedDB.open("folders_db", 5)
+        
         req.onupgradeneeded = function () {
             let db = req.result;
+
             if (!db.objectStoreNames.contains('folders')) {
                 db.createObjectStore('folders', { keyPath: 'id' });
 
                 let transaction = db.transaction("folders", "readwrite");
-                let folders = transaction.objectStore("folders"); // (2)
+                let folders = transaction.objectStore("folders");
+                const reqa = folders.clear()
 
-                folders.add({
-                    id: 1,
-                    parent: null,
-                    childrens: [],
-                    title: "Root"
-                })
+                reqa.onsuccess = () => {
+
+                    folders.add({
+                        id: 6,
+                        parent: null,
+                        childrens: [],
+                        title: "Root"
+                    })
+                }
             }
         };
 

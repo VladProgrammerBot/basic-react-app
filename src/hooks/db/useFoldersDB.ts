@@ -2,7 +2,7 @@ import store from "@/state/store";
 
 export const useFoldersDB = () => {
     const DB = store.use.db()
-    
+
     const addFolderDB = (newFolder: folder) => {
         if (!DB) return
         const transaction = DB.transaction("folders", "readwrite");

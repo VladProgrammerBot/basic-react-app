@@ -7,7 +7,7 @@ export const usePath = () => {
     reducePath,
   } = store();
 
-  const getFolderById = (id: number) => {
+  const getFolderById = (id: string) => {
     const data = folders.find((child) => child.id === id);
     return data;
   };

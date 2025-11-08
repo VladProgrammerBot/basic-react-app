@@ -20,7 +20,8 @@ export const useFolders = () => {
   const { addFolderDB } = useFoldersDB()
 
   const generateId = () => {
-    return Math.floor(Math.random() * 30000);
+    // return Math.floor(Math.random() * 30000);
+    return Math.random().toString(16).slice(2);
   };
 
   const addFolder = async (value: string) => {

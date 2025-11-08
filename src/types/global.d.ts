@@ -1,6 +1,6 @@
 declare interface folder {
-  id: number;
+  id: string;
   title: string;
-  parent: number;
-  childrens: number[];
+  parent: string;
+  childrens: string[];
 }

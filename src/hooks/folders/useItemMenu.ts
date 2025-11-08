@@ -1,6 +1,5 @@
 import store from "@/state/store";
 import { useItemMenuDB } from "../db/useItemMenuDB";
-const api = import.meta.env.VITE_API;
 
 export const useItemMenu = () => {
   const {
@@ -10,7 +9,7 @@ export const useItemMenu = () => {
 
   const { removeFolderDB } = useItemMenuDB()
 
-  const removeFolder = async (id: number, parent: number) => {
+  const removeFolder = async (id: string, parent: string) => {
     removeFolderDB(id, parent)
     foldersRemove(id, parent);
     childrensRemove(id);
