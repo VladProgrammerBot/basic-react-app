@@ -19,5 +19,27 @@ export const useFoldersDB = () => {
         }
     };
 
-    return { addFolderDB }
+    const moveFolderDB = async (id: string, parent: string, newParent: string) => {
+        if (!DB) return
+        const transaction = DB.transaction("folders", "readwrite");
+        let folders = transaction.objectStore("folders");
+
+        const getNewParent = folders.get(newParent);
+        const getCurrent = folders.get(id);
+        const getParent = folders.get(parent);
+
+        getNewParent.onsuccess = () => {
+            folders.put({ ...getNewParent.result, childrens: [...getNewParent.result.childrens, id] });
+        }
+
+        getCurrent.onsuccess = () => {
+            folders.put({ ...getCurrent.result, parent: newParent })
+        }
+
+        getParent.onsuccess = () => {
+            folders.put({ ...getParent.result, childrens: getParent.result.childrens.filter((child: string) => child !== id) })
+        }
+    };
+
+    return { addFolderDB, moveFolderDB }
 }

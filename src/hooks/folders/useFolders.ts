@@ -17,7 +17,7 @@ export const useFolders = () => {
     resetMoveBuffer,
   } = store();
   useDB()
-  const { addFolderDB } = useFoldersDB()
+  const { addFolderDB, moveFolderDB } = useFoldersDB()
 
   const generateId = () => {
     return Math.random().toString(16).slice(2);
@@ -57,28 +57,14 @@ export const useFolders = () => {
 
   const moveFolder = async () => {
     if (!moveBuffer) return
+    
     const futureParent = path[path.length - 1].id
-
+    
+    moveFolderDB(moveBuffer.id, moveBuffer.parent, futureParent)
     setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
     pushChildren(moveBuffer.id)
     resetMoveBuffer()
-
-    try {
-      await fetch(api + "/folders/move", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: moveBuffer.id,
-          parentId: moveBuffer.parent,
-          future_parent: futureParent,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    
   }
 
   async function copyStructureToClipboard() {
