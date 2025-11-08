@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import store from "@/state/store";
-import { useDB } from "../useDB";
+import { useDB } from "../db/useDB";
+import { useFoldersDB } from "../db/useFoldersDB";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
@@ -15,7 +16,8 @@ export const useFolders = () => {
     setMoveFolder,
     resetMoveBuffer,
   } = store();
-  const { pushChildrenDB, pushDB } = useDB()
+  useDB()
+  const { addFolderDB } = useFoldersDB()
 
   const generateId = () => {
     return Math.floor(Math.random() * 30000);
@@ -31,8 +33,7 @@ export const useFolders = () => {
       title: value,
     }
 
-    pushChildrenDB(parentId, id)
-    pushDB(newFolder)
+    addFolderDB(newFolder)
     setMode("normal");
     pushFolder(
       newFolder,

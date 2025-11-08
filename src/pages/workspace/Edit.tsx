@@ -4,7 +4,7 @@ import store from "@/state/store";
 import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
-import { useDB } from "@/hooks/useDB";
+import { useDB } from "@/hooks/db/useDB";
 
 export const Edit = () => {
   const folders = store.use.folders();

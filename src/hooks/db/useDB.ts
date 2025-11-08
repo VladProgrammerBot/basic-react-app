@@ -53,6 +53,7 @@ export const useDB = () => {
                 setFolders(request.result)
                 setChildrens(parent.childrens);
                 setPath(parent);
+                console.log(request.result);
             };
 
             request.onerror = function () {
@@ -61,58 +62,5 @@ export const useDB = () => {
         }
     }, [DB])
 
-    function pushDB(newFolder: folder) {
-        const transaction = DB.transaction("folders", "readwrite");
-        let folders = transaction.objectStore("folders");
-
-        let request = folders.add(newFolder);
-
-        request.onsuccess = function () {
-            console.log("folders: ", request.result);
-        };
-        request.onerror = function () {
-            console.log("Помилка", request.error);
-        };
-    };
-
-    const pushChildrenDB = (parentId: number, childId: number) => {
-        const transaction = DB.transaction("folders", "readwrite");
-        let folders = transaction.objectStore("folders");
-
-        let parent = folders.get(parentId)
-
-        parent.onsuccess = function () {
-            let putReq = folders.put({ ...parent.result, childrens: [...parent.result.childrens, childId] })
-
-            putReq.onsuccess = () => {
-                console.log("success")
-            }
-            putReq.onerror = () => {
-                console.log("error")
-            }
-            // console.log("parent: ", parent.result);
-            // setData([...data, folder])
-        };
-        parent.onerror = function () {
-            console.log("Помилка", parent.error);
-        };
-    };
-
-    // function remove() {
-    //     let db = openRequest.result;
-    //     let transaction = db.transaction("folders", "readwrite"); // (1)
-    //     let folders = transaction.objectStore("folders"); // (2)
-
-    //     let request = folders.delete(data[data.length - 1].id); // (3)
-
-    //     request.onsuccess = function () { // (4)
-    //         console.log("removed: ", request.result);
-    //         // setData(data.filter((_, index) => index !== data.length - 1))
-    //     };
-    //     request.onerror = function () {
-    //         console.log("Помилка", request.error);
-    //     };
-    // };
-
-    return { pushChildrenDB, pushDB }
+    return
 }
