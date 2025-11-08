@@ -55,10 +55,10 @@ export const useDB = () => {
 
                 if (!parent) return;
 
+                console.log(JSON.stringify(request.result))
                 setFolders(request.result)
                 setChildrens(parent.childrens);
                 setPath(parent);
-                console.log(request.result);
             };
 
             request.onerror = function () {

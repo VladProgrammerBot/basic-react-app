@@ -20,7 +20,6 @@ export const useFolders = () => {
   const { addFolderDB } = useFoldersDB()
 
   const generateId = () => {
-    // return Math.floor(Math.random() * 30000);
     return Math.random().toString(16).slice(2);
   };
 
@@ -82,9 +81,19 @@ export const useFolders = () => {
     }
   }
 
+  async function copyStructureToClipboard() {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(folders));
+      console.log('Text copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  }
+
   return {
     addFolder,
     childrensData,
     moveFolder,
+    copyStructureToClipboard
   };
 };

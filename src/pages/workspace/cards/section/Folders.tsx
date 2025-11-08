@@ -4,10 +4,11 @@ import { useFolders } from "@/hooks/folders/useFolders";
 import { ItemLayout } from "./ItemLayout";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
+import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
   const wrapperRef = useOutsideClick();
-  const { childrensData, addFolder, moveFolder } = useFolders()
+  const { childrensData, addFolder, moveFolder, copyStructureToClipboard } = useFolders()
   const setMode = store(state => state.setMode)
   const mode = store(state => state.mode)
   const moveBuffer = store.use.moveBuffer()
@@ -33,6 +34,7 @@ export const Folders = () => {
           <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
         )}
       </ItemLayout>
+      <Button onClick={copyStructureToClipboard}>copy</Button>
     </div>
   );
 };
