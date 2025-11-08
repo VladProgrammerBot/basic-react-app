@@ -1,4 +1,5 @@
 import store from "@/state/store";
+import { useItemMenuDB } from "../db/useItemMenuDB";
 const api = import.meta.env.VITE_API;
 
 export const useItemMenu = () => {
@@ -7,24 +8,12 @@ export const useItemMenu = () => {
     childrensRemove,
   } = store();
 
+  const { removeFolderDB } = useItemMenuDB()
+
   const removeFolder = async (id: number, parent: number) => {
+    removeFolderDB(id, parent)
     foldersRemove(id, parent);
     childrensRemove(id);
-
-    try {
-      await fetch(api + "/folders/remove", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      console.log(error)
-    }
   };
 
   return {
