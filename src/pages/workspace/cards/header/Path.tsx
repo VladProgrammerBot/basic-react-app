@@ -1,9 +1,9 @@
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
-import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
 import { useState } from "react";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { Breadcrumb } from "./breadcrumb";
 
 export const Path = () => {
   const path = store.use.path()
@@ -45,24 +45,3 @@ export const Path = () => {
     </div>
   );
 };
-
-const Breadcrumb = ({ elem, index, current }: { elem: folder, index: number, current?: boolean }) => {
-  const { moveOut } = useFolders();
-  const maxLength = 10;
-
-  return (
-    <>
-      <div
-        onClick={() => !current && moveOut(elem, index)}
-        className={` ${!current
-          ? "text-neutral-500 hover:text-neutral-300 duration-150 cursor-pointer"
-          : "dark:text-white"
-          }`}
-      >
-        {elem.title.length > maxLength
-          ? elem.title.slice(0, maxLength) + ".."
-          : elem.title}
-      </div>
-    </>
-  )
-}

@@ -1,14 +1,14 @@
 import { RiDeleteBinLine } from "react-icons/ri";
-import { useFolders } from "@/hooks/useFolders";
 import { MdOutlineShortcut } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
 import store from "@/state/store";
+import { useItemMenu } from "@/hooks/folders/useItemMenu";
 
 export const ItemMenu = ({ data }: { data: folder }) => {
     const itemStyles =
         "dark:hover:bg-neutral-700 duration-150 hover:bg-neutral-300 flex-1 flex gap-2 items-center justify-center";
 
-    const { removeFolder } = useFolders()
+    const { removeFolder } = useItemMenu()
     const { setBuffer, openMenu, setMenuValue, setRenameBuffer } = store()
 
     return (
@@ -46,7 +46,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
             </div> */}
             <div
                 onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
-                className={itemStyles + (data.childrens.length !== 0 ? " text-neutral-500 cursor-auto":"")}
+                className={itemStyles + (data.childrens.length !== 0 ? " text-neutral-500 cursor-auto" : "")}
             >
                 <RiDeleteBinLine />
             </div>

@@ -1,6 +1,6 @@
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { Item } from "./Item";
-import { useFolders } from "@/hooks/useFolders";
+import { useFolders } from "@/hooks/folders/useFolders";
 import { ItemLayout } from "./ItemLayout";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";

@@ -5,13 +5,14 @@ import { ItemMenu } from "./ItemMenu";
 import { IoClose } from "react-icons/io5";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
+import { useItem } from "@/hooks/folders/useItem";
 
 export function Item({
   data
 }: {
   data: folder;
 }) {
-  const { moveInto, renameFolder } = useFolders();
+  const { moveInto, renameFolder } = useItem();
   const openMenu = store.use.openMenu()
   const renameBuffer = store.use.renameBuffer()
   const setMenuValue = store(state => state.setMenuValue)

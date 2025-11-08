@@ -3,7 +3,6 @@ import store from "@/state/store";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
-  console.log(1)
   const {
     folders,
     childrensId,
@@ -65,12 +64,6 @@ export const useFolders = () => {
   const addFolder = async (value: string) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
-    const newFolder = {
-      id: id,
-      parent: parentId,
-      childrens: [],
-      title: value,
-    }
     // pushChildrenDB(parentId, id)
     // pushDB(newFolder)
     setMode("normal");
