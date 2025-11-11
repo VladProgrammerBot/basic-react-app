@@ -6,17 +6,17 @@ export const createPathSlice: StateCreator<pathSlice> = (set) => ({
     pushPath: (folder) => set((state) => ({ path: [...state.path, folder] })),
     setPath: (folder) => set({ path: [folder] }),
     reducePath: (index) =>
-      set((state) => ({ path: state.path.splice(0, index + 1) })),
+        set((state) => ({ path: state.path.splice(0, index + 1) })),
     setParentChildrens: (length, childrensId) =>
-      set((state) => ({
-          path: state.path.map((parent, index) => {
-              if (index === length) {
-                  return {
-                      ...parent,
-                      childrens: childrensId,
-                  };
-              }
-              return parent;
-          }),
-      })),
+        set((state) => ({
+            path: state.path.map((parent, index) => {
+                if (index === length) {
+                    return {
+                        ...parent,
+                        childrens: childrensId,
+                    };
+                }
+                return parent;
+            }),
+        })),
 })

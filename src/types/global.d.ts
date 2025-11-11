@@ -3,4 +3,5 @@ declare interface folder {
   title: string;
   parent: number;
   childrens: number[];
+  ref: number | null;
 }

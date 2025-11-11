@@ -5,6 +5,7 @@ import { ItemMenu } from "./ItemMenu";
 import { IoClose } from "react-icons/io5";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
+import { FiLink } from "react-icons/fi";
 
 export function Item({
   data
@@ -21,7 +22,7 @@ export function Item({
   const handleClick = () => {
     if (openMenu !== data.id) {
       setMenuValue(null);
-      moveInto(data.id);
+      moveInto(data.ref ? data.ref : data.id);
     }
   }
 
@@ -42,7 +43,7 @@ export function Item({
           >
 
             <div className="text-neutral-400 dark:text-neutral-700 w-8 min-w-8 text-center">
-              {childrensLength}
+              {data.ref ? <FiLink className="mx-auto" /> : childrensLength}
             </div>
             <p
               className={`text-black dark:text-neutral-200 duration-300 ${openMenu === data.id || moveBuffer?.id === data.id && "opacity-50"}`}
@@ -58,7 +59,7 @@ export function Item({
             {openMenu !== data.id ? (
               <BsThreeDotsVertical />
             ) : (
-              <IoClose className="text-neutral-500"/>
+              <IoClose className="text-neutral-500" />
             )}
           </div>
         </>

@@ -61,7 +61,7 @@ export const useFolders = () => {
     return Math.floor(Math.random() * 30000);
   };
 
-  const addFolder = async (value: string) => {
+  const addFolder = async (value: string, ref: number) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
 
@@ -72,6 +72,7 @@ export const useFolders = () => {
         parent: parentId,
         childrens: [],
         title: value,
+        ref: ref
       },
       childrensId,
       id
