@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
   const wrapperRef = useOutsideClick();
-  const { childrensData, addFolder, moveFolder, copyStructureToClipboard } = useFolders()
+  const { childrensData, addFolder, moveFolder, copyStructureToClipboard, importData } = useFolders()
   const setMode = store(state => state.setMode)
   const mode = store(state => state.mode)
   const moveBuffer = store.use.moveBuffer()
@@ -35,6 +35,7 @@ export const Folders = () => {
         )}
       </ItemLayout>
       <Button onClick={copyStructureToClipboard}>copy</Button>
+      <Button onClick={importData}>paste</Button>
     </div>
   );
 };

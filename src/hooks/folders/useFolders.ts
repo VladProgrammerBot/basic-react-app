@@ -17,7 +17,7 @@ export const useFolders = () => {
     resetMoveBuffer,
   } = store();
   useDB()
-  const { addFolderDB, moveFolderDB } = useFoldersDB()
+  const { addFolderDB, moveFolderDB, importDataDB } = useFoldersDB()
 
   const generateId = () => {
     return Math.random().toString(16).slice(2);
@@ -57,14 +57,14 @@ export const useFolders = () => {
 
   const moveFolder = async () => {
     if (!moveBuffer) return
-    
+
     const futureParent = path[path.length - 1].id
-    
+
     moveFolderDB(moveBuffer.id, moveBuffer.parent, futureParent)
     setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
     pushChildren(moveBuffer.id)
     resetMoveBuffer()
-    
+
   }
 
   async function copyStructureToClipboard() {
@@ -76,10 +76,34 @@ export const useFolders = () => {
     }
   }
 
+  const importData = async () => {
+    const parentId = path[path.length - 1].id
+
+    try {
+      const paste = await navigator.clipboard.readText()
+
+      console.log(paste);
+      const data = JSON.parse(paste).map((elem: folder) => {
+        if (elem.parent === null) {
+          return {
+            ...elem,
+            parent: parentId
+          }
+        }
+        return elem
+      })
+
+      importDataDB(parentId, data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     addFolder,
     childrensData,
     moveFolder,
-    copyStructureToClipboard
+    copyStructureToClipboard,
+    importData
   };
 };

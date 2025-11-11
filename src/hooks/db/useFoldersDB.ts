@@ -41,5 +41,23 @@ export const useFoldersDB = () => {
         }
     };
 
-    return { addFolderDB, moveFolderDB }
+    const importDataDB = async (parentId: string, data: folder[]) => {
+        if (!DB) return
+        const transaction = DB.transaction("folders", "readwrite");
+        let folders = transaction.objectStore("folders");
+
+        const getParReq = folders.get(parentId)
+        getParReq.onsuccess = () => {
+            const updateParReq = folders.put({
+                ...getParReq.result, childrens: [...getParReq.result.childrens, parentId]
+            })
+            updateParReq.onsuccess = () => {
+                data.forEach((elem: folder) => {
+                    folders.add(elem)
+                });
+            }
+        }
+    };
+
+    return { addFolderDB, moveFolderDB, importDataDB }
 }

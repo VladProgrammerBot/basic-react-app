@@ -1,5 +1,5 @@
 import store from "@/state/store";
-const api = import.meta.env.VITE_API;
+import { useItemDB } from "../db/useItemDB";
 
 export const useItem = () => {
   const {
@@ -13,7 +13,9 @@ export const useItem = () => {
     renameBuffer,
     setRenameBuffer
   } = store();
-  
+
+  const renameFolderDB = useItemDB()
+
   const getFolderById = (id: string) => {
     const data = folders.find((child) => child.id === id);
     return data;
@@ -33,21 +35,7 @@ export const useItem = () => {
     setRenameFolder(renameBuffer, title)
     setRenameBuffer(null)
 
-    try {
-      await fetch(api + "/folders/rename", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: renameBuffer,
-          title: title,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    renameFolderDB(renameBuffer, title)
   }
 
   return {
