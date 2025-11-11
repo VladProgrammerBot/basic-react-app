@@ -61,7 +61,7 @@ export const useFolders = () => {
     return Math.floor(Math.random() * 30000);
   };
 
-  const addFolder = async (value: string, ref: number) => {
+  const addFolder = async (value: string, ref: number | null) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
 
@@ -79,6 +79,9 @@ export const useFolders = () => {
     );
     pushChildren(id);
 
+    console.log(ref);
+    
+
     try {
       await fetch(api + "/folders/add", {
         method: "POST",
@@ -89,7 +92,8 @@ export const useFolders = () => {
           id: id,
           title: value,
           parent: parentId,
-          token: localStorage.getItem("token")
+          token: localStorage.getItem("token"),
+          ref: ref
         })
       })
     } catch (error) {

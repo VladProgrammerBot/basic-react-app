@@ -5,7 +5,7 @@ export const InputForm = ({ defaultValue, cancelFunc, submitFunc, submitTitle }:
     submitTitle: string
     defaultValue?: string
     cancelFunc: () => void
-    submitFunc: (value: string) => void
+    submitFunc: (value: string, ref: number | null) => void
 }) => {
     const ref = useRef<HTMLTextAreaElement | null>(null);
 
@@ -19,7 +19,7 @@ export const InputForm = ({ defaultValue, cancelFunc, submitFunc, submitTitle }:
         <div className="p-2 text-end w-full">
             <textarea ref={ref} placeholder="Enter text" className="px-4 py-2 w-full mb-2 outline-none resize-none" />
             <Button onClick={cancelFunc} variant={"outline"} className="mr-2">Cancel</Button>
-            <Button onClick={() => ref.current && submitFunc(ref.current.value)}>{submitTitle}</Button>
+            <Button onClick={() => ref.current && submitFunc(ref.current.value, null)}>{submitTitle}</Button>
         </div>
     )
 }
