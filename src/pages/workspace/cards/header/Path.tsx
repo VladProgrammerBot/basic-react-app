@@ -19,13 +19,13 @@ export const Path = () => {
       {hiddenCrumbs().length !== 0 &&
         <div className="flex relative gap-2">
           <div className="text-neutral-400">/</div>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="cursor-pointer">...</button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="cursor-pointer px-1">...</button>
           {isMenuOpen && <div onClick={() => setIsMenuOpen(false)} className="left-0 absolute top-full p-2">
-            <div className="bg-white dark:bg-black w-full rounded-3xl border-1 border-neutral-300 dark:border-neutral-800 min-w-30 px-3 py-2 space-y-1">
+            <div className="bg-white dark:bg-black w-full rounded-3xl border-1 border-neutral-300 shadow-md shadow-neutral-300 dark:shadow-black dark:border-neutral-800 min-w-30 px-3 py-2 space-y-1">
               {hiddenCrumbs().map((crumb, index) => {
                 return (
-                  <div key={index} className="flex pr-4 text-nowrap">
-                    <div className="opacity-50">/</div>
+                  <div key={index} className="flex px-2 text-nowrap">
+                    <div className="opacity-50 mr-1">/</div>
                     <Breadcrumb key={index} elem={crumb} index={index + 1} />
                   </div>
                 )
@@ -52,7 +52,7 @@ const Breadcrumb = ({ elem, index, current }: { elem: folder, index: number, cur
   return (
       <div
         onClick={() => !current && moveOut(elem, index)}
-        className={` ${!current
+        className={`${!current && "dark:text-neutral-500 dark:hover:text-white"} rounded-lg ${!current
           ? "duration-150 cursor-pointer"
           : "dark:text-white"
           }`}

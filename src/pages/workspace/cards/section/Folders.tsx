@@ -14,7 +14,7 @@ export const Folders = () => {
   const path = store.use.path()
 
   return (
-    <div className="h-fit mt-16 dark:mt-14 rounded-3xl bg-white shadow-sm shadow-neutral-400 dark:shadow-none dark:bg-neutral-900 overflow-hidden" ref={wrapperRef}>
+    <div className="h-fit mt-16 dark:mt-13 rounded-3xl bg-white shadow-sm shadow-neutral-400 dark:shadow-none dark:bg-neutral-900 overflow-hidden" ref={wrapperRef}>
       {childrensData?.map((data) => {
         return <Item key={data.id} data={data} />;
       })}
