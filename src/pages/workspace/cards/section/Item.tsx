@@ -31,7 +31,7 @@ export function Item({
   return (
     <ItemLayout
       filled={renameBuffer !== data.id}
-      className={`flex group/item overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && "hover:bg-neutral-300 dark:hover:bg-neutral-800 duration-150"}
+      className={`flex group/item overflow-hidden ${openMenu !== data.id && renameBuffer !== data.id && ""}
       `}
     >
       {renameBuffer !== data.id ? (
@@ -42,7 +42,7 @@ export function Item({
             onContextMenu={() => setMenuValue(data.id)}
           >
 
-            <div className="text-neutral-400 dark:text-neutral-700 w-8 min-w-8 text-center">
+            <div className="text-neutral-400 dark:text-white opacity-20 w-8 min-w-8 text-center">
               {data.ref ? <FiLink className="mx-auto" /> : childrensLength}
             </div>
             <p

@@ -19,13 +19,13 @@ export const Edit = () => {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex bg-gradient-to-r from-violet-600 to-indigo-600 h-full min-h-screen">
       {folders.length === 0 ? (
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
         <>
-          <Path />
           <Bar />
+          <Path />
           <div className="w-full max-w-4xl mx-auto px-2">
             <Folders />
             <Footer />

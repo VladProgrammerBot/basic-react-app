@@ -79,9 +79,6 @@ export const useFolders = () => {
     );
     pushChildren(id);
 
-    console.log(ref);
-    
-
     try {
       await fetch(api + "/folders/add", {
         method: "POST",
