@@ -9,12 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-primary-foreground bg-gradient-to-r from-violet-600 to-indigo-600",
+        default: "text-primary-foreground bg-indigo-600 bg-gradient-to-r from-violet-600 to-indigo-600",
         disactive: "bg-sky-600 opacity-90 cursor-auto",
         destructive:
           "text-white",
         outline:
-          "border-1 text-black dark:text-white border-neutral-300 hover:border-neutral-400 dark:border-white/50 dark:hover:border-white",
+          "border-1 text-black dark:text-white border-neutral-400 hover:border-white",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900 cursor-auto text-neutral-400 dark:text-neutral-800",
           
