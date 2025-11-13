@@ -19,7 +19,7 @@ export const Edit = () => {
   }, []);
 
   return (
-    <div className="flex bg-indigo-600 bg-gradient-to-r from-violet-600 to-indigo-600 h-full min-h-screen">
+    <div className="flex h-full min-h-screen">
       {folders.length === 0 ? (
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (

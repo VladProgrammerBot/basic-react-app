@@ -42,7 +42,7 @@ export function Item({
             onContextMenu={() => setMenuValue(data.id)}
           >
 
-            <div className="text-neutral-400 dark:text-white opacity-20 w-8 min-w-8 text-center">
+            <div className="text-neutral-400 dark:text-neutral-700 w-8 min-w-8 text-center">
               {data.ref ? <FiLink className="mx-auto" /> : childrensLength}
             </div>
             <p

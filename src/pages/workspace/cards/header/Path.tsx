@@ -11,14 +11,14 @@ export const Path = () => {
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
 
   return (
-    <div className="flex w-full space-x-2 max-w-full items-center fixed bg-indigo-600 bg-gradient-to-r from-violet-600 to-indigo-600 z-10 p-2">
+    <div className="flex w-full space-x-2 max-w-full items-center fixed bg-white border-b-1 border-neutral-300 dark:border-none dark:border-neutral-800 dark:bg-black z-10 p-2">
       <div className="text-xl mr-2 cursor-pointer p-2 hover:bg-neutral-200 dark:hover:bg-neutral-800/50 duration-150 rounded-full" onClick={toggleBar}>
         <HiOutlineMenuAlt1 />
       </div>
       <Breadcrumb elem={path[0]} index={0} current={path.length === 1} />
       {hiddenCrumbs().length !== 0 &&
         <div className="flex relative gap-2">
-          <div className="opacity-50">/</div>
+          <div className="text-neutral-400">/</div>
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="cursor-pointer">...</button>
           {isMenuOpen && <div onClick={() => setIsMenuOpen(false)} className="left-0 absolute top-full p-2">
             <div className="bg-white dark:bg-black w-full rounded-3xl border-1 border-neutral-300 dark:border-neutral-800 min-w-30 px-3 py-2 space-y-1">
