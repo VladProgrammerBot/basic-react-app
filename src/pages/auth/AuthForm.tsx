@@ -43,7 +43,7 @@ export const AuthForm = ({ type }: { type: authType }) => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder="Enter username..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -56,7 +56,7 @@ export const AuthForm = ({ type }: { type: authType }) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <Input placeholder="Enter some password" type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
