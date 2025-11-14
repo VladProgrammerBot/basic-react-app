@@ -35,8 +35,8 @@ export const ItemMenu = ({ data }: { data: folder }) => {
                 <DropdownMenuItem onClick={() => {
                     setBuffer(data.id, data.parent)
                 }}><MdOutlineShortcut /> Move</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
-                ><RiDeleteBinLine /> Remove</DropdownMenuItem>
+                <DropdownMenuItem className="text-red-500" onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
+                ><RiDeleteBinLine className="text-red-500" /> Remove</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

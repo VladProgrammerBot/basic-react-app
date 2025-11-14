@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import store from "@/state/store"
 import { IoClose } from "react-icons/io5"
 import { useNavigate } from "react-router"
+import { MdLogout } from "react-icons/md";
 
 export const Bar = () => {
     const navigate = useNavigate()
@@ -34,13 +35,13 @@ export const Bar = () => {
                     </div>
                     <p className="text-2xl text-center p-2 rounded-4xl mt-2">user228</p>
                 </div>
-                <div className="">
+                <div className="text-lg">
                     <Button variant={"outline"} className="w-full border-red-500 text-red-500" onClick={() => {
                         localStorage.clear()
                         setFolders([])
                         closeBar()
                         navigate("/login")
-                    }}>Log out</Button>
+                    }}><MdLogout className="text-xl"/> Log out</Button>
                 </div>
             </div>
         </div>
