@@ -24,11 +24,6 @@ export interface pathSlice {
     setParentChildrens: (index: number, childrensId: number[]) => void;
 }
 
-export interface itemMenuSlice {
-    openMenu: number | null;
-    setMenuValue: (value: number | null) => void;
-}
-
 export interface modeSlice {
     mode: mode;
     setMode: (mode: mode) => void;

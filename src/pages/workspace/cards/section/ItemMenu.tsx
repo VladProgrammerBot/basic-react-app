@@ -13,8 +13,6 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 export const ItemMenu = ({ data }: { data: folder }) => {
-    const openMenu = store.use.openMenu()
-    const setMenuValue = store.use.setMenuValue()
     const { removeFolder, addFolder } = useFolders()
     const { setBuffer, setRenameBuffer } = store()
 
@@ -29,16 +27,13 @@ export const ItemMenu = ({ data }: { data: folder }) => {
             </div>
             <DropdownMenuContent side="left" sideOffset={0} align="start" alignOffset={-10}>
                 <DropdownMenuItem onClick={() => {
-                    setMenuValue(null)
                     addFolder(data.title + " (ref)", data.id)
                 }} className="flex"><FiLink /> Create Link</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => {
-                    setMenuValue(null)
                     setRenameBuffer(data.id)
                 }}><LuPencil /> Edit</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => {
                     setBuffer(data.id, data.parent)
-                    setMenuValue(null)
                 }}><MdOutlineShortcut /> Move</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
                 ><RiDeleteBinLine /> Remove</DropdownMenuItem>

@@ -1,4 +1,3 @@
-import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { Item } from "./Item";
 import { useFolders } from "@/hooks/useFolders";
 import { ItemLayout } from "./ItemLayout";
@@ -6,7 +5,6 @@ import { InputForm } from "./InputForm";
 import store from "@/state/store";
 
 export const Folders = () => {
-  const wrapperRef = useOutsideClick();
   const { childrensData, addFolder, moveFolder } = useFolders()
   const setMode = store(state => state.setMode)
   const mode = store(state => state.mode)
@@ -14,7 +12,7 @@ export const Folders = () => {
   const path = store.use.path()
 
   return (
-    <div className="h-fit mt-16 dark:mt-13 rounded-3xl bg-white shadow-sm shadow-neutral-400 dark:shadow-none dark:bg-neutral-800 overflow-hidden" ref={wrapperRef}>
+    <div className="h-fit mt-16 dark:mt-13 rounded-3xl bg-white shadow-sm shadow-neutral-400 dark:shadow-none dark:bg-neutral-800 overflow-hidden">
       {childrensData?.map((data) => {
         return <Item key={data.id} data={data} />;
       })}
