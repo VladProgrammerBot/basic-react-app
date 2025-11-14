@@ -10,7 +10,7 @@ export const Path = () => {
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
 
   return (
-    <div className="flex w-full max-w-full items-center fixed bg-neutral-100 border-b-1 border-neutral-300 dark:border-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 z-10 p-2">
+    <div className="flex w-full max-w-full items-center fixed bg-neutral-100 border-b-1 border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 z-10 p-2">
       <div className="text-xl mr-2 cursor-pointer p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 duration-150 rounded-full" onClick={toggleBar}>
         <HiOutlineMenuAlt1 />
       </div>
