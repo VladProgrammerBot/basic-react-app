@@ -1,8 +1,6 @@
 import { useFolders } from "@/hooks/useFolders";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { ItemLayout } from "./ItemLayout";
 import { ItemMenu } from "./ItemMenu";
-import { IoClose } from "react-icons/io5";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
 import { FiLink } from "react-icons/fi";
@@ -42,26 +40,17 @@ export function Item({
             onContextMenu={() => setMenuValue(data.id)}
           >
 
-            <div className="text-neutral-400 dark:text-neutral-700 w-8 min-w-8 text-center">
+            <div className="text-neutral-400 dark:text-neutral-500 w-8 min-w-8 text-center">
               {data.ref ? <FiLink className="mx-auto" /> : childrensLength}
             </div>
             <p
-              className={`text-black dark:text-neutral-200 duration-300 ${openMenu === data.id || moveBuffer?.id === data.id && "opacity-50"}`}
+              className={`text-black dark:text-white duration-300 ${openMenu === data.id || moveBuffer?.id === data.id && "opacity-50"}`}
             >
               {data?.title}
             </p>
-            <ItemMenu data={data} />
+            {/* <ItemMenu data={data} /> */}
           </div>
-          <div
-            onClick={() => setMenuValue(openMenu === data.id ? null : data.id)}
-            className={`text-lg pl-3 pr-4 text-black ${openMenu === data.id ? "dark:bg-neutral-800" : "group-hover/item:opacity-100 md:opacity-0"} duration-150 dark:text-white flex items-center`}
-          >
-            {openMenu !== data.id ? (
-              <BsThreeDotsVertical />
-            ) : (
-              <IoClose className="text-neutral-500" />
-            )}
-          </div>
+          <ItemMenu data={data}/>
         </>
       ) : (
         <InputForm
