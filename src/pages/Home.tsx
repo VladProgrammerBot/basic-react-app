@@ -10,11 +10,11 @@ export const Home = () => {
           Organize information easily and without limits.
         </p>
         <div className="flex gap-2 text-lg">
-          <NavLink to="about">
-            <Button variant={"outline"}>Manual</Button>
+          <NavLink  to="workspace">
+            <Button variant={"outline"}>Get started</Button>
           </NavLink>
-          <NavLink to="workspace">
-            <Button>Get started</Button>
+          <NavLink to="about">
+            <Button>Manual</Button>
           </NavLink>
         </div>
       </div>

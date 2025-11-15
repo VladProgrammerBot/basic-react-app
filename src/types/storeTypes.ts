@@ -6,7 +6,7 @@ export interface foldersSlice {
     setFolders: (data: folder[]) => void;
     setMoveFolder: (id: number, parent: number, futureParent: number) => void
     foldersRemove: (id: number, parentId: number) => void;
-    setRenameFolder: (id: number, title: string) => void
+    setRenameFolder: (id: number, title: string) => void;
 }
 
 export interface childrensSlice {

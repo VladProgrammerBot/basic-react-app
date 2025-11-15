@@ -72,5 +72,5 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
                 return folder
             })
         }))
-    }
+    },
 })

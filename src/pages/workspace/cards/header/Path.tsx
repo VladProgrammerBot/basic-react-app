@@ -3,18 +3,40 @@ import store from "@/state/store";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HiddenCrumbs } from "./hiddenCrumbs";
 import { Breadcrumb } from "./BreadCrumb";
+import { useEffect, useState } from "react";
 
 export const Path = () => {
   const path = store.use.path()
   const toggleBar = store.use.toggleBar()
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
+  const [isTop, setIsTop] = useState(true)
+
+  const handleScroll = () => {
+    if (window.scrollY === 0) {
+      if (!isTop) {
+        setIsTop(true);
+      }
+    } else {
+      if (isTop) {
+        setIsTop(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isTop]);
 
   return (
-    <div className="flex w-full max-w-full items-center fixed bg-neutral-100 border-b-1 border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 z-10 p-2">
-      <div className="text-xl mr-2 cursor-pointer p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 duration-150 rounded-full" onClick={toggleBar}>
+    <div className={`flex w-full max-w-full items-center fixed bg-neutral-100 ${!isTop && "border-b-1"} border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 z-10 p-2`}>
+      <div className="text-xl mr-2 cursor-pointer p-2 duration-150 rounded-full" onClick={toggleBar}>
         <HiOutlineMenuAlt1 />
       </div>
-      <Breadcrumb className="pr-2" elem={path[0]} index={0} current={path.length === 1} />
+      {path.length > 1 && <Breadcrumb className="pr-2" elem={path[0]} index={0} current={path.length === 1} />}
       {hiddenCrumbs().length !== 0 &&
         <div className="flex relative">
           <div className="text-neutral-400">/</div>

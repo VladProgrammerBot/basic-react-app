@@ -58,7 +58,7 @@ export const useFolders = () => {
   };
 
   const generateId = () => {
-    return Math.floor(Math.random() * 30000);
+    return Math.floor(Math.random() * 200000000);
   };
 
   const addFolder = async (value: string, ref: number | null) => {
@@ -204,6 +204,41 @@ export const useFolders = () => {
     }
   }
 
+  const arrayReplacer = (array: number[], index1: number, index2: number) => {
+    if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) return null
+    const newArray = [...array]
+    const temp = newArray[index1]
+    newArray[index1] = newArray[index2]
+    newArray[index2] = temp
+
+    return newArray
+  }
+
+  const replaceFolders = async (id: number, dir: 1 | -1) => {
+    const index = childrensId.indexOf(id)
+    const newArray = arrayReplacer(childrensId, index, index - dir)
+
+    if (!newArray) return
+
+    setChildrens(newArray)
+
+    try {
+      await fetch(api + "/folders/replace", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: path[path.length - 1].id,
+          newArr: newArray,
+          token: localStorage.getItem("token")
+        })
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     moveFolderVertical,
     getFolderById,
@@ -214,6 +249,7 @@ export const useFolders = () => {
     childrensData,
     getFolders,
     moveFolder,
-    renameFolder
+    renameFolder,
+    replaceFolders
   };
 };

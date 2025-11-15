@@ -18,7 +18,7 @@ export const Bar = () => {
     // }
 
     return (
-        <div className={`${isBarOpen ? "w-screen sm:w-75" : "w-0"} h-screen border-neutral-200 dark:border-neutral-900 pb-12 overflow-x-hidden fixed bg-white shadow-lg shadow-neutral-300 dark:shadow-black dark:bg-neutral-900 z-100 duration-300`}>
+        <div className={`${isBarOpen ? "w-screen sm:w-75 border-r-1" : "w-0"}  h-screen border-neutral-200 dark:border-neutral-700 pb-12 overflow-x-hidden fixed bg-white shadow-md shadow-neutral-300 dark:shadow-neutral-950 dark:bg-neutral-900 z-100 duration-300`}>
             <div className="space-y-4 p-2">
                 <div>
                     <div className="flex justify-between items-center">
