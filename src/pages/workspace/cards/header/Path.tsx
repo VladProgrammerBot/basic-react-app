@@ -3,36 +3,35 @@ import store from "@/state/store";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HiddenCrumbs } from "./hiddenCrumbs";
 import { Breadcrumb } from "./BreadCrumb";
-import { useEffect, useState } from "react";
 
 export const Path = () => {
   const path = store.use.path()
   const toggleBar = store.use.toggleBar()
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
-  const [isTop, setIsTop] = useState(true)
+  // const [isTop, setIsTop] = useState(true)
 
-  const handleScroll = () => {
-    if (window.scrollY === 0) {
-      if (!isTop) {
-        setIsTop(true);
-      }
-    } else {
-      if (isTop) {
-        setIsTop(false);
-      }
-    }
-  };
+  // const handleScroll = () => {
+  //   if (window.scrollY === 0) {
+  //     if (!isTop) {
+  //       setIsTop(true);
+  //     }
+  //   } else {
+  //     if (isTop) {
+  //       setIsTop(false);
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isTop]);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [isTop]);
 
   return (
-    <div className={`flex w-full max-w-full items-center fixed bg-neutral-100 ${!isTop && "border-b-1"} border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 z-10 p-2`}>
+    <div className={`flex w-full max-w-full items-center fixed bg-neutral-100 border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 z-10 p-2`}>
       <div className="text-xl mr-2 cursor-pointer p-2 duration-150 rounded-full" onClick={toggleBar}>
         <HiOutlineMenuAlt1 />
       </div>
