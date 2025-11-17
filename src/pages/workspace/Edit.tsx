@@ -6,7 +6,7 @@ import store from "@/state/store";
 import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
-import { Alerts } from "./cards/section/Alerts";
+// import { Alerts } from "./cards/section/Alerts";
 
 export const Edit = () => {
   const folders = store.use.folders();
