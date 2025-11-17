@@ -49,7 +49,7 @@ export interface barSlice {
 
 export interface alertsSlice {
     alerts: alert[],
-    pushAlert: (alert: Omit<alert, 'id'>) => void
+    pushAlert: (alert: alert) => void
     deleteAlert: (id: number) => void
 }
 

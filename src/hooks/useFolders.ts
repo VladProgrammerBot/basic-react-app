@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import store from "@/state/store";
+import { useAlerts } from "./useAlerts";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
@@ -27,7 +28,7 @@ export const useFolders = () => {
     setReplaceFolder
   } = store();
 
-  const pushAlert = store.use.pushAlert()
+  const { alertError, useAlert } = useAlerts()
 
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);
@@ -81,7 +82,7 @@ export const useFolders = () => {
       id
     );
     pushChildren(id);
-    
+
     try {
       await fetch(api + "/folders/add", {
         method: "POST",
@@ -102,13 +103,6 @@ export const useFolders = () => {
     }
 
   };
-
-  const alertError = (feat: string) => {
-    pushAlert({
-      color: "red",
-      text: `Failed to ${feat}, try to reload page`
-    })
-  }
 
   const removeFolder = async (id: number, parent: number) => {
     foldersRemove(id, parent);
@@ -163,6 +157,11 @@ export const useFolders = () => {
           setFolders(data);
           setChildrens(parent.childrens);
           setPath(parent);
+
+          useAlert({
+            color: "green",
+            text: `Try to add your first folder`
+          })
         });
     } catch (error) {
       alertError("get folders")
