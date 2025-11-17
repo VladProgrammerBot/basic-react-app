@@ -47,3 +47,10 @@ export interface barSlice {
     closeBar: () => void
 }
 
+export interface alertsSlice {
+    alerts: alert[],
+    pushAlert: (alert: Omit<alert, 'id'>) => void
+    deleteAlert: (id: number) => void
+}
+
+

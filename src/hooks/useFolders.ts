@@ -27,6 +27,8 @@ export const useFolders = () => {
     setReplaceFolder
   } = store();
 
+  const pushAlert = store.use.pushAlert()
+
   const getFolderById = (id: number) => {
     const data = folders.find((child) => child.id === id);
     return data;
@@ -79,7 +81,7 @@ export const useFolders = () => {
       id
     );
     pushChildren(id);
-
+    
     try {
       await fetch(api + "/folders/add", {
         method: "POST",
@@ -95,9 +97,18 @@ export const useFolders = () => {
         })
       })
     } catch (error) {
+      alertError("add folder")
       console.log(error)
     }
+
   };
+
+  const alertError = (feat: string) => {
+    pushAlert({
+      color: "red",
+      text: `Failed to ${feat}, try to reload page`
+    })
+  }
 
   const removeFolder = async (id: number, parent: number) => {
     foldersRemove(id, parent);
@@ -115,6 +126,7 @@ export const useFolders = () => {
         })
       })
     } catch (error) {
+      alertError("remove folder")
       console.log(error)
     }
   };
@@ -153,6 +165,7 @@ export const useFolders = () => {
           setPath(parent);
         });
     } catch (error) {
+      alertError("get folders")
       console.log(error);
     }
   };
@@ -179,6 +192,7 @@ export const useFolders = () => {
         })
       })
     } catch (error) {
+      alertError("move folder")
       console.log(error)
     }
   }
@@ -201,6 +215,7 @@ export const useFolders = () => {
         })
       })
     } catch (error) {
+      alertError("rename folder")
       console.log(error)
     }
   }
@@ -238,6 +253,7 @@ export const useFolders = () => {
         })
       })
     } catch (error) {
+      alertError("replace folder")
       console.log(error)
     }
   }

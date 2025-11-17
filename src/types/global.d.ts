@@ -5,3 +5,9 @@ declare interface folder {
   childrens: number[];
   ref: number | null;
 }
+
+declare interface alert {
+  id: number
+  text: string
+  color: "red" | "blue" | "green"
+}
