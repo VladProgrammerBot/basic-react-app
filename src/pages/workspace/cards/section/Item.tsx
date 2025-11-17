@@ -30,7 +30,7 @@ export function Item({
       {renameBuffer !== data.id ? (
         <>
           <div
-            className={`flex pl-3 py-2 relative items-center space-x-2 w-full`}
+            className={`flex pl-2 py-2 relative items-center space-x-2 w-full`}
             onClick={handleClick}
           >
 

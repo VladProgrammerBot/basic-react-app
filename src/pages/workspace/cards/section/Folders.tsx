@@ -13,8 +13,11 @@ export const Folders = () => {
 
   return (
     <div className="h-fit mt-[53px] rounded-md border-1 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden">
+
       {childrensData?.map((data) => {
-        return <Item key={data.id} data={data} />;
+        return (
+          <Item key={data.id} data={data} />
+        )
       })}
 
       {moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id && (
