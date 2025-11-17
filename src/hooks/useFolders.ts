@@ -23,7 +23,8 @@ export const useFolders = () => {
     resetMoveBuffer,
     setRenameFolder,
     renameBuffer,
-    setRenameBuffer
+    setRenameBuffer,
+    setReplaceFolder
   } = store();
 
   const getFolderById = (id: number) => {
@@ -220,7 +221,9 @@ export const useFolders = () => {
 
     if (!newArray) return
 
+    const parentId = path[path.length - 1].id
     setChildrens(newArray)
+    setReplaceFolder(parentId, newArray)
 
     try {
       await fetch(api + "/folders/replace", {
@@ -229,7 +232,7 @@ export const useFolders = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: path[path.length - 1].id,
+          id: parentId,
           newArr: newArray,
           token: localStorage.getItem("token")
         })

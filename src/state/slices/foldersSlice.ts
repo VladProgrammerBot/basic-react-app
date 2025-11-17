@@ -73,4 +73,17 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
             })
         }))
     },
+    setReplaceFolder: (id, newArr) => {
+        set((state) => ({
+            folders: state.folders.map((folder) => {
+                if (folder.id === id) {
+                    return {
+                        ...folder,
+                        childrens: newArr
+                    }
+                }
+                return folder
+            })
+        }))
+    },
 })

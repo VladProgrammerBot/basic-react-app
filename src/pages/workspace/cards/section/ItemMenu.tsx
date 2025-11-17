@@ -44,7 +44,7 @@ export const ItemMenu = ({ data }: { data: folder }) => {
                     onClick={() => {
                         setBuffer(data.id, data.parent)
                     }}>
-                    <MdOutlineShortcut /> Move
+                    <MdOutlineShortcut /> Move To
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => replaceFolders(data.id, 1)}
