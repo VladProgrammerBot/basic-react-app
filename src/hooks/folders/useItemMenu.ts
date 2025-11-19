@@ -1,12 +1,15 @@
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
+import { useRef } from "react";
 const api = import.meta.env.VITE_API;
 
 export const useFolderManipulation = () => {
   const childrensId = store.use.childrensId();
   const path = store.use.path();
+  const markdownBuffer = useRef<string>("")
 
   const {
+    folders,
     setChildrens,
     pushFolder,
     pushChildren,
@@ -120,9 +123,48 @@ export const useFolderManipulation = () => {
     }
   }
 
+  async function addTextToClipboard(text: string) {
+    if (!navigator.clipboard) {
+      console.error('Clipboard API not available or on an insecure context.');
+      alert('Clipboard API not supported. Please use a modern browser over HTTPS.');
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      console.log(`Successfully copied to clipboard: "${text}"`);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      alert('Could not copy text. Check the browser console for details.');
+    }
+  }
+
+  const generateStructure = (id: number, parents: number) => {
+    const folder = folders.find((folder) => folder.id === id)
+    if (!folder) return
+
+    markdownBuffer.current = markdownBuffer.current + folder?.title + "\n"
+
+    const childrens = folder.childrens
+    if (childrens.length > 0) {
+      childrens.forEach((child) => {
+        generateStructure(child, parents + 1)
+      })
+    }
+  }
+
+  const copyMarkdown = (id: number, text: string) => {
+    markdownBuffer.current = ""
+    generateStructure(id, 0)
+    console.log(markdownBuffer.current);
+    
+    addTextToClipboard(markdownBuffer.current)
+  }
+
   return {
     removeFolder,
     addFolder,
-    replaceFolders
+    replaceFolders,
+    copyMarkdown
   };
 };

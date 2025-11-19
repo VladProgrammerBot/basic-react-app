@@ -16,7 +16,7 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { MdContentCopy } from "react-icons/md";
 
 export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
-    const { removeFolder, addFolder, replaceFolders } = useFolderManipulation()
+    const { removeFolder, addFolder, replaceFolders, copyMarkdown } = useFolderManipulation()
     const { setBuffer, setRenameBuffer, childrensId } = store()
 
     return (
@@ -54,7 +54,11 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     }} className="flex">
                     <FiLink /> Create Link
                 </DropdownMenuItem>
-                <DropdownMenuItem disactive className="flex">
+                <DropdownMenuItem
+                    onClick={() => copyMarkdown(data.id, "programming\n  * world\n    * geometry dash\n  * hahah")}
+                    disactive={data.childrens.length === 0}
+                    className="flex"
+                >
                     <MdContentCopy /> Copy Markdown
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

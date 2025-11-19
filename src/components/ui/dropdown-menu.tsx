@@ -171,7 +171,7 @@ function DropdownMenuLabel({
 function DropdownMenuSeparator() {
   return (
     <div className="px-4 py-1">
-      <div className="w-full border-b-1 border-neutral-700"></div>
+      <div className="w-full border-b-1 border-neutral-300 dark:border-neutral-700"></div>
     </div>
   )
 }
