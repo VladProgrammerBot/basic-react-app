@@ -132,7 +132,7 @@ export const useFolderManipulation = () => {
 
     try {
       await navigator.clipboard.writeText(text);
-      console.log(`Successfully copied to clipboard: "${text}"`);
+      // console.log(`Successfully copied to clipboard: "${text}"`);
     } catch (err) {
       console.error('Failed to copy text: ', err);
       alert('Could not copy text. Check the browser console for details.');
@@ -143,7 +143,7 @@ export const useFolderManipulation = () => {
     const folder = folders.find((folder) => folder.id === id)
     if (!folder) return
 
-    markdownBuffer.current = markdownBuffer.current + folder?.title + "\n"
+    markdownBuffer.current = markdownBuffer.current + "  ".repeat(parents) + "* " + folder?.title + "\n"
 
     const childrens = folder.childrens
     if (childrens.length > 0) {
@@ -153,11 +153,10 @@ export const useFolderManipulation = () => {
     }
   }
 
-  const copyMarkdown = (id: number, text: string) => {
+  const copyMarkdown = (id: number) => {
     markdownBuffer.current = ""
     generateStructure(id, 0)
-    console.log(markdownBuffer.current);
-    
+
     addTextToClipboard(markdownBuffer.current)
   }
 

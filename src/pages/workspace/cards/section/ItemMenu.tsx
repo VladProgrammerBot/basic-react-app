@@ -55,7 +55,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     <FiLink /> Create Link
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                    onClick={() => copyMarkdown(data.id, "programming\n  * world\n    * geometry dash\n  * hahah")}
+                    onClick={() => copyMarkdown(data.id)}
                     disactive={data.childrens.length === 0}
                     className="flex"
                 >
