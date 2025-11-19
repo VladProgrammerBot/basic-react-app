@@ -6,15 +6,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import store from "@/state/store";
-import { useFolders } from "@/hooks/useFolders";
 import { FiLink } from "react-icons/fi";
 import { LuPencil } from "react-icons/lu";
 import { MdOutlineShortcut } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 
 export const ItemMenu = ({ data }: { data: folder }) => {
-    const { removeFolder, addFolder, replaceFolders } = useFolders()
+    const { removeFolder, addFolder, replaceFolders } = useFolderManipulation()
     const { setBuffer, setRenameBuffer } = store()
 
     return (

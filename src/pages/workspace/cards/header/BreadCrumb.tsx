@@ -1,7 +1,7 @@
-import { useFolders } from "@/hooks/useFolders";
+import { usePath } from "@/hooks/folders/usePath";
 
 export const Breadcrumb = ({ elem, index, current, className }: { elem: folder, index: number, current?: boolean, className?: string }) => {
-    const { moveOut } = useFolders();
+    const { moveOut } = usePath();
     const maxLength = 10;
 
     return (

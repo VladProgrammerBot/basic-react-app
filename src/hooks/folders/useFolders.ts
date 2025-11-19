@@ -1,0 +1,62 @@
+import { useMemo } from "react";
+import store from "@/state/store";
+import { useAlerts } from "../useAlerts";
+const api = import.meta.env.VITE_API;
+
+export const useFolders = () => {
+  const {
+    folders,
+    childrensId,
+    path,
+    pushChildren,
+    moveBuffer,
+    setMoveFolder,
+    resetMoveBuffer
+  } = store();
+
+  const { alertError } = useAlerts()
+
+  const childrensData = useMemo(() => {
+    const sortedChildrens = new Array(childrensId.length);
+    const parent = path[path.length - 1]?.id;
+    folders?.forEach((folder) => {
+      if (folder.parent === parent) {
+        sortedChildrens[childrensId.indexOf(folder.id)] = folder;
+      }
+    });
+
+    return sortedChildrens;
+  }, [childrensId, folders, path]);
+
+  const moveFolder = async () => {
+    if (!moveBuffer) return
+    const futureParent = path[path.length - 1].id
+
+    setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
+    pushChildren(moveBuffer.id)
+    resetMoveBuffer()
+
+    try {
+      await fetch(api + "/folders/move", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: moveBuffer.id,
+          parentId: moveBuffer.parent,
+          future_parent: futureParent,
+          token: localStorage.getItem("token")
+        })
+      })
+    } catch (error) {
+      alertError("move folder")
+      console.log(error)
+    }
+  }
+
+  return {
+    childrensData,
+    moveFolder
+  };
+};

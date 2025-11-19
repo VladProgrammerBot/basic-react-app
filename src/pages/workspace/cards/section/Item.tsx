@@ -1,16 +1,16 @@
-import { useFolders } from "@/hooks/useFolders";
 import { ItemLayout } from "./ItemLayout";
 import { ItemMenu } from "./ItemMenu";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
 import { FiLink } from "react-icons/fi";
+import { useItem } from "@/hooks/folders/useItem";
 
 export function Item({
   data
 }: {
   data: folder;
 }) {
-  const { moveInto, renameFolder } = useFolders();
+  const { moveInto, renameFolder } = useItem();
   const renameBuffer = store.use.renameBuffer()
   const setRenameBuffer = store.use.setRenameBuffer()
   const moveBuffer = store.use.moveBuffer()

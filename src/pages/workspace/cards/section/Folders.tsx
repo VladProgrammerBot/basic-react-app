@@ -1,11 +1,13 @@
 import { Item } from "./Item";
-import { useFolders } from "@/hooks/useFolders";
+import { useFolders } from "@/hooks/folders/useFolders";
 import { ItemLayout } from "./ItemLayout";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
+import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 
 export const Folders = () => {
-  const { childrensData, addFolder, moveFolder } = useFolders()
+  const { childrensData, moveFolder } = useFolders()
+  const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store(state => state.mode)
   const moveBuffer = store.use.moveBuffer()

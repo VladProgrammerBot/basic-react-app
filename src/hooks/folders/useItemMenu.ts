@@ -1,52 +1,35 @@
-import { useMemo } from "react";
 import store from "@/state/store";
-import { useAlerts } from "./useAlerts";
+import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
 
-export const useFolders = () => {
+export const useFolderManipulation = () => {
   const {
-    folders,
     childrensId,
     setChildrens,
-    pushPath,
     pushFolder,
     path,
     pushChildren,
-    setParentChildrens,
     setMode,
     foldersRemove,
     childrensRemove,
-    moveBuffer,
-    setMoveFolder,
-    resetMoveBuffer,
-    setRenameFolder,
-    renameBuffer,
-    setRenameBuffer,
     setReplaceFolder
   } = store();
 
   const { alertError } = useAlerts()
 
-  
-
-
-
-  
-
-  const moveFolderVertical = (index: number, dir: number) => {
-    const futureIndex = index + dir;
-    if (!childrensId || futureIndex + 1 > childrensId.length || futureIndex < 0)
-      return;
-    const temparr = childrensId;
-    const tempIndexValue = temparr[futureIndex];
-    temparr[futureIndex] = temparr[index];
-    temparr[index] = tempIndexValue;
-    setChildrens(temparr);
-  };
-
   const generateId = () => {
     return Math.floor(Math.random() * 200000000);
   };
+
+  const arrayReplacer = (array: number[], index1: number, index2: number) => {
+    if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) return null
+    const newArray = [...array]
+    const temp = newArray[index1]
+    newArray[index1] = newArray[index2]
+    newArray[index2] = temp
+
+    return newArray
+  }
 
   const addFolder = async (value: string, ref: number | null) => {
     const id = generateId();
@@ -108,59 +91,6 @@ export const useFolders = () => {
     }
   };
 
-  const childrensData = useMemo(() => {
-    const sortedChildrens = new Array(childrensId.length);
-    const parent = path[path.length - 1]?.id;
-    folders?.forEach((folder) => {
-      if (folder.parent === parent) {
-        sortedChildrens[childrensId.indexOf(folder.id)] = folder;
-      }
-    });
-
-    return sortedChildrens;
-  }, [childrensId, folders]);
-
-
-
-  const moveFolder = async () => {
-    if (!moveBuffer) return
-    const futureParent = path[path.length - 1].id
-
-    setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
-    pushChildren(moveBuffer.id)
-    resetMoveBuffer()
-
-    try {
-      await fetch(api + "/folders/move", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: moveBuffer.id,
-          parentId: moveBuffer.parent,
-          future_parent: futureParent,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      alertError("move folder")
-      console.log(error)
-    }
-  }
-
-
-
-  const arrayReplacer = (array: number[], index1: number, index2: number) => {
-    if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) return null
-    const newArray = [...array]
-    const temp = newArray[index1]
-    newArray[index1] = newArray[index2]
-    newArray[index2] = temp
-
-    return newArray
-  }
-
   const replaceFolders = async (id: number, dir: 1 | -1) => {
     const index = childrensId.indexOf(id)
     const newArray = arrayReplacer(childrensId, index, index - dir)
@@ -190,13 +120,8 @@ export const useFolders = () => {
   }
 
   return {
-    moveFolderVertical,
-    // moveInto,
-    addFolder,
     removeFolder,
-    childrensData,
-    moveFolder,
-    // renameFolder,
+    addFolder,
     replaceFolders
   };
 };

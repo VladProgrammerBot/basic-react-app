@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import { Folders } from "./cards/section/Folders";
 import { Path } from "./cards/header/Path";
-import { useFolders } from "@/hooks/useFolders";
 import store from "@/state/store";
 import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
 import { Alerts } from "./cards/section/Alerts";
+import { useEdit } from "@/hooks/folders/useEdit";
 
 export const Edit = () => {
   const folders = store.use.folders();
-  const { getFolders } = useFolders()
+  const { getFolders } = useEdit()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   });
