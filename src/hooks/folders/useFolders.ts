@@ -4,15 +4,13 @@ import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
 
 export const useFolders = () => {
-  const {
-    folders,
-    childrensId,
-    path,
-    pushChildren,
-    moveBuffer,
-    setMoveFolder,
-    resetMoveBuffer
-  } = store();
+  const folders = store.use.folders();
+  const childrensId = store.use.childrensId();
+  const path = store.use.path();
+  const pushChildren = store.use.pushChildren();
+  const moveBuffer = store.use.moveBuffer();
+  const setMoveFolder = store.use.setMoveFolder();
+  const resetMoveBuffer = store.use.resetMoveBuffer();
 
   const { alertError } = useAlerts()
 

@@ -3,6 +3,7 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import store from "@/state/store";
@@ -12,10 +13,11 @@ import { MdOutlineShortcut } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
+import { MdContentCopy } from "react-icons/md";
 
-export const ItemMenu = ({ data }: { data: folder }) => {
+export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
     const { removeFolder, addFolder, replaceFolders } = useFolderManipulation()
-    const { setBuffer, setRenameBuffer } = store()
+    const { setBuffer, setRenameBuffer, childrensId } = store()
 
     return (
         <DropdownMenu>
@@ -29,32 +31,39 @@ export const ItemMenu = ({ data }: { data: folder }) => {
             <DropdownMenuContent side="left" sideOffset={0} align="start" alignOffset={-10}>
                 <DropdownMenuItem
                     onClick={() => {
+                        setBuffer(data.id, data.parent)
+                    }}>
+                    <MdOutlineShortcut /> Move To
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                    disactive={index === 0}
+                    onClick={() => replaceFolders(data.id, 1)}
+                >
+                    <IoIosArrowUp /> Move Up
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                    disactive={index === childrensId.length - 1}
+                    onClick={() => replaceFolders(data.id, -1)}
+                >
+                    <IoIosArrowDown /> Move Down
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                    onClick={() => {
                         addFolder(data.title + " (ref)", data.id)
                     }} className="flex">
                     <FiLink /> Create Link
                 </DropdownMenuItem>
+                <DropdownMenuItem disactive className="flex">
+                    <MdContentCopy /> Copy Markdown
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem
                     onClick={() => {
                         setRenameBuffer(data.id)
                     }}>
                     <LuPencil />
                     Edit
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => {
-                        setBuffer(data.id, data.parent)
-                    }}>
-                    <MdOutlineShortcut /> Move To
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => replaceFolders(data.id, 1)}
-                >
-                    <IoIosArrowUp /> Move Up
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => replaceFolders(data.id, -1)}
-                >
-                    <IoIosArrowDown /> Move Down
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}

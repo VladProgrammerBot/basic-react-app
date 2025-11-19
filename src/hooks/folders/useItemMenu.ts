@@ -3,11 +3,12 @@ import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
 
 export const useFolderManipulation = () => {
+  const childrensId = store.use.childrensId();
+  const path = store.use.path();
+
   const {
-    childrensId,
     setChildrens,
     pushFolder,
-    path,
     pushChildren,
     setMode,
     foldersRemove,

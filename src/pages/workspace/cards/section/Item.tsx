@@ -6,9 +6,11 @@ import { FiLink } from "react-icons/fi";
 import { useItem } from "@/hooks/folders/useItem";
 
 export function Item({
-  data
+  data,
+  index
 }: {
   data: folder;
+  index: number
 }) {
   const { moveInto, renameFolder } = useItem();
   const renameBuffer = store.use.renameBuffer()
@@ -43,7 +45,7 @@ export function Item({
               {data?.title}
             </p>
           </div>
-          <ItemMenu data={data} />
+          <ItemMenu data={data} index={index} />
         </>
       ) : (
         <InputForm

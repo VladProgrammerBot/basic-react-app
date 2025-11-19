@@ -16,9 +16,9 @@ export const Folders = () => {
   return (
     <div className="h-fit mt-[53px] rounded-md border-1 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden">
 
-      {childrensData?.map((data) => {
+      {childrensData?.map((data, index) => {
         return (
-          <Item key={data.id} data={data} />
+          <Item key={data.id} data={data} index={index}/>
         )
       })}
 
