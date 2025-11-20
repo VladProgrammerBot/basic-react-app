@@ -14,7 +14,6 @@ export const Folders = () => {
   const mode = store(state => state.mode)
   const moveBuffer = store.use.moveBuffer()
   const path = store.use.path()
-  console.log(childrensData.length);
   const isStart = childrensData.length > 0 || mode === "Add Folder"
   return (
     <div>
@@ -37,11 +36,7 @@ export const Folders = () => {
       <ItemLayout className="border-none">
         {mode === "normal" && (
           <div className={`flex w-full justify-between items-center gap-2 ${isStart && "py-2"}`}>
-            {/* <div onClick={() => setMode("Add Folder")} className="cursor-pointer w-full hover:bg-neutral-200 dark:hover:bg-neutral-800 h-14 flex justify-center items-center hover:text-neutral-500 dark:hover:text-white text-neutral-400 duration-150">
-              + Add Folder
-            </div> */}
             <Button variant={"outline"} className="flex-1 min-w-fit" onClick={() => setMode("Add Folder")}>+ Add</Button>
-            {/* <div className="border-r-1 h-10 border-neutral-700"></div> */}
             <Button variant={"outline"} className="flex-1 min-w-fit"><RiGeminiFill />Generate</Button>
           </div>
         )}
