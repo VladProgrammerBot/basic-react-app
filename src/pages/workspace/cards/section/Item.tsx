@@ -22,9 +22,10 @@ export function Item({
   }
 
   const childrensLength = data && data?.childrens.length > 0 && data.childrens.length
-  
+
   return (
     <ItemLayout
+      index={index}
       filled={renameBuffer !== data.id}
       className={`flex group/item overflow-hidden}
       `}
