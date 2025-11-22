@@ -8,13 +8,13 @@ import { Button } from "@/components/ui/button";
 import { RiGeminiFill } from "react-icons/ri";
 
 export const Folders = () => {
-  const { childrensData, moveFolder } = useFolders()
+  const { childrensData, moveFolder, generateFolders } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
-  const mode = store(state => state.mode)
+  const mode = store.use.mode()
   const moveBuffer = store.use.moveBuffer()
   const path = store.use.path()
-  const isStart = childrensData.length > 0 || mode === "Add Folder"
+  const isStart = childrensData.length > 0 || mode !== "normal"
   return (
     <div>
       <div className={`h-fit mt-13 rounded-md ${isStart && "border-1"} border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden`}>
@@ -32,12 +32,17 @@ export const Folders = () => {
         {mode === "Add Folder" && (
           <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
         )}
+        {mode === "AI Generate" && (
+          <InputForm placeholder="Enter your prompt" submitTitle="Generate" cancelFunc={() => setMode("normal")} submitFunc={(value) => {
+            generateFolders(value)
+          }} />
+        )}
       </div>
       <ItemLayout className="border-none">
         {mode === "normal" && (
           <div className={`flex w-full justify-between items-center gap-2 ${isStart && "py-2"}`}>
             <Button variant={"outline"} className="flex-1 min-w-fit" onClick={() => setMode("Add Folder")}>+ Add</Button>
-            <Button variant={"outline"} className="flex-1 min-w-fit"><RiGeminiFill />Generate</Button>
+            <Button variant={"outline"} onClick={() => setMode("AI Generate")} className="flex-1 min-w-fit"><RiGeminiFill />Generate</Button>
           </div>
         )}
       </ItemLayout>

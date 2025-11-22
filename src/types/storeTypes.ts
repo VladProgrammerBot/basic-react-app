@@ -1,8 +1,9 @@
-type mode = "normal" | "Add Folder";
+type mode = "normal" | "Add Folder" | "AI Generate";
 
 export interface foldersSlice {
     folders: folder[]
     pushFolder: (folder: folder, childrens: number[], newId: number) => void;
+    pushMultipleFolder: (folders: folder[], childrens: number[], newChildrens: number[], parentId: number) => void;
     setFolders: (data: folder[]) => void;
     setMoveFolder: (id: number, parent: number, futureParent: number) => void
     foldersRemove: (id: number, parentId: number) => void;

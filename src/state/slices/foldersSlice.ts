@@ -19,6 +19,21 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
                 folder,
             ],
         })),
+    pushMultipleFolder: (folders, childrens, newChildrens, parentId) => {
+        set((state) => ({
+            folders: [
+                ...state.folders.map((item) => {
+                    if (item.id === parentId) {
+                        return {
+                            ...item,
+                            childrens: [...childrens, ...newChildrens],
+                        };
+                    }
+                    return item;
+                }),
+                ...folders,
+            ],
+        }))},
     foldersRemove: (id, parentId) => {
         set((state) => ({
             folders: state.folders

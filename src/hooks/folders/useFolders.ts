@@ -11,6 +11,8 @@ export const useFolders = () => {
   const moveBuffer = store.use.moveBuffer();
   const setMoveFolder = store.use.setMoveFolder();
   const resetMoveBuffer = store.use.resetMoveBuffer();
+  const pushMultipleFolder = store.use.pushMultipleFolder()
+  const setMode = store.use.setMode()
 
   const { alertError } = useAlerts()
 
@@ -53,8 +55,37 @@ export const useFolders = () => {
     }
   }
 
+  const generateFolders = async (prompt: string) => {
+    const token = localStorage.getItem("token")
+    const id = path[path.length - 1].id
+
+    try {
+      await fetch(api + "/folders/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          prompt: prompt,
+          token: token
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          setMode("normal")
+          pushMultipleFolder(data.data, childrensId, data.mainParentChildrens, id)
+          pushChildren(data.mainParentChildrens[0])
+        })
+    } catch (error) {
+      alertError("generate folders")
+      console.log(error);
+    }
+  }
+
   return {
     childrensData,
-    moveFolder
+    moveFolder,
+    generateFolders
   };
 };
