@@ -38,7 +38,6 @@ export const Folders = () => {
           }} />
         )}
         {mode === "normal" && (
-
           <ItemLayout className={`${!isStart && "border-none"} flex w-full justify-between items-center items-stretch`}>
             {mode === "normal" && (
               <>

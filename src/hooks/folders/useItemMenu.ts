@@ -60,9 +60,9 @@ export const useFolderManipulation = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: id,
+          newId: id,
           title: value,
-          parent: parentId,
+          id: parentId,
           token: localStorage.getItem("token"),
           ref: ref
         })
