@@ -22,11 +22,25 @@ export const useEdit = () => {
             })
                 .then((res) => res.json())
                 .then((data: folder[]) => {
-                    const parent = data.find((folder) => folder.parent === null);
+                    const folders = data.reduce((acc, user) => {
+                        const id = String(user.id)
+                        acc[id] = user;
+                        return acc;
+                    }, {} as objectFolder);
 
-                    if (!parent) return;
+                    const token = localStorage.getItem("token")
+                    if (!token) return
+                    const payload = token.split(".")
+                    const { userId } = JSON.parse(atob(payload[1]))
 
-                    setFolders(data);
+                    const parent = folders[userId]
+
+
+                    // const parent = data.find((folder) => folder.parent === null);
+
+                    // if (!parent) return;
+
+                    setFolders(folders);
                     setChildrens(parent.childrens);
                     setPath(parent);
 

@@ -4,7 +4,6 @@ import { IoClose } from "react-icons/io5"
 import { useNavigate } from "react-router"
 import { MdLogout } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { CiUser } from "react-icons/ci";
 
 export const Bar = () => {
     const navigate = useNavigate()
@@ -28,7 +27,7 @@ export const Bar = () => {
                 <div className="flex pb-4 justify-between items-center">
                     <div className="text-xl font-bold cursor-pointer" onClick={() => {
                         navigate("/")
-                        setFolders([])
+                        setFolders({})
                         closeBar()
                     }}>
                         Strukt
@@ -42,7 +41,7 @@ export const Bar = () => {
                 </div>
                 <Button variant={"outline"} className="w-full" onClick={() => {
                     localStorage.clear()
-                    setFolders([])
+                    setFolders({})
                     closeBar()
                     navigate("/login")
                 }}><MdLogout className="text-xl" /> Log out</Button>

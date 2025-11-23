@@ -11,3 +11,7 @@ declare interface alert {
   text: string
   color: "red" | "blue" | "green"
 }
+
+declare type objectFolder = {
+  [key: string]: folder
+}

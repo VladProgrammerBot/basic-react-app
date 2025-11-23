@@ -17,15 +17,16 @@ export const useFolders = () => {
   const { alertError } = useAlerts()
 
   const childrensData = useMemo(() => {
-    const foldersMap = new Map(folders.map(obj => [obj.id, { ...obj }]))
     const sortedChildrens = new Array(0);
     childrensId.forEach((child) => {
-      const data = foldersMap.get(child)
+      
+      const data = folders[child]
       sortedChildrens.push({
         ...data
       })
     })
-
+    
+    console.log(sortedChildrens);
     return sortedChildrens;
   }, [childrensId, folders, path]);
 

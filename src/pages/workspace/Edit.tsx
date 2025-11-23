@@ -21,7 +21,7 @@ export const Edit = () => {
 
   return (
     <div className="flex h-full min-h-screen">
-      {folders.length === 0 ? (
+      {Object.keys(folders).length === 0 ? (
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
         <>

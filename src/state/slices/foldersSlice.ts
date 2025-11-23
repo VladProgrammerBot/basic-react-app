@@ -2,103 +2,91 @@ import type { StateCreator } from "zustand";
 import type { foldersSlice } from "../../types/storeTypes";
 
 export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
-    folders: [],
+    folders: {},
     setFolders: (data) => set({ folders: data }),
     pushFolder: (folder, childrens, id) =>
         set((state) => ({
-            folders: [
-                ...state.folders.map((item) => {
-                    if (item.id === folder.parent) {
-                        return {
-                            ...item,
-                            childrens: [...childrens, id],
-                        };
-                    }
-                    return item;
-                }),
-                folder,
-            ],
+            folders: {
+                ...state.folders,
+                [folder.parent]: {
+                    ...state.folders[folder.parent],
+                    childrens: [...childrens, id]
+                },
+                [folder.id]: folder,
+            }
         })),
-    pushMultipleFolder: (folders, childrens, newChildrens, parentId) => {
+    pushMultipleFolder: (foldersObj, childrens, newChildrens, parentId) => {
+        const folders = foldersObj.reduce((acc, user) => {
+            const id = String(user.id)
+            acc[id] = user;
+            return acc;
+        }, {} as objectFolder);
+
         set((state) => ({
-            folders: [
-                ...state.folders.map((item) => {
-                    if (item.id === parentId) {
-                        return {
-                            ...item,
-                            childrens: [...childrens, ...newChildrens],
-                        };
-                    }
-                    return item;
-                }),
-                ...folders,
-            ],
-        }))},
+            folders: {
+                ...state.folders,
+                [parentId]: {
+                    ...state.folders[parentId],
+                    childrens: [...childrens, ...newChildrens]
+                },
+                ...folders
+            }
+        }))
+    },
     foldersRemove: (id, parentId) => {
-        set((state) => ({
-            folders: state.folders
-                .filter((folder) => {
-                    return folder.id !== id;
-                })
-                .map((folder) => {
-                    if (folder.id === parentId) {
-                        return {
-                            ...folder,
-                            childrens: folder.childrens.filter((child) => child !== id),
-                        };
+        set((state) => {
+            const { [id]: _, ...newObject } = state.folders;
+
+            return {
+                folders: {
+                    ...newObject,
+                    [parentId]: {
+                        ...newObject[parentId],
+                        childrens: newObject[parentId].childrens.filter((child) => child !== id)
                     }
-                    return folder;
-                }),
-        }));
+                }
+            }
+        });
     },
     setMoveFolder: (id, parent, futureParent) => {
         set((state) => ({
-            folders: state.folders.map((folder) => {
-                if (folder.id === futureParent) {
-                    return {
-                        ...folder,
-                        childrens: [...folder.childrens, id]
-                    }
-                } else if (folder.id === id) {
-                    return {
-                        ...folder,
-                        parent: futureParent
-                    }
-                } else if (folder.id === parent) {
-                    return {
-                        ...folder,
-                        childrens: folder.childrens.filter((child) => child !== id)
-                    }
+            folders: {
+                ...state.folders,
+                [futureParent]: {
+                    ...state.folders[futureParent],
+                    childrens: [...state.folders[futureParent].childrens, id]
+                },
+                [id]: {
+                    ...state.folders[id],
+                    parent: futureParent
+                },
+                [parent]: {
+                    ...state.folders[parent],
+                    childrens: state.folders[parent].childrens.filter((child) => child !== id)
                 }
-
-                return folder
-            })
+            }
         }))
     },
     setRenameFolder: (id, title) => {
         set((state) => ({
-            folders: state.folders.map((folder) => {
-                if (folder.id === id) {
-                    return {
-                        ...folder,
-                        title: title
-                    }
+            folders: {
+                ...state.folders,
+                [id]: {
+                    ...state.folders[id],
+                    title: title
                 }
-                return folder
-            })
+            }
         }))
     },
     setReplaceFolder: (id, newArr) => {
         set((state) => ({
-            folders: state.folders.map((folder) => {
-                if (folder.id === id) {
-                    return {
-                        ...folder,
-                        childrens: newArr
-                    }
+            folders: {
+                ...state.folders,
+                [id]: {
+                    ...state.folders[id],
+                    childrens: newArr
                 }
-                return folder
-            })
+            }
         }))
     },
 })

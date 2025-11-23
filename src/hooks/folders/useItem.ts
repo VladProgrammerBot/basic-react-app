@@ -16,14 +16,9 @@ export const useItem = () => {
     const setRenameBuffer = store.use.setRenameBuffer();
     const folders = store.use.folders()
 
-    const getFolderById = (id: number) => {
-        const data = folders.find((child) => child.id === id);
-        return data;
-    };
-
     const moveInto = (id: number) => {
         setParentChildrens(path.length - 1, childrensId);
-        const newParent = getFolderById(id);
+        const newParent = folders[id];
         if (!newParent) return;
         setChildrens(newParent.childrens);
         pushPath(newParent);

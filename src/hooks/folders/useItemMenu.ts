@@ -140,7 +140,7 @@ export const useFolderManipulation = () => {
   }
 
   const generateStructure = (id: number, parents: number) => {
-    const folder = folders.find((folder) => folder.id === id)
+    const folder = folders[id]
     if (!folder) return
 
     markdownBuffer.current = markdownBuffer.current + "  ".repeat(parents) + "* " + folder?.title + "\n"

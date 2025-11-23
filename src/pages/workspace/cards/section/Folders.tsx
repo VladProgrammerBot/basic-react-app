@@ -15,6 +15,7 @@ export const Folders = () => {
   const moveBuffer = store.use.moveBuffer()
   const path = store.use.path()
   const isStart = childrensData.length > 0 || mode !== "normal"
+  
   return (
     <div>
       <div className={`h-fit mt-13 rounded-md border-1 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden`}>
