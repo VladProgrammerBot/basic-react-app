@@ -17,13 +17,14 @@ export const useFolders = () => {
   const { alertError } = useAlerts()
 
   const childrensData = useMemo(() => {
-    const sortedChildrens = new Array(childrensId.length);
-    const parent = path[path.length - 1]?.id;
-    folders?.forEach((folder) => {
-      if (folder.parent === parent) {
-        sortedChildrens[childrensId.indexOf(folder.id)] = folder;
-      }
-    });
+    const foldersMap = new Map(folders.map(obj => [obj.id, { ...obj }]))
+    const sortedChildrens = new Array(0);
+    childrensId.forEach((child) => {
+      const data = foldersMap.get(child)
+      sortedChildrens.push({
+        ...data
+      })
+    })
 
     return sortedChildrens;
   }, [childrensId, folders, path]);

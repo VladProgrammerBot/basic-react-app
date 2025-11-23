@@ -70,7 +70,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     Edit
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                    onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)}
+                    onClick={() => removeFolder(data.id, data.parent)}
                 >
                     <RiDeleteBinLine /> Remove
                 </DropdownMenuItem>
