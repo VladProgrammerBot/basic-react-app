@@ -4,8 +4,8 @@ import { ItemLayout } from "./ItemLayout";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
-import { Button } from "@/components/ui/button";
 import { RiGeminiFill } from "react-icons/ri";
+import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
   const { childrensData, moveFolder, generateFolders } = useFolders()
@@ -17,7 +17,7 @@ export const Folders = () => {
   const isStart = childrensData.length > 0 || mode !== "normal"
   return (
     <div>
-      <div className={`h-fit mt-13 rounded-md ${isStart && "border-1"} border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden`}>
+      <div className={`h-fit mt-13 rounded-md border-1 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden`}>
         {childrensData?.map((data, index) => {
           return (
             <Item key={data.id} data={data} index={index} />
@@ -37,15 +37,20 @@ export const Folders = () => {
             generateFolders(value)
           }} />
         )}
-      </div>
-      <ItemLayout className="border-none">
         {mode === "normal" && (
-          <div className={`flex w-full justify-between items-center gap-2 ${isStart && "py-2"}`}>
-            <Button variant={"outline"} className="flex-1 min-w-fit" onClick={() => setMode("Add Folder")}>+ Add</Button>
-            <Button variant={"outline"} onClick={() => setMode("AI Generate")} className="flex-1 min-w-fit"><RiGeminiFill />Generate</Button>
-          </div>
+
+          <ItemLayout className={`${!isStart && "border-none"} flex w-full justify-between items-center items-stretch`}>
+            {mode === "normal" && (
+              <>
+                <Button variant={"outline"} className="flex-1 min-w-fit rounded-none border-0 border-r-1 flex gap-2 items-center justify-center cursor-pointer duration-150" onClick={() => setMode("Add Folder")}>
+                  <p>+ Add</p>
+                </Button>
+                <Button variant={"outline"} className="flex-1 min-w-fit rounded-none border-none flex gap-2 items-center justify-center cursor-pointer duration-150" onClick={() => setMode("AI Generate")}><RiGeminiFill />Generate</Button>
+              </>
+            )}
+          </ItemLayout>
         )}
-      </ItemLayout>
+      </div>
     </div>
   );
 };
