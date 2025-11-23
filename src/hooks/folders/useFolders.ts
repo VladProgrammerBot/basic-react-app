@@ -26,7 +26,6 @@ export const useFolders = () => {
       })
     })
     
-    console.log(sortedChildrens);
     return sortedChildrens;
   }, [childrensId, folders, path]);
 
