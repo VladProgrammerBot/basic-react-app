@@ -21,7 +21,7 @@ export const useAlerts = () => {
         const newTimerId = setTimeout(() => {
             timerRef.current = timerRef.current.filter((id) => id !== newTimerId)
             deleteAlert(newId)
-        }, 2000);
+        }, 10000);
 
         timerRef.current.push(newTimerId);
     }
