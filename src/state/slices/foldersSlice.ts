@@ -33,9 +33,16 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
             }
         }))
     },
-    foldersRemove: (id, parentId) => {
+    foldersRemove: (keysToDelete, id, parentId) => {
         set((state) => {
-            const { [id]: _, ...newObject } = state.folders;
+            const keysToDeleteSet = new Set(keysToDelete);
+
+            const newObject = Object.keys(state.folders)
+                .filter(key => !keysToDeleteSet.has(Number(key)))
+                .reduce((acc, key) => {
+                    acc[key] = state.folders[key];
+                    return acc;
+                }, {} as objectFolder);
 
             return {
                 folders: {

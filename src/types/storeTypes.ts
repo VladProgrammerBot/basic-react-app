@@ -6,7 +6,7 @@ export interface foldersSlice {
     pushMultipleFolder: (folders: folder[], childrens: number[], newChildrens: number[], parentId: number) => void;
     setFolders: (data: objectFolder) => void;
     setMoveFolder: (id: number, parent: number, futureParent: number) => void
-    foldersRemove: (id: number, parentId: number) => void;
+    foldersRemove: (keysToDelete: number[], id: number, parentId: number) => void;
     setRenameFolder: (id: number, title: string) => void;
     setReplaceFolder: (id: number, newArr: number[]) => void;
 }

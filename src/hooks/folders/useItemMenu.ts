@@ -74,9 +74,28 @@ export const useFolderManipulation = () => {
 
   };
 
+  const getAndSetElem = (id: number, array: number[]) => {
+    const folder = folders[id]
+    if (!folder) return
+
+    array.push(folder.id)
+    folder.childrens.forEach((child) => {
+      getAndSetElem(child, array)
+    })
+  }
+
+  const structureArray = (id: number) => {
+    const keysToDelete = [] as number[]
+    getAndSetElem(id, keysToDelete)
+
+    return keysToDelete
+  }
+
   const removeFolder = async (id: number, parent: number) => {
-    foldersRemove(id, parent);
     childrensRemove(id);
+    
+    const keysToDelete = structureArray(id);
+    foldersRemove(keysToDelete, id, parent);
 
     try {
       await fetch(api + "/folders/remove", {
