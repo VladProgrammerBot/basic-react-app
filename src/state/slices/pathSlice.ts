@@ -19,4 +19,17 @@ export const createPathSlice: StateCreator<pathSlice> = (set) => ({
                 return parent;
             }),
         })),
+    removeChild: (id, parentId) => set((state) => {
+        return {
+            path: state.path.map((parent) => {
+                if (parent.id === parentId) {
+                    return {
+                        ...parent,
+                        childrens: parent.childrens.filter((child) => child !== id)
+                    }
+                }
+                return parent
+            })
+        }
+    })
 })

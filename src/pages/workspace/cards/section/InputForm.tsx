@@ -12,6 +12,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     const ref = useRef<HTMLTextAreaElement | null>(null);
     const childrensId = store.use.childrensId()
     const [isLoading, setIsLoading] = useState(false)
+    const renameBuff = store.use.renameBuffer()
 
     useEffect(() => {
         if (defaultValue && ref.current)
@@ -20,7 +21,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     }, [])
 
     return (
-        <div className={`p-2 w-full ${childrensId.length !== 0 && "border-t-1"} border-neutral-300 dark:border-neutral-700`}>
+        <div className={`p-2 w-full ${childrensId.length !== 0 && !renameBuff && "border-t-1"} border-neutral-300 dark:border-neutral-700`}>
             <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
             <div className="flex justify-end gap-2">
                 <Button onClick={cancelFunc} variant={"outline"}>Cancel</Button>

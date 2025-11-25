@@ -68,7 +68,6 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => copyMarkdown(data.id)}
-                    disactive={data.childrens.length === 0}
                     className="flex"
                 >
                     <MdContentCopy /> Copy Markdown

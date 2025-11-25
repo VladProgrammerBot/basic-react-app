@@ -24,6 +24,7 @@ export interface pathSlice {
     setPath: (folder: folder) => void;
     reducePath: (index: number) => void;
     setParentChildrens: (index: number, childrensId: number[]) => void;
+    removeChild: (id: number, parent: number) => void
 }
 
 export interface modeSlice {

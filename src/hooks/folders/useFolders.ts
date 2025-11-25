@@ -13,19 +13,20 @@ export const useFolders = () => {
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const pushMultipleFolder = store.use.pushMultipleFolder()
   const setMode = store.use.setMode()
+  const removeChild = store.use.removeChild()
 
   const { alertError } = useAlerts()
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(0);
     childrensId.forEach((child) => {
-      
+
       const data = folders[child]
       sortedChildrens.push({
         ...data
       })
     })
-    
+
     return sortedChildrens;
   }, [childrensId, folders, path]);
 
@@ -35,6 +36,7 @@ export const useFolders = () => {
 
     setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
     pushChildren(moveBuffer.id)
+    removeChild(moveBuffer.id, moveBuffer.parent)
     resetMoveBuffer()
 
     try {

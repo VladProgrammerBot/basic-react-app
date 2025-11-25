@@ -30,6 +30,7 @@ export const Messages = () => {
 
           return (
             <motion.div
+              onClick={() => deleteAlert(elem.id)}
               key={elem.id}
               layout
               initial={{ opacity: 0, height: 0 }}
@@ -39,7 +40,7 @@ export const Messages = () => {
               <div className={`flex p-4 items-center animate-fade-in gap-2 border-1 shadow-md shadow-neutral-300 dark:shadow-neutral-950 rounded-md ${styles.bg} ${styles.border}`}>
                 <IoMdAlert className="text-xl" />
                 <p className="text-sm flex-1 mr-4 sm:mr-8">{elem.text}</p>
-                <button onClick={() => deleteAlert(elem.id)} className="cursor-pointer">
+                <button className="cursor-pointer">
                   <IoMdClose />
                 </button>
               </div>

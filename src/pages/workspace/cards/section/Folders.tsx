@@ -15,7 +15,8 @@ export const Folders = () => {
   const moveBuffer = store.use.moveBuffer()
   const path = store.use.path()
   const isStart = childrensData.length > 0 || mode !== "normal"
-  
+  const isPaste = moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id
+
   return (
     <div>
       <div className={`h-fit mt-13 rounded-md border-1 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 overflow-hidden`}>
@@ -25,8 +26,8 @@ export const Folders = () => {
           )
         })}
 
-        {moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id && (
-          <ItemLayout filled onClick={moveFolder} className="w-full h-14 flex justify-center items-center hover:text-neutral-500 dark:hover:text-white text-neutral-400">
+        {isPaste && (
+          <ItemLayout filled onClick={moveFolder} className={`${!isStart && "border-none"} w-full h-14 flex justify-center items-center hover:text-neutral-500 dark:hover:text-white text-neutral-400`}>
             Paste
           </ItemLayout>
         )}
@@ -39,7 +40,7 @@ export const Folders = () => {
           }} />
         )}
         {mode === "normal" && (
-          <ItemLayout className={`${!isStart && "border-none"} flex w-full justify-between items-center items-stretch`}>
+          <ItemLayout className={`${!isStart && !isPaste && "border-none"} flex w-full justify-between items-center items-stretch`}>
             {mode === "normal" && (
               <>
                 <Button variant={"outline"} className="flex-1 min-w-fit rounded-none border-0 border-r-1 flex gap-2 items-center justify-center cursor-pointer duration-150" onClick={() => setMode("Add Folder")}>
