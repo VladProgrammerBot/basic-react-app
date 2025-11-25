@@ -5,7 +5,7 @@ export const ItemLayout = ({index, children, filled, className, onClick} : Props
     const mode = store.use.mode()
     
     return (
-        <div onClick={onClick} className={` duration-150 w-full min-h-12 ${index !== 0 && "border-t-1"} border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 ${filled && mode && "hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"} ${className}`}>
+        <div onClick={onClick} className={` duration-150 w-full min-h-12 ${index !== 0 && "border-t-1"} border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 ${filled && mode && "hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer"} ${className}`}>
             {children}
         </div>
     )
