@@ -96,7 +96,7 @@ export const useFolderManipulation = () => {
     
     const keysToDelete = structureArray(id);
     foldersRemove(keysToDelete, id, parent);
-
+    
     try {
       await fetch(api + "/folders/remove", {
         method: "DELETE",

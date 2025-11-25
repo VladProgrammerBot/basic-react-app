@@ -5,8 +5,9 @@ import store from "@/state/store";
 import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
-import { Alerts } from "./cards/section/Alerts";
+import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
+
 
 export const Edit = () => {
   const folders = store.use.folders();
@@ -33,7 +34,8 @@ export const Edit = () => {
           </div>
         </>
       )}
-      <Alerts />
+      <Messages />
+      
     </div>
   );
 };

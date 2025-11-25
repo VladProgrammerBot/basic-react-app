@@ -2,7 +2,7 @@ import { IoMdAlert, IoMdClose } from "react-icons/io"
 import { motion, AnimatePresence } from 'framer-motion';
 import store from "@/state/store";
 
-export const Alerts = () => {
+export const Messages = () => {
   const alerts = store.use.alerts()
   const deleteAlert = store.use.deleteAlert()
 

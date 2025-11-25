@@ -5,6 +5,7 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
+    ItemStyle,
 } from "@/components/ui/dropdown-menu"
 import store from "@/state/store";
 import { FiLink } from "react-icons/fi";
@@ -14,6 +15,17 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { MdContentCopy } from "react-icons/md";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
     const { removeFolder, addFolder, replaceFolders, copyMarkdown } = useFolderManipulation()
@@ -69,11 +81,22 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     <LuPencil />
                     Edit
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => removeFolder(data.id, data.parent)}
-                >
-                    <RiDeleteBinLine /> Remove
-                </DropdownMenuItem>
+                <AlertDialog>
+                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)} className={ItemStyle + " dark:hover:bg-neutral-800 hover:bg-neutral-200 w-full"}>
+                        <RiDeleteBinLine/>Remove</AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                This action cannot be undone. This will permanently delete the folder and the contents inside.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <DropdownMenuItem isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
             </DropdownMenuContent>
         </DropdownMenu>
     )
