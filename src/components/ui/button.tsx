@@ -9,12 +9,12 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-sky-500 text-white hover:bg-sky-400",
+        default: "bg-sky-600 text-white hover:bg-sky-500",
         disactive: "bg-sky-600 opacity-90 cursor-auto",
         destructive:
           "text-white",
         outline:
-          "border-1 bg-white dark:bg-neutral-800/50 text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700/50",
+          "border-1 bg-white dark:bg-neutral-900 text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
           

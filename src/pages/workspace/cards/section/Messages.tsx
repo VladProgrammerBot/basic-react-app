@@ -8,15 +8,15 @@ export const Messages = () => {
 
   const colorMap = {
     red: {
-      bg: 'bg-red-200 dark:bg-red-800/90',
+      bg: 'bg-red-200 dark:bg-red-600/90',
       border: 'border-red-500',
     },
     blue: {
-      bg: 'bg-blue-200 dark:bg-blue-800/90',
+      bg: 'bg-blue-200 dark:bg-blue-600/90',
       border: 'border-blue-500',
     },
     green: {
-      bg: 'bg-green-200 dark:bg-green-800/90',
+      bg: 'bg-green-200 dark:bg-green-600/90',
       border: 'border-green-500',
     },
   };
@@ -37,7 +37,7 @@ export const Messages = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0, transition: { duration: 0.2 } }}
             >
-              <div className={`flex p-4 items-center animate-fade-in gap-2 border-1 shadow-md shadow-neutral-300 dark:shadow-neutral-950 rounded-md ${styles.bg} ${styles.border}`}>
+              <div className={`flex p-4 items-center animate-fade-in gap-2 border- shadow-md shadow-neutral-300 dark:shadow-neutral-950 rounded-md ${styles.bg} ${styles.border}`}>
                 <IoMdAlert className="text-xl" />
                 <p className="text-sm flex-1 mr-4 sm:mr-8">{elem.text}</p>
                 <button className="cursor-pointer">
