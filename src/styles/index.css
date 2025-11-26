@@ -88,12 +88,7 @@ h1 {
   line-height: 1.1;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #ffffff;
-    /* background-color: white; */
-  }
-}
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -200,6 +195,18 @@ h1 {
   position: absolute;
 }
 
+.center-nopos {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+.dotted-background {
+  background-image: radial-gradient(circle at center, rgb(49, 49, 49) 1px, transparent 0);
+  background-size: 20px 20px; /* Adjust spacing between dots */
+  background-repeat: round; /* Ensures dots are not clipped */
+}
+
 .loader {
   width: 40px;
   aspect-ratio: 1;
@@ -284,5 +291,12 @@ h1 {
 @keyframes l3 {
   to {
     transform: rotate(1turn)
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    /* background-color: white; */
   }
 }

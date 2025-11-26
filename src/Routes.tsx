@@ -4,6 +4,7 @@ import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
+import { Layout } from "./pages/workspace/Layout.tsx";
 
 const authMiddleware = () => {
   if (!localStorage.getItem("token")) throw redirect("/login");
@@ -12,6 +13,7 @@ const authMiddleware = () => {
 export const router = createBrowserRouter([
   {
     path: "/",
+    Component: Layout,
     children: [
       {
         index: true,
