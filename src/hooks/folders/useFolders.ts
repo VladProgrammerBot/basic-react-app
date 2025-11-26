@@ -8,12 +8,8 @@ export const useFolders = () => {
   const childrensId = store.use.childrensId();
   const path = store.use.path();
   const pushChildren = store.use.pushChildren();
-  const moveBuffer = store.use.moveBuffer();
-  const setMoveFolder = store.use.setMoveFolder();
-  const resetMoveBuffer = store.use.resetMoveBuffer();
   const pushMultipleFolder = store.use.pushMultipleFolder()
   const setMode = store.use.setMode()
-  const removeChild = store.use.removeChild()
 
   const { alertError } = useAlerts()
 
@@ -29,34 +25,6 @@ export const useFolders = () => {
 
     return sortedChildrens;
   }, [childrensId, folders, path]);
-
-  const moveFolder = async () => {
-    if (!moveBuffer) return
-    const futureParent = path[path.length - 1].id
-
-    setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
-    pushChildren(moveBuffer.id)
-    removeChild(moveBuffer.id, moveBuffer.parent)
-    resetMoveBuffer()
-
-    try {
-      await fetch(api + "/folders/move", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: moveBuffer.id,
-          parentId: moveBuffer.parent,
-          future_parent: futureParent,
-          token: localStorage.getItem("token")
-        })
-      })
-    } catch (error) {
-      alertError("move folder")
-      console.log(error)
-    }
-  }
 
   const generateFolders = async (prompt: string) => {
     const token = localStorage.getItem("token")
@@ -88,7 +56,7 @@ export const useFolders = () => {
 
   return {
     childrensData,
-    moveFolder,
+
     generateFolders
   };
 };

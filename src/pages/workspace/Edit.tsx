@@ -28,7 +28,7 @@ export const Edit = () => {
         <>
           <Bar />
           <Path />
-          <div className="w-full max-w-4xl mx-auto flex flex-col justify-between">
+          <div className="w-full max-w-4xl px-2 mx-auto flex flex-col justify-between">
             <Folders />
             <Footer />
           </div>

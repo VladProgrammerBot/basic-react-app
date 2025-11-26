@@ -25,7 +25,7 @@ export const Bar = () => {
         <div className={`${isBarOpen ? "w-screen sm:w-75 border-r-1" : "w-0"} h-screen border-neutral-200 dark:border-neutral-700 pb-12 overflow-x-hidden fixed bg-white shadow-md shadow-neutral-300 dark:shadow-neutral-950 dark:bg-neutral-900 z-100 duration-300`}>
             <div className="p-4">
                 <div className="flex pb-4 justify-between items-center">
-                    <div className="text-xl font-bold cursor-pointer" onClick={() => {
+                    <div className="text-xl cursor-pointer" onClick={() => {
                         navigate("/")
                         setFolders({})
                         closeBar()

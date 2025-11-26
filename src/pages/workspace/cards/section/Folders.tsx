@@ -1,35 +1,35 @@
 import { Item } from "./Item";
 import { useFolders } from "@/hooks/folders/useFolders";
-import { ItemLayout } from "./ItemLayout";
+// import { ItemLayout } from "./ItemLayout";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
-import { RiGeminiFill } from "react-icons/ri";
-import { Button } from "@/components/ui/button";
+// import { RiGeminiFill } from "react-icons/ri";
+// import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
-  const { childrensData, moveFolder, generateFolders } = useFolders()
+  const { childrensData, generateFolders } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
-  const moveBuffer = store.use.moveBuffer()
-  const path = store.use.path()
+  // const moveBuffer = store.use.moveBuffer()
+  // const path = store.use.path()
   const isStart = childrensData.length > 0 || mode !== "normal"
-  const isPaste = moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id
+  // const isPaste = moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id
 
   return (
-      <div className={`h-fit mt-13 border-y-1 md:border-1 bg-neutral-800/50 md:rounded-md border-neutral-200 dark:border-neutral-700 overflow-hidden`}>
+      <div className={`h-fit mt-17 ${isStart && "border-1"} bg-white/50 dark:bg-neutral-800/80 rounded-md border-neutral-300 dark:border-neutral-700 overflow-hidden`}>
         {childrensData?.map((data, index) => {
           return (
             <Item key={data.id} data={data} index={index} />
           )
         })}
 
-        {isPaste && (
+        {/* {isPaste && (
           <ItemLayout filled onClick={moveFolder} className={`${!isStart && "border-none"} w-full h-14 flex justify-center items-center hover:text-neutral-500 dark:hover:text-white text-neutral-400`}>
             Paste
           </ItemLayout>
-        )}
+        )} */}
         {mode === "Add Folder" && (
           <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
         )}
@@ -38,7 +38,7 @@ export const Folders = () => {
             generateFolders(value)
           }} />
         )}
-        {mode === "normal" && (
+        {/* {mode === "normal" && (
           <ItemLayout className={`${!isStart && !isPaste && "border-none"} flex w-full justify-between items-center items-stretch`}>
             {mode === "normal" && (
               <>
@@ -49,7 +49,7 @@ export const Folders = () => {
               </>
             )}
           </ItemLayout>
-        )}
+        )} */}
       </div>
   );
 };

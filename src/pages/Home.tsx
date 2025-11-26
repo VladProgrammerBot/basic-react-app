@@ -9,22 +9,17 @@ import { SiInstructure } from "react-icons/si";
 export const Home = () => {
   return (
     <div className="p-16 max-w-5xl mx-auto">
-      <div className="fixed bg-neutral-900 border-1 border-neutral-700 top-4 overflow-hidden left-1/2 -translate-x-1/2 flex rounded-md">
-        <p className="duration-150 cursor-pointer hover:bg-neutral-800 px-6 py-2">Home</p>
-        <p className="duration-150 cursor-pointer hover:bg-neutral-800 px-6 py-2">About</p>
-        <p className="duration-150 cursor-pointer hover:bg-neutral-800 px-6 py-2">Manual</p>
-      </div>
-      <div className="flex flex-col items-center mt-35 space-y-2">
+      <div className="flex flex-col items-center pt-35 space-y-2">
         <p className="text-2xl sm:text-4xl flex items-center gap-1 mb-4"><SiInstructure fontSize={30} />Strukt</p>
         <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center">TEXT ORGANIZER</p>
         <p className="text-md sm:text-xl flex text-neutral-500 w-fit gap-x-4 flex-wrap justify-center">
-          <span className="text-sk-500 flex gap-1 items-center"><FaCheckCircle />Minimalist</span>
+          <span className="text-sk-500 flex gap-1 items-center"><FaCheckCircle />Minimalistic</span>
           <span className="block text-pin-500 flex gap-1 items-center"><GiProgression />Scalable</span>
           <span className="text-gree-500 flex gap-1 items-center"><LuAtom />Universal</span>
         </p>
         <div className="flex text-lg mt-4">
           <NavLink to="workspace">
-            <Button><TbClick />Start using Now</Button>
+            <Button className="shadow-2xl hover:shadow-blue-500 shadow-blue-600"><TbClick />Start using Now</Button>
           </NavLink>
         </div>
       </div>

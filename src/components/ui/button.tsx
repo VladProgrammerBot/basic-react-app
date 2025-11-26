@@ -14,7 +14,7 @@ export const buttonVariants = cva(
         destructive:
           "text-white",
         outline:
-          "border-1 text-black dark:text-white border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700/50",
+          "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700/50",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
           
