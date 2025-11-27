@@ -18,7 +18,7 @@ export const Folders = () => {
   // const isPaste = moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id
 
   return (
-      <div className={`h-fit mt-17 ${isStart && "border-1"} bg-white/50 dark:bg-neutral-800/80 rounded-md border-neutral-300 dark:border-neutral-700 overflow-hidden`}>
+      <div className={`h-fit mt-17 ${isStart && "border-1"} bg-white dark:bg-neutral-800/80 rounded-md border-neutral-300 dark:border-neutral-700 overflow-hidden`}>
         {childrensData?.map((data, index) => {
           return (
             <Item key={data.id} data={data} index={index} />

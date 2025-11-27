@@ -203,8 +203,10 @@ h1 {
 
 .dotted-background {
   background-image: radial-gradient(circle at center, rgb(49, 49, 49) 1px, transparent 0);
-  background-size: 20px 20px; /* Adjust spacing between dots */
-  background-repeat: round; /* Ensures dots are not clipped */
+  background-size: 20px 20px;
+  /* Adjust spacing between dots */
+  background-repeat: round;
+  /* Ensures dots are not clipped */
 }
 
 .loader {
@@ -296,7 +298,13 @@ h1 {
 
 @media (prefers-color-scheme: light) {
   body {
-    background-color: #ffffff;
-    /* background-color: white; */
+    background-color: #f9f9f9;
   }
+}
+
+.gradient-text {
+  padding-bottom: 4px;
+  background-image: linear-gradient(to right, #0059ff, #ec225b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

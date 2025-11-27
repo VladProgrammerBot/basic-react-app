@@ -81,7 +81,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     Edit
                 </DropdownMenuItem>
                 <AlertDialog>
-                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)} className={ItemStyle + " dark:hover:bg-neutral-800 hover:bg-neutral-200 w-full"}>
+                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)} className={ItemStyle + " dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
                         <RiDeleteBinLine/>Remove</AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
