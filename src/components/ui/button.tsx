@@ -10,7 +10,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-sky-600 text-white hover:bg-sky-500",
-        disactive: "bg-sky-600 opacity-90 cursor-auto",
+        disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
         outline:
