@@ -12,13 +12,13 @@ export const Home = () => {
   return (
     <div className="p-16 max-w-5xl mx-auto text-white">
       <div className="fixed left-0 top-0 -z-10 w-screen h-screen bg-neutral-900">
-        <div className="bg-[radial-gradient(circle,#73737350_1px,transparent_1px)] bg-[size:20px_20px]  p-8 flex items-center justify-center ">
+        <div className="bg-[radial-gradient(circle,#73737350_1px,transparent_1px)] bg-[size:20px_20px] h-full p-8 flex items-center justify-center ">
           <div className="w-130 bg-neutral-900 aspect-square flex items-center justify-center shadow-2xl shadow-blue-500 rounded-full"></div>
         </div>
       </div>
       <div className="flex flex-col items-center pt-35 pb-75 space-y-6">
         <p className="text-2xl sm:text-4xl flex items-center gap-1 mb-4 gradient-text text-blue-600">Strukt + AI</p>
-        <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center">Easily manage your ideas</p>
+        <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center"></p>
         <p className="text-md sm:text-xl flex text-neutral-500 w-fit gap-x-4 flex-wrap justify-center">
           <span className="text-sk-500 flex gap-1 items-center"><FaCheckCircle />Minimalistic</span>
           <span className="block text-pin-500 flex gap-1 items-center"><GiProgression />Scalable</span>
