@@ -51,10 +51,7 @@ export const Bar = () => {
                         {username}
                     </div>
                     <Button variant={"outline"} className="w-full" onClick={() => {
-                        localStorage.clear()
-                        setFolders({})
-                        closeBar()
-                        navigate("/login")
+                        navigate("/")
                     }}><TiHome className="text-xl" /> Home</Button>
                     <Button variant={"outline"} className="w-full" onClick={() => {
                         localStorage.clear()
