@@ -31,6 +31,9 @@ export const Edit = () => {
           {isBarOpen && <span onClick={toggleBar} className="fixed bg-black/30 w-screen h-screen top-0 right-0 z-100"></span>}
           <Bar />
           <Path />
+          <div>
+            
+          </div>
           <div className="w-full max-w-4xl px-2 mx-auto flex flex-col justify-between">
             <Folders />
             <Footer />

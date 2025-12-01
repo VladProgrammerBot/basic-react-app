@@ -36,7 +36,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
             <div
                 className={`text-lg text-black group-hover/item:opacity-100 md:opacity-0 duration-150 dark:text-white flex items-center`}
             >
-                <DropdownMenuTrigger className="outline-none cursor-pointer pl-3 pr-4 py-4">
+                <DropdownMenuTrigger className="outline-none cursor-pointer text-neutral-500 pl-3 pr-4 py-4">
                     <BsThreeDotsVertical />
                 </DropdownMenuTrigger>
             </div>
