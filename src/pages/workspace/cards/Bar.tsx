@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5"
 import { useNavigate } from "react-router"
 import { MdLogout } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { TiHome } from "react-icons/ti";
 
 export const Bar = () => {
     const navigate = useNavigate()
@@ -22,29 +23,32 @@ export const Bar = () => {
     }, [])
 
     return (
-        <div className={`${isBarOpen ? "w-screen sm:w-75 border-r-1" : "w-0"} h-screen border-neutral-200 dark:border-neutral-700 pb-12 overflow-x-hidden fixed bg-neutral-50 dark:bg-neutral-800 z-100 duration-300`}>
-            <div className="p-4">
-                <div className="flex pb-4 justify-between items-center">
-                    <div className="text-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                        setFolders({})
-                        closeBar()
-                    }}>
-                        Strukt
-                    </div>
-                    <div onClick={toggleBar} className="px-2 py-1 text-2xl rounded-full w-fit cursor-pointer duration-150 dark:hover:bg-neutral-800">
+        <div className={`${!isBarOpen && "translate-x-full"} right-0 w-screen sm:w-75 h-screen border-neutral-200 dark:border-neutral-700 fixed p-4 sm:pl-0 z-100 duration-300`}>
+            <div className="p-4 pb-8 bg-neutral-100 flex flex-col justify-between dark:bg-neutral-800 overflow-y-scroll h-full rounded-md">
+                <div className="flex-col flex gap-2">
+                    <div onClick={toggleBar} className="text-2xl pb-2 rounded-full w-fit cursor-pointer duration-150 dark:hover:bg-neutral-800">
                         <IoClose />
                     </div>
+                    <Button>Add new note</Button>
+                    <Button variant={"outline"}>Generate with AI</Button>
                 </div>
-                <div className="py-4 text-2xl text-center">
-                    {username}
+                <div className="space-y-2">
+                    <div className="text-2xl py-2 text-center">
+                        {username}
+                    </div>
+                    <Button variant={"outline"} className="w-full" onClick={() => {
+                        localStorage.clear()
+                        setFolders({})
+                        closeBar()
+                        navigate("/login")
+                    }}><TiHome className="text-xl" /> Home</Button>
+                    <Button variant={"outline"} className="w-full" onClick={() => {
+                        localStorage.clear()
+                        setFolders({})
+                        closeBar()
+                        navigate("/login")
+                    }}><MdLogout className="text-xl" /> Log out</Button>
                 </div>
-                <Button variant={"outline"} className="w-full" onClick={() => {
-                    localStorage.clear()
-                    setFolders({})
-                    closeBar()
-                    navigate("/login")
-                }}><MdLogout className="text-xl" /> Log out</Button>
             </div>
         </div>
     )

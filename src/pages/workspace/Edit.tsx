@@ -11,6 +11,8 @@ import { useEdit } from "@/hooks/folders/useEdit";
 
 export const Edit = () => {
   const folders = store.use.folders();
+  const isBarOpen = store.use.isBarOpen()
+  const toggleBar = store.use.toggleBar()
   const { getFolders } = useEdit()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
@@ -26,6 +28,7 @@ export const Edit = () => {
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
         <>
+          {isBarOpen && <span onClick={toggleBar} className="fixed bg-black/30 w-screen h-screen top-0 right-0 z-100"></span>}
           <Bar />
           <Path />
           <div className="w-full max-w-4xl px-2 mx-auto flex flex-col justify-between">
