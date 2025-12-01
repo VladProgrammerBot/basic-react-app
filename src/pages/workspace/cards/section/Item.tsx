@@ -37,11 +37,11 @@ export function Item({
             onClick={handleClick}
           >
 
-            <div className="text-neutral-400 dark:text-neutral-500 w-8 min-w-8 text-center">
+            <div className="text-neutral-400 dark:text-neutral-500 px-2 text-center">
               {data.ref ? <FiLink className="mx-auto" /> : childrensLength}
             </div>
             <p
-              className={`text-black dark:text-white duration-300 ${moveBuffer?.id === data.id && "opacity-50"}`}
+              className={`duration-300 ${moveBuffer?.id === data.id && "opacity-50"}`}
             >
               {data?.title}
             </p>
