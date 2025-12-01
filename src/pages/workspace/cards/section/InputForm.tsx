@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import store from "@/state/store";
+import { FiMinus } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 
 export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, submitTitle }: {
@@ -10,9 +10,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     submitFunc: (value: string, ref: number | null) => void
 }) => {
     const ref = useRef<HTMLTextAreaElement | null>(null);
-    const childrensId = store.use.childrensId()
     const [isLoading, setIsLoading] = useState(false)
-    const renameBuff = store.use.renameBuffer()
 
     useEffect(() => {
         if (defaultValue && ref.current)
@@ -21,8 +19,11 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     }, [])
 
     return (
-        <div className={`p-2 w-full ${childrensId.length !== 0 && !renameBuff && "border-t-1"} border-neutral-300 dark:border-neutral-700`}>
-            <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
+        <div className={`p-2 w-full`}>
+            <div className="flex pl-2">
+                <FiMinus className="text-neutral-500 mt-3"/>
+                <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
+            </div>
             <div className="flex justify-end gap-2">
                 <Button onClick={cancelFunc} variant={"outline"}>Cancel</Button>
                 <Button onClick={() => {

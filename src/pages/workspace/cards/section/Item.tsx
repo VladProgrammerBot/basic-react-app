@@ -35,7 +35,7 @@ export function Item({
       {renameBuffer !== data.id ? (
         <>
           <div
-            className={`flex pl-2 py-1 relative space-x-2 w-full`}
+            className={`flex pl-2 py-1 relative space-x-2 w-full drop-shadow-md ddark:drop-shadow-neutral-600 duration-150`}
             onClick={handleClick}
           >
 
@@ -43,7 +43,7 @@ export function Item({
               {data.ref ? <FiLink className="" /> : childrensLength > 0 ? <FaFolder /> : <FiMinus/>}
             </div>
             <p
-              className={`duration-300 py-1 ${moveBuffer?.id === data.id && "opacity-50"}`}
+              className={`duration-150 py-1  ${moveBuffer?.id === data.id && "opacity-50"}`}
             >
               {data?.title}
             </p>
