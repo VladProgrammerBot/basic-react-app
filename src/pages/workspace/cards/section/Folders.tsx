@@ -54,7 +54,7 @@ export const Folders = () => {
       ].map((button, index) => {
         if (button.cond) {
           return (
-            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-700`}>
+            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700`}>
               {button.icon} {button.title}
             </button>
           )

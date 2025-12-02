@@ -23,7 +23,7 @@ export const Bar = () => {
     }, [])
 
     return (
-        <div className={`${!isBarOpen && "translate-x-full"} space-y-2 bg-neutral-100 dark:bg-neutral-900 right-0 w-screen sm:w-75 h-screen fixed p-4 z-100 duration-150`}>
+        <div className={`${!isBarOpen && "translate-x-full"} space-y-2 bg-white dark:bg-neutral-900 right-0 w-screen sm:w-75 h-screen fixed p-4 z-100 duration-150`}>
             <div onClick={toggleBar} className="text-2xl p-1 w-fit cursor-pointer duration-150 dark:hover:bg-neutral-800">
                 <IoClose />
             </div>

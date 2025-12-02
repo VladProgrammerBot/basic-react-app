@@ -8,7 +8,7 @@ import {
     ItemStyle,
 } from "@/components/ui/dropdown-menu"
 import store from "@/state/store";
-import { FiLink } from "react-icons/fi";
+import { PiLinkSimpleBold } from "react-icons/pi";
 import { LuPencil } from "react-icons/lu";
 import { MdOutlineShortcut } from "react-icons/md";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -64,7 +64,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     onClick={() => {
                         addFolder(data.title + " (ref)", data.id)
                     }} className="flex">
-                    <FiLink /> Create Link
+                    <PiLinkSimpleBold /> Create Link
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => copyMarkdown(data.id)}
