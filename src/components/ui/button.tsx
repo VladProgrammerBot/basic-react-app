@@ -5,16 +5,16 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
 export const buttonVariants = cva(
-  "rounded-md inline-flex min-w-14 items-center cursor-pointer justify-center gap-2 whitespace-nowrap disabled:pointer-events-none duration-150 disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size- shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive",
+  "rounded-m inline-flex min-w-14 items-center cursor-pointer justify-center gap-2 whitespace-nowrap disabled:pointer-events-none duration-150 disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size- shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
-        default: "bg-sky-600 text-white hover:bg-sky-500",
+        default: "g-sky-600 text-white over:bg-sky-500 bg-neutral-800 hover:bg-neutral-700",
         disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
         outline:
-          "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-700/50",
+          "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
           

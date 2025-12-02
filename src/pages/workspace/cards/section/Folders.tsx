@@ -17,14 +17,12 @@ export const Folders = () => {
   const moveBuffer = store.use.moveBuffer()
 
   return (
-    <div className={`h-fit mt-11 sm:mt-13 border-neutral-300 dark:border-neutral-700`}>
-      <div className="rounded-md overflow-hidden">
-        {childrensData?.map((data, index) => {
-          return (
-            <Item key={data.id} data={data} index={index} />
-          )
-        })}
-      </div>
+    <div className={`h-fit mt-12 sm:mt-13 border-neutral-300 dark:border-neutral-700`}>
+      {childrensData?.map((data, index) => {
+        return (
+          <Item key={data.id} data={data} index={index} />
+        )
+      })}
 
       {mode === "Add Folder" && (
         <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
@@ -55,9 +53,8 @@ export const Folders = () => {
         }
       ].map((button, index) => {
         if (button.cond) {
-
           return (
-            <button key={index} onClick={button.func} className={`flex-1 rounded-md flex items-center justify-center text-center gap-1 py-2 px-4 border-1 border-neutral-200 hover:text-black dark:border-neutral-800 cursor-pointer duration-150 text-neutral-500 hover:bg-neutral-200 dark:hover:text-white dark:hover:bg-neutral-800`}>
+            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-700`}>
               {button.icon} {button.title}
             </button>
           )

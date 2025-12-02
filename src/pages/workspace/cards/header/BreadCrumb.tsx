@@ -7,7 +7,7 @@ export const Breadcrumb = ({ elem, index, current, className }: { elem: folder, 
     return (
         <div
             onClick={() => !current && moveOut(elem, index)}
-            className={`${!current && "text-neutral-500 hover:text-black hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md dark:text-neutral-500 dark:hover:text-white"} ${!current
+            className={`${!current && "text-neutral-500 hover:text-black hover:bg-neutral-200dark:hover:bg-neutral-800 rounded-md dark:text-neutral-500 dark:hover:text-white"} ${!current
                 ? "duration-150 cursor-pointer"
                 : "dark:text-white"
                 } ${className}`}

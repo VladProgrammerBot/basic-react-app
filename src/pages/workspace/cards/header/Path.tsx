@@ -38,7 +38,7 @@ export const Path = () => {
           )
         })}
       </div>
-      <button onClick={toggleBar} className="cursor-pointer h-full rounded-md p-2 duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800">
+      <button onClick={toggleBar} className="cursor-pointer h-full p-2 duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800">
         <LuMenu fontSize={20} />
       </button>
     </div>
