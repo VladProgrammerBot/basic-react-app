@@ -10,7 +10,7 @@ export const Path = () => {
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
 
   return (
-    <div className="fixed z-10 p-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
+    <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
       <div className="flex items-center">
         {path.length > 1 && (
           <Breadcrumb
@@ -38,7 +38,7 @@ export const Path = () => {
           )
         })}
       </div>
-      <button onClick={toggleBar} className="cursor-pointer h-full rounded-md px-2 duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800">
+      <button onClick={toggleBar} className="cursor-pointer h-full rounded-md p-2 duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800">
         <LuMenu fontSize={20} />
       </button>
     </div>
