@@ -12,8 +12,8 @@ export const Home = () => {
         <div className="text-2xl font-bold">
           Strukt
         </div>
-        <Button>
-          Log in
+        <Button variant={"outline"}>
+          Sign in
         </Button>
       </div>
       <div className="max-w-5xl mx-auto">
@@ -24,18 +24,17 @@ export const Home = () => {
         </div> */}
         {/* <img className="mx-auto rounded-md mb-4 w-1/3" src="https://ec.europa.eu/regional_policy/assets/images/menu-icons/information-sources/publications-icon.png" alt="" /> */}
         {/* <img className="mx-auto rounded-md mb-4" src="https://cdn-icons-png.freepik.com/256/6033/6033290.png?semt=ais_white_label" alt="" /> */}
-        <img className="w-50 mx-auto my-8" src="https://clipart-library.com/2023/brain-clipart-xl.png" alt="" />
+        {/* <img className="w-50 mx-auto my-8" src="https://clipart-library.com/2023/brain-clipart-xl.png" alt="" /> */}
+        <img className="w-50 mx-auto my-8" src="https://cdn-icons-png.freepik.com/512/8298/8298289.png" alt="" />
         <div className="flex flex-col items-center pb-75 space-y-6">
-          <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center">Remember everything you need</p>
+          <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-500">Remember everything you need</p>
+          {/* <p className="text-2xl flex items-center dark:drop-shadow-lg drop-shadow-black gradient-text">+ AI generation</p> */}
           <p className="text-md sm:text-xl text-neutral-500 text-center">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            {"Strukt is a minimalist web application that allows you to quickly and organizedly store text information (ideas, goals, plans, and more) in one place."}
           </p>
-          <div className="flex text-lg items-center gap-6">
-            <NavLink to="workspace">
-              <Button className="shadow-2xl hover:shadow-blue-500 shadow-blue-600"><TbClick />Start with AI</Button>
-            </NavLink>
-            <p className="text-xl font-bold flex items-center gap-1 gradient-text text-blue-600">AI Integration</p>
-          </div>
+          <NavLink to="workspace">
+            <Button className="dark:shadow-2xl hover:shadow-blue-500 duration-150 gradient-bg"><TbClick />Learn in 5 minutes</Button>
+          </NavLink>
         </div>
         <div className="flex mb-75 rounded-md shadow-2xl bg-neutral-800 shadow-blue-500 overflow-hidden">
           <div className="flex-1 relative">

@@ -305,7 +305,11 @@ h1 {
 
 .gradient-text {
   padding-bottom: 4px;
-  background-image: linear-gradient(to right, #0059ff, #ec225b);
+  background-image: linear-gradient(to right, #ec225b, #0059ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {
+  background-image: linear-gradient(to right, #ec225b, #0059ff);
 }
