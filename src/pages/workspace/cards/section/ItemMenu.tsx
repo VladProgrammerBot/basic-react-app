@@ -91,14 +91,8 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            {/* <button>1</button>
-                            <button>2</button> */}
-                            <button className="w-fit">
-                                <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
-                            </button>
-                            <button className="w-fit">
-                                <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
-                            </button>
+                            <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
+                            <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>

@@ -11,7 +11,7 @@ export const usePath = () => {
     const removeChild = store.use.removeChild()
     const pushChildren = store.use.pushChildren();
     const path = store.use.path();
-    const { alertError } = useAlerts()
+    const { alertError, useAlert } = useAlerts()
 
     const moveOut = (data: folder, index: number) => {
         reducePath(index);
@@ -21,6 +21,10 @@ export const usePath = () => {
 
     const moveFolder = async () => {
         if (!moveBuffer) return
+        const isPaste = moveBuffer && moveBuffer.parent !== path[path.length - 1].id && moveBuffer.id !== path[path.length - 1].id
+
+        if (!isPaste) return useAlert({ color: "red", text: "You can`t paste folder here" })
+
         const futureParent = path[path.length - 1].id
 
         setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent)
