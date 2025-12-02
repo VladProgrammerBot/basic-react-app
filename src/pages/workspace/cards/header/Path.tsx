@@ -18,7 +18,7 @@ export const Path = () => {
   // const { moveFolder } = usePath()
 
   return (
-    <div className="fixed z-10 px-4 py-4 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
+    <div className="fixed z-10 px-4 py-3 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
       {/* <div className={`flex items-center justify-between bg-white border-1 border-neutral-300 dark:border-neutral-700 rounded-md overflow-hidden dark:bg-neutral-800`}> */}
       <div className="flex items-center">
         {/* <div className="text-lg cursor-pointer p-4" onClick={toggleBar}>
@@ -43,7 +43,7 @@ export const Path = () => {
           {moveBuffer && <button onClick={moveFolder} className="p-3 rounded-md cursor-pointer duration-150"><MdContentPaste /></button>}
           <button className="p-4 rounded-md text-xl cursor-pointer duration-150" onClick={() => setMode("Add Folder")}><FaPlus /></button>
         </div> */}
-      <button onClick={toggleBar} className="cursor-pointer"><BsThreeDots fontSize={20}/></button>
+      <button onClick={toggleBar} className="cursor-pointer"><BsThreeDots fontSize={25}/></button>
     </div>
     // </div>
   );

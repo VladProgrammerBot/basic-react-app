@@ -19,7 +19,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     }, [])
 
     return (
-        <div className={`pl-4 w-full`}>
+        <div className={`px-4 w-full`}>
             <div className="flex pl-">
                 <FiMinus className="text-neutral-500 mt-3"/>
                 <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
