@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router";
 import { TbClick } from "react-icons/tb";
-import { FaCheckCircle } from "react-icons/fa";
-import { GiProgression } from "react-icons/gi";
-import { LuAtom } from "react-icons/lu";
 import { Footer } from "./workspace/cards/footer";
 import { FaCheck } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
