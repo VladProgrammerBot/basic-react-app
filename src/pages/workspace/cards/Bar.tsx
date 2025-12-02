@@ -27,8 +27,8 @@ export const Bar = () => {
     }, [])
 
     return (
-        <div className={`${!isBarOpen && "translate-x-full"} right-0 w-screen sm:w-75 h-screen border-neutral-200 dark:border-neutral-700 fixed p-4 sm:pl-0 z-100 duration-150`}>
-            <div className="p-4 pb-8 bg-neutral-100 flex flex-col justify-between dark:bg-neutral-800 overflow-y-scroll h-full rounded-md">
+        <div className={`${!isBarOpen && "translate-x-full"} flex flex-col justify-between bg-neutral-100 dark:bg-neutral-800 right-0 w-screen sm:w-75 h-screen border-neutral-200 dark:border-neutral-700 fixed p-4 z-100 duration-150`}>
+            {/* <div className="p-4 pb-8 bg-neutral-100 flex flex-col justify-between dark:bg-neutral-800 overflow-y-scroll h-full rounded-md"> */}
                 <div className="flex-col flex gap-2">
                     <div onClick={toggleBar} className="text-2xl pb-2 rounded-full w-fit cursor-pointer duration-150 dark:hover:bg-neutral-800">
                         <IoClose />
@@ -61,6 +61,6 @@ export const Bar = () => {
                     }}><MdLogout className="text-xl" /> Log out</Button>
                 </div>
             </div>
-        </div>
+        // </div>
     )
 }
