@@ -82,7 +82,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                 </DropdownMenuItem>
                 <AlertDialog>
                     <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)} className={ItemStyle + " dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
-                        <RiDeleteBinLine/>Remove</AlertDialogTrigger>
+                        <RiDeleteBinLine />Remove</AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
                             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -91,8 +91,14 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <DropdownMenuItem isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
+                            {/* <button>1</button>
+                            <button>2</button> */}
+                            <button className="w-fit">
+                                <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
+                            </button>
+                            <button className="w-fit">
+                                <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
+                            </button>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>

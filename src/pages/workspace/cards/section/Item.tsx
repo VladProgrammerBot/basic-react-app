@@ -29,8 +29,7 @@ export function Item({
     <ItemLayout
       index={index}
       filled={renameBuffer !== data.id}
-      className={`flex group/item overflow-hidden}
-      `}
+      className={`flex group/item`}
     >
       {renameBuffer !== data.id ? (
         <>

@@ -18,13 +18,13 @@ export const Path = () => {
   // const { moveFolder } = usePath()
 
   return (
-    <div className="fixed z-10 px-4 py-3 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
+    <div className="fixed z-10 p-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white border--1 border-neutral-300 dark:border-neutral-700 overflow-hidden dark:bg-neutral-900">
       {/* <div className={`flex items-center justify-between bg-white border-1 border-neutral-300 dark:border-neutral-700 rounded-md overflow-hidden dark:bg-neutral-800`}> */}
       <div className="flex items-center">
         {/* <div className="text-lg cursor-pointer p-4" onClick={toggleBar}>
           <HiOutlineMenuAlt1 />
         </div> */}
-        {path.length > 1 && <Breadcrumb className="pr-2" elem={{...path[0], title: "#"}} index={0} current={path.length === 1} />}
+        {path.length > 1 && <Breadcrumb className="px-2" elem={{...path[0], title: "#"}} index={0} current={path.length === 1} />}
         {hiddenCrumbs().length !== 0 &&
           <div className="flex relative">
             <div className="text-neutral-400">/</div>
@@ -43,7 +43,7 @@ export const Path = () => {
           {moveBuffer && <button onClick={moveFolder} className="p-3 rounded-md cursor-pointer duration-150"><MdContentPaste /></button>}
           <button className="p-4 rounded-md text-xl cursor-pointer duration-150" onClick={() => setMode("Add Folder")}><FaPlus /></button>
         </div> */}
-      <button onClick={toggleBar} className="cursor-pointer"><BsThreeDots fontSize={25}/></button>
+      <button onClick={toggleBar} className="cursor-pointer h-full rounded-md px-2 duration-150 hover:bg-neutral-800"><BsThreeDots fontSize={20}/></button>
     </div>
     // </div>
   );
