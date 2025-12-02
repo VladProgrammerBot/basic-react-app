@@ -9,7 +9,7 @@ import { Breadcrumb } from "./BreadCrumb"
 export const HiddenCrumbs = ({ hiddenCrumbs }: { hiddenCrumbs: () => folder[] }) => {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer px-2 hover:bg-neutral-800 rounded-md outline-none">
+            <DropdownMenuTrigger className="cursor-pointer px-2 hover:bg-neutral-200 duration-150 dark:hover:bg-neutral-800 rounded-md outline-none">
                 ...
             </DropdownMenuTrigger>
             <DropdownMenuContent alignOffset={-10} align="start" sideOffset={-5}>

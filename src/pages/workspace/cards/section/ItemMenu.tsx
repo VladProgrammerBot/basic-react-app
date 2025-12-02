@@ -45,7 +45,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     onClick={() => {
                         setBuffer(data.id, data.parent)
                     }}>
-                    <MdOutlineShortcut /> Move To
+                    <MdOutlineShortcut /> Cut {"(move)"}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     disactive={index === 0}

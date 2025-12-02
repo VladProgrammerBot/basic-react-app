@@ -34,14 +34,14 @@ export function Item({
       {renameBuffer !== data.id ? (
         <>
           <div
-            className={`flex pl-2 py-1 text- relative space-x-2 w-full drop-shadow-md ddark:drop-shadow-neutral-600 duration-150`}
+            className={`flex pl-2 py-1 relative space-x-2 w-full drop-shadow-md ddark:drop-shadow-neutral-600 duration-150`}
             onClick={handleClick}
           >
             <div className="text-neutral-400 dark:text-neutral-500 pt-2 text-center flex justify-center min-w-8">
               {data.ref ? <FiLink className="" /> : childrensLength > 0 ? <FaFolder /> : <FiMinus/>}
             </div>
             <p
-              className={`duration-150 py-1  ${moveBuffer?.id === data.id && "opacity-50"}`}
+              className={`duration-150 py-1 ${moveBuffer?.id === data.id && "opacity-50"}`}
             >
               {data?.title}
             </p>

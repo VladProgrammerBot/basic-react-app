@@ -17,6 +17,7 @@ export const Folders = () => {
   const mode = store.use.mode()
   const { moveFolder } = usePath()
   const isStart = childrensData.length > 0 || mode !== "normal"
+  const moveBuffer = store.use.moveBuffer()
 
   return (
     <div className={`h-fit mt-10 ${isStart && "border-"} bg-whit border-neutral-300 dark:border-neutral-700 overflow-hidden`}>
@@ -51,28 +52,36 @@ export const Folders = () => {
             )}
           </ItemLayout>
         )} */}
-      {mode === "normal" && <div className="max-md:px-4 mt-2 flex">{[
+      {mode === "normal" && <div className="mt-2 flex">{[
         {
           title: "Add",
           icon: <BsPlus fontSize={25} />,
-          func: () => setMode("Add Folder")
+          func: () => setMode("Add Folder"),
+          cond: true
         },
         {
           title: "Generate",
           icon: <RiGeminiFill />,
-          func: () => setMode("AI Generate")
+          func: () => setMode("AI Generate"),
+          cond: true
         },
         {
           title: "Paste",
           icon: <FaPaste />,
-          func: moveFolder
+          func: moveFolder,
+          cond: moveBuffer
         }
       ].map((button, index) => {
-        return (
-          <button key={index} onClick={button.func} className={`flex-1 flex items-center justify-center text-center gap-1 py-2 px-4 ${index!== 0 && "border-l-1"} border-neutral-800 cursor-pointer duration-150 text-neutral-500 hover:text-white hover:bg-neutral-800`}>
-            {button.icon} {button.title}
-          </button>
-        )
+        if (button.cond) {
+
+          return (
+            <button key={index} onClick={button.func} className={`flex-1 flex items-center justify-center text-center gap-1 py-2 px-4 ${index !== 0 && "border-l-1"} border-neutral-200 hover:text-black dark:border-neutral-800 cursor-pointer duration-150 text-neutral-500 hover:bg-neutral-200 dark:hover:text-white dark:hover:bg-neutral-800`}>
+              {button.icon} {button.title}
+            </button>
+          )
+        } else {
+          return ""
+        }
       })}</div>}
     </div>
   );

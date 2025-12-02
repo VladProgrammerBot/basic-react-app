@@ -26,13 +26,12 @@ export const Home = () => {
           </div>
         </div> */}
         {/* <img className="mx-auto rounded-md mb-4 w-1/3" src="https://ec.europa.eu/regional_policy/assets/images/menu-icons/information-sources/publications-icon.png" alt="" /> */}
-        <img className="mx-auto rounded-md mb-4" src="https://cdn-icons-png.freepik.com/256/6033/6033290.png?semt=ais_white_label" alt="" />
+        {/* <img className="mx-auto rounded-md mb-4" src="https://cdn-icons-png.freepik.com/256/6033/6033290.png?semt=ais_white_label" alt="" /> */}
+        <img className="w-50 mx-auto my-8" src="https://clipart-library.com/2023/brain-clipart-xl.png" alt="" />
         <div className="flex flex-col items-center pb-75 space-y-6">
-          <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center">You`re your own rule</p>
-          <p className="text-md sm:text-xl flex text-neutral-500 w-fit gap-x-4 flex-wrap justify-center">
-            <span className="text-sk-500 flex gap-1 items-center"><FaCheckCircle />Minimalistic</span>
-            <span className="block text-pin-500 flex gap-1 items-center"><GiProgression />Scalable</span>
-            <span className="text-gree-500 flex gap-1 items-center"><LuAtom />Universal</span>
+          <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center">Remember everything you need</p>
+          <p className="text-md sm:text-xl text-neutral-500 text-center">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           </p>
           <div className="flex text-lg items-center gap-6">
             <NavLink to="workspace">
