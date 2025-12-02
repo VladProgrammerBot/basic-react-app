@@ -52,7 +52,7 @@ export const Folders = () => {
             )}
           </ItemLayout>
         )} */}
-      {mode === "normal" && <div className="mt-2 flex">{[
+      {mode === "normal" && <div className="mt-2 flex gap-2 max-md:px-2">{[
         {
           title: "Add",
           icon: <BsPlus fontSize={25} />,
@@ -75,7 +75,7 @@ export const Folders = () => {
         if (button.cond) {
 
           return (
-            <button key={index} onClick={button.func} className={`flex-1 flex items-center justify-center text-center gap-1 py-2 px-4 ${index !== 0 && "border-l-1"} border-neutral-200 hover:text-black dark:border-neutral-800 cursor-pointer duration-150 text-neutral-500 hover:bg-neutral-200 dark:hover:text-white dark:hover:bg-neutral-800`}>
+            <button key={index} onClick={button.func} className={`flex-1 rounded-md flex items-center justify-center text-center gap-1 py-2 px-4 border-1 border-neutral-200 hover:text-black dark:border-neutral-800 cursor-pointer duration-150 text-neutral-500 hover:bg-neutral-200 dark:hover:text-white dark:hover:bg-neutral-800`}>
               {button.icon} {button.title}
             </button>
           )
