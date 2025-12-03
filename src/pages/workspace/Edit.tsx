@@ -20,6 +20,19 @@ export const Edit = () => {
     e.preventDefault();
   });
   const [isGuideOpen, setIsGuideOpen] = useState(true)
+  const [currentStep, setCurrentStep] = useState(1)
+  const basicGuide = [
+    {
+      img: "https://i.sstatic.net/Wgj7N.png",
+      text: 'This program is a file system for text, you can navigate like in folders, try viewing the contents of the "plans" folder.'
+    },
+    {
+      img: "https://i.sstatic.net/Wgj7N.png",
+      text: <div>
+        <p className="text-green-500 text-xl font-bold">You done!</p> now you can use it for remembering all you want. But if you want more visit <a href="">official documentation</a>
+      </div>
+    }
+  ]
 
   useEffect(() => {
     getFolders();
@@ -44,24 +57,25 @@ export const Edit = () => {
         </>
       )}
       <Messages />
-      {/* <div className="fixed bottom-4 left-4 p-1 gradient-bg rounded-full"><IoMdHelp fontSize={40} /></div> */}
       <div className="fixed bottom-0 sm:bottom-4 max-sm:w-full w-100 right-1/2 translate-x-1/2 border-t-1 sm:border-1 border-neutral-700 shadow-xl shadow-neutral-950 bg-neutral-800 p-2 text-center">
         <Button
           onClick={() => setIsGuideOpen(!isGuideOpen)}
           className="w-full">
           {isGuideOpen ? <FaAngleDown /> : <FaAngleUp />}
         </Button>
-        <div className={`space-y-4 overflow-hidden ${isGuideOpen ? "h-fit" : "h-0"}`}>
-          <p className="font-bold text-2xl pt-2">Step 2 of 5</p>
-          <img className="w-full aspect-4/2 object-cover" src="https://i.sstatic.net/Wgj7N.png" alt="" />
-          <p>
-            This program is a file system for text, you can navigate like in folders, try viewing the contents of the "plans" folder.
+        <div className={`space-y-4 overflow-y-hidden ${isGuideOpen ? "h-90 max-h-90" : "h-0"}`}>
+          <p className="font-bold text-2xl pt-2">Step {typeof currentStep === "number" && currentStep} of {basicGuide.length}</p>
+          <img className="w-full aspect-4/2 h-45" src={basicGuide[currentStep - 1].img} alt="" />
+          <p className="flex justify-center w-full">
+            {basicGuide[currentStep - 1].text}
           </p>
-          <div className="w-full flex justify-between">
-            <Button>Prev</Button>
-            <Button>Next</Button>
-          </div>
         </div>
+        {isGuideOpen && (
+          <div className="w-full flex justify-between pt-2">
+            <span>{currentStep > 1 && <Button onClick={() => setCurrentStep(prev => prev -= 1)}>Prev</Button>}</span>
+            <span>{currentStep < basicGuide.length && <Button onClick={() => setCurrentStep(prev => prev += 1)}>Next</Button>}</span>
+          </div>
+        )}
       </div>
     </div>
   );
