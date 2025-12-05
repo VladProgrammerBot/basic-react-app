@@ -37,9 +37,8 @@ export const Bar = () => {
             }}><TiHome className="text-xl" /> Home</Button>
             {isLogin ?
                 <Button className="w-full" onClick={() => {
-                    setIsLogin(false)
-                    localStorage.clear()
                     navigate("/login")
+                    localStorage.clear()
                     setFolders({})
                 }}>
                     <MdLogout className="text-xl" /> Log out

@@ -9,7 +9,6 @@ export const useEdit = () => {
     const setFolders = store.use.setFolders();
     const setChildrens = store.use.setChildrens();
     const setPath = store.use.setPath();
-    const setIsLogin = store.use.setIsLogin()
 
     const setFoldersToState = (data: folder[], rootId: number) => {
         const folders = data.reduce((acc, user) => {
@@ -43,7 +42,6 @@ export const useEdit = () => {
                     const payload = token.split(".")
                     const { userId } = JSON.parse(atob(payload[1]))
                     setFoldersToState(data, userId)
-                    setIsLogin(true)
                 });
         } catch (error) {
             alertError("get folders")

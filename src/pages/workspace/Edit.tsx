@@ -7,13 +7,15 @@ import { Footer } from "./cards/footer";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
-// import { Guide } from "./cards/Guide";
+import { Guide } from "./cards/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
   const isBarOpen = store.use.isBarOpen()
   const toggleBar = store.use.toggleBar()
   const closeBar = store.use.closeBar()
+  const isLogin = store.use.isLogin()
+  const setIsLogin = store.use.setIsLogin()
   const { getUsersFolders, getTemplateFolders } = useEdit()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
@@ -23,8 +25,10 @@ export const Edit = () => {
     closeBar()
     if (Object.keys(folders).length !== 0) return
     if (localStorage.getItem("token")) {
+      setIsLogin(true)
       getUsersFolders();
     } else {
+      setIsLogin(false)
       getTemplateFolders()
     }
   }, []);
@@ -48,7 +52,7 @@ export const Edit = () => {
         </>
       )}
       <Messages />
-      {/* <Guide /> */}
+      {!isLogin && <Guide />}
     </div>
   );
 };
