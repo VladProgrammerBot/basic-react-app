@@ -15,6 +15,7 @@ export const useItem = () => {
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
     const folders = store.use.folders()
+    const isLogin = store.use.isLogin()
 
     const moveInto = (id: number) => {
         setParentChildrens(path.length - 1, childrensId);
@@ -30,6 +31,7 @@ export const useItem = () => {
         setRenameFolder(renameBuffer, title)
         setRenameBuffer(null)
 
+        if (!isLogin) return
         try {
             await fetch(api + "/folders/rename", {
                 method: "POST",

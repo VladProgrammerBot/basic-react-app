@@ -56,7 +56,6 @@ export const useFolders = () => {
 
   return {
     childrensData,
-
     generateFolders
   };
 };

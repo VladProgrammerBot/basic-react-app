@@ -55,4 +55,7 @@ export interface alertsSlice {
     deleteAlert: (id: number) => void
 }
 
-
+export interface authSlice {
+    isLogin: boolean,
+    setIsLogin: (state: boolean) => void
+}

@@ -12,6 +12,7 @@ export const usePath = () => {
     const pushChildren = store.use.pushChildren();
     const path = store.use.path();
     const { alertError, useAlert } = useAlerts()
+    const isLogin = store.use.isLogin()
 
     const moveOut = (data: folder, index: number) => {
         reducePath(index);
@@ -32,6 +33,7 @@ export const usePath = () => {
         removeChild(moveBuffer.id, moveBuffer.parent)
         resetMoveBuffer()
 
+        if (!isLogin) return
         try {
             await fetch(api + "/folders/move", {
                 method: "POST",

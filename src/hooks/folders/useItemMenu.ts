@@ -7,6 +7,7 @@ export const useFolderManipulation = () => {
   const childrensId = store.use.childrensId();
   const path = store.use.path();
   const markdownBuffer = useRef<string>("")
+  const isLogin = store.use.isLogin()
 
   const {
     folders,
@@ -53,8 +54,9 @@ export const useFolderManipulation = () => {
     );
     pushChildren(id);
 
+    if (!isLogin) return
     try {
-      await fetch(api + "/folders/add", {
+      const response = await fetch(api + "/folders/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,9 +69,12 @@ export const useFolderManipulation = () => {
           ref: ref
         })
       })
+
+      if (!response.ok) {
+        throw new Error(`Помилка HTTP: ${response.status}`);
+      }
     } catch (error) {
       alertError("add folder")
-      console.log(error)
     }
 
   };
@@ -93,10 +98,11 @@ export const useFolderManipulation = () => {
 
   const removeFolder = async (id: number, parent: number) => {
     childrensRemove(id);
-    
+
     const keysToDelete = structureArray(id);
     foldersRemove(keysToDelete, id, parent);
-    
+
+    if (!isLogin) return
     try {
       await fetch(api + "/folders/remove", {
         method: "DELETE",
@@ -124,6 +130,7 @@ export const useFolderManipulation = () => {
     setChildrens(newArray)
     setReplaceFolder(parentId, newArray)
 
+    if (!isLogin) return
     try {
       await fetch(api + "/folders/replace", {
         method: "POST",
@@ -151,7 +158,6 @@ export const useFolderManipulation = () => {
 
     try {
       await navigator.clipboard.writeText(text);
-      // console.log(`Successfully copied to clipboard: "${text}"`);
     } catch (err) {
       console.error('Failed to copy text: ', err);
       alert('Could not copy text. Check the browser console for details.');

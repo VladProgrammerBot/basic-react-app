@@ -1,15 +1,31 @@
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
+// import { generatedId } from "@/utils/generateId";
 
 const api = import.meta.env.VITE_API;
 
 export const useEdit = () => {
-    const { useAlert, alertError } = useAlerts()
+    const { alertError } = useAlerts()
     const setFolders = store.use.setFolders();
     const setChildrens = store.use.setChildrens();
     const setPath = store.use.setPath();
+    const setIsLogin = store.use.setIsLogin()
 
-    const getFolders = async () => {
+    const setFoldersToState = (data: folder[], rootId: number) => {
+        const folders = data.reduce((acc, user) => {
+            const id = String(user.id)
+            acc[id] = user;
+            return acc;
+        }, {} as objectFolder);
+
+        const parent = folders[rootId]
+
+        setFolders(folders);
+        setChildrens(parent.childrens);
+        setPath(parent);
+    }
+
+    const getUsersFolders = async () => {
         try {
             await fetch(api + "/folders/get", {
                 method: "POST",
@@ -21,33 +37,13 @@ export const useEdit = () => {
                 })
             })
                 .then((res) => res.json())
-                .then((data: folder[]) => {
-                    const folders = data.reduce((acc, user) => {
-                        const id = String(user.id)
-                        acc[id] = user;
-                        return acc;
-                    }, {} as objectFolder);
-
+                .then((data) => {
                     const token = localStorage.getItem("token")
                     if (!token) return
                     const payload = token.split(".")
                     const { userId } = JSON.parse(atob(payload[1]))
-
-                    const parent = folders[userId]
-
-
-                    // const parent = data.find((folder) => folder.parent === null);
-
-                    // if (!parent) return;
-
-                    setFolders(folders);
-                    setChildrens(parent.childrens);
-                    setPath(parent);
-
-                    useAlert({
-                        color: "green",
-                        text: `Try to add your first folder`
-                    })
+                    setFoldersToState(data, userId)
+                    setIsLogin(true)
                 });
         } catch (error) {
             alertError("get folders")
@@ -55,5 +51,21 @@ export const useEdit = () => {
         }
     };
 
-    return { getFolders }
+    const getTemplateFolders = async () => {
+        try {
+            await fetch(api + "/folders/template", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then((res) => res.json())
+                .then((data) => setFoldersToState(data.folders, data.rootId));
+        } catch (error) {
+            alertError("get folders")
+            console.log(error);
+        }
+    };
+
+    return { getUsersFolders, getTemplateFolders }
 }

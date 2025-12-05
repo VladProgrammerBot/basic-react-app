@@ -7,20 +7,23 @@ import { Footer } from "./cards/footer";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
-import { Guide } from "./cards/Guide";
+// import { Guide } from "./cards/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
   const isBarOpen = store.use.isBarOpen()
   const toggleBar = store.use.toggleBar()
-  const { getFolders } = useEdit()
+  const { getUsersFolders, getTemplateFolders } = useEdit()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   });
 
-
   useEffect(() => {
-    getFolders();
+    if (localStorage.getItem("token")) {
+      getUsersFolders();
+    } else {
+      getTemplateFolders()
+    }
   }, []);
 
   return (
