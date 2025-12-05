@@ -24,7 +24,7 @@ export const Home = () => {
             a minimalist app for quick and organized storage of ideas, goals, plans, etc.
           </p>
           <NavLink to="workspace">
-            <Button className="dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg"><TbClick />Learn in 5 minutes</Button>
+            <Button className="dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg"><TbClick />Free up your memory in 5 minutes</Button>
           </NavLink>
         </div>
           <img src="https://cdn-icons-png.flaticon.com/256/6761/6761386.png" alt="" className="mx-auto w-30 drop-shadow-xl drop-shadow-neutral-950" />
