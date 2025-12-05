@@ -13,12 +13,15 @@ export const Edit = () => {
   const folders = store.use.folders();
   const isBarOpen = store.use.isBarOpen()
   const toggleBar = store.use.toggleBar()
+  const closeBar = store.use.closeBar()
   const { getUsersFolders, getTemplateFolders } = useEdit()
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
   });
 
   useEffect(() => {
+    closeBar()
+    if (Object.keys(folders).length !== 0) return
     if (localStorage.getItem("token")) {
       getUsersFolders();
     } else {

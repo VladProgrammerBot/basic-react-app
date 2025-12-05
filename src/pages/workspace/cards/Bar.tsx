@@ -5,14 +5,16 @@ import { useNavigate } from "react-router"
 import { MdLogout } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { TiHome } from "react-icons/ti";
+import { PiSignInBold } from "react-icons/pi";
 
 export const Bar = () => {
     const navigate = useNavigate()
     const isBarOpen = store.use.isBarOpen()
     const toggleBar = store.use.toggleBar()
-    const closeBar = store.use.closeBar()
     const setFolders = store.use.setFolders()
+    const setIsLogin = store.use.setIsLogin()
     const [username, setUsername] = useState("")
+    const isLogin = store.use.isLogin()
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -32,15 +34,20 @@ export const Bar = () => {
             </div>
             <Button className="w-full" onClick={() => {
                 navigate("/")
-                toggleBar()
             }}><TiHome className="text-xl" /> Home</Button>
-            <Button className="w-full" onClick={() => {
-                toggleBar()
-                localStorage.clear()
-                setFolders({})
-                closeBar()
-                navigate("/login")
-            }}><MdLogout className="text-xl" /> Log out</Button>
+            {isLogin ?
+                <Button className="w-full" onClick={() => {
+                    setIsLogin(false)
+                    localStorage.clear()
+                    navigate("/login")
+                    setFolders({})
+                }}>
+                    <MdLogout className="text-xl" /> Log out
+                </Button> : (
+                    <Button onClick={() => navigate("/login")} className="w-full">
+                        <PiSignInBold className="text-xl" /> Log in
+                    </Button>
+                )}
         </div>
         // </div>
     )

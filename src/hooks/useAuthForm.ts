@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import store from "@/state/store";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -19,6 +20,7 @@ export type authForm = z.infer<typeof formSchema>;
 export const useLogin = (type: authType) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
+  const setFolders = store.use.setFolders()
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,6 +47,7 @@ export const useLogin = (type: authType) => {
           return res.json();
         })
         .then((data) => {
+          setFolders({})
           setIsLoading(false)
           localStorage.setItem("token", data)
           navigate("/workspace");
