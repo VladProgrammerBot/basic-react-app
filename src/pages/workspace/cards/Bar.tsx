@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import store from "@/state/store"
 import { IoClose } from "react-icons/io5"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { MdLogout } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { TiHome } from "react-icons/ti";
@@ -43,9 +43,11 @@ export const Bar = () => {
                 }}>
                     <MdLogout className="text-xl" /> Log out
                 </Button> : (
-                    <Button onClick={() => navigate("/login")} className="w-full">
-                        <PiSignInBold className="text-xl" /> Log in
-                    </Button>
+                    <Link to={"/signup"}>
+                        <Button className="w-full text-black dark:text-white">
+                            <PiSignInBold className="text-xl" /> Create account
+                        </Button>
+                    </Link>
                 )}
         </div>
         // </div>

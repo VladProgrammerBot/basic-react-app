@@ -37,7 +37,7 @@ export const Guide = () => {
     const beforeLast = basicGuide.length - 2
 
     return (
-        <div className="fixed bottom-0 sm:bottom-4 max-sm:w-full w-100 right-1/2 translate-x-1/2 border-t-1 sm:border-1 border-neutral-300 dark:border-neutral-700 shadow-xl shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-neutral-800 p-2 text-center">
+        <div className="fixed bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-xl shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-neutral-800 p-2 text-center">
             <Button
                 onClick={() => setIsGuideOpen(!isGuideOpen)}
                 className="w-full">
@@ -56,7 +56,7 @@ export const Guide = () => {
                         {currentStep < beforeLast + 1 ? "Prev" : "Go back"}
                     </Button>}</span>
                     <span>{currentStep < beforeLast + 1 && <Button onClick={() => setCurrentStep(prev => prev += 1)}>
-                        {currentStep < beforeLast + 1 ? "Next" : "Finish"}
+                        {currentStep < beforeLast ? "Next" : "Finish"}
                     </Button>}</span>
                 </div>
             )}
