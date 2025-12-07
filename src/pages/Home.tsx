@@ -1,44 +1,70 @@
 import { Button } from "@/components/ui/button";
 import { Link, NavLink } from "react-router";
-import { TbClick } from "react-icons/tb";
 import { Footer } from "./workspace/cards/footer";
+import { CheckCircle2 } from "lucide-react";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { GiProgression } from "react-icons/gi";
 
 export const Home = () => {
+  const diffTable = [
+    ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
+    ["Scalable", 0, 0, 1, 1],
+    ["Ease of use", 1, 1, 0, 1],
+    ["Organization", 1, 0, 1, 1],
+    ["Flexibility", 0, 1, 1, 1],
+    ["Own rules", 1, 0, 0, 1],
+    ["Mobile using", 0, 1, 0, 1]
+  ]
+
   return (
     <div className="p-4">
       <div className="flex w-full justify-between">
         <div className="text-2xl font-bold">
           Strukt
         </div>
-        <Link to={"/login"}>
+        {!localStorage.getItem("token") &&<Link to={"/login"}>
           <Button variant={"outline"}>
             Log in
           </Button>
-        </Link>
+        </Link>}
       </div>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <img
-          className="w-45 aspect-square mx-auto mb-2 mt-8 drop-shadow-lg dark:drop-shadow-neutral-950"
+          className="w-45 aspect-square mx-auto mb-2 mt-8 drop-shadow-lg drop-shadow-white dark:drop-shadow-neutral-950"
           src="https://cdn-icons-png.freepik.com/512/8298/8298289.png" alt="" />
         <div className="flex flex-col items-center pb-75 space-y-6">
-          <p className="text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-500">
-            Remember everything.<br /> Forget nothing.
+          <p className="text-4xl sm:text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-500">
+            No worries about forgetting
           </p>
           <p className="text-md sm:text-xl text-neutral-500 text-center">
-            a minimalist app for quick and organized storage of ideas, goals, plans, etc.
+            Quickly organize and store text information such as ideas, goals, plans, and more.
           </p>
           <NavLink to="workspace">
             <Button className="dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg">
-              <TbClick />Free up memory in 5 minutes
+              <GiProgression />Start with 5 steps
             </Button>
           </NavLink>
         </div>
-        <img src="https://cdn-icons-png.flaticon.com/256/6761/6761386.png"
-          alt=""
-          className="mx-auto w-30 drop-shadow-xl drop-shadow-neutral-950" />
-        <p className="text-5xl font-bold text-center text-shadow-lg text-shadow-neutral-500 mt-16">
-          Organize text like in File Explorer
-        </p>
+        <table className="w-full text-xs sm:text-lg mx-auto">
+          <thead>
+            <tr className="gradient-bg text-white">
+              {diffTable[0].map((item, index) => {
+                return <th key={index} className={`py-2 sm:p-4 ${index === 0 && "text-start pl-2"} font-thin`}>{item}</th>
+              })}
+            </tr>
+          </thead>
+
+          <tbody>
+            {diffTable.map((row, rowIndex) => {
+              if (rowIndex === 0) return
+              return <tr key={rowIndex} className={`${rowIndex % 2 === 0 && "bg-neutral-200 dark:bg-neutral-800"}`}>
+                {row.map((item, itemIndex) => {
+                  return <td key={itemIndex} className={`${itemIndex !== 0 ? "text-center" : "pl-2"} py-2 sm:p-4`}>{typeof item === "string" ? item : item ? <CheckCircle2 className="text-green-500 mx-auto" /> : <IoCloseCircleOutline fontSize={27} className="text-red-500 mx-auto" />}</td>
+                })}
+              </tr>
+            })}
+          </tbody>
+        </table>
         <Footer />
       </div>
     </div>

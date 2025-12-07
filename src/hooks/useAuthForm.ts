@@ -54,7 +54,7 @@ export const useLogin = (type: authType) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...values, folders, rootId: path[0].id ?? generatedId() }),
+        body: JSON.stringify({ ...values, folders, rootId: (path[0] && path[0].id) ?? generatedId() }),
       })
         .then((res) => {
           return res.json();

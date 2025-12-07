@@ -43,7 +43,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
             <DropdownMenuContent side="left" sideOffset={0} align="start" alignOffset={-10}>
                 <DropdownMenuItem
                     onClick={() => {
-                        setBuffer(data.id, data.parent)
+                        setBuffer(data.id, data.parent ?? 0)
                     }}>
                     <MdOutlineShortcut /> Cut {"(move)"}
                 </DropdownMenuItem>
@@ -81,7 +81,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     Edit
                 </DropdownMenuItem>
                 <AlertDialog>
-                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent)} className={ItemStyle + " dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
+                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id, data.parent ?? 0)} className={ItemStyle + " dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
                         <RiDeleteBinLine />Remove</AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
@@ -92,7 +92,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                             <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
-                            <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
+                            <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent ?? 0)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>

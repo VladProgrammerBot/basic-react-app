@@ -15,7 +15,7 @@ export const Path = () => {
         {path.length > 1 && (
           <Breadcrumb
             className="px-2"
-            elem={{ ...path[0], title: "#" }}
+            elem={{ ...path[0], title: "Root" }}
             index={0}
             current={path.length === 1} />
         )}

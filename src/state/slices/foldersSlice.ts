@@ -1,12 +1,13 @@
 import type { StateCreator } from "zustand";
-import type { foldersSlice } from "../../types/storeTypes";{
-        id: rootId,
-        parent: null,
-        title: "Root",
-        childrens: [],
-        userId: rootId,
-        ref: null
-      }
+import type { foldersSlice } from "../../types/storeTypes";
+// {
+//         id: rootId,
+//         parent: null,
+//         title: "Root",
+//         childrens: [],
+//         userId: rootId,
+//         ref: null
+//       }
 
 export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
     folders: {},

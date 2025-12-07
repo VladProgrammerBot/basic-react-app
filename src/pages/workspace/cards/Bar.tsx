@@ -12,7 +12,6 @@ export const Bar = () => {
     const isBarOpen = store.use.isBarOpen()
     const toggleBar = store.use.toggleBar()
     const setFolders = store.use.setFolders()
-    const setIsLogin = store.use.setIsLogin()
     const [username, setUsername] = useState("")
     const isLogin = store.use.isLogin()
 
@@ -50,6 +49,5 @@ export const Bar = () => {
                     </Link>
                 )}
         </div>
-        // </div>
     )
 }
