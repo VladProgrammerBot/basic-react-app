@@ -46,8 +46,8 @@ export const Home = () => {
           </NavLink>
         </div>
         <table className="w-full text-xs sm:text-lg mx-auto">
-          <thead>
-            <tr className="gradient-bg text-white">
+          <thead className="gradient-bg">
+            <tr className="text-white">
               {diffTable[0].map((item, index) => {
                 return <th key={index} className={`py-2 sm:p-4 ${index === 0 && "text-start pl-2"} font-thin`}>{item}</th>
               })}
