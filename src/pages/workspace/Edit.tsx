@@ -17,9 +17,6 @@ export const Edit = () => {
   const isLogin = store.use.isLogin()
   const setIsLogin = store.use.setIsLogin()
   const { getUsersFolders, getTemplateFolders } = useEdit()
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  });
 
   useEffect(() => {
     closeBar()

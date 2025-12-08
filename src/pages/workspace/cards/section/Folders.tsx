@@ -7,14 +7,32 @@ import { RiGeminiFill } from "react-icons/ri";
 import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
 import { BsPlus } from "react-icons/bs";
+import { useEffect } from "react";
 
 export const Folders = () => {
   const { childrensData, generateFolders } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
+  const renameBuffer = store.use.renameBuffer()
   const { moveFolder } = usePath()
   const moveBuffer = store.use.moveBuffer()
+
+  const Hotkeys = (e: KeyboardEvent) => {
+    if (mode !== "normal" || renameBuffer) return
+    if (e.key === "a") {
+      e.preventDefault()
+      setMode("Add Folder")
+      console.log("a");
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', Hotkeys)
+    return () => {
+      document.removeEventListener('keydown', Hotkeys)
+    }
+  }, [mode])
 
   return (
     <div className={`h-fit mt-12 sm:mt-13 border-neutral-300 dark:border-neutral-700`}>
