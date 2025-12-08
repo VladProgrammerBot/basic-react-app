@@ -19,8 +19,8 @@ export interface childrensSlice {
 }
 
 export interface pathSlice {
-    path: folder[];
-    pushPath: (folder: folder) => void;
+    path: (folder & { index?: number })[];
+    pushPath: (folder: folder & { index: number }) => void;
     setPath: (folder: folder) => void;
     reducePath: (index: number) => void;
     setParentChildrens: (index: number, childrensId: number[]) => void;

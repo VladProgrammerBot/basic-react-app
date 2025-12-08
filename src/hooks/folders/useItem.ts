@@ -18,13 +18,14 @@ export const useItem = () => {
     const folders = store.use.folders()
     const isLogin = store.use.isLogin()
 
-    const moveInto = (id: number) => {
-        setSelectedItemId(null)
+    const moveInto = (id: number, index: number) => {
+        if (childrensId.length === 0) return
+        setSelectedItemId(0 )
         setParentChildrens(path.length - 1, childrensId);
         const newParent = folders[id];
         if (!newParent) return;
         setChildrens(newParent.childrens);
-        pushPath(newParent);
+        pushPath({...newParent, index});
         window.scrollTo(0, 0);
     };
 

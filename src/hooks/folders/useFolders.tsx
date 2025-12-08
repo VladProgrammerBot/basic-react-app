@@ -110,17 +110,27 @@ export const useFolders = () => {
       }
     }
 
-    if (e.key === "l" && typeof selectedItemId === "number") return moveInto(childrensId[selectedItemId])
-    if (e.key === "h" && path.length !== 1) return moveOut(path[path.length - 2].childrens, path.length - 2)
-
-    if (e.key === "K") return setSelectedItemId(0)
-    if (e.key === "J") return setSelectedItemId(childrensId.length - 1)
-    if (e.key === "H" && path.length !== 1) return moveOut(path[0].childrens, 0)
+    if (e.key === "h" && path.length !== 1) {
+      setSelectedItemId(path[path.length - 1].index ?? 0)
+      moveOut(path[path.length - 2].childrens, path.length - 2)
+      return
+    }
 
     if (e.key === "a") {
       e.preventDefault()
       return setMode("Add Folder")
     }
+
+    if (typeof selectedItemId === "number" && childrensId.length !== 0) {
+      const selectedFolder = folders[childrensId[selectedItemId]]
+      if (e.key === "l" && typeof selectedItemId === "number")
+        return moveInto(selectedFolder.ref ?? selectedFolder.id, selectedItemId)
+    }
+
+    if (e.key === "K") return setSelectedItemId(0)
+    if (e.key === "J") return setSelectedItemId(childrensId.length - 1)
+    if (e.key === "H" && path.length !== 1) return moveOut(path[0].childrens, 0)
+
   }
 
   useEffect(() => {
