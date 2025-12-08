@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { Footer } from "./workspace/cards/footer";
 import { CheckCircle2 } from "lucide-react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { GiProgression } from "react-icons/gi";
+import { useEffect } from "react";
 
 export const Home = () => {
+  const navigate = useNavigate()
   const diffTable = [
     ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
     ["Scalable", 0, 0, 1, 1],
@@ -16,13 +18,26 @@ export const Home = () => {
     ["Mobile using", 0, 1, 0, 1]
   ]
 
+  const mouseDownEvent = (e: KeyboardEvent) => {
+    if (e.key === "l") {
+      navigate("login")
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", mouseDownEvent)
+    return () => {
+      document.removeEventListener("keydown", mouseDownEvent)
+    }
+  }, [])
+
   return (
-    <div className="p-4">
+    <div className="p-4" onKeyUp={(e) => console.log(e, 1)}>
       <div className="flex w-full justify-between">
         <div className="text-2xl font-bold">
           Strukt
         </div>
-        {!localStorage.getItem("token") &&<Link to={"/login"}>
+        {!localStorage.getItem("token") && <Link to={"/login"}>
           <Button variant={"outline"}>
             Log in
           </Button>
@@ -49,7 +64,7 @@ export const Home = () => {
           <thead className="gradient-bg">
             <tr className="text-white">
               {diffTable[0].map((item, index) => {
-                return <th key={index} className={`py-2 sm:p-4 ${index === 0 && "text-start pl-2"} font-thin`}>{item}</th>
+                return <th key={index} className={`py-2 sm:p-4 ${index === 0 && "text-start pl-2"} font-normal`}>{item}</th>
               })}
             </tr>
           </thead>
