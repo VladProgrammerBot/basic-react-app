@@ -18,6 +18,7 @@ export function Item({
   const renameBuffer = store.use.renameBuffer()
   const setRenameBuffer = store.use.setRenameBuffer()
   const moveBuffer = store.use.moveBuffer()
+  const selectedItemId = store.use.selectedItemId()
 
   const handleClick = () => {
     moveInto(data.ref ? data.ref : data.id);
@@ -29,7 +30,7 @@ export function Item({
     <ItemLayout
       index={index}
       filled={renameBuffer !== data.id}
-      className={`flex group/item`}
+      className={`flex group/item ${selectedItemId === index && "bg-neutral-200 dark:bg-neutral-800"}`}
     >
       {renameBuffer !== data.id ? (
         <>

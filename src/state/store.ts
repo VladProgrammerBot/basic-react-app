@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createFoldersSlice } from "./slices/foldersSlice"
-import type { alertsSlice, authSlice, barSlice, childrensSlice, foldersSlice, modeSlice, moveBufferSlice, pathSlice, renameBufferSlice } from "../types/storeTypes";
+import type { alertsSlice, authSlice, barSlice, childrensSlice, foldersSlice, keyNaviSlice, modeSlice, moveBufferSlice, pathSlice, renameBufferSlice } from "../types/storeTypes";
 import { createChildrensSlice } from "./slices/childrensSlice";
 import { createModeSlice } from "./slices/modeSlice";
 import { createMoveBufferSlice } from "./slices/moveBufferSlice";
@@ -10,6 +10,7 @@ import { type StoreApi, type UseBoundStore } from 'zustand'
 import { createBarSlice } from "./slices/barSlice";
 import { createAlertsSlice } from "./slices/alertsSlice";
 import { createAuthSlice } from "./slices/authSlice";
+import { createKeyNaviSlice } from "./slices/keyNaviSlice";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
     ? S & { use: { [K in keyof T]: () => T[K] } }
@@ -27,7 +28,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
     return store
 }
 
-const storeBase = create<foldersSlice & childrensSlice & modeSlice & moveBufferSlice & authSlice & pathSlice & renameBufferSlice & barSlice & alertsSlice>()((...a) => ({
+const storeBase = create<foldersSlice & keyNaviSlice & childrensSlice & modeSlice & moveBufferSlice & authSlice & pathSlice & renameBufferSlice & barSlice & alertsSlice>()((...a) => ({
     ...createFoldersSlice(...a),
     ...createChildrensSlice(...a),
     ...createModeSlice(...a),
@@ -36,7 +37,8 @@ const storeBase = create<foldersSlice & childrensSlice & modeSlice & moveBufferS
     ...createRenameSlice(...a),
     ...createBarSlice(...a),
     ...createAlertsSlice(...a),
-    ...createAuthSlice(...a)
+    ...createAuthSlice(...a),
+    ...createKeyNaviSlice(...a)
 }))
 
 const store = createSelectors(storeBase)

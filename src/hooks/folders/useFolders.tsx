@@ -19,6 +19,8 @@ export const useFolders = () => {
   const renameBuffer = store.use.renameBuffer()
   const { moveFolder } = usePath()
   const moveBuffer = store.use.moveBuffer()
+  const setSelectedItemId = store.use.setSelectedItemId()
+  const selectedItemId = store.use.selectedItemId()
 
   const { alertError } = useAlerts()
 
@@ -86,10 +88,28 @@ export const useFolders = () => {
 
   const Hotkeys = (e: KeyboardEvent) => {
     if (mode !== "normal" || renameBuffer) return
+
+    if (e.key === "j") {
+      if (selectedItemId === null) {
+        return setSelectedItemId(0)
+      }
+      if (selectedItemId < childrensId.length - 1) {
+        return setSelectedItemId(selectedItemId + 1)
+      }
+    }
+
+    if (e.key === "k") {
+      if (selectedItemId === null) {
+        return setSelectedItemId(childrensId.length - 1)
+      }
+      if (selectedItemId > 0) {
+        return setSelectedItemId(selectedItemId - 1)
+      }
+    }
+
     if (e.key === "a") {
       e.preventDefault()
-      setMode("Add Folder")
-      console.log("a");
+      return setMode("Add Folder")
     }
   }
 
@@ -98,7 +118,7 @@ export const useFolders = () => {
     return () => {
       document.removeEventListener('keydown', Hotkeys)
     }
-  }, [mode])
+  }, [mode, selectedItemId])
 
   return {
     childrensData,

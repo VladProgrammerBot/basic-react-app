@@ -59,3 +59,8 @@ export interface authSlice {
     isLogin: boolean,
     setIsLogin: (state: boolean) => void
 }
+
+export interface keyNaviSlice {
+    selectedItemId: number | null,
+    setSelectedItemId: (dir: number | null) => void
+}
