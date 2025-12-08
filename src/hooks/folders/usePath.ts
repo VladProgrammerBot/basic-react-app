@@ -14,9 +14,9 @@ export const usePath = () => {
     const { alertError, useAlert } = useAlerts()
     const isLogin = store.use.isLogin()
 
-    const moveOut = (data: folder, index: number) => {
+    const moveOut = (childrens: number[], index: number) => {
         reducePath(index);
-        setChildrens(data.childrens);
+        setChildrens(childrens);
         window.scrollTo(0, 0);
     };
 

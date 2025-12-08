@@ -14,10 +14,12 @@ export const useItem = () => {
     const pushPath = store.use.pushPath();
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
+    const setSelectedItemId = store.use.setSelectedItemId()
     const folders = store.use.folders()
     const isLogin = store.use.isLogin()
 
     const moveInto = (id: number) => {
+        setSelectedItemId(null)
         setParentChildrens(path.length - 1, childrensId);
         const newParent = folders[id];
         if (!newParent) return;

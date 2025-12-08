@@ -17,7 +17,6 @@ export const Folders = () => {
           <Item key={data.id} data={data} index={index} />
         )
       })}
-
       {mode === "Add Folder" && (
         <InputForm submitTitle="+ Add" cancelFunc={() => setMode("normal")} submitFunc={addFolder} />
       )}

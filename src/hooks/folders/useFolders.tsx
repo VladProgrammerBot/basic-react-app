@@ -7,6 +7,7 @@ import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
 import { BsPlus } from "react-icons/bs";
 import { useEffect } from "react";
+import { useItem } from "./useItem";
 
 export const useFolders = () => {
   const mode = store.use.mode()
@@ -17,12 +18,15 @@ export const useFolders = () => {
   const pushMultipleFolder = store.use.pushMultipleFolder()
   const setMode = store.use.setMode()
   const renameBuffer = store.use.renameBuffer()
-  const { moveFolder } = usePath()
   const moveBuffer = store.use.moveBuffer()
   const setSelectedItemId = store.use.setSelectedItemId()
   const selectedItemId = store.use.selectedItemId()
 
+  const { moveFolder } = usePath()
   const { alertError } = useAlerts()
+  const { moveInto } = useItem()
+  const { moveOut } = usePath()
+
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(0);
@@ -61,7 +65,6 @@ export const useFolders = () => {
         })
     } catch (error) {
       alertError("generate folders")
-      // console.log(error);
     }
   }
 
@@ -107,6 +110,13 @@ export const useFolders = () => {
       }
     }
 
+    if (e.key === "l" && typeof selectedItemId === "number") return moveInto(childrensId[selectedItemId])
+    if (e.key === "h" && path.length !== 1) return moveOut(path[path.length - 2].childrens, path.length - 2)
+
+    if (e.key === "K") return setSelectedItemId(0)
+    if (e.key === "J") return setSelectedItemId(childrensId.length - 1)
+    if (e.key === "H" && path.length !== 1) return moveOut(path[0].childrens, 0)
+
     if (e.key === "a") {
       e.preventDefault()
       return setMode("Add Folder")
@@ -118,7 +128,7 @@ export const useFolders = () => {
     return () => {
       document.removeEventListener('keydown', Hotkeys)
     }
-  }, [mode, selectedItemId])
+  }, [mode, selectedItemId, childrensId])
 
   return {
     childrensData,
