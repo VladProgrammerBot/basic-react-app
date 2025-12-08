@@ -116,7 +116,7 @@ export const useFolderManipulation = () => {
       })
     } catch (error) {
       alertError("remove folder")
-      console.log(error)
+      // console.log(error)
     }
   };
 
@@ -145,7 +145,7 @@ export const useFolderManipulation = () => {
       })
     } catch (error) {
       alertError("replace folder")
-      console.log(error)
+      // console.log(error)
     }
   }
 

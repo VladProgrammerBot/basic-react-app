@@ -66,7 +66,7 @@ export const useLogin = (type: authType) => {
           navigate("/workspace");
         });
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       setIsError(true)
       setIsLoading(false)
     }

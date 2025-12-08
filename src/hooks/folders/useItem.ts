@@ -46,7 +46,7 @@ export const useItem = () => {
             })
         } catch (error) {
             alertError("rename folder")
-            console.log(error)
+            // console.log(error)
         }
     }
 

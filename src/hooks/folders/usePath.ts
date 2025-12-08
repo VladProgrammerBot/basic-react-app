@@ -49,7 +49,7 @@ export const usePath = () => {
             })
         } catch (error) {
             alertError("move folder")
-            console.log(error)
+            // console.log(error)
         }
     }
 

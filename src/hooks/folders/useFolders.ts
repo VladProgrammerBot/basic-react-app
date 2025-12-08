@@ -50,7 +50,7 @@ export const useFolders = () => {
         })
     } catch (error) {
       alertError("generate folders")
-      console.log(error);
+      // console.log(error);
     }
   }
 
