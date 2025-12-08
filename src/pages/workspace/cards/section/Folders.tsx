@@ -3,36 +3,12 @@ import { useFolders } from "@/hooks/folders/useFolders";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
-import { RiGeminiFill } from "react-icons/ri";
-import { FaPaste } from "react-icons/fa";
-import { usePath } from "@/hooks/folders/usePath";
-import { BsPlus } from "react-icons/bs";
-import { useEffect } from "react";
 
 export const Folders = () => {
-  const { childrensData, generateFolders } = useFolders()
+  const { childrensData, generateFolders, buttons } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
-  const renameBuffer = store.use.renameBuffer()
-  const { moveFolder } = usePath()
-  const moveBuffer = store.use.moveBuffer()
-
-  const Hotkeys = (e: KeyboardEvent) => {
-    if (mode !== "normal" || renameBuffer) return
-    if (e.key === "a") {
-      e.preventDefault()
-      setMode("Add Folder")
-      console.log("a");
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', Hotkeys)
-    return () => {
-      document.removeEventListener('keydown', Hotkeys)
-    }
-  }, [mode])
 
   return (
     <div className={`h-fit mt-12 sm:mt-13 border-neutral-300 dark:border-neutral-700`}>
@@ -50,29 +26,12 @@ export const Folders = () => {
           generateFolders(value)
         }} />
       )}
-      {mode === "normal" && <div className="mt-2 flex gap-2 max-md:px-2">{[
-        {
-          title: "Add",
-          icon: <BsPlus fontSize={25} />,
-          func: () => setMode("Add Folder"),
-          cond: true
-        },
-        {
-          title: "Generate",
-          icon: <RiGeminiFill />,
-          func: () => setMode("AI Generate"),
-          cond: true
-        },
-        {
-          title: "Paste",
-          icon: <FaPaste />,
-          func: moveFolder,
-          cond: moveBuffer
-        }
-      ].map((button, index) => {
+      {mode === "normal" && <div className="mt-2 flex gap-2 max-md:px-2">{buttons.map((button, index) => {
         if (button.cond) {
           return (
-            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700`}>
+            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center 
+            justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 
+            dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700`}>
               {button.icon} {button.title}
             </button>
           )
