@@ -9,6 +9,7 @@ export const useEdit = () => {
     const setFolders = store.use.setFolders();
     const setChildrens = store.use.setChildrens();
     const setPath = store.use.setPath();
+    const setIsLogin = store.use.setIsLogin()
 
     const setFoldersToState = (data: folder[], rootId: number) => {
         const folders = data.reduce((acc, user) => {
@@ -22,6 +23,21 @@ export const useEdit = () => {
         setFolders(folders);
         setChildrens(parent.childrens);
         setPath(parent);
+    }
+
+    const createMinStructure = () => {
+        const folder = {
+            id: 1,
+            title: "Root",
+            parent: null,
+            childrens: [],
+            ref: null,
+        }
+
+        setFolders({ folder });
+        setChildrens([]);
+        setPath(folder);
+        setIsLogin(false)
     }
 
     const getUsersFolders = async () => {
@@ -45,7 +61,8 @@ export const useEdit = () => {
                 });
         } catch (error) {
             alertError("get folders")
-            console.log(error);
+            createMinStructure()
+            // console.log(error);
         }
     };
 
@@ -61,7 +78,8 @@ export const useEdit = () => {
                 .then((data) => setFoldersToState(data.folders, data.rootId));
         } catch (error) {
             alertError("get folders")
-            console.log(error);
+            createMinStructure()
+            // console.log(error);
         }
     };
 
