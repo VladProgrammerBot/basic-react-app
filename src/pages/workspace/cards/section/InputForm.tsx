@@ -8,8 +8,8 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     cancelFunc: () => void
     submitFunc: (value: string, ref: number | null) => void
 }) => {
-    const ref = useRef<HTMLTextAreaElement | null>(null);
     const [isLoading, setIsLoading] = useState(false)
+    const ref = useRef<HTMLTextAreaElement | null>(null);
 
     useEffect(() => {
         if (defaultValue && ref.current)

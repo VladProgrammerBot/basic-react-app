@@ -11,12 +11,19 @@ import {
 } from "@/components/ui/form";
 import { useLogin } from "@/hooks/useAuthForm";
 import { NavLink, useNavigate } from "react-router";
+import { useEffect, useRef } from "react";
 
 export type authType = "Log in" | "Sign up";
 
 export const AuthForm = ({ type }: { type: authType }) => {
   const { onSubmit, form, isLoading, isError } = useLogin(type);
   const navigate = useNavigate()
+
+  const ref = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    ref.current?.focus()
+  }, [])
 
   return (
     <Form {...form}>
@@ -43,7 +50,7 @@ export const AuthForm = ({ type }: { type: authType }) => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter username..." {...field} />
+                  <Input placeholder="Enter username..." {...field} ref={ref} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
