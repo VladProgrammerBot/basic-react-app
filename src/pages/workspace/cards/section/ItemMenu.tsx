@@ -91,8 +91,8 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                             </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                            <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
                             <DropdownMenuItem className="w-fit" onClick={() => removeFolder(data.id, data.parent ?? 0)} isStyled={false}><AlertDialogAction>Remove</AlertDialogAction></DropdownMenuItem>
+                            <DropdownMenuItem className="w-fit" isStyled={false}><AlertDialogCancel>Cancel</AlertDialogCancel></DropdownMenuItem>
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>
