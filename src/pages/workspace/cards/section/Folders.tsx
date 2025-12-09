@@ -3,6 +3,11 @@ import { useFolders } from "@/hooks/folders/useFolders";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export const Folders = () => {
   const { childrensData, generateFolders, buttons } = useFolders()
@@ -28,11 +33,16 @@ export const Folders = () => {
       {mode === "normal" && <div className="mt-2 flex gap-2 max-md:px-2">{buttons.map((button, index) => {
         if (button.cond) {
           return (
-            <button key={index} onClick={button.func} className={`flex-1 rounded-m flex items-center 
+            <Tooltip key={index}>
+              <TooltipTrigger onClick={button.func} className={`flex-1 rounded-m flex items-center 
             justify-center text-center gap-1 py-2 px-4 cursor-pointer duration-150 bg-neutral-200 
             dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-700`}>
-              {button.icon} {button.title}
-            </button>
+                {button.icon} {button.title}
+              </TooltipTrigger>
+              <TooltipContent>
+                {button.Hotkeys}
+              </TooltipContent>
+            </Tooltip>
           )
         } else {
           return ""

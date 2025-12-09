@@ -73,19 +73,22 @@ export const useFolders = () => {
       title: "Add",
       icon: <BsPlus fontSize={25} />,
       func: () => setMode("Add Folder"),
-      cond: true
+      cond: true,
+      Hotkeys: "a"
     },
     {
       title: "Generate",
       icon: <RiGeminiFill />,
       func: () => setMode("AI Generate"),
-      cond: true
+      cond: true,
+      Hotkeys: "g"
     },
     {
       title: "Paste",
       icon: <FaPaste />,
       func: moveFolder,
-      cond: moveBuffer
+      cond: moveBuffer,
+      Hotkeys: "m"
     }
   ]
 
