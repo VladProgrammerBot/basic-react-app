@@ -21,9 +21,9 @@ export function Item({
   const selectedItemId = store.use.selectedItemId()
 
   const handleClick = () => {
-    moveInto(data.ref ? data.ref : data.id);
+    moveInto(data.ref ? data.ref : data.id, index);
   }
-
+  
   const childrensLength = data && data?.childrens.length > 0 ? data.childrens.length : 0
 
   return (
