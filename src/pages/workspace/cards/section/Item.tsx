@@ -23,7 +23,7 @@ export function Item({
   const handleClick = () => {
     moveInto(data.ref ? data.ref : data.id, index);
   }
-  
+
   const childrensLength = data && data?.childrens.length > 0 ? data.childrens.length : 0
 
   return (

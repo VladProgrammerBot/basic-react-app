@@ -8,15 +8,15 @@ import { useEffect } from "react";
 
 export const Home = () => {
   const navigate = useNavigate()
-  const diffTable = [
-    ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
-    ["Scalable", 0, 0, 1, 1],
-    ["Ease of use", 1, 1, 0, 1],
-    ["Organization", 1, 0, 1, 1],
-    ["Flexibility", 0, 1, 1, 1],
-    ["Own rules", 1, 0, 0, 1],
-    ["Mobile using", 0, 1, 0, 1]
-  ]
+const diffTable = [
+  ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
+  ["Organization", "🟢 Yes", "🔴 No", "🟢 Yes", "🟢 Yes"],
+  ["Scalability", "🔴 None", "🔴 None", "🟡 Partial", "🟢 Infinite"],
+  ["Ease of use", "🟡 Medium", "🟢 Very easy", "🔴 Hard", "🟢 Easy"],
+  ["Speed of use", "🔴 Very slow", "🟢 Fast", "🔴 Slow", "🟢 Fast"],
+  ["Mobile adaptive", "⚪ N/A", "🟢 Full", "🟡 Partial", "🟢 Full"],
+  ["Keyboard shortcuts", "⚪ N/A", "🔴 None", "🟡 Partial", "🟢 full"],
+];
 
   const mouseDownEvent = (e: KeyboardEvent) => {
     if (e.key === "l") {
@@ -48,8 +48,8 @@ export const Home = () => {
           className="w-45 aspect-square mx-auto mb-2 mt-8 drop-shadow-lg drop-shadow-white dark:drop-shadow-neutral-950"
           src="https://cdn-icons-png.freepik.com/512/8298/8298289.png" alt="" />
         <div className="flex flex-col items-center pb-75 space-y-6">
-          <p className="text-4xl sm:text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-500">
-            No worries about forgetting
+          <p className="text-4xl sm:text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-600">
+            1000 notes feel like 10
           </p>
           <p className="text-md sm:text-xl text-neutral-500 text-center">
             Quickly organize and store text information such as ideas, goals, plans, and more.
@@ -64,7 +64,7 @@ export const Home = () => {
           <thead className="gradient-bg">
             <tr className="text-white">
               {diffTable[0].map((item, index) => {
-                return <th key={index} className={`py-2 sm:p-4 ${index === 0 && "text-start pl-2"} font-normal`}>{item}</th>
+                return <th key={index} className={`py-2 sm:p-4 text-start ${index === 0 && "text-start pl-2"} font-normal`}>{item}</th>
               })}
             </tr>
           </thead>
@@ -74,7 +74,7 @@ export const Home = () => {
               if (rowIndex === 0) return
               return <tr key={rowIndex} className={`${rowIndex % 2 === 0 && "bg-neutral-200 dark:bg-neutral-800"}`}>
                 {row.map((item, itemIndex) => {
-                  return <td key={itemIndex} className={`${itemIndex !== 0 ? "text-center" : "pl-2"} py-2 sm:p-4`}>{typeof item === "string" ? item : item ? <CheckCircle2 className="text-green-500 mx-auto" /> : <IoCloseCircleOutline fontSize={27} className="text-red-500 mx-auto" />}</td>
+                  return <td key={itemIndex} className={`max-sm:leading-5 ${itemIndex !== 0 ? "text-cente" : "pl-2"} max-sm:px-1 py-2 sm:p-4`}>{typeof item === "string" ? item : item ? <CheckCircle2 className="text-green-500 mx-auto" /> : <IoCloseCircleOutline fontSize={27} className="text-red-500 mx-auto" />}</td>
                 })}
               </tr>
             })}
