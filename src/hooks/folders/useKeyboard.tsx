@@ -1,0 +1,113 @@
+import store from "@/state/store";
+import { useEffect } from "react";
+import { useItem } from "./useItem";
+import { useFolderManipulation } from "./useItemMenu";
+import { usePath } from "./usePath";
+import { addTextToClipboard } from "@/utils/addToClipboard";
+
+export const useKeyboard = () => {
+    const mode = store.use.mode()
+    const setSelectedItemId = store.use.setSelectedItemId()
+    const selectedItemId = store.use.selectedItemId()
+    const setBuffer = store.use.setBuffer()
+    const renameBuffer = store.use.renameBuffer()
+    const childrensId = store.use.childrensId()
+    const folders = store.use.folders()
+    const moveBuffer = store.use.moveBuffer()
+    const setMode = store.use.setMode()
+    const path = store.use.path();
+    const setRenameBuffer = store.use.setRenameBuffer();
+
+    const { moveInto } = useItem()
+    const { moveOut, moveFolder } = usePath()
+    const { removeFolder, replaceFolders, addFolder, copyMarkdown } = useFolderManipulation()
+
+    const Hotkeys = (e: KeyboardEvent) => {
+        if (mode !== "normal" || renameBuffer || e.repeat) return
+        const selectedId = typeof selectedItemId === "number" ? childrensId[selectedItemId] : null
+
+        if (e.code === "KeyJ") {
+            if (e.shiftKey && selectedId) replaceFolders(selectedId, -1)
+            if (selectedItemId === null) {
+                return setSelectedItemId(0)
+            }
+            if (selectedItemId < childrensId.length - 1) {
+                return setSelectedItemId(selectedItemId + 1)
+            }
+        }
+
+        if (e.code === "KeyK") {
+            if (e.shiftKey && selectedId) replaceFolders(selectedId, 1)
+            if (selectedItemId === null) {
+                return setSelectedItemId(childrensId.length - 1)
+            }
+            if (selectedItemId > 0) {
+                return setSelectedItemId(selectedItemId - 1)
+            }
+        }
+
+        if (e.code === "KeyH" && path.length !== 1) {
+            if (e.shiftKey) return moveOut(path[0].childrens, 0)
+
+            setSelectedItemId(path[path.length - 1].index ?? 0)
+            moveOut(path[path.length - 2].childrens, path.length - 2)
+            return
+        }
+
+        if (e.code === "KeyA") {
+            e.preventDefault()
+            return setMode("Add Folder")
+        }
+
+        if (e.code === "KeyG") {
+            e.preventDefault()
+            return setMode("AI Generate")
+        }
+
+        if (!selectedId) return
+        const selectedFolder = folders[selectedId]
+
+        if (e.code === "KeyL" && typeof selectedItemId === "number") {
+            return moveInto(selectedFolder.ref ?? selectedId, selectedItemId)
+        }
+
+        if (e.code === "KeyE") {
+            e.preventDefault()
+            setRenameBuffer(selectedId)
+        }
+
+        if (e.code === "KeyD") {
+            if (selectedItemId === childrensId.length - 1) {
+                setSelectedItemId(childrensId.length - 2)
+            }
+            return removeFolder(selectedId)
+        }
+
+        if (e.code === "KeyM") {
+            if (moveBuffer === null) {
+                return setBuffer(selectedId, path[path.length - 1].id)
+            }
+            return moveFolder()
+        }
+
+        if (e.code === "KeyR" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+            return addFolder(selectedFolder.title + " (ref)", selectedId)
+        }
+
+        if (e.code === "KeyC") {
+            if (e.shiftKey) {
+                return copyMarkdown(path[path.length - 1].id)
+            }
+
+            e.preventDefault()
+            return addTextToClipboard(selectedFolder.title)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', Hotkeys)
+        return () => {
+            document.removeEventListener('keydown', Hotkeys)
+        }
+    }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders])
+};

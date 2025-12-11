@@ -8,15 +8,17 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useKeyboard } from "@/hooks/folders/useKeyboard";
 
 export const Folders = () => {
+  useKeyboard()
   const { childrensData, generateFolders, buttons } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
 
   return (
-    <div className={`h-fit mt-12 sm:mt-13 border-neutral-300 dark:border-neutral-700`}>
+    <div className={`h-fit mt-13 border-neutral-300 dark:border-neutral-700`}>
       {childrensData?.map((data, index) => {
         return (
           <Item key={data.id} data={data} index={index} />
