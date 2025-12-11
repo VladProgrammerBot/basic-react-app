@@ -96,7 +96,8 @@ export const useFolderManipulation = () => {
     return keysToDelete
   }
 
-  const removeFolder = async (id: number, parent: number) => {
+  const removeFolder = async (id: number) => {
+    const parent = path[path.length - 1].id;
     childrensRemove(id);
 
     const keysToDelete = structureArray(id);

@@ -8,6 +8,7 @@ import { usePath } from "@/hooks/folders/usePath";
 import { BsPlus } from "react-icons/bs";
 import { useEffect } from "react";
 import { useItem } from "./useItem";
+import { useFolderManipulation } from "./useItemMenu";
 
 export const useFolders = () => {
   const mode = store.use.mode()
@@ -26,6 +27,7 @@ export const useFolders = () => {
   const { alertError } = useAlerts()
   const { moveInto } = useItem()
   const { moveOut } = usePath()
+  const { removeFolder } = useFolderManipulation()
 
 
   const childrensData = useMemo(() => {
@@ -122,6 +124,20 @@ export const useFolders = () => {
     if (e.key === "a") {
       e.preventDefault()
       return setMode("Add Folder")
+    }
+
+    if (e.key === "D") {
+      return removeFolder(
+        folders[childrensId[selectedItemId ?? 0]].id)
+    }
+
+    if (e.key === "g") {
+      e.preventDefault()
+      return setMode("AI Generate")
+    }
+
+    if (e.key === "m" && moveBuffer) {
+      return moveFolder()
     }
 
     if (typeof selectedItemId === "number" && childrensId.length !== 0) {
