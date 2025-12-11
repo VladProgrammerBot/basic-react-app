@@ -22,12 +22,13 @@ export const useFolders = () => {
   const moveBuffer = store.use.moveBuffer()
   const setSelectedItemId = store.use.setSelectedItemId()
   const selectedItemId = store.use.selectedItemId()
+  const setBuffer = store.use.setBuffer()
 
   const { moveFolder } = usePath()
   const { alertError } = useAlerts()
   const { moveInto } = useItem()
   const { moveOut } = usePath()
-  const { removeFolder } = useFolderManipulation()
+  const { removeFolder, replaceFolders, addFolder } = useFolderManipulation()
 
 
   const childrensData = useMemo(() => {
@@ -95,9 +96,11 @@ export const useFolders = () => {
   ]
 
   const Hotkeys = (e: KeyboardEvent) => {
-    if (mode !== "normal" || renameBuffer) return
+    if (mode !== "normal" || renameBuffer || e.repeat) return
+    const selectedId = typeof selectedItemId === "number" ? childrensId[selectedItemId] : null
 
-    if (e.key === "j") {
+    if (e.code === "KeyJ") {
+      if (e.shiftKey && selectedId) replaceFolders(selectedId, -1)
       if (selectedItemId === null) {
         return setSelectedItemId(0)
       }
@@ -106,7 +109,8 @@ export const useFolders = () => {
       }
     }
 
-    if (e.key === "k") {
+    if (e.code === "KeyK") {
+      if (e.shiftKey && selectedId) replaceFolders(selectedId, 1)
       if (selectedItemId === null) {
         return setSelectedItemId(childrensId.length - 1)
       }
@@ -115,41 +119,48 @@ export const useFolders = () => {
       }
     }
 
-    if (e.key === "h" && path.length !== 1) {
+    if (e.code === "KeyH" && path.length !== 1) {
+      if (e.shiftKey) return moveOut(path[0].childrens, 0)
+
       setSelectedItemId(path[path.length - 1].index ?? 0)
       moveOut(path[path.length - 2].childrens, path.length - 2)
       return
     }
 
-    if (e.key === "a") {
+    if (e.code === "KeyA") {
       e.preventDefault()
       return setMode("Add Folder")
     }
 
-    if (e.key === "D") {
-      return removeFolder(
-        folders[childrensId[selectedItemId ?? 0]].id)
-    }
-
-    if (e.key === "g") {
+    if (e.code === "KeyG") {
       e.preventDefault()
       return setMode("AI Generate")
     }
 
-    if (e.key === "m" && moveBuffer) {
+    if (!selectedId) return
+    const selectedFolder = folders[selectedId]
+
+    if (e.code === "KeyD") {
+      if (selectedItemId === childrensId.length - 1) {
+        setSelectedItemId(childrensId.length - 2)
+      }
+      return removeFolder(selectedId)
+    }
+
+    if (e.code === "KeyM") {
+      if (moveBuffer === null) {
+        return setBuffer(selectedId, path[path.length - 1].id)
+      }
       return moveFolder()
     }
 
-    if (typeof selectedItemId === "number" && childrensId.length !== 0) {
-      const selectedFolder = folders[childrensId[selectedItemId]]
-      if (e.key === "l" && typeof selectedItemId === "number")
-        return moveInto(selectedFolder.ref ?? selectedFolder.id, selectedItemId)
+    if (e.code === "KeyR" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      return addFolder(selectedFolder.title + " (ref)", selectedId)
     }
 
-    if (e.key === "K") return setSelectedItemId(0)
-    if (e.key === "J") return setSelectedItemId(childrensId.length - 1)
-    if (e.key === "H" && path.length !== 1) return moveOut(path[0].childrens, 0)
-
+    if (e.code === "KeyL" && typeof selectedItemId === "number") {
+      return moveInto(selectedFolder.ref ?? selectedId, selectedItemId)
+    }
   }
 
   useEffect(() => {
@@ -157,7 +168,7 @@ export const useFolders = () => {
     return () => {
       document.removeEventListener('keydown', Hotkeys)
     }
-  }, [mode, selectedItemId, childrensId])
+  }, [mode, selectedItemId, childrensId, childrensData, moveBuffer, renameBuffer, folders])
 
   return {
     childrensData,

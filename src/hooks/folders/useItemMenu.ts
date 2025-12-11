@@ -17,7 +17,8 @@ export const useFolderManipulation = () => {
     setMode,
     foldersRemove,
     childrensRemove,
-    setReplaceFolder
+    setReplaceFolder,
+    setSelectedItemId
   } = store();
 
   const { alertError } = useAlerts()
@@ -53,6 +54,7 @@ export const useFolderManipulation = () => {
       id
     );
     pushChildren(id);
+    setSelectedItemId(childrensId.length);
 
     if (!isLogin) return
     try {
