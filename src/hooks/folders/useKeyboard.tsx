@@ -65,6 +65,15 @@ export const useKeyboard = () => {
             return setMode("AI Generate")
         }
 
+        if (e.code === "KeyM") {
+            console.log(moveBuffer)
+            if (e.shiftKey) return resetMoveBuffer()
+            if (moveBuffer === null && selectedId) {
+                return setBuffer(selectedId, path[path.length - 1].id)
+            }
+            return moveFolder()
+        }
+
         if (e.code === "KeyP") {
 
         }
@@ -88,14 +97,6 @@ export const useKeyboard = () => {
             return removeFolder(selectedId)
         }
 
-        if (e.code === "KeyM") {
-            if (e.shiftKey) return resetMoveBuffer()
-            if (moveBuffer === null) {
-                return setBuffer(selectedId, path[path.length - 1].id)
-            }
-            return moveFolder()
-        }
-
         if (e.code === "KeyR" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
             return addFolder(selectedFolder.title + " (ref)", selectedId)
         }
@@ -111,9 +112,10 @@ export const useKeyboard = () => {
     }
 
     useEffect(() => {
+        console.log(1)
         document.addEventListener('keydown', Hotkeys)
         return () => {
             document.removeEventListener('keydown', Hotkeys)
         }
-    }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders])
+    }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders, path, setSelectedItemId, setBuffer, resetMoveBuffer, setMode, setRenameBuffer, moveInto, moveOut, moveFolder, removeFolder, replaceFolders, addFolder, copyMarkdown])
 };

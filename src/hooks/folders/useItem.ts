@@ -3,7 +3,7 @@ import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
 
 export const useItem = () => {
-    const { alertError } = useAlerts();
+    const { alertError, useAlert } = useAlerts();
 
     const path = store.use.path();
     const childrensId = store.use.childrensId();
@@ -20,10 +20,10 @@ export const useItem = () => {
 
     const moveInto = (id: number, index: number) => {
         if (childrensId.length === 0) return
-        setSelectedItemId(0 )
-        setParentChildrens(path.length - 1, childrensId);
         const newParent = folders[id];
-        if (!newParent) return;
+        if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
+        setParentChildrens(path.length - 1, childrensId);
+        setSelectedItemId(0)
         setChildrens(newParent.childrens);
         pushPath({...newParent, index});
         window.scrollTo(0, 0);
@@ -49,7 +49,6 @@ export const useItem = () => {
             })
         } catch (error) {
             alertError("rename folder")
-            // console.log(error)
         }
     }
 
