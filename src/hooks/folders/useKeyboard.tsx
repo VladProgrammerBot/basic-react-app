@@ -10,6 +10,7 @@ export const useKeyboard = () => {
     const setSelectedItemId = store.use.setSelectedItemId()
     const selectedItemId = store.use.selectedItemId()
     const setBuffer = store.use.setBuffer()
+    const resetMoveBuffer = store.use.resetMoveBuffer()
     const renameBuffer = store.use.renameBuffer()
     const childrensId = store.use.childrensId()
     const folders = store.use.folders()
@@ -37,10 +38,10 @@ export const useKeyboard = () => {
         }
 
         if (e.code === "KeyK") {
-            if (e.shiftKey && selectedId) replaceFolders(selectedId, 1)
             if (selectedItemId === null) {
                 return setSelectedItemId(childrensId.length - 1)
             }
+            if (e.shiftKey && selectedId) replaceFolders(selectedId, 1)
             if (selectedItemId > 0) {
                 return setSelectedItemId(selectedItemId - 1)
             }
@@ -64,6 +65,10 @@ export const useKeyboard = () => {
             return setMode("AI Generate")
         }
 
+        if (e.code === "KeyP") {
+
+        }
+
         if (!selectedId) return
         const selectedFolder = folders[selectedId]
 
@@ -76,7 +81,7 @@ export const useKeyboard = () => {
             setRenameBuffer(selectedId)
         }
 
-        if (e.code === "KeyD") {
+        if (e.code === "KeyD" && e.shiftKey) {
             if (selectedItemId === childrensId.length - 1) {
                 setSelectedItemId(childrensId.length - 2)
             }
@@ -84,6 +89,7 @@ export const useKeyboard = () => {
         }
 
         if (e.code === "KeyM") {
+            if (e.shiftKey) return resetMoveBuffer()
             if (moveBuffer === null) {
                 return setBuffer(selectedId, path[path.length - 1].id)
             }

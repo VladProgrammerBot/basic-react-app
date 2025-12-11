@@ -21,7 +21,6 @@ export const HiddenCrumbs = ({ hiddenCrumbs }: { hiddenCrumbs: () => folder[] })
                     </TooltipTrigger>
                     <TooltipContent>p</TooltipContent>
                 </Tooltip>
-                {/* ... */}
             </DropdownMenuTrigger>
             <DropdownMenuContent alignOffset={-10} align="start" sideOffset={-5}>
                 {hiddenCrumbs().map((crumb, index) => {
