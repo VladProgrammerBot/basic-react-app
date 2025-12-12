@@ -19,8 +19,10 @@ export function Item({
   const setRenameBuffer = store.use.setRenameBuffer()
   const moveBuffer = store.use.moveBuffer()
   const selectedItemId = store.use.selectedItemId()
+  const setSelectedItemId = store.use.setSelectedItemId()
 
   const handleClick = () => {
+    setSelectedItemId(null)
     moveInto(data.ref ? data.ref : data.id, index);
   }
 

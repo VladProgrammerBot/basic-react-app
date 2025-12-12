@@ -79,6 +79,7 @@ export const useKeyboard = () => {
         const selectedFolder = folders[selectedId]
 
         if (e.code === "KeyL" && typeof selectedItemId === "number") {
+            setSelectedItemId(0)
             return moveInto(selectedFolder.ref ?? selectedId, selectedItemId)
         }
 

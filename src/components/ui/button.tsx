@@ -9,12 +9,12 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-1 bg-neutral-200 border-neutral-700 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700",
+        default: "bg-neutral-200 hover:bg-neutral-300 dark:bg-neutral-800 dark:hover:bg-neutral-700",
         disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
         outline:
-          "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800",
+          "text-black dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
           
@@ -22,7 +22,7 @@ export const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost2:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        ghost: "hover:bg-neutral-800 duration-150",
+        ghost: "duration-150",
       },
       size: {
         default: "px-6 py-2 has-[>svg]:px-4",
