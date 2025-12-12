@@ -20,6 +20,8 @@ export interface childrensSlice {
 
 export interface pathSlice {
     path: (folder & { index?: number })[];
+    isMenuOpen: boolean;
+    toggleMenu: () => void;
     pushPath: (folder: folder & { index: number }) => void;
     setPath: (folder: folder) => void;
     reducePath: (index: number) => void;

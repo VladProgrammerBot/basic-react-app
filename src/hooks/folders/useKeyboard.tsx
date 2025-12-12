@@ -18,6 +18,7 @@ export const useKeyboard = () => {
     const setMode = store.use.setMode()
     const path = store.use.path();
     const setRenameBuffer = store.use.setRenameBuffer();
+    const toggleMenu = store.use.toggleMenu()
 
     const { moveInto } = useItem()
     const { moveOut, moveFolder } = usePath()
@@ -66,7 +67,6 @@ export const useKeyboard = () => {
         }
 
         if (e.code === "KeyM") {
-            console.log(moveBuffer)
             if (e.shiftKey) return resetMoveBuffer()
             if (moveBuffer === null && selectedId) {
                 return setBuffer(selectedId, path[path.length - 1].id)
@@ -75,7 +75,7 @@ export const useKeyboard = () => {
         }
 
         if (e.code === "KeyP") {
-
+            toggleMenu()
         }
 
         if (!selectedId) return
@@ -112,10 +112,9 @@ export const useKeyboard = () => {
     }
 
     useEffect(() => {
-        console.log(1)
         document.addEventListener('keydown', Hotkeys)
         return () => {
             document.removeEventListener('keydown', Hotkeys)
         }
-    }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders, path, setSelectedItemId, setBuffer, resetMoveBuffer, setMode, setRenameBuffer, moveInto, moveOut, moveFolder, removeFolder, replaceFolders, addFolder, copyMarkdown])
+    }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders, path, toggleMenu, setSelectedItemId, setBuffer, resetMoveBuffer, setMode, setRenameBuffer, moveInto, moveOut, moveFolder, removeFolder, replaceFolders, addFolder, copyMarkdown])
 };

@@ -11,11 +11,12 @@ import {
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 
 export const Folders = () => {
-  useKeyboard()
   const { childrensData, generateFolders, buttons } = useFolders()
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
+  
+  useKeyboard()
 
   return (
     <div className={`h-fit mt-13 border-neutral-300 dark:border-neutral-700`}>

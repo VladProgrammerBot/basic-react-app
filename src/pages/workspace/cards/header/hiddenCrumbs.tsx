@@ -10,11 +10,15 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import store from "@/state/store";
 
 export const HiddenCrumbs = ({ hiddenCrumbs }: { hiddenCrumbs: () => folder[] }) => {
+    const isMenuOpen = store.use.isMenuOpen()
+    const toggleMenu = store.use.toggleMenu()
+
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger>
+        <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
+            <DropdownMenuTrigger className="outline-none">
                 <Tooltip>
                     <TooltipTrigger asChild className="cursor-pointer px-2 hover:bg-neutral-200 duration-150 dark:hover:bg-neutral-800 rounded-md outline-none">
                         <p>...</p>

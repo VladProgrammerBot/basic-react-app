@@ -8,15 +8,15 @@ import { useEffect } from "react";
 
 export const Home = () => {
   const navigate = useNavigate()
-const diffTable = [
-  ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
-  ["Organization", "🟢 Yes", "🔴 No", "🟢 Yes", "🟢 Yes"],
-  ["Scalability", "🔴 None", "🔴 None", "🟡 Partial", "🟢 Infinite"],
-  ["Ease of use", "🟡 Medium", "🟢 Very easy", "🔴 Hard", "🟢 Easy"],
-  ["Speed of use", "🔴 Very slow", "🟢 Fast", "🔴 Slow", "🟢 Fast"],
-  ["Mobile adaptive", "⚪ N/A", "🟢 Full", "🟡 Partial", "🟢 Full"],
-  ["Keyboard shortcuts", "⚪ N/A", "🔴 None", "🟡 Partial", "🟢 full"],
-];
+  const diffTable = [
+    ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
+    ["Organization", "🟢 Yes", "🔴 No", "🟢 Yes", "🟢 Yes"],
+    ["Scalability", "🔴 None", "🔴 None", "🟡 Partial", "🟢 Infinite"],
+    ["Ease of use", "🟡 Medium", "🟢 Very easy", "🔴 Hard", "🟢 Easy"],
+    ["Speed of use", "🔴 Very slow", "🟢 Fast", "🔴 Slow", "🟢 Fast"],
+    ["Mobile adaptive", "⚪ N/A", "🟢 Full", "🟡 Partial", "🟢 Full"],
+    ["Keyboard shortcuts", "⚪ N/A", "🔴 None", "🟡 Partial", "🟢 full"],
+  ];
 
   const mouseDownEvent = (e: KeyboardEvent) => {
     if (e.key === "l") {

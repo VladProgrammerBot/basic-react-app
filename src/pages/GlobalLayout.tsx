@@ -7,7 +7,7 @@ export const GlobalLayout = () => {
     useEffect(() => {
         if (localStorage.getItem("token")) navigate("/workspace")
     }, [])
-    
+
     return (
         <Outlet />
     );
