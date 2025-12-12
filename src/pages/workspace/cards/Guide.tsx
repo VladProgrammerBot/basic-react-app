@@ -37,8 +37,9 @@ export const Guide = () => {
     const beforeLast = basicGuide.length - 2
 
     return (
-        <div className="fixed bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-xl shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-neutral-800 p-2 text-center">
+        <div className="fixed bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-md shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-neutral-800 p-2 text-center">
             <Button
+                variant={"ghost"}
                 onClick={() => setIsGuideOpen(!isGuideOpen)}
                 className="w-full">
                 {isGuideOpen ? <FaAngleDown /> : <FaAngleUp />}

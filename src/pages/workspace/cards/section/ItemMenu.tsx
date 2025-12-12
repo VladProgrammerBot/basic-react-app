@@ -4,6 +4,7 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuSeparator,
+    DropdownMenuShortcut,
     DropdownMenuTrigger,
     ItemStyle,
 } from "@/components/ui/dropdown-menu"
@@ -46,18 +47,21 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                         setBuffer(data.id, data.parent ?? 0)
                     }}>
                     <MdOutlineShortcut /> Cut {"(move)"}
+                    <DropdownMenuShortcut>m</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     disactive={index === 0}
                     onClick={() => replaceFolders(data.id, 1)}
                 >
                     <IoIosArrowUp /> Move Up
+                    <DropdownMenuShortcut>shift+k</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     disactive={index === childrensId.length - 1}
                     onClick={() => replaceFolders(data.id, -1)}
                 >
                     <IoIosArrowDown /> Move Down
+                    <DropdownMenuShortcut>shift+j</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -65,12 +69,14 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                         addFolder(data.title + " (ref)", data.id)
                     }} className="flex">
                     <PiLinkSimpleBold /> Create Link
+                    <DropdownMenuShortcut>r</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => copyMarkdown(data.id)}
                     className="flex"
                 >
                     <MdContentCopy /> Copy Markdown
+                    <DropdownMenuShortcut>shift+c</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -79,10 +85,15 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
                     }}>
                     <LuPencil />
                     Edit
+                    <DropdownMenuShortcut>e</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <AlertDialog>
-                    <AlertDialogTrigger onClick={() => data.childrens.length === 0 && removeFolder(data.id)} className={ItemStyle + " dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
-                        <RiDeleteBinLine />Remove</AlertDialogTrigger>
+                    <AlertDialogTrigger
+                        onClick={() => data.childrens.length === 0 && removeFolder(data.id)}
+                        className={ItemStyle + "flex justify-between dark:hover:bg-neutral-700 hover:bg-neutral-200 w-full"}>
+                        <p className="flex items-center gap-4"><RiDeleteBinLine />Remove</p>
+                        <DropdownMenuShortcut>shift+d</DropdownMenuShortcut>
+                    </AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
                             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

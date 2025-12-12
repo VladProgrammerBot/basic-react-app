@@ -50,10 +50,7 @@ export const useKeyboard = () => {
 
         if (e.code === "KeyH" && path.length !== 1) {
             if (e.shiftKey) return moveOut(path[0].childrens, 0)
-
-            setSelectedItemId(path[path.length - 1].index ?? 0)
-            moveOut(path[path.length - 2].childrens, path.length - 2)
-            return
+            return moveOut(path[path.length - 2].childrens, path.length - 2)
         }
 
         if (e.code === "KeyA") {

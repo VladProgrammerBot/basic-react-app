@@ -13,8 +13,10 @@ export const usePath = () => {
     const path = store.use.path();
     const { alertError, useAlert } = useAlerts()
     const isLogin = store.use.isLogin()
+    const setSelectedItemId = store.use.setSelectedItemId()
 
     const moveOut = (childrens: number[], index: number) => {
+        setSelectedItemId(path[index + 1].index ?? 0)
         reducePath(index);
         setChildrens(childrens);
         window.scrollTo(0, 0);
