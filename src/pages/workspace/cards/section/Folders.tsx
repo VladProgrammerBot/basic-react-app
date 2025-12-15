@@ -38,7 +38,7 @@ export const Folders = () => {
         if (button.cond) {
           return (
             <Tooltip key={index}>
-              <TooltipTrigger className="flex-1" onClick={button.func} >
+              <TooltipTrigger asChild className="flex-1" onClick={button.func} >
                 <Button className="w-full">
                   {button.icon} {button.title}
                 </Button>
