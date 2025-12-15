@@ -4,7 +4,6 @@ import store from "@/state/store";
 import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
 import { FaFolder, FaRegFolder } from "react-icons/fa";
-import { FiMinus } from "react-icons/fi";
 import { PiLinkSimpleBold } from "react-icons/pi";
 
 export function Item({

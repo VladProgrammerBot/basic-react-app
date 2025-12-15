@@ -9,7 +9,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
-import { FaFolderPlus } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
