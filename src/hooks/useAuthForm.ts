@@ -28,6 +28,7 @@ export const useLogin = (type: authType) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      password: "",
     },
   });
   const path = store.use.path()
