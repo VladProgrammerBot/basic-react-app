@@ -5,7 +5,8 @@ const api = import.meta.env.VITE_API;
 import { RiGeminiFill } from "react-icons/ri";
 import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
-import { BsPlus } from "react-icons/bs";
+import { RiFolderAddLine } from "react-icons/ri";
+import { RiAiGenerate } from "react-icons/ri";
 
 export const useFolders = () => {
   const folders = store.use.folders();
@@ -17,7 +18,7 @@ export const useFolders = () => {
   const moveBuffer = store.use.moveBuffer()
 
   const { moveFolder } = usePath()
-  const { alertError } = useAlerts()
+  const { alertError, useAlert } = useAlerts()
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(0);
@@ -62,15 +63,15 @@ export const useFolders = () => {
   const buttons = [
     {
       title: "Add",
-      icon: <BsPlus fontSize={25} />,
+      icon: <RiFolderAddLine />,
       func: () => setMode("Add Folder"),
       cond: true,
       Hotkeys: "a"
     },
     {
       title: "Generate",
-      icon: <RiGeminiFill />,
-      func: () => setMode("AI Generate"),
+      icon: <RiAiGenerate />,
+      func: () => localStorage.getItem("token") ? setMode("AI Generate") : useAlert({color: "blue", text: "Log in to use AI features."}),
       cond: true,
       Hotkeys: "g"
     },

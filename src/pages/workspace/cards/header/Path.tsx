@@ -30,7 +30,6 @@ export const Path = () => {
               Shift + h
             </TooltipContent>
           </Tooltip>
-
         )}
         {hiddenCrumbs().length !== 0 &&
           <div className="flex relative">

@@ -80,6 +80,9 @@ export const Home = () => {
             })}
           </tbody>
         </table>
+        <div className="w-full max-w-4xl mt-80">
+          Yes!
+        </div>
         <Footer />
       </div>
     </div>

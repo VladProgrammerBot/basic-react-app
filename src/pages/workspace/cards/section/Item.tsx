@@ -3,7 +3,7 @@ import { ItemMenu } from "./ItemMenu";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
-import { FaFolder } from "react-icons/fa";
+import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { FiMinus } from "react-icons/fi";
 import { PiLinkSimpleBold } from "react-icons/pi";
 
@@ -38,8 +38,8 @@ export function Item({
             className={`flex pl-2 py-1 relative space-x-2 w-full duration-150`}
             onClick={handleClick}
           >
-            <div className={`text-neutral-400 dark:text-neutral-500 pt-2 text-center flex justify-center min-w-8`}>
-              {data.ref ? <PiLinkSimpleBold /> : childrensLength > 0 ? <FaFolder /> : <FiMinus />}
+            <div className={`text-green-400 dark:text-neutral-500 pt-2 text-center flex justify-center min-w-8`}>
+              {data.ref ? <PiLinkSimpleBold /> : childrensLength > 0 ? <FaFolder /> : <FaRegFolder />}
             </div>
             <p
               className={`duration-150 py-1 ${moveBuffer?.id === data.id && "opacity-50"}`}

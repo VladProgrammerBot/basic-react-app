@@ -20,9 +20,9 @@ export const buttonVariants = cva(
           
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost2:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        ghost: "duration-150",
+        ghost:
+          "hover:bg-neutral-300 hover:text-black dark:hover:bg-neutral-700 dark:hover:text-white text-xl text-neutral-600 dark:text-neutral-400",
+        ghost2: "duration-150",
       },
       size: {
         default: "px-6 py-2 has-[>svg]:px-4",
