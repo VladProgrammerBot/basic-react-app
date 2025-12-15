@@ -2,11 +2,10 @@ import { useMemo } from "react";
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
-import { RiGeminiFill } from "react-icons/ri";
 import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
-import { RiFolderAddLine } from "react-icons/ri";
 import { RiAiGenerate } from "react-icons/ri";
+import { IoMdAdd } from "react-icons/io";
 
 export const useFolders = () => {
   const folders = store.use.folders();
@@ -62,8 +61,8 @@ export const useFolders = () => {
 
   const buttons = [
     {
-      title: "Add",
-      icon: <RiFolderAddLine />,
+      // title: "Add",
+      icon: <IoMdAdd />,
       func: () => setMode("Add Folder"),
       cond: true,
       Hotkeys: "a"

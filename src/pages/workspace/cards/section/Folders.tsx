@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
+import { FaFolderPlus } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 export const Folders = () => {
@@ -16,11 +17,12 @@ export const Folders = () => {
   const { addFolder } = useFolderManipulation()
   const setMode = store(state => state.setMode)
   const mode = store.use.mode()
+  const childrensId = store.use.childrensId()
 
   useKeyboard()
 
   return (
-    <div className={`h-fit mt-13 border-neutral-300 dark:border-neutral-700`}>
+    <div className={`h-fit mt-13 max-md:px-2 border-neutral-300 dark:border-neutral-700`}>
       {childrensData?.map((data, index) => {
         return (
           <Item key={data.id} data={data} index={index} />
@@ -34,12 +36,12 @@ export const Folders = () => {
           generateFolders(value)
         }} />
       )}
-      {mode === "normal" && <div className="mt-2 flex gap-2 max-md:px-2">{buttons.map((button, index) => {
+      {mode === "normal" && <div className={`flex gap-2 ${childrensId.length !== 0 && "pt-2"}`}>{buttons.map((button, index) => {
         if (button.cond) {
           return (
             <Tooltip key={index}>
-              <TooltipTrigger asChild className="flex-1" onClick={button.func} >
-                <Button className="w-full">
+              <TooltipTrigger asChild onClick={button.func} >
+                <Button className="flex-1 py-3 md:py-2">
                   {button.icon} {button.title}
                 </Button>
               </TooltipTrigger>
@@ -53,6 +55,6 @@ export const Folders = () => {
         }
       })}</div>}
     </div>
-    
+
   );
 };

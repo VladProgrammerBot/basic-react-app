@@ -30,15 +30,15 @@ export function Item({
 
   return (
     <ItemLayout
-      className={`flex group/item cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-800 ${selectedItemId === index && "bg-neutral-200 dark:bg-neutral-800"}`}
+      className={`flex group/item cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800 ${selectedItemId === index && "bg-neutral-200 dark:bg-neutral-800"}`}
     >
       {renameBuffer !== data.id ? (
         <>
           <div
-            className={`flex pl-2 py-1 relative space-x-2 w-full duration-150`}
+            className={`flex pl-4 py-2 md:py-1 relative space-x-2 w-full duration-150`}
             onClick={handleClick}
           >
-            <div className={`text-green-400 dark:text-neutral-500 pt-2 text-center flex justify-center min-w-8`}>
+            <div className={`text-green-400 pr-2 dark:text-neutral-500 pt-2 text-center flex justify-center `}>
               {data.ref ? <PiLinkSimpleBold /> : childrensLength > 0 ? <FaFolder /> : <FaRegFolder />}
             </div>
             <p
