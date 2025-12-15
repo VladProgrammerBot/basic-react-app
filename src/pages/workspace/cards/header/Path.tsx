@@ -8,6 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button";
 
 export const Path = () => {
   const path = store.use.path()
@@ -60,9 +61,9 @@ export const Path = () => {
           )
         })}
       </div>
-      <button onClick={toggleBar} className="cursor-pointer h-full p-2 duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800">
+      <Button variant={"ghost"} size={"icon"} onClick={toggleBar}>
         <LuMenu fontSize={20} />
-      </button>
+      </Button>
     </div>
   );
 };

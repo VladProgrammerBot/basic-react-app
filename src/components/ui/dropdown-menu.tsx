@@ -81,7 +81,7 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        isStyled && `duration-150 ${disactive ? "text-neutral-500 cursor-auto" : "hover:bg-neutral-300 dark:hover:bg-neutral-700"} ${ItemStyle}`,
+        isStyled && `md:duration-150 ${disactive ? "text-neutral-500 cursor-auto" : "hover:bg-neutral-300 dark:hover:bg-neutral-700"} ${ItemStyle}`,
         className,
       )}
       {...props}
