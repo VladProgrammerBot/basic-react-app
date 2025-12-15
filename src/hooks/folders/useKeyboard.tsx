@@ -25,14 +25,14 @@ export const useKeyboard = () => {
     const { removeFolder, replaceFolders, addFolder, copyMarkdown } = useFolderManipulation()
 
     const Hotkeys = (e: KeyboardEvent) => {
-        if (mode !== "normal" || renameBuffer || e.repeat) return
+        if (mode !== "normal" || renameBuffer) return
         const selectedId = typeof selectedItemId === "number" ? childrensId[selectedItemId] : null
 
         if (e.code === "KeyJ") {
-            if (e.shiftKey && selectedId) replaceFolders(selectedId, -1)
             if (selectedItemId === null) {
                 return setSelectedItemId(0)
             }
+            if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, -1)
             if (selectedItemId < childrensId.length - 1) {
                 return setSelectedItemId(selectedItemId + 1)
             }
@@ -42,11 +42,13 @@ export const useKeyboard = () => {
             if (selectedItemId === null) {
                 return setSelectedItemId(childrensId.length - 1)
             }
-            if (e.shiftKey && selectedId) replaceFolders(selectedId, 1)
+            if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, 1)
             if (selectedItemId > 0) {
                 return setSelectedItemId(selectedItemId - 1)
             }
         }
+
+        if (e.repeat) return
 
         if (e.code === "KeyH" && path.length !== 1) {
             if (e.shiftKey) return moveOut(path[0].childrens, 0)
