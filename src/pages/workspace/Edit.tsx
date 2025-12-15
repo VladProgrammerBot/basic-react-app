@@ -14,17 +14,20 @@ export const Edit = () => {
   const isBarOpen = store.use.isBarOpen()
   const toggleBar = store.use.toggleBar()
   const closeBar = store.use.closeBar()
-  const isLogin = store.use.isLogin()
   const setIsLogin = store.use.setIsLogin()
+  const setIsGuideOpen = store.use.setIsGuideOpen()
+  const isGuideOpen = store.use.isGuideOpen()
   const { getUsersFolders, getTemplateFolders } = useEdit()
 
   useEffect(() => {
     closeBar()
     if (Object.keys(folders).length !== 0) return
     if (localStorage.getItem("token")) {
+      setIsGuideOpen(false)
       setIsLogin(true)
       getUsersFolders();
     } else {
+      setIsGuideOpen(true)
       setIsLogin(false)
       getTemplateFolders()
     }
@@ -49,7 +52,7 @@ export const Edit = () => {
         </>
       )}
       <Messages />
-      {!isLogin && <Guide />}
+      {isGuideOpen && <Guide />}
     </div>
   );
 };

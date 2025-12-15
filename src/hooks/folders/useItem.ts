@@ -15,16 +15,16 @@ export const useItem = () => {
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
     const folders = store.use.folders()
-    const isLogin = store.use.isLogin()
+    const isGuideOpen = store.use.isLogin()
 
     const moveInto = (id: number, index: number) => {
         if (childrensId.length === 0) return
         const newParent = folders[id];
         if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
         setParentChildrens(path.length - 1, childrensId);
-        
+
         setChildrens(newParent.childrens);
-        pushPath({...newParent, index});
+        pushPath({ ...newParent, index });
         window.scrollTo(0, 0);
     };
 
@@ -33,7 +33,7 @@ export const useItem = () => {
         setRenameFolder(renameBuffer, title)
         setRenameBuffer(null)
 
-        if (!isLogin) return
+        if (!isGuideOpen) return
         try {
             await fetch(api + "/folders/rename", {
                 method: "POST",

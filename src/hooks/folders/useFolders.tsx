@@ -4,7 +4,7 @@ import { useAlerts } from "../useAlerts";
 const api = import.meta.env.VITE_API;
 import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
-import { RiAiGenerate } from "react-icons/ri";
+import { RiGeminiFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 
 export const useFolders = () => {
@@ -69,7 +69,7 @@ export const useFolders = () => {
     },
     {
       title: "Generate",
-      icon: <RiAiGenerate />,
+      icon: <RiGeminiFill />,
       func: () => localStorage.getItem("token") ? setMode("AI Generate") : useAlert({color: "blue", text: "Log in to use AI features."}),
       cond: true,
       Hotkeys: "g"

@@ -6,6 +6,7 @@ import { MdLogout } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { TiHome } from "react-icons/ti";
 import { PiSignInBold } from "react-icons/pi";
+import { FaBook } from "react-icons/fa";
 
 export const Bar = () => {
     const navigate = useNavigate()
@@ -14,6 +15,8 @@ export const Bar = () => {
     const setFolders = store.use.setFolders()
     const [username, setUsername] = useState("")
     const isLogin = store.use.isLogin()
+    const setIsGuideOpen = store.use.setIsGuideOpen()
+    const isGuideOpen = store.use.isGuideOpen()
 
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -31,11 +34,20 @@ export const Bar = () => {
             <div className="text-2xl py-2 text-center">
                 {username}
             </div>
-            <Button className="w-full" onClick={() => {
+            <Button variant={"ghost"} className="w-full px-3 justify-start" onClick={() => {
                 navigate("/")
             }}><TiHome className="text-xl" /> Home</Button>
+            {!isGuideOpen && (
+                <Button variant={"ghost"} className="w-full px-3 justify-start" onClick={() => {
+                    setIsGuideOpen(true)
+                    toggleBar()
+                }}>
+                    <FaBook className="text-xl" /> Guide
+                </Button>
+            )}
+
             {isLogin ?
-                <Button className="w-full" onClick={() => {
+                <Button variant={"ghost"} className="w-full px-3 justify-start" onClick={() => {
                     navigate("/login")
                     localStorage.clear()
                     setFolders({})
@@ -43,7 +55,7 @@ export const Bar = () => {
                     <MdLogout className="text-xl" /> Log out
                 </Button> : (
                     <Link to={"/signup"}>
-                        <Button className="w-full text-black dark:text-white">
+                        <Button variant={"ghost"} className="w-full px-3 justify-start text-black dark:text-white">
                             <PiSignInBold className="text-xl" /> Create account
                         </Button>
                     </Link>

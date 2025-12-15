@@ -37,7 +37,7 @@ export function Item({
             className={`flex pl-4 py-2 md:py-1 relative space-x-2 w-full duration-150`}
             onClick={handleClick}
           >
-            <div className={`text-green-400 pr-2 dark:text-neutral-500 pt-2 text-center flex justify-center `}>
+            <div className={`text-neutral-400 pr-2 dark:text-neutral-500 pt-2 text-center flex justify-center `}>
               {data.ref ? <PiLinkSimpleBold /> : childrensLength > 0 ? <FaFolder /> : <FaRegFolder />}
             </div>
             <p

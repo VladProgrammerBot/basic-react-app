@@ -48,14 +48,14 @@ export const Home = () => {
           className="w-45 aspect-square mx-auto mb-2 mt-8 drop-shadow-lg drop-shadow-white dark:drop-shadow-neutral-950"
           src="https://cdn-icons-png.freepik.com/512/8298/8298289.png" alt="" />
         <div className="flex flex-col items-center pb-75 space-y-6">
-          <p className="text-4xl space-x-4 justify-center flex flex-wrap sm:text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-600">
+          <div className="text-4xl space-x-4 justify-center flex flex-wrap sm:text-5xl font-bold w-fit text-shadow-neutral-500 text-center drop-shadow-lg dark:drop-shadow-neutral-600">
             <p>
               1000 notes
             </p>
             <p>
               feel like 10
             </p>
-          </p>
+          </div>
           <p className="text-md sm:text-xl text-neutral-500 text-center">
             Quickly organize and store text information such as ideas, goals, plans, and more.
           </p>

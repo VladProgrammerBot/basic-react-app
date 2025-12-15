@@ -66,3 +66,8 @@ export interface keyNaviSlice {
     selectedItemId: number | null,
     setSelectedItemId: (dir: number | null) => void
 }
+
+export interface guideSlice {
+    isGuideOpen: boolean,
+    setIsGuideOpen: (state: boolean) => void
+}

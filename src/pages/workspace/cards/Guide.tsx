@@ -2,9 +2,11 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import store from "@/state/store";
 
 export const Guide = () => {
     const [isGuideOpen, setIsGuideOpen] = useState(true)
+    const setIsGuideShow = store.use.setIsGuideOpen()
     const [currentStep, setCurrentStep] = useState(0)
     const basicGuide = [
         {
@@ -37,7 +39,7 @@ export const Guide = () => {
     const beforeLast = basicGuide.length - 2
 
     return (
-        <div className="fixed rounded-md bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-md shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-neutral-800 p-2 text-center">
+        <div className="fixed rounded-md bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-md shadow-neutral-100 dark:shadow-neutral-950 bg-neutral-100 dark:bg-neutral-800 p-2 text-center">
             <Button
                 variant={"ghost"}
                 onClick={() => setIsGuideOpen(!isGuideOpen)}
@@ -56,11 +58,16 @@ export const Guide = () => {
                     <span>{currentStep > 0 && <Button onClick={() => setCurrentStep(prev => prev -= 1)}>
                         {currentStep < beforeLast + 1 ? "Prev" : "Go back"}
                     </Button>}</span>
-                    <span>{currentStep < beforeLast + 1 && <Button onClick={() => setCurrentStep(prev => prev += 1)}>
-                        {currentStep < beforeLast ? "Next" : "Finish"}
-                    </Button>}</span>
+                    <span>
+                        {currentStep < beforeLast + 1 && <Button onClick={() => setCurrentStep(prev => prev += 1)}>
+                            {currentStep < beforeLast ? "Next" : "Finish"}
+                        </Button>}</span>
+                    {currentStep === beforeLast + 1 && <Button onClick={() => setIsGuideShow(false)}>
+                        Close
+                    </Button>}
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     )
 }
