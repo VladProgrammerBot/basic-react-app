@@ -256,6 +256,10 @@ export const Home = () => {
             Start with 5 steps
           </Button>
 
+          <p className="mt-4 max-md:invisible text-xs text-neutral-400">
+            Press <b>W</b> to open workspace · <b>L</b> to login
+          </p>
+
           {/* Quick Stats */}
           <div className="flex flex-wrap justify-center gap-8 mt-16">
             <div className="text-center">
