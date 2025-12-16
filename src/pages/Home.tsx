@@ -26,10 +26,6 @@ export const Home = () => {
 
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
-
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -64,7 +60,7 @@ export const Home = () => {
   const ParticleBackground = () => {
     return (
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
@@ -193,7 +189,7 @@ export const Home = () => {
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <TbRocket className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold text-blue-300">
               Strukt
             </span>
           </div>
