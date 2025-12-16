@@ -1,21 +1,61 @@
 import { Button } from "@/components/ui/button";
-import { Link, NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { Footer } from "./workspace/cards/footer";
-import { Brain, CheckCircle2, HeartHandshake } from "lucide-react";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { GiProgression, GiStarsStack } from "react-icons/gi";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TbArrowRight, TbDeviceMobile, TbKeyboard, TbRocket, TbSparkles } from "react-icons/tb";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 export const Home = () => {
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // const springConfig = { damping: 25, stiffness: 700 };
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  // const mouseXSpring = useSpring(mouseX, springConfig);
+  // const mouseYSpring = useSpring(mouseY, springConfig);
+  // const rotateX = useTransform(mouseYSpring, [0, 1], ["15deg", "-15deg"]);
+  // const rotateY = useTransform(mouseXSpring, [0, 1], ["-15deg", "15deg"]);
+  const navigate = useNavigate();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
+  useEffect(() => {
+      setIsLoggedIn(!!localStorage.getItem("token"));
+      
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!containerRef.current) return;
+        
+        const rect = containerRef.current.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        
+        const x = (e.clientX - rect.left) / width;
+        const y = (e.clientY - rect.top) / height;
+        
+        mouseX.set(x);
+        mouseY.set(y);
+      };
+  
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
+
+  // const DimensionPortal = () => {
+  //   return (
+  //     <motion.div 
+  //       className="relative w-full h-[400px] rounded-3xl overflow-hidden my-12"
+  //       style={{ rotateX, rotateY }}
+  //       ref={containerRef}
+  //     >
+  //       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-transparent" />
+  //       <img className="w-full object-cover opacity-90" src="https://img.freepik.com/premium-photo/modern-futuristic-neon-light-background_33739-414.jpg" alt="" />
+  //     </motion.div>
+  //   );
+  // };
   const ParticleBackground = () => {
     return (
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -106,10 +146,10 @@ export const Home = () => {
   ];
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === "l" && (e.ctrlKey || e.metaKey)) {
+    if (e.key === "l") {
       navigate("login");
     }
-    if (e.key === "w" && (e.ctrlKey || e.metaKey)) {
+    if (e.key === "w") {
       navigate("workspace");
     }
   };
@@ -118,35 +158,6 @@ export const Home = () => {
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, []);
-
-  const getStatus = (value: string): TableIconProps['status'] => {
-    if (value === "🟢 Yes") return "Yes"; // Збережено для сумісності, якщо ви десь ще використовуєте старі дані
-    if (value === "🔴 No" || value === "🔴 None" || value === "🔴 Very slow" || value === "🔴 Hard" || value === "🔴 Slow") return "No";
-    if (value === "🟡 Partial" || value === "🟡 Medium") return "Partial";
-    if (value === "⚪ N/A") return "N/A";
-    return value as TableIconProps['status']; // Припускаємо, що це вже один із чистих статусів
-  }
-
-  interface TableIconProps {
-    status: "Yes" | "No" | "Partial" | "N/A" | "None";
-  }
-
-  const TableIcon: React.FC<TableIconProps> = ({ status }) => {
-    const iconClass = "mx-auto w-5 h-5";
-
-    switch (status) {
-      case "Yes":
-        return <CheckCircle2 className={`${iconClass} text-emerald-500`} />;
-      case "Partial":
-        return <svg className={`${iconClass} text-yellow-500`} fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>;
-      case "No":
-      case "None":
-        return <IoCloseCircleOutline className={`${iconClass} text-rose-500`} />;
-      case "N/A":
-      default:
-        return <span className="text-neutral-400 text-sm">N/A</span>;
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900">
@@ -161,17 +172,6 @@ export const Home = () => {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
-{/* 
-      <div className="fixed bottom-0 left-0 right-0 z-100">
-        <div className="h-4 bg-gradient-to-b from-transparent to-white/20"></div>
-
-        <div className="h-28 bg-gradient-to-t from-white/0 via-white/20 to-white/5
-              backdrop-blur-2xl">
-          <div className="p-4">
-            Контент тут
-          </div>
-        </div>
-      </div> */}
 
       <div className="relative p-4 md:p-6 max-w-7xl mx-auto">
         {/* Navigation */}
@@ -215,11 +215,6 @@ export const Home = () => {
               ⚡ Version 1.0 Now Live
             </span>
           </div>
-          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mb-8">
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-              🚀 Version 1.0 Now Live
-            </span>
-          </div> */}
 
           <p className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
             <span className=" bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
@@ -241,16 +236,6 @@ export const Home = () => {
               >
                 10
               </motion.span>
-              {/* <span className="relative text-shadow-[0 0 10px #00ffff]">
-                10
-                <motion.span
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 4 }}
-                  className="absolute -right-8 top-0 text-4xl"
-                >
-                  ✨
-                </motion.span>
-              </span> */}
             </span>
           </p>
 
@@ -288,6 +273,8 @@ export const Home = () => {
           </div>
         </motion.div>
 
+        {/* <DimensionPortal /> */}
+
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -302,7 +289,7 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+                className="bg-white shadow-2xl shadow-blue-500/10 dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4">
                   {feature.icon}
@@ -314,43 +301,6 @@ export const Home = () => {
           </div>
         </motion.div>
 
-        {/* </AnimatePresence> */}
-
-        {/* Comparison Table */}
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { duration: .3 } }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <h2 className="text-3xl font-bold text-center mb-10">Why Choose Strukt?</h2>
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg overflow-hidden border border-neutral-200 dark:border-neutral-700">
-            <table className="w-full text-sm sm:text-lg mx-auto border-separate border-spacing-0 rounded-xl overflow-hidden shadow-lg dark:shadow-neutral-900">
-              <thead className="bg-blue-600 dark:bg-blue-800">
-                <tr className="text-white">
-                  {diffTable[0].map((item, index) => {
-                    return <th key={index} className={`py-3 sm:p-4 text-start ${index === 0 ? "pl-4 rounded-tl-xl" : ""} ${index === diffTable[0].length - 1 ? "rounded-tr-xl" : ""} font-semibold`}>{item}</th>
-                  })}
-                </tr>
-              </thead>
-
-              <tbody>
-                {diffTable.map((row, rowIndex) => {
-                  if (rowIndex === 0) return null
-                  return (
-                    <tr key={rowIndex} className={`${rowIndex % 2 === 0 ? "bg-neutral-100 dark:bg-neutral-800" : "bg-white dark:bg-neutral-900"} border-b dark:border-neutral-700 last:border-b-0`}>
-                      {row.map((item, itemIndex) => (
-                        <td key={itemIndex} className={`py-3 sm:p-4 ${itemIndex === 0 ? "pl-4 font-medium" : "text-center"}`}>
-                          {itemIndex === 0 ? item : <TableIcon status={getStatus(item)} />}
-                        </td>
-                      ))}
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-          </div>
-        </motion.div> */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -426,7 +376,7 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+                className="bg-white shadow-2xl shadow-blue-500/10 dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <img
