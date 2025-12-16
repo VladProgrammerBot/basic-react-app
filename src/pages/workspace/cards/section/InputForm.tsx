@@ -23,7 +23,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
     }
 
     return (
-        <div className={`px-4 w-full`} onKeyDown={(e) => {
+        <div className={`pl-4 pr-2 w-full`} onKeyDown={(e) => {
             e.key === "Enter" ? submit() :
                 e.key === "Escape" ? cancelFunc() : null
         }
@@ -31,7 +31,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
             <div className="flex pl-4">
                 <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
             </div>
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-2 pb-2">
                 <Button onClick={cancelFunc} variant={"outline"}>Cancel</Button>
                 <Button onClick={submit}>{isLoading && <span className="auth-loader"></span>}{submitTitle}</Button>
             </div>
