@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, NavLink, useNavigate } from "react-router";
 import { Footer } from "./workspace/cards/footer";
-import { CheckCircle2, HeartHandshake } from "lucide-react";
+import { Brain, CheckCircle2, HeartHandshake } from "lucide-react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useState } from "react";
@@ -42,14 +42,23 @@ export const Home = () => {
     );
   };
 
+  // const diffTable = [
+  //   ["Критерій", "Notebook", "Notes", "Notion", "Strukt"],
+  //   ["Організація", "Yes", "No", "Yes", "Yes"],
+  //   ["Масштабованість", "None", "None", "Partial", "Yes"],
+  //   ["Зручність використання", "Partial", "Yes", "No", "Yes"],
+  //   ["Швидкість роботи", "None", "Yes", "No", "Yes"],
+  //   ["Мобільна адаптивність", "N/A", "Yes", "Partial", "Yes"],
+  //   ["Клавіатурні скорочення", "N/A", "None", "Partial", "Yes"],
+  // ];
   const diffTable = [
-    ["Критерій", "Notebook", "Notes", "Notion", "Strukt"],
-    ["Організація", "Yes", "No", "Yes", "Yes"],
-    ["Масштабованість", "None", "None", "Partial", "Yes"],
-    ["Зручність використання", "Partial", "Yes", "No", "Yes"],
-    ["Швидкість роботи", "None", "Yes", "No", "Yes"],
-    ["Мобільна адаптивність", "N/A", "Yes", "Partial", "Yes"],
-    ["Клавіатурні скорочення", "N/A", "None", "Partial", "Yes"],
+    ["Критерій", "Нотарій", "Записник", "Буття", "Мислення", "Візія", "Еволюція"],
+    ["Організація", "Ручна", "Немає", "✓", "✓✓", "✓✓✓", "∞"],
+    ["Масштабованість", "10%", "1%", "40%", "70%", "90%", "∞"],
+    ["Зручність", "🟡", "🟢", "🟢", "🟢🟢", "🟢🟢🟢", "✨"],
+    ["Швидкість", "1x", "2x", "3x", "5x", "10x", "∞"],
+    ["Адаптивність", "🟡", "🟢", "🟢", "🟢🟢", "🟢🟢🟢", "✨"],
+    ["Розширення", "🟡", "🔴", "🟢", "🟢🟢", "🟢🟢🟢", "✨"],
   ];
 
   const features = [
@@ -142,6 +151,11 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900">
       <ParticleBackground />
+      <div className="fixed inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-900/10 rounded-full blur-3xl" />
+      </div>
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
@@ -150,11 +164,7 @@ export const Home = () => {
 
       <div className="relative p-4 md:p-6 max-w-7xl mx-auto">
         {/* Navigation */}
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="flex items-center justify-between mb-12"
-        >
+        <div className="flex fixed w-full z-10 items-center justify-between mb-12 left-0 top-0 bg-neutral-900/10 p-4 backdrop-blur-lg">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <TbRocket className="w-6 h-6 text-white" />
@@ -177,29 +187,49 @@ export const Home = () => {
               </Button>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-center mb-20 md:mb-32"
+          className="text-center mt-20 mb-20 md:mb-32"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mb-8">
+          <div
+            className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12"
+          >
+            <span className="text-sm font-medium text-cyan-300">
+              ⚡ Version 1.0 Now Live
+            </span>
+          </div>
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 mb-8">
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
               🚀 Version 1.0 Now Live
             </span>
-          </div>
+          </div> */}
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6">
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               1000 notes
             </span>
             <br />
             <span className="text-neutral-800 dark:text-neutral-200">
               feel like{" "}
-              <span className="relative">
+              <motion.span
+                animate={{
+                  textShadow: [
+                    "0 0 10px #00ffff",
+                    "0 0 20px #ff00ff",
+                    "0 0 10px #00ffff"
+                  ]
+                }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="text-cyan-300"
+              >
+                10
+              </motion.span>
+              {/* <span className="relative text-shadow-[0 0 10px #00ffff]">
                 10
                 <motion.span
                   animate={{ rotate: [0, 10, -10, 0] }}
@@ -208,7 +238,7 @@ export const Home = () => {
                 >
                   ✨
                 </motion.span>
-              </span>
+              </span> */}
             </span>
           </h1>
 
@@ -216,16 +246,14 @@ export const Home = () => {
             Organize ideas, plans, and goals with AI-powered structure that grows with you.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              size="lg"
-              onClick={() => navigate("workspace")}
-              className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-            >
-              <GiProgression className="w-6 h-6 mr-2" />
-              Start with 5 steps
-            </Button>
-          </div>
+          <Button
+            size="lg"
+            onClick={() => navigate("workspace")}
+            className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+          >
+            <GiProgression className="w-6 h-6 mr-2" />
+            Start with 5 steps
+          </Button>
 
           {/* Quick Stats */}
           <div className="flex flex-wrap justify-center gap-8 mt-16">
@@ -262,7 +290,7 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-neutral-800 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+                className="bg-white dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4">
                   {feature.icon}
@@ -277,7 +305,7 @@ export const Home = () => {
         {/* </AnimatePresence> */}
 
         {/* Comparison Table */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, transition: { duration: .3 } }}
           viewport={{ once: true }}
@@ -310,6 +338,64 @@ export const Home = () => {
               </tbody>
             </table>
           </div>
+        </motion.div> */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mb-20"
+        >
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Еволюція нотаток через виміри
+          </h2>
+
+          <div className="bg-gradient-to-b from-white/5 to-transparent rounded-3xl p-6 border border-white/10">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-white/10">
+                    {diffTable[0].map((header, idx) => (
+                      <th key={idx} className="text-left py-4 px-4 text-gray-300 font-semibold">
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {diffTable.slice(1).map((row, rowIdx) => (
+                    <motion.tr
+                      key={rowIdx}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: rowIdx * 0.1 }}
+                      className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                    >
+                      {row.map((cell, cellIdx) => (
+                        <td key={cellIdx} className="py-4 px-4">
+                          {cellIdx === 0 ? (
+                            <span className="text-gray-300">{cell}</span>
+                          ) : (
+                            <motion.div
+                              className={`inline-flex items-center justify-center px-3 py-1 rounded-full ${cell === '∞' || cell === '✨'
+                                  ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
+                                  : cell.includes('✓') || cell.includes('🟢')
+                                    ? 'bg-green-500/10 text-green-300'
+                                    : cell.includes('🟡')
+                                      ? 'bg-yellow-500/10 text-yellow-300'
+                                      : 'bg-red-500/10 text-red-300'
+                                }`}
+                              whileHover={{ scale: 1.1 }}
+                            >
+                              {cell}
+                            </motion.div>
+                          )}
+                        </td>
+                      ))}
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </motion.div>
 
         {/* Testimonials */}
@@ -328,7 +414,7 @@ export const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-neutral-800 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+                className="bg-white dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
               >
                 <div className="flex items-center gap-4 mb-4">
                   <img
@@ -349,51 +435,59 @@ export const Home = () => {
 
         {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-center text-white mb-20"
+          className="relative overflow-hidden rounded-3xl mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Transform Your Notes?
-          </h2>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who switched to Strukt and never looked back.
-          </p>
-          {/* <Button className="px-8 py-3 text-lg border-white dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
-            <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
-          </Button> */}
-          <Button className="border-none"><HeartHandshake className="mr-2 h-5 w-5" />{isLoggedIn ? "Open Workspace" : "Start Free Trial"}</Button>
-          {/* <Button
-            size="lg"
-            className="hover:bg-blue-50 border-none text-lg px-8 py-6 rounded-xl"
-            onClick={() => navigate("workspace")}
-          >
-            {isLoggedIn ? "Open Workspace" : "Start Free Trial"}
-            <TbArrowRight className="w-5 h-5 ml-2" />
-          </Button> */}
-          <p className="text-sm text-blue-200 mt-4">
-            No credit card required • 14-day free trial
-          </p>
-        </motion.div>
-        {/* <CallToActionSection /> */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-pink-600/20" />
+          <div className="absolute inset-0">
+            <motion.div
+              animate={{
+                rotate: 360,
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity }
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10"
+            />
+          </div>
 
-        <div className="w-full max-w-4xl mt-20">
+          <div className="relative p-12 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Готові до{" "}
+              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                квантового стрибка
+              </span>
+              ?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Приєднуйтесь до тих, хто вже подорожує вимірами власного мислення
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  size="lg"
+                  onClick={() => navigate("workspace")}
+                  className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                >
+                  <GiProgression className="w-6 h-6 mr-2" />
+                  Start with 5 steps
+                </Button>
+            </div>
+
+            <p className="text-sm text-cyan-300/70 mt-6">
+              ⚡ Нульовий поріг входу
+            </p>
+          </div>
+        </motion.div>
+
           <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
             Made with love and with your productivity in mind.
           </p>
-        </div>
 
         <Footer />
-
-        <div className="fixed bottom-4 right-4 bg-white dark:bg-neutral-800 rounded-lg p-3 shadow-lg border border-neutral-200 dark:border-neutral-700 text-sm">
-          <div className="flex items-center gap-2">
-            <TbKeyboard className="w-4 h-4" />
-            <span>Press</span>
-            <kbd className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded text-xs">Ctrl/Cmd + W</kbd>
-            <span>for Workspace</span>
-          </div>
-        </div>
       </div>
     </div>
   );
