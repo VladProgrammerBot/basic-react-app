@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Folders } from "./cards/section/Folders";
 import { Path } from "./cards/header/Path";
 import store from "@/state/store";
-import { Footer } from "./cards/footer";
 
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
@@ -47,7 +46,6 @@ export const Edit = () => {
           </div>
           <div className="w-full max-w-4xl mx-auto flex flex-col justify-between">
             <Folders />
-            <Footer />
           </div>
         </>
       )}

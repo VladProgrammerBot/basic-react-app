@@ -1,14 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
-import { Footer } from "./workspace/cards/footer";
 import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
-import { TbArrowRight, TbDeviceMobile, TbKeyboard, TbRocket, TbSparkles } from "react-icons/tb";
+import {
+  TbArrowRight,
+  TbDeviceMobile,
+  TbKeyboard,
+  TbRocket,
+  TbSparkles,
+} from "react-icons/tb";
 import { motion, useMotionValue } from "framer-motion";
 
 export const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+
   // const springConfig = { damping: 25, stiffness: 700 };
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -24,29 +29,29 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-      
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!containerRef.current) return;
-        
-        const rect = containerRef.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        
-        const x = (e.clientX - rect.left) / width;
-        const y = (e.clientY - rect.top) / height;
-        
-        mouseX.set(x);
-        mouseY.set(y);
-      };
-  
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+    setIsLoggedIn(!!localStorage.getItem("token"));
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+
+      const x = (e.clientX - rect.left) / width;
+      const y = (e.clientY - rect.top) / height;
+
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   // const DimensionPortal = () => {
   //   return (
-  //     <motion.div 
+  //     <motion.div
   //       className="relative w-full h-[400px] rounded-3xl overflow-hidden my-12"
   //       style={{ rotateX, rotateY }}
   //       ref={containerRef}
@@ -74,7 +79,7 @@ export const Home = () => {
             transition={{
               duration: Math.random() * 10 + 10,
               repeat: Infinity,
-              repeatType: "reverse"
+              repeatType: "reverse",
             }}
           />
         ))}
@@ -92,7 +97,15 @@ export const Home = () => {
   //   ["Клавіатурні скорочення", "N/A", "None", "Partial", "Yes"],
   // ];
   const diffTable = [
-    ["Критерій", "Нотарій", "Записник", "Буття", "Мислення", "Візія", "Еволюція"],
+    [
+      "Критерій",
+      "Нотарій",
+      "Записник",
+      "Буття",
+      "Мислення",
+      "Візія",
+      "Еволюція",
+    ],
     ["Організація", "Ручна", "Немає", "✓", "✓✓", "✓✓✓", "∞"],
     ["Масштабованість", "10%", "1%", "40%", "70%", "90%", "∞"],
     ["Зручність", "🟡", "🟢", "🟢", "🟢🟢", "🟢🟢🟢", "✨"],
@@ -105,23 +118,23 @@ export const Home = () => {
     {
       icon: <TbKeyboard className="w-6 h-6" />,
       title: "Keyboard First",
-      description: "Full keyboard navigation with intuitive shortcuts"
+      description: "Full keyboard navigation with intuitive shortcuts",
     },
     {
       icon: <GiStarsStack className="w-6 h-6" />,
       title: "AI Powered",
-      description: "Smart organization and search capabilities"
+      description: "Smart organization and search capabilities",
     },
     {
       icon: <TbDeviceMobile className="w-6 h-6" />,
       title: "Mobile Ready",
-      description: "Seamless experience across all devices"
+      description: "Seamless experience across all devices",
     },
     {
       icon: <TbSparkles className="w-6 h-6" />,
       title: "Zero Lag",
-      description: "Instant response with any amount of notes"
-    }
+      description: "Instant response with any amount of notes",
+    },
   ];
 
   const testimonials = [
@@ -129,20 +142,20 @@ export const Home = () => {
       name: "Alex Chen",
       role: "Product Manager",
       text: "Strukt revolutionized how I organize my meeting notes and product specs.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
     },
     {
       name: "Maria Rodriguez",
       role: "Researcher",
       text: "Finally a tool that scales with my research without becoming messy.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria"
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
     },
     {
       name: "David Kim",
       role: "Developer",
       text: "The keyboard shortcuts save me hours every week. Pure productivity.",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David"
-    }
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    },
   ];
 
   const handleKeyPress = (e: KeyboardEvent) => {
@@ -185,7 +198,6 @@ export const Home = () => {
             </span>
           </div>
 
-
           <div className="flex items-center gap-4">
             {!isLoggedIn ? (
               <>
@@ -208,18 +220,14 @@ export const Home = () => {
           transition={{ delay: 0.2 }}
           className="text-center mt-25 mb-20 md:mb-32"
         >
-          <div
-            className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12"
-          >
+          <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12">
             <span className="text-sm font-medium text-cyan-300">
               ⚡ Version 1.0 Now Live
             </span>
           </div>
 
           <p className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            <span className=" bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
-              1000 notes
-            </span>
+            <span className="text-pink-300">1000 notes</span>
             <br />
             <span className="text-neutral-800 dark:text-neutral-200">
               feel like{" "}
@@ -228,8 +236,8 @@ export const Home = () => {
                   textShadow: [
                     "0 0 10px #00ffff",
                     "0 0 20px #ff00ff",
-                    "0 0 10px #00ffff"
-                  ]
+                    "0 0 10px #00ffff",
+                  ],
                 }}
                 transition={{ duration: 5, repeat: Infinity }}
                 className="text-cyan-300"
@@ -240,7 +248,8 @@ export const Home = () => {
           </p>
 
           <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10">
-            Organize ideas, plans, and goals with AI-powered structure that grows with you.
+            Organize ideas, plans, and goals with AI-powered structure that
+            grows with you.
           </p>
 
           <Button
@@ -295,7 +304,9 @@ export const Home = () => {
                   {feature.icon}
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -316,7 +327,10 @@ export const Home = () => {
                 <thead>
                   <tr className="border-b border-white/10">
                     {diffTable[0].map((header, idx) => (
-                      <th key={idx} className="text-left py-4 px-4 text-gray-300 font-semibold">
+                      <th
+                        key={idx}
+                        className="text-left py-4 px-4 text-gray-300 font-semibold"
+                      >
                         {header}
                       </th>
                     ))}
@@ -337,14 +351,15 @@ export const Home = () => {
                             <span className="text-gray-300">{cell}</span>
                           ) : (
                             <motion.div
-                              className={`inline-flex items-center justify-center px-3 py-1 rounded-full ${cell === '∞' || cell === '✨'
-                                ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
-                                : cell.includes('✓') || cell.includes('🟢')
-                                  ? 'bg-green-500/10 text-green-300'
-                                  : cell.includes('🟡')
-                                    ? 'bg-yellow-500/10 text-yellow-300'
-                                    : 'bg-red-500/10 text-red-300'
-                                }`}
+                              className={`inline-flex items-center justify-center px-3 py-1 rounded-full ${
+                                cell === "∞" || cell === "✨"
+                                  ? "gradient-bg"
+                                  : cell.includes("✓") || cell.includes("🟢")
+                                  ? "bg-green-500/10 text-green-300"
+                                  : cell.includes("🟡")
+                                  ? "bg-yellow-500/10 text-yellow-300"
+                                  : "bg-red-500/10 text-red-300"
+                              }`}
                               whileHover={{ scale: 1.1 }}
                             >
                               {cell}
@@ -367,7 +382,9 @@ export const Home = () => {
           viewport={{ once: true }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-center mb-10">Loved by Thousands</h2>
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Loved by Thousands
+          </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -386,10 +403,14 @@ export const Home = () => {
                   />
                   <div>
                     <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-neutral-500">{testimonial.role}</div>
+                    <div className="text-sm text-neutral-500">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </div>
-                <p className="text-neutral-600 dark:text-neutral-400 italic">"{testimonial.text}"</p>
+                <p className="text-neutral-600 dark:text-neutral-400 italic">
+                  "{testimonial.text}"
+                </p>
               </motion.div>
             ))}
           </div>
@@ -406,11 +427,11 @@ export const Home = () => {
             <motion.div
               animate={{
                 rotate: 360,
-                scale: [1, 1.2, 1]
+                scale: [1, 1.2, 1],
               }}
               transition={{
                 rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity }
+                scale: { duration: 4, repeat: Infinity },
               }}
               className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10"
             />
@@ -418,11 +439,7 @@ export const Home = () => {
 
           <div className="relative p-12 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Готові до{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                квантового стрибка
-              </span>
-              ?
+              Готові до <span className="text-sky-300">квантового</span> <span className="text-pink-300">стрибка?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Приєднуйтесь до тих, хто вже подорожує вимірами власного мислення
@@ -444,12 +461,7 @@ export const Home = () => {
             </p>
           </div>
         </motion.div>
-
-        <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
-          Made with love and with your productivity in mind.
-        </p>
-
-        <Footer />
+        <p className="text-center text-neutral-500 p-4">2025, Made in Ukraine by Vlad</p>
       </div>
     </div>
   );
