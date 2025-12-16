@@ -168,6 +168,21 @@ export const Home = () => {
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, []);
 
+  const Stat = ({
+    value,
+    label,
+    color,
+  }: {
+    value: string;
+    label: string;
+    color: string;
+  }) => (
+    <div className="flex flex-col items-center">
+      <div className={`text-3xl font-bold ${color}`}>{value}</div>
+      <div className="text-neutral-500">{label}</div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900">
       <ParticleBackground />
@@ -189,9 +204,7 @@ export const Home = () => {
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <TbRocket className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-blue-300">
-              Strukt
-            </span>
+            <span className="text-2xl font-bold text-blue-300">Strukt</span>
           </div>
 
           <div className="flex items-center gap-4">
@@ -209,76 +222,89 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* Hero Section */}
+        <div className="max-w-7xl mt-20 mb-20 mx-auto">
+          <div className="flex flex-col items-center lg:flex-row gap-16 w-full">
+            {/* LEFT — HERO CONTENT */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="
+        flex-1
+        flex flex-col
+        items-center text-center
+        lg:items-start lg:text-left
+      "
+            >
+              <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12">
+                <span className="text-sm font-medium text-cyan-300">
+                  ⚡ Version 1.0 Now Live
+                </span>
+              </div>
+
+              <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
+                <span>1000 notes</span>
+                <br />
+                <span className="text-neutral-800 dark:text-neutral-200">
+                  Feel like{" "}
+                  <motion.span
+                    animate={{ textShadow: ["0 0 10px #00ffff"] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                    className="text-cyan-300"
+                  >
+                    10
+                  </motion.span>
+                </span>
+              </p>
+
+              <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl mb-10">
+                Organize ideas, plans, and goals with AI-powered structure that
+                grows with you.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                <Button
+                  size="lg"
+                  onClick={() => navigate("workspace")}
+                  className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                >
+                  <GiProgression className="w-6 h-6 mr-2" />
+                  Start with 5 steps
+                </Button>
+
+                <p className="text-xs text-neutral-400 hidden sm:block">
+                  Press <b>W</b> · Workspace
+                  <br />
+                  Press <b>L</b> · Login
+                </p>
+              </div>
+
+              {/* Quick Stats */}
+            </motion.div>
+
+            {/* RIGHT — WORKSPACE */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex-1 w-full flex items-center justify-center"
+            >
+              <div className="w-full max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md shadow-xl flex items-center justify-center text-neutral-400">
+                Workspace preview
+              </div>
+            </motion.div>
+          </div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-center mt-25 mb-20 md:mb-32"
+          className="flex flex-wrap justify-center gap-10 my-12"
         >
-          <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12">
-            <span className="text-sm font-medium text-cyan-300">
-              ⚡ Version 1.0 Now Live
-            </span>
-          </div>
-          <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
-            <span className="ext-pink-300">1000 notes</span>
-            <br />
-            <span className="text-neutral-800 dark:text-neutral-200">
-              Feel like{" "}
-              <motion.span
-                animate={{
-                  textShadow: [
-                    "0 0 10px #00ffff",
-                    // "0 0 20px #ff00ff",
-                    // "0 0 10px #00ffff",
-                  ],
-                }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="text-cyan-300"
-              >
-                10
-              </motion.span>
-            </span>
-          </p>
-
-          <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10">
-            Organize ideas, plans, and goals with AI-powered structure that
-            grows with you.
-          </p>
-
-          <Button
-            size="lg"
-            onClick={() => navigate("workspace")}
-            className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-          >
-            <GiProgression className="w-6 h-6 mr-2" />
-            Start with 5 steps
-          </Button>
-
-          <p className="mt-4 max-md:invisible text-xs text-neutral-400">
-            Press <b>W</b> to open workspace · <b>L</b> to login
-          </p>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mt-16">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">∞</div>
-              <div className="text-neutral-500">Scalability</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600">100%</div>
-              <div className="text-neutral-500">Uptime</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-pink-600">10+</div>
-              <div className="text-neutral-500">Shortcuts</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">0ms</div>
-              <div className="text-neutral-500">Typing Lag</div>
-            </div>
-          </div>
+          <Stat value="∞" label="Scalability" color="text-blue-600" />
+          <Stat value="100%" label="Uptime" color="text-purple-600" />
+          <Stat value="10+" label="Shortcuts" color="text-pink-600" />
+          <Stat value="0ms" label="Typing Lag" color="text-green-600" />
         </motion.div>
 
         {/* <DimensionPortal /> */}
@@ -438,7 +464,8 @@ export const Home = () => {
 
           <div className="relative p-12 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Готові до <span className="text-sky-300">квантового</span> <span className="text-pink-300">стрибка?</span>
+              Готові до <span className="text-sky-300">квантового</span>{" "}
+              <span className="text-pink-300">стрибка?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Приєднуйтесь до тих, хто вже подорожує вимірами власного мислення
@@ -460,7 +487,9 @@ export const Home = () => {
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-4">2025, Made in Ukraine by Vlad</p>
+        <p className="text-center text-neutral-500 p-4">
+          2025, Made in Ukraine by Vlad
+        </p>
       </div>
     </div>
   );
