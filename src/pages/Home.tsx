@@ -325,10 +325,10 @@ const diffTable = [
           className="mb-20"
         >
           <h2 className="text-3xl font-bold text-center mb-10 text-neutral-800 dark:text-neutral-100">
-            Еволюція нотаток через виміри
+            Чому Strukt?
           </h2>
 
-          <div className="bg-whit dark:bg-gradient-to-b dark:from-black/5 dark:to-transparent rounded-3xl p-6 border border-neutral-200 dark:border-white/10 shadow-xl dark:shadow-none">
+          <div className="bg-whit dark:bg-gradient-to-b dark:from-black/5 dark:to-transparent rounded-3xl p-6 border border-neutral-200 dark:border-white/10 shadow-">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -431,7 +431,7 @@ const diffTable = [
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="relative overflow-hidden rounded-3xl mb-20 shadow-2xl dark:shadow-none"
+          className="relative overflow-hidden rounded-3xl mb-20 dark:shadow-2xl shadow-blue-300/10 shadow-none"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-purple-600/10 to-pink-600/10 dark:from-cyan-600/20 dark:via-purple-600/20 dark:to-pink-600/20" />
           <div className="absolute inset-0">
