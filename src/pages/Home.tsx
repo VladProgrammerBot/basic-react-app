@@ -274,9 +274,9 @@ export const Home = () => {
         {/* </AnimatePresence> */}
 
         {/* Comparison Table */}
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          whileInView={{ opacity: 1, transition: { duration: .3 } }}
           viewport={{ once: true }}
           className="mb-20"
         >
