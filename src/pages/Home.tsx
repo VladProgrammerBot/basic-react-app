@@ -161,6 +161,17 @@ export const Home = () => {
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
+{/* 
+      <div className="fixed bottom-0 left-0 right-0 z-100">
+        <div className="h-4 bg-gradient-to-b from-transparent to-white/20"></div>
+
+        <div className="h-28 bg-gradient-to-t from-white/0 via-white/20 to-white/5
+              backdrop-blur-2xl">
+          <div className="p-4">
+            Контент тут
+          </div>
+        </div>
+      </div> */}
 
       <div className="relative p-4 md:p-6 max-w-7xl mx-auto">
         {/* Navigation */}
@@ -173,6 +184,7 @@ export const Home = () => {
               Strukt
             </span>
           </div>
+
 
           <div className="flex items-center gap-4">
             {!isLoggedIn ? (
@@ -194,7 +206,7 @@ export const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-center mt-20 mb-20 md:mb-32"
+          className="text-center mt-25 mb-20 md:mb-32"
         >
           <div
             className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 mb-12"
@@ -209,8 +221,8 @@ export const Home = () => {
             </span>
           </div> */}
 
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <p className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+            <span className=" bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
               1000 notes
             </span>
             <br />
@@ -240,7 +252,7 @@ export const Home = () => {
                 </motion.span>
               </span> */}
             </span>
-          </h1>
+          </p>
 
           <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto mb-10">
             Organize ideas, plans, and goals with AI-powered structure that grows with you.
@@ -376,12 +388,12 @@ export const Home = () => {
                           ) : (
                             <motion.div
                               className={`inline-flex items-center justify-center px-3 py-1 rounded-full ${cell === '∞' || cell === '✨'
-                                  ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
-                                  : cell.includes('✓') || cell.includes('🟢')
-                                    ? 'bg-green-500/10 text-green-300'
-                                    : cell.includes('🟡')
-                                      ? 'bg-yellow-500/10 text-yellow-300'
-                                      : 'bg-red-500/10 text-red-300'
+                                ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
+                                : cell.includes('✓') || cell.includes('🟢')
+                                  ? 'bg-green-500/10 text-green-300'
+                                  : cell.includes('🟡')
+                                    ? 'bg-yellow-500/10 text-yellow-300'
+                                    : 'bg-red-500/10 text-red-300'
                                 }`}
                               whileHover={{ scale: 1.1 }}
                             >
@@ -467,14 +479,14 @@ export const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  onClick={() => navigate("workspace")}
-                  className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                >
-                  <GiProgression className="w-6 h-6 mr-2" />
-                  Start with 5 steps
-                </Button>
+              <Button
+                size="lg"
+                onClick={() => navigate("workspace")}
+                className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                <GiProgression className="w-6 h-6 mr-2" />
+                Start with 5 steps
+              </Button>
             </div>
 
             <p className="text-sm text-cyan-300/70 mt-6">
@@ -483,9 +495,9 @@ export const Home = () => {
           </div>
         </motion.div>
 
-          <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
-            Made with love and with your productivity in mind.
-          </p>
+        <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
+          Made with love and with your productivity in mind.
+        </p>
 
         <Footer />
       </div>
