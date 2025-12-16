@@ -222,7 +222,7 @@ export const Home = () => {
             </span>
           </div>
           <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
-            <span className="text-pink-300">1000 notes</span>
+            <span className="ext-pink-300">1000 notes</span>
             <br />
             <span className="text-neutral-800 dark:text-neutral-200">
               Feel like{" "}
@@ -230,8 +230,8 @@ export const Home = () => {
                 animate={{
                   textShadow: [
                     "0 0 10px #00ffff",
-                    "0 0 20px #ff00ff",
-                    "0 0 10px #00ffff",
+                    // "0 0 20px #ff00ff",
+                    // "0 0 10px #00ffff",
                   ],
                 }}
                 transition={{ duration: 5, repeat: Infinity }}
