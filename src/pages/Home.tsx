@@ -27,18 +27,18 @@ export const Home = () => {
   // ];
 
   const CallToActionSection = () => {
-  return (
-    <div className="mt-20 py-16 bg-neutral-100 dark:bg-neutral-900 rounded-2xl text-center shadow-inner">
-      <h2 className="text-3xl font-bold mb-4">Готові до структури?</h2>
-      <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">Почніть організовувати свої думки сьогодні. Це швидко і просто.</p>
-      <NavLink to="workspace">
-        <Button className="px-8 py-3 text-lg border-none dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
-          <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
-        </Button>
-      </NavLink>
-    </div>
-  )
-}
+    return (
+      <div className="mt-20 py-16 bg-neutral-100 dark:bg-neutral-900 rounded-2xl text-center shadow-inner">
+        <h2 className="text-3xl font-bold mb-4">Готові до структури?</h2>
+        <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">Почніть організовувати свої думки сьогодні. Це швидко і просто.</p>
+        <NavLink to="workspace">
+          <Button className="px-8 py-3 text-lg border-none dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
+            <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
+          </Button>
+        </NavLink>
+      </div>
+    )
+  }
 
   const diffTable = [
     ["Критерій", "Notebook", "Notes", "Notion", "Strukt"],
@@ -245,34 +245,33 @@ export const Home = () => {
           </div>
         </motion.div>
 
-        {/* Features Grid */}
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden mb-20"
-          >
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="bg-white dark:bg-neutral-800 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-sm hover:shadow-md transition-all"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <div className="grid md:grid-cols-2 gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white dark:bg-neutral-800 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-neutral-600 dark:text-neutral-400">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* </AnimatePresence> */}
 
         {/* Comparison Table */}
         <motion.div
@@ -374,7 +373,7 @@ export const Home = () => {
 
         <div className="w-full max-w-4xl mt-20">
           <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
-            Зроблено з любов'ю та думкою про вашу продуктивність.
+            Made with love and with your productivity in mind.
           </p>
         </div>
 
