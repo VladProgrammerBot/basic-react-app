@@ -17,7 +17,8 @@ export const buttonVariants = cva(
           "text-black border-1 dark:text-white border-neutral-300 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800",
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
-          
+        colorfull:
+          "border-white dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:

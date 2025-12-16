@@ -28,7 +28,7 @@ export const Home = () => {
 
   const CallToActionSection = () => {
     return (
-      <div className="mt-20 py-16 bg-neutral-100 dark:bg-neutral-900 rounded-2xl text-center shadow-inner">
+      <div className="mt-20 py-16 bg-neutral-100 dark:bg-neutral-800 border-1 border-neutral-700 rounded-2xl text-center shadow-inner">
         <h2 className="text-3xl font-bold mb-4">Готові до структури?</h2>
         <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">Почніть організовувати свої думки сьогодні. Це швидко і просто.</p>
         <NavLink to="workspace">
@@ -357,19 +357,23 @@ export const Home = () => {
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
             Join thousands of professionals who switched to Strukt and never looked back.
           </p>
-          <Button
+          {/* <Button className="px-8 py-3 text-lg border-white dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
+            <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
+          </Button> */}
+          <Button className="border-none"><HeartHandshake className="mr-2 h-5 w-5" />{isLoggedIn ? "Open Workspace" : "Try Strukt for free"}</Button>
+          {/* <Button
             size="lg"
-            className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6 rounded-xl"
-            onClick={() => navigate(isLoggedIn ? "workspace" : "login")}
+            className="hover:bg-blue-50 border-none text-lg px-8 py-6 rounded-xl"
+            onClick={() => navigate("workspace")}
           >
             {isLoggedIn ? "Open Workspace" : "Start Free Trial"}
             <TbArrowRight className="w-5 h-5 ml-2" />
-          </Button>
+          </Button> */}
           <p className="text-sm text-blue-200 mt-4">
             No credit card required • 14-day free trial
           </p>
         </motion.div>
-        <CallToActionSection />
+        {/* <CallToActionSection /> */}
 
         <div className="w-full max-w-4xl mt-20">
           <p className="text-xl text-center text-neutral-500 dark:text-neutral-400">
@@ -377,10 +381,8 @@ export const Home = () => {
           </p>
         </div>
 
-        {/* Footer */}
         <Footer />
 
-        {/* Keyboard Shortcut Hint */}
         <div className="fixed bottom-4 right-4 bg-white dark:bg-neutral-800 rounded-lg p-3 shadow-lg border border-neutral-200 dark:border-neutral-700 text-sm">
           <div className="flex items-center gap-2">
             <TbKeyboard className="w-4 h-4" />
