@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home.tsx";
+import { HomeTemp } from "./pages/HomeTemp.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "home",
+        Component: HomeTemp,
       },
       {
         path: "workspace",

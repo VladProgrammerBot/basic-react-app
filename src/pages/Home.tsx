@@ -16,29 +16,31 @@ export const Home = () => {
     setIsLoggedIn(!!localStorage.getItem("token"));
   }, []);
 
-  // const diffTable = [
-  //   ["Criterion", "Notebook", "Notes", "Notion", "Strukt"],
-  //   ["Organization", "🟢 Yes", "🔴 No", "🟢 Yes", "🟢 Yes"],
-  //   ["Scalability", "🔴 None", "🔴 None", "🟡 Partial", "🟢 Infinite"],
-  //   ["Ease of use", "🟡 Medium", "🟢 Very easy", "🔴 Hard", "🟢 Easy"],
-  //   ["Speed of use", "🔴 Very slow", "🟢 Fast", "🔴 Slow", "🟢 Fast"],
-  //   ["Mobile adaptive", "⚪ N/A", "🟢 Full", "🟡 Partial", "🟢 Full"],
-  //   ["Keyboard shortcuts", "⚪ N/A", "🔴 None", "🟡 Partial", "🟢 Full"],
-  // ];
-
-  const CallToActionSection = () => {
+  const ParticleBackground = () => {
     return (
-      <div className="mt-20 py-16 bg-neutral-100 dark:bg-neutral-800 border-1 border-neutral-700 rounded-2xl text-center shadow-inner">
-        <h2 className="text-3xl font-bold mb-4">Готові до структури?</h2>
-        <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">Почніть організовувати свої думки сьогодні. Це швидко і просто.</p>
-        <NavLink to="workspace">
-          <Button className="px-8 py-3 text-lg border-none dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
-            <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
-          </Button>
-        </NavLink>
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(50)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            animate={{
+              x: [null, Math.random() * window.innerWidth],
+              y: [null, Math.random() * window.innerHeight],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 10,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          />
+        ))}
       </div>
-    )
-  }
+    );
+  };
 
   const diffTable = [
     ["Критерій", "Notebook", "Notes", "Notion", "Strukt"],
@@ -139,6 +141,7 @@ export const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900">
+      <ParticleBackground />
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
@@ -274,7 +277,7 @@ export const Home = () => {
         {/* </AnimatePresence> */}
 
         {/* Comparison Table */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, transition: { duration: .3 } }}
           viewport={{ once: true }}
@@ -360,7 +363,7 @@ export const Home = () => {
           {/* <Button className="px-8 py-3 text-lg border-white dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once">
             <HeartHandshake className="mr-2 h-5 w-5" />Спробувати Strukt безкоштовно
           </Button> */}
-          <Button className="border-none"><HeartHandshake className="mr-2 h-5 w-5" />{isLoggedIn ? "Open Workspace" : "Try Strukt for free"}</Button>
+          <Button className="border-none"><HeartHandshake className="mr-2 h-5 w-5" />{isLoggedIn ? "Open Workspace" : "Start Free Trial"}</Button>
           {/* <Button
             size="lg"
             className="hover:bg-blue-50 border-none text-lg px-8 py-6 rounded-xl"
