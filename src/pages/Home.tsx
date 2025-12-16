@@ -221,12 +221,11 @@ export const Home = () => {
               ⚡ Version 1.0 Now Live
             </span>
           </div>
-
-          <p className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+          <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
             <span className="text-pink-300">1000 notes</span>
             <br />
             <span className="text-neutral-800 dark:text-neutral-200">
-              feel like{" "}
+              Feel like{" "}
               <motion.span
                 animate={{
                   textShadow: [
