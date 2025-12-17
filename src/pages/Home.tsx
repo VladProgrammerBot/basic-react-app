@@ -170,8 +170,8 @@ export const Home = () => {
       </div>
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none hidden dark:block">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-120 h-120 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-120 h-120 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative p-4 pb-0 md:pb-0 md:p-6 max-w-7xl mx-auto">
@@ -518,7 +518,7 @@ export const Home = () => {
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-8 border-t-1 border-neutral-300 dark:border-neutral-700">
+        <p className="text-center text-neutral-500 p-12 border-t-1 border-neutral-300 dark:border-neutral-700">
           © 2025, Made in Ukraine by Vlad 🇺🇦
         </p>
       </div>
