@@ -219,16 +219,30 @@ export const Home = () => {
         lg:items-start lg:text-left
       "
             >
-              <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 dark:from-cyan-500/20 dark:to-purple-500/20 border border-cyan-500/30 mb-12">
+              {/* <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 dark:from-cyan-500/20 dark:to-purple-500/20 border border-cyan-500/30 mb-12">
                 <span className="text-sm font-medium text-cyan-600 dark:text-cyan-300">
                   ⚡ Version 1.0 Now Live
                 </span>
-              </div>
+              </div> */}
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex -rotate-3 items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 mb-8"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                  v1.0 is Live
+                </span>
+              </motion.div>
 
               <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
                 <span>1000 notes</span>
                 <br />
-                <span className="text-neutral-800 dark:text-neutral-200">
+                <span className="text-neutral-800 dark:text-sky-400">
                   Feel like{" "}
                   <motion.span
                     animate={{ textShadow: ["0 0 10px #00ffff"] }}
@@ -249,7 +263,7 @@ export const Home = () => {
                 <Button
                   size="lg"
                   onClick={() => navigate("workspace")}
-                  className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
+                  className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-2xl shadow-sky-500/50 hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
                 >
                   <GiProgression className="w-6 h-6 mr-2" />
                   Start with 5 steps
@@ -272,7 +286,7 @@ export const Home = () => {
               transition={{ delay: 0.4 }}
               className="flex-1 w-full flex items-center justify-center"
             >
-              <div className="w-full max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md shadow-xl flex items-center justify-center text-neutral-400">
+              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md flex items-center justify-center text-neutral-400">
                 {/* Workspace preview */}
               </div>
             </motion.div>
@@ -352,7 +366,7 @@ export const Home = () => {
                       className="border-b border-neutral-100 dark:border-white/5 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                     >
                       {row.map((cell, cellIdx) => (
-                        <td key={cellIdx} className="py-4 px-4">
+                        <td key={cellIdx} className={`py-4 px-4 ${cellIdx === diffTable[0].length - 1 ? "bg-sky-300/5" : ""}`}>
                           {cellIdx === 0 ? (
                             <span className="text-neutral-700 dark:text-gray-300 font-medium">
                               {cell}
