@@ -4,6 +4,7 @@ import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import {
   TbArrowRight,
+  TbChevronDown,
   TbDeviceMobile,
   TbKeyboard,
   TbRocket,
@@ -151,6 +152,17 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
       <ParticleBackground />
+      <div className="fixed bottom-8 right-8 flex flex-col gap-3 z-50">
+          <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          className="w-12 h-12 rounded-full bg-blue-500 bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg flex items-center justify-center cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <TbChevronDown className="w-6 h-6 text-white rotate-180" />
+        </motion.div>
+      </div>
       <div className="fixed inset-0 hidden dark:block">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl" />
