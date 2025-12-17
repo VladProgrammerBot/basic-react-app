@@ -86,7 +86,7 @@ export const useBar = () => {
             icon: HiUserAdd,
             show: true,
             onClick: () => {
-                localStorage.setItem("isStyled", String(!isStyled))
+                localStorage.setItem("isNotStyled", String(!isStyled))
                 setIsStyled()
             }
         }
