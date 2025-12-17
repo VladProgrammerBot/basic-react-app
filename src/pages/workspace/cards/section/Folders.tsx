@@ -40,7 +40,7 @@ export const Folders = () => {
           return (
             <Tooltip key={index}>
               <TooltipTrigger asChild onClick={button.func} >
-                <Button className="py-3 md:py-2">
+                <Button variant="outline" className="py-3 md:py-2">
                   {button.icon} {button.title}
                 </Button>
               </TooltipTrigger>
