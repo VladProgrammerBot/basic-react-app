@@ -163,7 +163,7 @@ const diffTable = [
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative p-4 md:p-6 max-w-7xl mx-auto">
+      <div className="relative p-4 pb-0 md:pb-0 md:p-6 max-w-7xl mx-auto">
         {/* Navigation */}
         <motion.div
       initial={{ 
@@ -471,7 +471,7 @@ const diffTable = [
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-4">
+        <p className="text-center text-neutral-500 p-8 border-t-1 border-neutral-300 dark:border-neutral-700">
           2025, Made in Ukraine by Vlad
         </p>
       </div>
