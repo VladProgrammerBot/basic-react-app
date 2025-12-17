@@ -224,11 +224,11 @@ export const Home = () => {
                   ⚡ Version 1.0 Now Live
                 </span>
               </div> */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex -rotate-3 items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 mb-8"
+                className="inline-flex -rotate-3 items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-300 dark:border-blue-500/20 mb-8"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -240,12 +240,23 @@ export const Home = () => {
               </motion.div>
 
               <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
-                <span>1000 notes</span>
+                <span>
+                  <span className="text-cyan-500 dark:text-neutral-200">
+                    1000
+                  </span>{" "}
+                  notes
+                </span>
                 <br />
                 <span className="text-neutral-800 dark:text-sky-400">
                   Feel like{" "}
                   <motion.span
-                    animate={{ textShadow: ["0 0 10px #00ffff"] }}
+                    animate={{
+                      textShadow: [
+                        "0 0 10px rgba(0, 255, 255, 0.5)",
+                        "0 0 20px rgba(0, 255, 255, 0.5)",
+                        "0 0 10px rgba(0, 255, 255, 0.5)",
+                      ],
+                    }}
                     transition={{ duration: 5, repeat: Infinity }}
                     className="text-cyan-500 dark:text-cyan-300"
                   >
@@ -366,7 +377,14 @@ export const Home = () => {
                       className="border-b border-neutral-100 dark:border-white/5 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                     >
                       {row.map((cell, cellIdx) => (
-                        <td key={cellIdx} className={`py-4 px-4 ${cellIdx === diffTable[0].length - 1 ? "bg-sky-300/5" : ""}`}>
+                        <td
+                          key={cellIdx}
+                          className={`py-4 px-4 ${
+                            cellIdx === diffTable[0].length - 1
+                              ? "bg-sky-300/5 dark:bg-sky-700/5"
+                              : ""
+                          }`}
+                        >
                           {cellIdx === 0 ? (
                             <span className="text-neutral-700 dark:text-gray-300 font-medium">
                               {cell}
@@ -488,7 +506,7 @@ export const Home = () => {
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-8 border-t-1 dark:border-neutral-700">
+        <p className="text-center text-neutral-500 p-8 border-t-1 border-neutral-300 dark:border-neutral-700">
           2025, Made in Ukraine by Vlad
         </p>
       </div>
