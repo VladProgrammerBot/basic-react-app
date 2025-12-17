@@ -3,5 +3,7 @@ import type { StateCreator } from "zustand";
 
 export const createAuthSlice: StateCreator<authSlice> = (set) => ({
     isLogin: true,
-    setIsLogin: (state) => set({ isLogin: state })
+    setIsLogin: (state) => set({ isLogin: state }),
+    isStyled: localStorage.getItem("isStyled") === "true" || false,
+    setIsStyled: () => set((state) => ({ isStyled: !state.isStyled })),
 })

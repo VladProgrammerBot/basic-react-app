@@ -60,6 +60,8 @@ export interface alertsSlice {
 export interface authSlice {
     isLogin: boolean,
     setIsLogin: (state: boolean) => void
+    isStyled: boolean,
+    setIsStyled: () => void
 }
 
 export interface keyNaviSlice {

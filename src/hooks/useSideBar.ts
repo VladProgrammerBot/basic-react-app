@@ -15,6 +15,8 @@ export const useBar = () => {
     const isLogin = store.use.isLogin()
     const isGuideOpen = store.use.isGuideOpen()
     const setIsGuideOpen = store.use.setIsGuideOpen()
+    const setIsStyled = store.use.setIsStyled()
+    const isStyled = store.use.isStyled()
 
     const [username, setUsername] = useState("")
 
@@ -77,6 +79,16 @@ export const useBar = () => {
             icon: HiUserAdd,
             show: !isLogin,
             onClick: () => go("/signup")
+        },
+        {
+            key: "styles",
+            label: "Toggle styles",
+            icon: HiUserAdd,
+            show: true,
+            onClick: () => {
+                localStorage.setItem("isStyled", String(!isStyled))
+                setIsStyled()
+            }
         }
     ]
 
