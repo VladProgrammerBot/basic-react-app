@@ -519,7 +519,7 @@ export const Home = () => {
           </div>
         </motion.div>
         <p className="text-center text-neutral-500 p-8 border-t-1 border-neutral-300 dark:border-neutral-700">
-          2025, Made in Ukraine by Vlad
+          © 2025, Made in Ukraine by Vlad 🇺🇦
         </p>
       </div>
     </div>
