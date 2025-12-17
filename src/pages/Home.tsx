@@ -67,13 +67,13 @@ export const Home = () => {
 
 
 const diffTable = [
-  ["Критерій", "Notebook", "Notes", "Notion", "Strukt"],
-  ["Організація", "✓", "✓", "✓✓", "✓✓✓"],
-  ["Масштабованість", "✗", "✗", "✓", "∞"],
-  ["Зручність використання", "✓", "✓✓", "✓", "✓✓✓"],
-  ["Швидкість роботи", "✗", "✓", "✓", "✓✓✓"],
-  ["Мобільна адаптивність", "✗", "✓✓", "✓", "✓✓✓"],
-  ["Клавіатурні скорочення", "✗", "✗", "✓", "✨"],
+  ["Критерій", "Блокнот", "Word", "Нотатки", "Notion", "Strukt"],
+  ["Організація", "✓", "✓✓", "✓", "✓✓", "✓✓✓"],
+  ["Масштабованість", "✗", "✗", "✗", "✓", "∞"],
+  ["Зручність використання", "✓", "✗", "✓✓", "✓", "✓✓✓"],
+  ["Швидкість роботи", "✗", "✗", "✓", "✓", "✓✓✓"],
+  ["Мобільна адаптивність", "✗", "✗", "✓✓", "✓", "✓✓✓"],
+  ["Клавіатурні скорочення", "✗", "✓", "✗", "✓", "✓✓✓"],
 ];
 
   const features = [
@@ -85,7 +85,7 @@ const diffTable = [
     {
       icon: <GiStarsStack className="w-6 h-6" />,
       title: "AI Powered",
-      description: "Smart organization and search capabilities",
+      description: "Smart structuring that adapts to your needs",
     },
     {
       icon: <TbDeviceMobile className="w-6 h-6" />,
@@ -284,12 +284,10 @@ const diffTable = [
           className="flex flex-wrap justify-center gap-10 my-12"
         >
           <Stat value="∞" label="Scalability" color="text-blue-600" />
-          <Stat value="100%" label="Uptime" color="text-purple-600" />
+          <Stat value="100%" label="Own rules" color="text-purple-600" />
           <Stat value="10+" label="Shortcuts" color="text-pink-600" />
           <Stat value="0ms" label="Typing Lag" color="text-green-600" />
         </motion.div>
-
-        {/* <DimensionPortal /> */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -427,9 +425,8 @@ const diffTable = [
           </div>
         </motion.div>
 
-        {/* CTA Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.7 }}
           whileInView={{ opacity: 1, scale: 1 }}
           className="relative overflow-hidden rounded-3xl mb-20 dark:shadow-2xl shadow-blue-300/10 shadow-none"
         >
