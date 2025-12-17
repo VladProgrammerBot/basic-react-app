@@ -284,9 +284,8 @@ export const Home = () => {
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
                 <Button
-                  size="lg"
                   onClick={() => navigate("workspace")}
-                  className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-2xl shadow-sky-500/50 hover:shadow-2xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
+                  variant={"colorfull"}
                 >
                   <GiProgression className="w-6 h-6 mr-2" />
                   Start with 5 steps
@@ -504,9 +503,8 @@ export const Home = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                size="lg"
+                variant="colorfull"
                 onClick={() => navigate("workspace")}
-                className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
               >
                 <GiProgression className="w-6 h-6 mr-2" />
                 Start with 5 steps

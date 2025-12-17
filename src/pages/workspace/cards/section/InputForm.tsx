@@ -32,7 +32,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
                 <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
             </div>
             <div className="flex justify-end gap-2 pb-2">
-                <Button onClick={cancelFunc} variant={"outline"}>Cancel</Button>
+                <Button onClick={cancelFunc} variant={"ghost"}>Cancel</Button>
                 <Button onClick={submit}>{isLoading && <span className="auth-loader"></span>}{submitTitle}</Button>
             </div>
         </div>

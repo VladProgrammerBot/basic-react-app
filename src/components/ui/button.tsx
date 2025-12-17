@@ -9,7 +9,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-neutral-100 border-1 dark:border-neutral-600 border-neutral-300 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700",
+        default: "text-white shadow-2xl shadow-sky-500/50 hover:shadow-2xl bg-blue-600 hover:bg-blue-500 hover:scale-105 px-4 py-2 transition-all duration-150",
         disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
@@ -18,11 +18,11 @@ export const buttonVariants = cva(
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
         colorfull:
-          "border-white dark:shadow-2xl shadow-blue-600 hover:shadow-blue-500 duration-150 text-white gradient-bg animate-pulse-once",
+          "text-lg shadow-2xl shadow-sky-500/50 hover:shadow-2xl border-none hover:scale-105 px-8 py-6 transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "hover:bg-neutral-300 dark:hover:bg-neutral-800",
+          "hover:bg-neutral-300 dark:hover:bg-white/10",
         ghost2: "duration-150",
       },
       size: {

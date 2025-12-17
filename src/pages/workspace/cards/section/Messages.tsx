@@ -8,16 +8,19 @@ export const Messages = () => {
 
   const colorMap = {
     red: {
-      bg: 'bg-red-200 dark:bg-red-600/90',
-      border: 'border-red-500',
+      bg: 'bg-red-200 dark:bg-red-600/20',
+      border: 'border-red-500/40',
+      text: 'text-red-800 dark:text-red-300',
     },
     blue: {
-      bg: 'bg-blue-200 dark:bg-blue-600/90',
-      border: 'border-blue-500',
+      bg: 'bg-blue-200 dark:bg-blue-600/20',
+      border: 'border-blue-500/40',
+      text: 'text-blue-800 dark:text-blue-300',
     },
     green: {
-      bg: 'bg-green-200 dark:bg-green-600/90',
-      border: 'border-green-500',
+      bg: 'bg-green-200 dark:bg-green-600/20',
+      border: 'border-green-500/40',
+      text: 'text-green-800 dark:text-green-300',
     },
   };
 
@@ -37,8 +40,8 @@ export const Messages = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0, transition: { duration: 0.2 } }}
             >
-              <div className={`flex p-4 items-center animate-fade-in gap-2 border- shadow-md shadow-neutral-300 dark:shadow-neutral-950 rounded-md ${styles.bg} ${styles.border}`}>
-                <IoMdAlert className="text-xl" />
+              <div className={`flex p-4 items-center animate-fade-in gap-2 border-1 shadow-md shadow-neutral-300 dark:shadow-neutral-950 backdrop-blur-md rounded-md ${styles.bg} ${styles.border} ${styles.text}`}>
+                <IoMdAlert className="text-" />
                 <p className="text-sm flex-1 mr-4 sm:mr-8">{elem.text}</p>
                 <button className="cursor-pointer">
                   <IoMdClose />

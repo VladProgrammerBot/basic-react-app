@@ -29,7 +29,7 @@ export function Item({
 
   return (
     <ItemLayout
-      className={`flex group/item cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-neutral-800 ${selectedItemId === index && "bg-neutral-200 dark:bg-neutral-800"}`}
+      className={`flex group/item cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-white/5 ${selectedItemId === index && "bg-neutral-200 dark:bg-white/5"}`}
     >
       {renameBuffer !== data.id ? (
         <>

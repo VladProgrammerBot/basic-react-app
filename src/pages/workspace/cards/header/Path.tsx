@@ -16,7 +16,7 @@ export const Path = () => {
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
 
   return (
-    <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white/50 backdrop-blur-sm border-neutral-300 overflow-hidden dark:bg-neutral-900/50">
+    <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white/50 backdrop-blur-lg border-neutral-300 overflow-hidden dark:bg-neutral-900/5">
       <div className="flex items-center">
         {path.length > 1 && (
           <Tooltip>
