@@ -48,7 +48,7 @@ export const Edit = () => {
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
         <>
-          {isBarOpen && <span onClick={toggleBar} className="fixed bg-black/30 w-screen h-screen top-0 right-0 z-100"></span>}
+          {isBarOpen && <span onClick={toggleBar} className="fixed bg-black/20 dark:bg-black/30 w-screen h-screen top-0 right-0 z-100"></span>}
           <Bar />
           <Path />
           <div>

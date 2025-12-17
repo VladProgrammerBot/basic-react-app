@@ -39,7 +39,7 @@ export const Guide = () => {
     const beforeLast = basicGuide.length - 2
 
     return (
-        <div className="fixed rounded-md bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-md shadow-neutral-100 dark:shadow-neutral-950 bg-neutral-100 dark:bg-neutral-800 p-2 text-center">
+        <div className="fixed rounded-md bottom-2 sm:bottom-4 max-sm:w-[calc(100vw-16px)] w-100 right-1/2 translate-x-1/2 border-1 border-neutral-300 dark:border-neutral-700 shadow-md shadow-neutral-100 dark:shadow-neutral-950 bg-white dark:bg-white/0 dark:backdrop-blur-3xl p-2 text-center">
             <Button
                 variant={"ghost"}
                 onClick={() => setIsGuideOpen(!isGuideOpen)}
@@ -48,7 +48,7 @@ export const Guide = () => {
             </Button>
             <div className={`duration-300 overflow-y-hidden ${isGuideOpen ? "h-90 max-h-90" : "h-0"}`}>
                 {currentStep <= beforeLast && <p className="font-bold text-2xl pt-4">Step {currentStep < beforeLast ? currentStep : beforeLast} of {beforeLast}</p>}
-                <img className="object-cover my-4 aspect-square max-h-40 mx-auto" src={basicGuide[currentStep].img} alt="" />
+                <img className="object-cover my-4 rounded-lg aspect-square max-h-40 mx-auto" src={basicGuide[currentStep].img} alt="" />
                 <div className="flex justify-center w-full">
                     {basicGuide[currentStep].text}
                 </div>

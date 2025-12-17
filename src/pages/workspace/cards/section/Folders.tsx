@@ -21,7 +21,7 @@ export const Folders = () => {
   useKeyboard()
 
   return (
-    <div className={`h-fit mt-13 max-md:px-2 border-neutral-300 dark:border-neutral-700`}>
+    <div className={`h-fit mt-13 mb-[50vh] max-md:px-2 border-neutral-300 dark:border-neutral-700`}>
       {childrensData?.map((data, index) => {
         return (
           <Item key={data.id} data={data} index={index} />

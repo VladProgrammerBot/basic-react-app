@@ -1,4 +1,3 @@
-import { ItemLayout } from "./ItemLayout";
 import { ItemMenu } from "./ItemMenu";
 import store from "@/state/store";
 import { InputForm } from "./InputForm";
@@ -28,8 +27,8 @@ export function Item({
   const childrensLength = data && data?.childrens.length > 0 ? data.childrens.length : 0
 
   return (
-    <ItemLayout
-      className={`flex group/item cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-white/5 ${selectedItemId === index && "bg-neutral-200 dark:bg-white/5"}`}
+    <div
+      className={`flex group/item md:min-h-10 min-h-12 cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-white/10 ${selectedItemId === index && "bg-neutral-200 dark:bg-white/10"}`}
     >
       {renameBuffer !== data.id ? (
         <>
@@ -56,6 +55,6 @@ export function Item({
           defaultValue={data.title}
         />
       )}
-    </ItemLayout>
+    </div>
   );
 }
