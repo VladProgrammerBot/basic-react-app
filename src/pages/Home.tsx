@@ -65,16 +65,15 @@ export const Home = () => {
     );
   };
 
-
-const diffTable = [
-  ["Критерій", "Блокнот", "Word", "Нотатки", "Notion", "Strukt"],
-  ["Організація", "✓", "✓✓", "✓", "✓✓", "✓✓✓"],
-  ["Масштабованість", "✗", "✗", "✗", "✓", "∞"],
-  ["Зручність використання", "✓", "✗", "✓✓", "✓", "✓✓✓"],
-  ["Швидкість роботи", "✗", "✗", "✓", "✓", "✓✓✓"],
-  ["Мобільна адаптивність", "✗", "✗", "✓✓", "✓", "✓✓✓"],
-  ["Клавіатурні скорочення", "✗", "✓", "✗", "✓", "✓✓✓"],
-];
+  const diffTable = [
+    ["Критерій", "Блокнот", "Word", "Нотатки", "Notion", "Strukt"],
+    ["Організація", "✓", "✓✓", "✓", "✓✓", "✓✓✓"],
+    ["Масштабованість", "✗", "✗", "✗", "✓", "∞"],
+    ["Зручність використання", "✓", "✗", "✓✓", "✓", "✓✓✓"],
+    ["Швидкість роботи", "✗", "✗", "✓", "✓", "✓✓✓"],
+    ["Мобільна адаптивність", "✗", "✗", "✓✓", "✓", "✓✓✓"],
+    ["Клавіатурні скорочення", "✗", "✓", "✗", "✓", "✓✓✓"],
+  ];
 
   const features = [
     {
@@ -166,20 +165,22 @@ const diffTable = [
       <div className="relative p-4 pb-0 md:pb-0 md:p-6 max-w-7xl mx-auto">
         {/* Navigation */}
         <motion.div
-      initial={{ 
-        opacity: 0, 
-        y: -100 
-      }} 
-      animate={{ 
-        opacity: 1, 
-        y: 0 
-      }}
-      transition={{ 
-        duration: 0.8, 
-        type: "spring", 
-        damping: 15,
-        stiffness: 100
-      }} className="flex fixed w-full z-10 items-center justify-between mb-12 left-0 top-0 bg-white/70 dark:bg-neutral-900/10 p-4 backdrop-blur-lg border-b border-neutral-200/50 dark:border-transparent">
+          initial={{
+            opacity: 0,
+            y: -100,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            type: "spring",
+            damping: 15,
+            stiffness: 100,
+          }}
+          className="flex fixed w-full z-10 items-center justify-between mb-12 left-0 top-0 bg-white/70 dark:bg-neutral-900/10 p-4 backdrop-blur-lg border-b border-neutral-200/50 dark:border-transparent"
+        >
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
               <TbRocket className="w-6 h-6 text-white" />
@@ -248,7 +249,7 @@ const diffTable = [
                 <Button
                   size="lg"
                   onClick={() => navigate("workspace")}
-                  className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
                 >
                   <GiProgression className="w-6 h-6 mr-2" />
                   Start with 5 steps
@@ -359,9 +360,11 @@ const diffTable = [
                           ) : (
                             <motion.div
                               className={`text-nowrap w-fit items-center justify-center px-3 py-1 rounded-full font-medium ${
-                                cell === "∞" || cell === "✨"
-                                  // ? "gradient-bg"
-                                  || cell.includes("✓") || cell.includes("🟢")
+                                cell === "∞" ||
+                                cell === "✨" ||
+                                // ? "gradient-bg"
+                                cell.includes("✓") ||
+                                cell.includes("🟢")
                                   ? "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-300"
                                   : cell.includes("🟡")
                                   ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-300"
@@ -459,7 +462,7 @@ const diffTable = [
               <Button
                 size="lg"
                 onClick={() => navigate("workspace")}
-                className="text-lg border-none px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                className="text-lg border-none hover:scale-105 px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white"
               >
                 <GiProgression className="w-6 h-6 mr-2" />
                 Start with 5 steps
@@ -471,7 +474,7 @@ const diffTable = [
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-8 border-t-1 border-neutral-300 dark:border-neutral-700">
+        <p className="text-center text-neutral-500 p-8 border-t-1 dark:border-neutral-700">
           2025, Made in Ukraine by Vlad
         </p>
       </div>
