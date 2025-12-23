@@ -6,7 +6,7 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
-import { Guide } from "./cards/Guide";
+import { Guide } from "./cards/Guide/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
