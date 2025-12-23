@@ -34,7 +34,7 @@ export const Edit = () => {
   }, []);
 
   return (
-    <div className="flex h-full min-h-screen">
+    <div className="workspace flex h-full min-h-screen">
       {isStyled && (
         <>
           <div className="fixed -z-10 inset-0 hidden dark:block">
