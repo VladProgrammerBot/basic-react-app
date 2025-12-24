@@ -1,7 +1,7 @@
 export const guideSteps = [
     {
       id: 1,
-      title: "Навігація всередину",
+      title: "Search information",
       emoji: "🔍",
       problem: {
         emoji: "🔴",
@@ -31,7 +31,7 @@ export const guideSteps = [
     },
     {
       id: 2,
-      title: "Контекст",
+      title: "Context",
       emoji: "🧭",
       problem: {
         emoji: "🔴",
@@ -63,7 +63,7 @@ export const guideSteps = [
     },
     {
       id: 3,
-      title: "Масштабування",
+      title: "Scalebility",
       emoji: "📈",
       problem: {
         emoji: "🔴",
@@ -97,7 +97,7 @@ export const guideSteps = [
     },
     {
       id: 4,
-      title: "Редагування",
+      title: "Editing",
       emoji: "✏️",
       problem: {
         emoji: "🔴",
@@ -131,7 +131,6 @@ export const guideSteps = [
     },
     {
       id: 5,
-      title: "Кінець",
       emoji: "🎉",
       congratulations: {
         emoji: "🎉",

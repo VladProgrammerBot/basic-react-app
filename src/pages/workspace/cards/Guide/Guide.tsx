@@ -92,7 +92,7 @@ export const Guide = () => {
 
     return (
       <div className="animate-slide-in">
-        <h2 className="mt-0 text-2xl mb-6 text-white">{step.title}</h2>
+        {/* <h2 className="mt-0 text-2xl mb-6 text-white">{step.title}</h2> */}
 
         {step.problem && (
           <div
@@ -173,7 +173,7 @@ export const Guide = () => {
           <div
             className={`${blockBaseClass} bg-[rgba(20,83,45,0.2)] border-[rgba(74,222,128,0.2)] before:bg-[#4ade80]`}
           >
-            <div className={`${labelBaseClass} text-[#4ade80]`}>
+            <div className={`${labelBaseClass} text-[#4ade80] `}>
               ✅ Результат
             </div>
             <p>{step.result.text}</p>
@@ -270,7 +270,7 @@ export const Guide = () => {
             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
           </svg>
-          <span>Почати Гайд</span>
+          <span>Open Guide</span>
         </button>
       )}
 
@@ -282,15 +282,10 @@ export const Guide = () => {
         `}
         aria-label="Панель навчання"
       >
-        <div className="relative p-5 md:px-6 border-b border-[#333336] flex justify-between items-start bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
-          <div className="guide-title">
-            <h3 className="m-0 mb-1 text-lg font-semibold tracking-tight">
-              Strukt Guide 📖
-            </h3>
-            <span className="text-[13px] text-[#9ca3af] bg-white/10 px-2 py-0.5 rounded-xl">
-              Крок <span>{currentStep + 1}</span> з {totalSteps}
-            </span>
-          </div>
+        <div className="relative p-5 md:px-6 border-b border-[#333336] flex justify-between items-center bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
+          <p className="text-neutral-500">
+            Крок <span>{currentStep + 1}</span> з {totalSteps}
+          </p>
           <div className="flex">
             <button
               className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer px-3 text-2xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
