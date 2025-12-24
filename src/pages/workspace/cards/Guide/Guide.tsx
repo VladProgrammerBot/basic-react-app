@@ -279,7 +279,7 @@ export const Guide = () => {
         `}
         aria-label="Панель навчання"
       >
-        <div className="relative px-6 py-5 md:px-6 border-b border-[#333336] flex justify-between items-center bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
+        <div className="relative px-6 py-5 md:px-6 dark:border-b dark:border-[#333336] flex justify-between items-center bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
           <p className="text-neutral-500">
             Крок <span>{currentStep + 1}</span> з {totalSteps}
           </p>
@@ -292,7 +292,7 @@ export const Guide = () => {
               -
             </button>
             <button
-              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black hover:dark::text-white"
+              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black dark:hover:text-white"
               onClick={() => {
                 setIsGuideShow(false);
                 useAlert({color: "green", text: "You can open Guide in Sidebar Menu"});
@@ -333,9 +333,9 @@ export const Guide = () => {
           ))}
         </div>
 
-        <div className="p-5 md:px-6 border-t border-[#333336] flex justify-between bg-white/[0.02]">
+        <div className="p-5 md:px-6 border-t border-neutral-300 dark:border-[#333336] flex justify-between bg-white/[0.02]">
           <button
-            className="bg-transparent text-[#e0e0e0] border border-[#333336] px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:border-[#666] hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed disabled:border-transparent"
+            className="bg-transparent text-black dark:text-[#e0e0e0] border border-neutral-300 dark:border-[#333336] px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:border-neutral-400 dark:hover:border-[#666] hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-transparent"
             onClick={handlePrev}
             disabled={currentStep === 0}
           >
