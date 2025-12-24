@@ -219,9 +219,6 @@ export const Guide = () => {
           <div
             className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
           >
-            <div className={`${labelBaseClass} text-[#facc15]`}>
-              📚 Повідомлення
-            </div>
             <p>{step.message.text}</p>
           </div>
         )}
@@ -255,7 +252,7 @@ export const Guide = () => {
 
       {!isOpen && (
         <button
-          className="fixed bottom-[30px] right-[30px] bg-[#3b82f6] text-white border-none rounded-[50px] px-6 py-3.5 flex items-center gap-2.5 cursor-pointer shadow-[0_4px_20px_rgba(59,130,246,0.4)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] font-semibold text-base hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.6)] before:absolute before:-inset-[5px] before:rounded-[50px] before:border-2 before:border-[#3b82f6] before:animate-custom-pulse before:opacity-0 max-md:bottom-5 max-md:right-5"
+          className="fixed bottom-[30px] right-[30px] bg-[#3b82f6] border-none rounded-[50px] px-6 py-3.5 flex items-center gap-2.5 cursor-pointer shadow-[0_4px_20px_rgba(59,130,246,0.4)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] font-semibold text-base hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.6)] before:absolute before:-inset-[5px] before:rounded-[50px] before:border-2 before:border-[#3b82f6] before:animate-custom-pulse before:opacity-0 max-md:bottom-5 max-md:right-5"
           onClick={() => toggleGuide(true)}
           title="Відкрити гайд"
         >
@@ -275,9 +272,9 @@ export const Guide = () => {
       )}
 
       <aside
-        className={`fixed top-0 right-0 w-[420px] h-full bg-[#1e1e20] border-l border-[#333336] shadow-[-8px_0_24px_rgba(0,0,0,0.6)] flex flex-col transition-transform duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] z-50 text-[#e0e0e0] font-sans
+        className={`fixed top-0 right-0 w-[420px] h-full bg-white dark:bg-neutral-900 border-l border-neutral-300 dark:border-[#333336] dark:shadow-[-8px_0_24px_rgba(0,0,0,0.6)] shadow-[-8px_0_24px_rgba(220,220,220,0.6)] flex flex-col transition-transform duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] z-50 text-neutral-900 dark:text-[#e0e0e0] font-sans
           ${isOpen ? "translate-x-0" : "translate-x-full"}
-          max-md:w-full max-md:h-[80vh] max-md:top-auto max-md:bottom-0 max-md:border-l-0 max-md:border-t max-md:rounded-t-2xl max-md:bg-[#1e1e20]
+          max-md:w-full max-md:h-[80vh] max-md:top-auto max-md:bottom-0 max-md:border-l-0 max-md:border-t max-md:rounded-t-2xl bg-white max-md:dark:bg-neutral-900
           ${isOpen ? "max-md:translate-y-0" : "max-md:translate-y-full"}
         `}
         aria-label="Панель навчання"
@@ -288,14 +285,14 @@ export const Guide = () => {
           </p>
           <div className="flex">
             <button
-              className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer px-3 text-xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
+              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer px-3 text-xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black dark:hover:text-white"
               onClick={() => toggleGuide(false)}
               aria-label="Згорнути гайд"
             >
               -
             </button>
             <button
-              className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
+              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black hover:dark::text-white"
               onClick={() => {
                 setIsGuideShow(false);
                 useAlert({color: "green", text: "You can open Guide in Sidebar Menu"});
@@ -317,9 +314,9 @@ export const Guide = () => {
           </div>
         </div>
 
-        <div className="w-full h-[2px] bg-[#2d2d2d]">
+        <div className="w-full h-[2px] bg-neutral-300 dark:bg-[#2d2d2d]">
           <div
-            className="h-full bg-[#3b82f6] shadow-[0_0_10px_#3b82f6] transition-[width] duration-400 ease-linear"
+            className="h-full bg-[#3b82f6] shadow-[0_0_10px_#cccccc] dark:shadow-[0_0_10px_#3b82f6] transition-[width] duration-400 ease-linear"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
@@ -355,7 +352,7 @@ export const Guide = () => {
             Назад
           </button>
           <button
-            className="bg-[#3b82f6] border border-[#3b82f6] text-white px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:bg-[#2563eb] hover:border-[#2563eb] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]"
+            className="bg-[#3b82f6] border border-[#3b82f6] px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:bg-[#2563eb] hover:border-[#2563eb] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]"
             onClick={handleNext}
           >
             {currentStep === totalSteps - 1 ? "Завершити" : "Далі"}

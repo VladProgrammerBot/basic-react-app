@@ -44,7 +44,7 @@ export const guideSteps = [
       action: {
         emoji: "🎯",
         steps: [
-          'Перейшовши у "plans for today" отримано шлях Root/plans for today (контекст)',
+          'Перейшовши у "plans for today" отримано шлях \"Root / plans\" for today (контекст)',
           'Нажміть на "Root" щоб перейти на вищий контекст',
         ],
         result: null,
@@ -138,7 +138,7 @@ export const guideSteps = [
       },
       message: {
         emoji: "📚",
-        text: "Цей посібник - вершина айсберга прихованих суперможливостей strukt, для подальшого вивчення рекомендується Root / Docs",
+        text: "Цей посібник - вершина айсберга прихованих суперможливостей strukt, для подальшого вивчення рекомендується \"Root / Docs\"",
       },
       spoiler: {
         emoji: "💡",
