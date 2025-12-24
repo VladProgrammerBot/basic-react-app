@@ -84,7 +84,7 @@ export const guideSteps = [
       },
       result: {
         emoji: "✅",
-        text: "Рецепт знаходиться там, де ви точно знаєте",
+        text: "Інформація знаходиться там, де ви точно знаєте",
       },
       tryYourself: {
         emoji: "🚀",

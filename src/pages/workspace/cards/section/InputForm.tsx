@@ -29,7 +29,7 @@ export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, s
         }
         }>
             <div className="flex pl-4">
-                <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 py-2 w-full mb-2 outline-none resize-none" />
+                <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 pb-2 mt-2 w-full min-h-20 mb-2 outline-none resize-none" />
             </div>
             <div className="flex justify-end gap-2 pb-2">
                 <Button onClick={cancelFunc} variant={"ghost"}>Cancel</Button>

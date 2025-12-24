@@ -25,7 +25,7 @@ export const Messages = () => {
   };
 
   return (
-    <div className="p-4 flex flex-col gap-2 items-end fixed dark:text-white bottom-0 z-20 right-0">
+    <div className="p-4 flex flex-col gap-2 items-end fixed dark:text-white bottom-0 z-100 right-0">
       <AnimatePresence initial={false}>
 
         {alerts.map((elem) => {

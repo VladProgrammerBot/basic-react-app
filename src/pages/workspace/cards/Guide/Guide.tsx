@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import store from "@/state/store";
 import { guideSteps } from "./steps";
+import { useAlerts } from "@/hooks/useAlerts";
 
 // Helper styles for things Tailwind doesn't handle inline easily (Scrollbars & Custom Keyframes)
 const customStyles = `
@@ -38,6 +39,7 @@ export const Guide = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
   const setIsGuideShow = store.use.setIsGuideOpen();
+  const { useAlert } = useAlerts();
 
   const totalSteps = guideSteps.length;
 
@@ -273,20 +275,20 @@ export const Guide = () => {
       )}
 
       <aside
-        className={`fixed top-0 right-0 w-[420px] h-full bg-[#1e1e20] border-l border-[#333336] shadow-[-8px_0_24px_rgba(0,0,0,0.6)] flex flex-col transition-transform duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] z-[200] text-[#e0e0e0] font-sans
+        className={`fixed top-0 right-0 w-[420px] h-full bg-[#1e1e20] border-l border-[#333336] shadow-[-8px_0_24px_rgba(0,0,0,0.6)] flex flex-col transition-transform duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] z-50 text-[#e0e0e0] font-sans
           ${isOpen ? "translate-x-0" : "translate-x-full"}
           max-md:w-full max-md:h-[80vh] max-md:top-auto max-md:bottom-0 max-md:border-l-0 max-md:border-t max-md:rounded-t-2xl max-md:bg-[#1e1e20]
           ${isOpen ? "max-md:translate-y-0" : "max-md:translate-y-full"}
         `}
         aria-label="Панель навчання"
       >
-        <div className="relative p-5 md:px-6 border-b border-[#333336] flex justify-between items-center bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
+        <div className="relative px-6 py-5 md:px-6 border-b border-[#333336] flex justify-between items-center bg-white/[0.02] max-md:pt-6 max-md:before:content-[''] max-md:before:block max-md:before:w-10 max-md:before:h-1 max-md:before:bg-[#444] max-md:before:rounded-sm max-md:before:absolute max-md:before:top-2 max-md:before:left-1/2 max-md:before:-translate-x-1/2">
           <p className="text-neutral-500">
             Крок <span>{currentStep + 1}</span> з {totalSteps}
           </p>
           <div className="flex">
             <button
-              className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer px-3 text-2xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
+              className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer px-3 text-xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
               onClick={() => toggleGuide(false)}
               aria-label="Згорнути гайд"
             >
@@ -294,7 +296,10 @@ export const Guide = () => {
             </button>
             <button
               className="bg-transparent border border-transparent text-[#9ca3af] cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-white"
-              onClick={() => setIsGuideShow(false)}
+              onClick={() => {
+                setIsGuideShow(false);
+                useAlert({color: "green", text: "You can open Guide in Sidebar Menu"});
+              }}
               aria-label="Згорнути гайд"
             >
               <svg
