@@ -252,7 +252,7 @@ export const Guide = () => {
 
       {!isOpen && (
         <button
-          className="fixed bottom-[30px] right-[30px] bg-[#3b82f6] border-none rounded-[50px] px-6 py-3.5 flex items-center gap-2.5 cursor-pointer shadow-[0_4px_20px_rgba(59,130,246,0.4)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] font-semibold text-base hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.6)] before:absolute before:-inset-[5px] before:rounded-[50px] before:border-2 before:border-[#3b82f6] before:animate-custom-pulse before:opacity-0 max-md:bottom-5 max-md:right-5"
+          className="fixed bottom-[30px] right-[30px] bg-[#3b82f6] border-none rounded-[50px] px-6 py-3.5 flex items-center text-white gap-2.5 cursor-pointer shadow-[0_4px_20px_rgba(59,130,246,0.4)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] font-semibold text-base hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.6)] before:absolute before:-inset-[5px] before:rounded-[50px] before:border-2 before:border-[#3b82f6] before:animate-custom-pulse before:opacity-0 max-md:bottom-5 max-md:right-5"
           onClick={() => toggleGuide(true)}
           title="Відкрити гайд"
         >

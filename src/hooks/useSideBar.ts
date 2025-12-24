@@ -32,7 +32,7 @@ export const useBar = () => {
 
     const containerClass = useMemo(
         () =>
-            `${!isBarOpen ? "translate-x-full" : ""} space-y-2 bg-neutral-100 dark:bg-white/5 backdrop-blur-lg right-0 w-screen sm:w-75 h-screen fixed p-4 z-100 duration-150`,
+            `${!isBarOpen ? "translate-x-full" : ""} space-y-2 bg-white dark:bg-white/5 backdrop-blur-lg right-0 w-screen sm:w-75 h-screen fixed p-4 z-100 duration-150`,
         [isBarOpen]
     )
 
