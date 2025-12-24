@@ -55,7 +55,7 @@ export const Edit = () => {
           {isBarOpen && (
             <span
               onClick={toggleBar}
-              className="fixed bg-black/20 dark:bg-black/30 w-screen h-screen top-0 right-0 z-100"
+              className="fixed bg-black/20 dark:bg-black/30 w-screen h-screen top-0 right-0 z-90"
             ></span>
           )}
           <Bar />
