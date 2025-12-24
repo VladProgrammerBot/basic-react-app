@@ -3,7 +3,7 @@ import { useNavigate } from "react-router"
 import store from "@/state/store"
 import { TiHome } from "react-icons/ti"
 import { FaBook } from "react-icons/fa"
-import { MdLogout } from "react-icons/md"
+import { MdLogout, MdOutlineBorderStyle } from "react-icons/md"
 import { HiUserAdd } from "react-icons/hi";
 
 export const useBar = () => {
@@ -83,7 +83,7 @@ export const useBar = () => {
         {
             key: "styles",
             label: "Toggle styles",
-            icon: HiUserAdd,
+            icon: MdOutlineBorderStyle,
             show: true,
             onClick: () => {
                 localStorage.setItem("isNotStyled", String(!isStyled))
