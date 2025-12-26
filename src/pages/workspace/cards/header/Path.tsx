@@ -7,17 +7,18 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 
 export const Path = () => {
-  const path = store.use.path()
-  const toggleBar = store.use.toggleBar()
-  const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs()
+  const path = store.use.path();
+  const toggleBar = store.use.toggleBar();
+  const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs();
 
   return (
     <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white/50 backdrop-blur-lg border-neutral-300 overflow-hidden dark:bg-neutral-900/5">
-      <div className="flex items-center">
+      <div className="flex h-full items-center">
+        {/* <div className="w-[calc(100%+16px)] h-full [calc(100%+8px)] -z-10 absolute bg-blue-500/40 rounded-xl animate-pulse"></div> */}
         {path.length > 1 && (
           <Tooltip>
             <TooltipTrigger>
@@ -25,18 +26,18 @@ export const Path = () => {
                 className="px-2"
                 elem={{ ...path[0], title: "Root" }}
                 index={0}
-                current={path.length === 1} />
+                current={path.length === 1}
+              />
             </TooltipTrigger>
-            <TooltipContent>
-              Shift + h
-            </TooltipContent>
+            <TooltipContent>Shift + h</TooltipContent>
           </Tooltip>
         )}
-        {hiddenCrumbs().length !== 0 &&
+        {hiddenCrumbs().length !== 0 && (
           <div className="flex relative">
             <div className="text-neutral-400">/</div>
             <HiddenCrumbs hiddenCrumbs={hiddenCrumbs} />
-          </div>}
+          </div>
+        )}
         {lastCrumbs().map((crumb, index) => {
           return (
             <Tooltip key={index}>
@@ -47,18 +48,19 @@ export const Path = () => {
                     key={index}
                     elem={crumb}
                     index={index + Math.max(path.length - 2, 1)}
-                    current={path.length > 2 && index === 1 || path.length <= 2 && !index}
-                    className={index === 0 ? "px-2" : "pl-2"} />
+                    current={
+                      (path.length > 2 && index === 1) ||
+                      (path.length <= 2 && !index)
+                    }
+                    className={index === 0 ? "px-2" : "pl-2"}
+                  />
                 </div>
               </TooltipTrigger>
               {index === lastCrumbs().length - 2 && (
-                <TooltipContent>
-                  h
-                </TooltipContent>
+                <TooltipContent>h</TooltipContent>
               )}
             </Tooltip>
-
-          )
+          );
         })}
       </div>
       <Button variant={"ghost"} size={"icon"} onClick={toggleBar}>
@@ -67,5 +69,3 @@ export const Path = () => {
     </div>
   );
 };
-
-

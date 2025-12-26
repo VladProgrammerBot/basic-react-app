@@ -27,12 +27,12 @@ export function Item({ data, index }: { data: folder; index: number }) {
         selectedItemId === index && "bg-neutral-200 dark:bg-white/10"
       }`}
     >
-      {/* {index === 1 && (
+      {index === 1 && (
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 flex h-4 w-4">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400"></span>
           <span className="relative opacity-50 inline-flex rounded-full h-4 w-4 bg-blue-500"></span>
         </div>
-      )} */}
+      )}
       {renameBuffer !== data.id ? (
         <>
           <div

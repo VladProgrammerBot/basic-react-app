@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import store from "@/state/store";
 import { guideSteps } from "./steps";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 // Helper styles for things Tailwind doesn't handle inline easily (Scrollbars & Custom Keyframes)
 const customStyles = `
@@ -88,7 +88,7 @@ export const Guide = () => {
   const renderStepContent = (step: any) => {
     // Reusable styles for info blocks to keep JSX clean
     const blockBaseClass =
-      "border p-4 mb-5 rounded-lg relative overflow-hidden before:absolute before:inset-y-0 before:left-0 before:w-1";
+      "p-4 mb-4 relative overflow-hidden before:absolute before:inset-y-0 before:left-0 before:w-1";
     const labelBaseClass =
       "text-[11px] uppercase tracking-[0.05em] font-bold mb-2 flex items-center gap-1.5";
 
@@ -251,9 +251,11 @@ export const Guide = () => {
       <style>{customStyles}</style>
 
       {!isOpen && (
-        <button
-          className="fixed bottom-[30px] right-[30px] bg-[#3b82f6] border-none rounded-[50px] px-6 py-3.5 flex items-center text-white gap-2.5 cursor-pointer shadow-[0_4px_20px_rgba(59,130,246,0.4)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] font-semibold text-base hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.6)] before:absolute before:-inset-[5px] before:rounded-[50px] before:border-2 before:border-[#3b82f6] before:animate-custom-pulse before:opacity-0 max-md:bottom-5 max-md:right-5"
+        <Button
+          variant={"colorfull"}
+          className="fixed bottom-2 right-2 y-3.5 font-bold"
           onClick={() => toggleGuide(true)}
+          size="lg"
           title="Відкрити гайд"
         >
           <svg
@@ -268,12 +270,12 @@ export const Guide = () => {
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
           </svg>
           <span>Open Guide</span>
-        </button>
+        </Button>
       )}
 
       <aside
         className={`fixed top-0 right-0 w-[420px] h-full bg-white dark:bg-neutral-900 border-l border-neutral-300 dark:border-[#333336] dark:shadow-[-8px_0_24px_rgba(0,0,0,0.6)] shadow-[-8px_0_24px_rgba(220,220,220,0.6)] flex flex-col transition-transform duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] z-50 text-neutral-900 dark:text-[#e0e0e0] font-sans
-          ${isOpen ? "translate-x-0" : "translate-x-full"}
+          ${isOpen ? "md:translate-x-0" : "md:translate-x-full"}
           max-md:w-full max-md:h-[80vh] max-md:top-auto max-md:bottom-0 max-md:border-l-0 max-md:border-t max-md:rounded-t-2xl bg-white max-md:dark:bg-neutral-900
           ${isOpen ? "max-md:translate-y-0" : "max-md:translate-y-full"}
         `}
@@ -283,8 +285,14 @@ export const Guide = () => {
           <p className="text-neutral-500">
             Крок <span>{currentStep + 1}</span> з {totalSteps}
           </p>
-          <Button variant="ghost" size="icon" onClick={() => toggleGuide(false)} aria-label="Закрити гайд">
-            <ChevronDown />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => toggleGuide(false)}
+            aria-label="Закрити гайд"
+          >
+            <ChevronDown className="md:hidden"/>
+            <ChevronRight className="max-md:hidden"/>
           </Button>
         </div>
 
@@ -325,8 +333,8 @@ export const Guide = () => {
             </svg>
             Назад
           </button>
-          <button
-            className="bg-[#3b82f6] border border-[#3b82f6] px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:bg-[#2563eb] hover:border-[#2563eb] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]"
+          <Button
+            // className="bg-[#3b82f6] border border-[#3b82f6] px-5 py-2.5 rounded-md cursor-pointer text-sm font-medium transition-all flex items-center gap-2 hover:bg-[#2563eb] hover:border-[#2563eb] hover:shadow-[0_4px_12px_rgba(59,130,246,0.3)]"
             onClick={handleNext}
           >
             {currentStep === totalSteps - 1 ? "Завершити" : "Далі"}
@@ -340,7 +348,7 @@ export const Guide = () => {
             >
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-          </button>
+          </Button>
         </div>
       </aside>
     </>
