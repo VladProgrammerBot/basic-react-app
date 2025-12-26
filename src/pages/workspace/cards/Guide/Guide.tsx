@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import store from "@/state/store";
 import { guideSteps } from "./steps";
-import { useAlerts } from "@/hooks/useAlerts";
+import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
 
 // Helper styles for things Tailwind doesn't handle inline easily (Scrollbars & Custom Keyframes)
 const customStyles = `
@@ -39,7 +40,6 @@ export const Guide = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
   const setIsGuideShow = store.use.setIsGuideOpen();
-  const { useAlert } = useAlerts();
 
   const totalSteps = guideSteps.length;
 
@@ -283,35 +283,9 @@ export const Guide = () => {
           <p className="text-neutral-500">
             Крок <span>{currentStep + 1}</span> з {totalSteps}
           </p>
-          <div className="flex">
-            <button
-              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer px-3 text-xl rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black dark:hover:text-white"
-              onClick={() => toggleGuide(false)}
-              aria-label="Згорнути гайд"
-            >
-              -
-            </button>
-            <button
-              className="bg-transparent border border-transparent text-neutral-500 cursor-pointer p-1.5 rounded-md flex items-center justify-center transition-all hover:bg-white/10 hover:text-black dark:hover:text-white"
-              onClick={() => {
-                setIsGuideShow(false);
-                useAlert({color: "green", text: "You can open Guide in Sidebar Menu"});
-              }}
-              aria-label="Згорнути гайд"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
+          <Button variant="ghost" size="icon" onClick={() => toggleGuide(false)} aria-label="Закрити гайд">
+            <ChevronDown />
+          </Button>
         </div>
 
         <div className="w-full h-[2px] bg-neutral-300 dark:bg-[#2d2d2d]">
