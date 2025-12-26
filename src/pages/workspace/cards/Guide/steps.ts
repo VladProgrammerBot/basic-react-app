@@ -1,152 +1,144 @@
 export const guideSteps = [
-    {
-      id: 1,
-      title: "Search information",
-      emoji: "🔍",
-      problem: {
-        emoji: "🔴",
-        text: "Ідеї, лайвхаки, плани губляться серед тисячі нотаток",
-      },
-      solution: {
-        emoji: "💡",
-        text: "strukt дозволяє швидко знаходити необхідну інформацію",
-      },
-      note: {
-        emoji: "📌",
-        text: "Інтерфейс як у провіднику файлів",
-      },
-      action: {
-        emoji: "🎯",
-        steps: ['Нажміть на папку "Plans for tomorrow"'],
-      },
-      result: {
-        emoji: "✅",
-        text: "За один клік отримано всі плани на завтра",
-      },
-      tryYourself: {
-        emoji: "🚀",
-        steps: ["Знайдіть серед цілей заповнену папку. Що там?"],
-      },
+  {
+    id: 1,
+    title: "",
+    emoji: "🔍",
+    problem: {
+      emoji: "🔴",
+      text: "Ideas, life hacks, and plans get lost among thousands of notes",
     },
-    {
-      id: 2,
-      title: "Context",
-      emoji: "🧭",
-      problem: {
-        emoji: "🔴",
-        text: "Плани, гайди, ідеї - все змішано і незрозуміло звідки що взялося",
-      },
-      solution: {
-        emoji: "💡",
-        text: "Strukt дозволяє швидко розуміти контекст любої інформації",
-        // text: "Шлях вгорі показує контекст інформації, яку переглянуто. Можна перейти на рівень вище",
-      },
-      action: {
-        emoji: "🎯",
-        steps: [
-          'Перегляньте шлях з верху, його приблизний вигляд: "Root / plans for tomorrow"',
-          'Нажміть на "Root" щоб перейти на вищий контекст',
-        ],
-        result: null,
-      },
-      result: {
-        emoji: "✅",
-        text: "Переглядаючи плани ви можете швидко зрозуміти їх контекст",
-      },
-      tryYourself: {
-        emoji: "🚀",
-        steps: [
-          "Перейдіть за ланцюжком: Root / Development / school / Math",
-          'Проаналізуйте "path". Про що ця папка?',
-        ],
-      },
+    solution: {
+      emoji: "💡",
+      text: "strukt allows you to find the necessary information quickly",
     },
-    {
-      id: 3,
-      title: "Scalebility",
-      emoji: "📈",
-      problem: {
-        emoji: "🔴",
-        text: "Зявилася нова ідея чи лайвхак. Куди це покласти, щоб можна було пізніше знайти?",
-      },
-      solution: {
-        emoji: "💡",
-        text: "Strukt дозволяє зберегти інформацію, щоб було легко знайти пізніше",
-      },
-      action: {
-        emoji: "🎯",
-        steps: [
-          'Перейдіть у папку за шляхом "Root/Health/cooking"',
-          'Додайте рядом із Pizza новий рецепт: нажміть на + та напишіть "Pancakes"',
-          "Натисніть Enter",
-        ],
-        result: null,
-      },
-      result: {
-        emoji: "✅",
-        text: "Ви зберегли новий рецепт там, де він має бути",
-      },
-      tryYourself: {
-        emoji: "🚀",
-        steps: [
-          'Перейдіть у "Pancakes"',
-          "Додайте необхідні папки для опису рецепту",
-          "Перейдіть у Root та спробуйте найти створений рецепт",
-        ],
-      },
+    note: {
+      emoji: "📌",
+      text: "Interface like a file explorer",
     },
-    {
-      id: 4,
-      title: "Editing",
-      emoji: "✏️",
-      problem: {
-        emoji: "🔴",
-        text: "Переробляючи план чи гайд, кожна зміна - новий листок",
-      },
-      solution: {
-        emoji: "💡",
-        text: "Видаляй, перейменовуй, переміщай - легко",
-      },
-      action: {
-        emoji: "🎯",
-        steps: [
-          'Перейдіть по ланцюжку "Root/Development/Foreign languages"',
-          'У меню папки виберіть "Cut (move)"',
-          'Перейдіть у "school" та нажміть "Paste"',
-        ],
-        result: "Було переміщено папку English у контекст шкільних предметів",
-      },
-      result: {
-        emoji: "✅",
-        text: "Ви легко перемістили папку з англійською у контекст навчання без клопотів",
-      },
-      tryYourself: {
-        emoji: "🚀",
-        steps: [
-          'Перейменуйте папку "plans for tomorrow" на "plans for today" (відкладати на потім - погана практика)',
-          "Самі вирішіть яку ціль вилучити у Root / Pet_project / goals",
-          'Відсортуйте кроки у рецепті піци функціями "move up", "move down"',
-        ],
-      },
+    action: {
+      emoji: "🎯",
+      steps: ['Click on the folder "Plans for tomorrow"'],
     },
-    {
-      id: 5,
+    result: {
+      emoji: "✅",
+      text: "All plans for tomorrow obtained in just one click",
+    },
+    tryYourself: {
+      emoji: "🚀",
+      steps: ["Find a filled folder among the goals. What's inside?"],
+    },
+  },
+  {
+    id: 2,
+    title: "Context",
+    emoji: "🧭",
+    problem: {
+      emoji: "🔴",
+      text: "Plans, guides, ideas — everything is mixed up, and it's unclear where it came from",
+    },
+    solution: {
+      emoji: "💡",
+      text: "strukt allows you to understand the context of any information quickly",
+    },
+    action: {
+      emoji: "🎯",
+      steps: [
+        'Check the path at the top, it looks like: "Root / plans for tomorrow"',
+        'Click on "Root" to navigate to a higher context',
+      ],
+    },
+    result: {
+      emoji: "✅",
+      text: "While browsing plans, you can instantly understand their context",
+    },
+    tryYourself: {
+      emoji: "🚀",
+      steps: [
+        "Follow the path: Root / Development / school / Math",
+        'Analyze the "path". What is this folder about?',
+      ],
+    },
+  },
+  {
+    id: 3,
+    title: "Scalability",
+    emoji: "📈",
+    problem: {
+      emoji: "🔴",
+      text: "A new idea or life hack appeared. Where to put it to avoid search issues later?",
+    },
+    solution: {
+      emoji: "💡",
+      text: "Hierarchical structure allows saving new data without creating chaos",
+    },
+    action: {
+      emoji: "🎯",
+      steps: [
+        'Go to the folder path "Root / Health / cooking"',
+        'Add a new recipe next to Pizza: click + and type "Pancakes"',
+        "Press Enter",
+      ],
+    },
+    result: {
+      emoji: "✅",
+      text: "You saved the new recipe exactly where it belongs",
+    },
+    tryYourself: {
+      emoji: "🚀",
+      steps: [
+        'Go into "Pancakes"',
+        "Add the necessary folders to describe the recipe",
+        "Go back to Root and try to find the created recipe",
+      ],
+    },
+  },
+  {
+    id: 4,
+    title: "Editing",
+    emoji: "✏️",
+    problem: {
+      emoji: "🔴",
+      text: "When reworking a plan or guide, every change feels like a new sheet of paper",
+    },
+    solution: {
+      emoji: "💡",
+      text: "strukt easily adapts to unpredictable needs to change information",
+    },
+    action: {
+      emoji: "🎯",
+      steps: [
+        'Follow the path "Root / Development / Foreign languages"',
+        'In the folder menu, select "Cut (move)"',
+        'Go to "school" and click "Paste"',
+      ],
+    },
+    result: {
+      emoji: "✅",
+      text: "You easily moved the English folder into the learning context without any hassle",
+    },
+    tryYourself: {
+      emoji: "🚀",
+      steps: [
+        'Rename the folder "plans for tomorrow" to "plans for today" (procrastination is a bad practice)',
+        "Decide for yourself which goal to remove in Root / Pet_project / goals",
+        'Sort the steps in the pizza recipe using "move up" and "move down" functions',
+      ],
+    },
+  },
+  {
+    id: 5,
+    emoji: "🎉",
+    congratulations: {
       emoji: "🎉",
-      congratulations: {
-        emoji: "🎉",
-        text: "Вітаємо! Ваша інформація легко зберігається та шукається",
-      },
-      message: {
-        emoji: "📚",
-        text: "Цей посібник - вершина айсберга прихованих суперможливостей strukt, для подальшого вивчення рекомендується \"Root / Docs\"",
-      },
-      spoiler: {
-        emoji: "💡",
-        text: "Інформація про Hero Headline там теж є",
-      },
-      tip: {
-        emoji: "⚡",
-        text: "Use j, k, l keys to navigate faster",
-      },
+      text: "Congratulations! Your information is easily stored and searched",
     },
-  ];
+    message: {
+      emoji: "📚",
+      text: "This guide is just the tip of the iceberg of strukt's hidden superpowers. For further study, check \"Root / Docs\". Info about Hero Headline is also there",
+    },
+    tip: {
+      emoji: "⚡",
+      text: "Use j, k, l keys to navigate faster",
+    },
+  },
+];

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import store from "@/state/store";
 import { guideSteps } from "./steps";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 // Helper styles for things Tailwind doesn't handle inline easily (Scrollbars & Custom Keyframes)
 const customStyles = `
@@ -88,108 +88,79 @@ export const Guide = () => {
   const renderStepContent = (step: any) => {
     // Reusable styles for info blocks to keep JSX clean
     const blockBaseClass =
-      "p-4 mb-4 relative overflow-hidden before:absolute before:inset-y-0 before:left-0 before:w-1";
+      "p-4 relative overflow-hidden before:absolute flex-1 rounded-lg border-l-4";
     const labelBaseClass =
-      "text-[11px] uppercase tracking-[0.05em] font-bold mb-2 flex items-center gap-1.5";
+      "text-sm uppercase tracking-[0.05em] drop-shadow-lg font-bold mb-2 flex items-center gap-1.5";
 
     return (
       <div className="animate-slide-in">
-        {step.problem && (
-          <div
-            className={`${blockBaseClass} bg-[rgba(127,29,29,0.2)] border-[rgba(248,113,113,0.2)] before:bg-[#f87171]`}
-          >
-            <div className={`${labelBaseClass} text-[#f87171]`}>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-              Проблема
+        <div className="flex gap-4 mb-8">
+          {step.problem && (
+            <div
+              className={`${blockBaseClass}  bg-red-500/10 border-red-400`}
+            >
+              <div className={`${labelBaseClass} dark:drop-shadow-red-500/50 text-[#f87171]`}>
+                <p>Problem</p>
+              </div>
+              <p>{step.problem.text}</p>
             </div>
-            <p>{step.problem.text}</p>
-          </div>
-        )}
+          )}
 
-        {step.solution && (
-          <div
-            className={`${blockBaseClass} bg-[rgba(20,83,45,0.2)] border-[rgba(74,222,128,0.2)] before:bg-[#4ade80]`}
-          >
-            <div className={`${labelBaseClass} text-[#4ade80]`}>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-              >
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              Рішення
+          {step.solution && (
+            <div
+              className={`${blockBaseClass}  bg-green-500/10 border-[#4ade80]`}
+            >
+              <div className={`${labelBaseClass} dark:drop-shadow-green-500/50 text-[#4ade80]`}>
+                Solution
+              </div>
+              <p>{step.solution.text}</p>
             </div>
-            <p>{step.solution.text}</p>
-          </div>
-        )}
+          )}
+        </div>
 
         {step.note && (
           <div
-            className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
+            className={`bg-yellow-500/10 p-4 rounded-xl mb-8`}
           >
-            <div className={`${labelBaseClass} text-[#facc15]`}>
-              💡 Підказка
-            </div>
+            <div className={`${labelBaseClass} text-[#facc15]`}>💡 Tip</div>
             <p>{step.note.text}</p>
           </div>
         )}
 
         {step.action && (
-          <div
-            className={`${blockBaseClass} bg-[rgba(20,83,45,0.2)] border-[rgba(74,222,128,0.2)] before:bg-[#4ade80]`}
-          >
-            <div className={`${labelBaseClass} text-[#4ade80]`}>🎯 Дія</div>
+          <div>
+            <div className="text-xl font-bold">
+              🎯 Complete the Task
+            </div>
             {step.action.steps && (
-              <ol className="list-decimal list-inside space-y-1">
+              <ol className="list-disc pl-4 py-4 list-inside space-y-1">
                 {step.action.steps.map((s: string, i: number) => (
                   <li key={i}>{s}</li>
                 ))}
               </ol>
-            )}
-            {step.action.result && (
-              <p>
-                <strong>Результат:</strong> {step.action.result}
-              </p>
             )}
           </div>
         )}
 
         {step.result && (
           <div
-            className={`${blockBaseClass} bg-[rgba(20,83,45,0.2)] border-[rgba(74,222,128,0.2)] before:bg-[#4ade80]`}
+            className={`p-4 mb-8 flex items-center gap-4 bg-green-500/10 border-1 border-dashed border-green-500 rounded-xl`}
           >
-            <div className={`${labelBaseClass} text-[#4ade80] `}>
-              ✅ Результат
-            </div>
-            <p>{step.result.text}</p>
+            <div>✅</div>
+            <p><b>Result: </b>{step.result.text}</p>
           </div>
         )}
 
         {step.tryYourself && (
           <div
-            className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
+            className={`p-4 rounded-xl bg-blue-500/40 border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
           >
-            <div className={`${labelBaseClass} text-[#facc15]`}>
-              🚀 Спробуйте самі
+            <div className="text-xl mb-4 font-bold">
+              🚀 Try it yourself
             </div>
             <ol className="list-decimal list-inside space-y-1">
               {step.tryYourself.steps.map((s: string, i: number) => (
-                <li key={i}>{s}</li>
+                <li className={`${i !== 0 ? "border-t-1 border-black/10 dark:border-white/10 py-2" : "pb-2"}`} key={i}>{s}</li>
               ))}
             </ol>
           </div>
@@ -197,7 +168,7 @@ export const Guide = () => {
 
         {step.congratulations && (
           <div className="text-center py-5">
-            <div className="w-[60px] h-[60px] bg-[rgba(20,83,45,0.2)] text-[#4ade80] rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-[60px] h-[60px] bg-green-500/10 text-[#4ade80] rounded-full flex items-center justify-center mx-auto mb-4">
               <svg
                 width="32"
                 height="32"
@@ -217,18 +188,9 @@ export const Guide = () => {
 
         {step.message && (
           <div
-            className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
+            className={`${blockBaseClass} mb-4 bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
           >
             <p>{step.message.text}</p>
-          </div>
-        )}
-
-        {step.spoiler && (
-          <div
-            className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
-          >
-            <div className={`${labelBaseClass} text-[#facc15]`}>💡 Спойлер</div>
-            <p>{step.spoiler.text}</p>
           </div>
         )}
 
@@ -236,9 +198,7 @@ export const Guide = () => {
           <div
             className={`${blockBaseClass} bg-[rgba(161,98,7,0.15)] border-[rgba(250,204,21,0.2)] before:bg-[#facc15]`}
           >
-            <div className={`${labelBaseClass} text-[#facc15]`}>
-              ⚡ Підказка
-            </div>
+            <div className={`${labelBaseClass} text-[#facc15]`}>⚡ Tip</div>
             <p>{step.tip.text}</p>
           </div>
         )}
@@ -291,14 +251,13 @@ export const Guide = () => {
             onClick={() => toggleGuide(false)}
             aria-label="Закрити гайд"
           >
-            <ChevronDown className="md:hidden"/>
-            <ChevronRight className="max-md:hidden"/>
+            <ChevronDown />
           </Button>
         </div>
 
         <div className="w-full h-[2px] bg-neutral-300 dark:bg-[#2d2d2d]">
           <div
-            className="h-full bg-[#3b82f6] shadow-[0_0_10px_#cccccc] dark:shadow-[0_0_10px_#3b82f6] transition-[width] duration-400 ease-linear"
+            className="h-full bg-[#3b82f6] shadow-[0_0_10px_#cccccc] dark:shadow-[0_0_10px_#3b82f6] transition-[width] duration-20Крок 1 з 50 ease-linear"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
