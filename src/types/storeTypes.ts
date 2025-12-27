@@ -70,6 +70,8 @@ export interface keyNaviSlice {
 }
 
 export interface guideSlice {
+    currentStep: number;
+    setCurrentStep: (state: number) => void;
     isGuideOpen: boolean,
     setIsGuideOpen: (state: boolean) => void
 }

@@ -4,7 +4,6 @@ import { guideSteps } from "./steps";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
-// Helper styles for things Tailwind doesn't handle inline easily (Scrollbars & Custom Keyframes)
 const customStyles = `
   .guide-scrollbar::-webkit-scrollbar {
     width: 8px;
@@ -38,7 +37,8 @@ const customStyles = `
 
 export const Guide = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [currentStep, setCurrentStep] = useState(0);
+  const currentStep = store.use.currentStep();
+  const setCurrentStep = store.use.setCurrentStep();
   const setIsGuideShow = store.use.setIsGuideOpen();
 
   const totalSteps = guideSteps.length;

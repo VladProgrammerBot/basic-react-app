@@ -18,6 +18,8 @@ export const Folders = () => {
   const setMode = store((state) => state.setMode);
   const mode = store.use.mode();
   const childrensId = store.use.childrensId();
+  const currentStep = store.use.currentStep();
+  const isGuideOpen = store.use.isGuideOpen();
 
   useKeyboard();
 
@@ -54,7 +56,9 @@ export const Folders = () => {
                   <TooltipTrigger asChild onClick={button.func}>
                     <Button variant="outline" className="py-3 md:py-2 relative">
                       {button.icon} {button.title}
-                      {!button.title && <Tip className="left-4 items-start" text="Add button" />}
+                      {!button.title && currentStep === 2 && (
+                        <Tip className="left-4 items-start" text="Add button" />
+                      )}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>{button.Hotkeys}</TooltipContent>

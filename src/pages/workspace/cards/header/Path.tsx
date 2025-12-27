@@ -9,17 +9,17 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import { IoIosArrowUp } from "react-icons/io";
 import { Tip } from "../Guide/Tip";
 
 export const Path = () => {
   const path = store.use.path();
   const toggleBar = store.use.toggleBar();
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs();
+  const guideStep = store.use.currentStep();
 
   return (
-    <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white/50 backdrop-blur-l border-neutral-300 dark:bg-neutral-900/5">
-      <Tip className="items-center left-2" text="Context" />
+    <div className="fixed z-10 px-2 py-2 w-full right-1/2 translate-x-1/2 flex items-center justify-between bg-white/50 backdrop-blur-lg border-neutral-300 dark:bg-neutral-900/5">
+      {guideStep === 1 && path.length > 1 && <Tip className="items-center left-2" text="Context" />}
       <div className="flex h-full items-center">
         {path.length > 1 && (
           <Tooltip>

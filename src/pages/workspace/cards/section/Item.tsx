@@ -4,8 +4,6 @@ import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
 import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { PiLinkSimpleBold } from "react-icons/pi";
-import { IoIosArrowUp } from "react-icons/io";
-import { RiArrowUpBoxLine } from "react-icons/ri";
 import { Tip } from "../Guide/Tip";
 
 export function Item({ data, index }: { data: folder; index: number }) {
@@ -15,8 +13,10 @@ export function Item({ data, index }: { data: folder; index: number }) {
   const moveBuffer = store.use.moveBuffer();
   const selectedItemId = store.use.selectedItemId();
   const setSelectedItemId = store.use.setSelectedItemId();
+  const currentStep = store.use.currentStep();
 
   const handleClick = () => {
+    console.log("clicked item", data.id);
     setSelectedItemId(null);
     moveInto(data.ref ? data.ref : data.id, index);
   };
@@ -30,8 +30,8 @@ export function Item({ data, index }: { data: folder; index: number }) {
         selectedItemId === index && "bg-neutral-200 dark:bg-white/10"
       }`}
     >
-      {index === 1 && <Tip className="items-center left-1/4" text="Click to see goals" />}
-      {index === 1 && <Tip className="items-end right-2" text="Menu" />}
+      {currentStep === 0 && data.title === "Plans for today" && <Tip className="items-center left-20" text="Click to see goals" />}
+      {currentStep === 3 && index === 1 && <Tip className="items-end right-2" text="Menu" />}
       {renameBuffer !== data.id ? (
         <>
           <div
