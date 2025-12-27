@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 import { Button } from "@/components/ui/button";
+import { Tip } from "../Guide/Tip";
 
 export const Folders = () => {
   const { childrensData, generateFolders, buttons } = useFolders();
@@ -51,8 +52,9 @@ export const Folders = () => {
               return (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild onClick={button.func}>
-                    <Button variant="outline" className="py-3 md:py-2">
+                    <Button variant="outline" className="py-3 md:py-2 relative">
                       {button.icon} {button.title}
+                      {!button.title && <Tip className="left-4 items-start" text="Add button" />}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>{button.Hotkeys}</TooltipContent>
