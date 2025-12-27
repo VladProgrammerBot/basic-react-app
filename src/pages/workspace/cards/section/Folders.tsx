@@ -19,7 +19,6 @@ export const Folders = () => {
   const mode = store.use.mode();
   const childrensId = store.use.childrensId();
   const currentStep = store.use.currentStep();
-  const isGuideOpen = store.use.isGuideOpen();
 
   useKeyboard();
 

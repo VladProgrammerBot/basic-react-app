@@ -69,7 +69,7 @@ export const Guide = () => {
   const finishGuide = () => {
     setIsGuideShow(false);
     toggleGuide(false);
-    setCurrentStep(0);
+    setCurrentStep(currentStep + 1);
   };
 
   useEffect(() => {

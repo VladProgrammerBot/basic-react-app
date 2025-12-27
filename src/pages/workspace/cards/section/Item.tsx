@@ -16,7 +16,6 @@ export function Item({ data, index }: { data: folder; index: number }) {
   const currentStep = store.use.currentStep();
 
   const handleClick = () => {
-    console.log("clicked item", data.id);
     setSelectedItemId(null);
     moveInto(data.ref ? data.ref : data.id, index);
   };
