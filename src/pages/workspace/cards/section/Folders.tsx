@@ -57,7 +57,7 @@ export const Folders = () => {
                     <Button variant="outline" className="py-3 md:py-2 relative">
                       {button.icon} {button.title}
                       {!button.title && currentStep === 2 && (
-                        <Tip className="left-4 items-start" text="Add button" />
+                        <Tip className="left-2 items-start" text="Click to add new paragraph" />
                       )}
                     </Button>
                   </TooltipTrigger>

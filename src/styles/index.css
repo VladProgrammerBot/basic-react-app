@@ -156,11 +156,11 @@ h1 {
   --animate-updown: updown 1s infinite linear;
   @keyframes updown {
     0%, 100% {
-      transform: translateY(-10%);
+      transform: translateY(-5%);
     }
 
     50% {
-      transform: translateY(-20%);
+      transform: translateY(-15%);
     }
   }
 }
