@@ -17,9 +17,11 @@ export const Edit = () => {
   const setIsGuideOpen = store.use.setIsGuideOpen();
   const isGuideOpen = store.use.isGuideOpen();
   const isStyled = store.use.isStyled();
+  const setCurrentStep = store.use.setCurrentStep();
   const { getUsersFolders, getTemplateFolders } = useEdit();
 
   useEffect(() => {
+    setCurrentStep(0);
     closeBar();
     if (Object.keys(folders).length !== 0) return;
     if (localStorage.getItem("token")) {

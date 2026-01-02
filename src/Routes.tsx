@@ -5,6 +5,7 @@ import { Edit } from "./pages/workspace/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
 import { GlobalLayout } from "./pages/GlobalLayout.tsx";
+import { Experements } from "./Experements.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "workspace",
         Component: Edit,
+      },
+      {
+        path: "experements",
+        Component: Experements,
       },
       {
         path: "about",

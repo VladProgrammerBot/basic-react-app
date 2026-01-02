@@ -16,6 +16,7 @@ export const useBar = () => {
     const isGuideOpen = store.use.isGuideOpen()
     const setIsGuideOpen = store.use.setIsGuideOpen()
     const setIsStyled = store.use.setIsStyled()
+    const setCurrentStep = store.use.setCurrentStep()
     const isStyled = store.use.isStyled()
 
     const [username, setUsername] = useState("")
@@ -62,6 +63,7 @@ export const useBar = () => {
             icon: FaBook,
             show: !isGuideOpen,
             onClick: () => {
+                setCurrentStep(0)
                 setIsGuideOpen(true)
                 toggleBar()
             }
