@@ -134,11 +134,33 @@ export const guideSteps = [
     },
     message: {
       emoji: "📚",
-      text: "This guide is just the tip of the iceberg of strukt's hidden superpowers. For further study, check \"Root / Docs\". Info about Hero Headline is also there",
+      text: 'This guide is just the tip of the iceberg of strukt\'s hidden superpowers. For further study, check "Root / Docs". Info about Hero Headline is also there',
     },
     tip: {
       emoji: "⚡",
       text: "Use j, k, l keys to navigate faster",
     },
   },
+];
+
+export const guideSteps2 = [
+  { title: "Інтерфейс як у провіднику файлів, тільки для організації тексту" },
+  {
+    title:
+      "Перегляньте папку Example, там демонстровано приклад використання простого додатку для різноманітних задач",
+  },
+  {
+    title:
+      "Оцініть наскільки легко орієнтуватися та шукати необхідну інформацію",
+  },
+  {
+    title: "Спробуйте зберегти плани на сьогодні:",
+    list: [
+      'Створіть папку "Plans for today"',
+      "Всередині папки створіть папки із назвами для кожної цілі",
+    ],
+  },
+  {
+    title: "Можливості використання Strukt - безмежні, про що можна дізнатися у папці \"Documentation\""
+  }
 ];
