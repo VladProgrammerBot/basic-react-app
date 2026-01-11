@@ -29,9 +29,9 @@ export function Item({ data, index }: { data: folder; index: number }) {
         selectedItemId === index && "bg-neutral-200 dark:bg-white/10"
       }`}
     >
-      <Tip className="items-center left-4 max-w-75" text="Перегляньте цю папку, там містяться приклади використання можливостей Strukt для організації тексту" />
+      {/* <Tip className="items-center left-4 max-w-75" text="Перегляньте цю папку, там містяться приклади використання можливостей Strukt для організації тексту" />
       {currentStep === 0 && data.title === "Plans for today" && <Tip className="items-center left-20" text="Click to see goals" />}
-      {currentStep === 3 && index === 1 && <Tip className="items-end right-2" text="Menu" />}
+      {currentStep === 3 && index === 1 && <Tip className="items-end right-2" text="Menu" />} */}
       {renameBuffer !== data.id ? (
         <>
           <div

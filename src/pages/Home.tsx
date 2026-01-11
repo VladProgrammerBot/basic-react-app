@@ -153,7 +153,7 @@ export const Home = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
       <ParticleBackground />
       <div className="fixed bottom-8 right-8 flex flex-col gap-3 z-50">
-          <motion.div
+        <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           whileHover={{ scale: 1.1 }}
@@ -247,11 +247,31 @@ export const Home = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
                 <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                  v1.0 is Live
+                  AI Powered
                 </span>
               </motion.div>
+              <p className="max-w-4xl relative text-5xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+                Stop keeping <br /> everything in{" "}
+                <motion.span
+                  animate={{
+                    textShadow: [
+                      "0 0 10px rgba(0, 255, 255, 0.5)",
+                      "0 0 20px rgba(0, 255, 255, 0.5)",
+                      "0 0 10px rgba(0, 255, 255, 0.5)",
+                    ],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="text-cyan-500 dark:text-cyan-300"
+                >
+                  your head.
+                </motion.span>
+              </p>
 
-              <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
+              {/* <p className="text-5xl sm:text-6xl md:text-7xl tracking-tight mb-6">
+                Stop keeping
+                <br /> everything in your head.
+              </p> */}
+              {/* <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
                 <span>
                   <span className="text-cyan-500 dark:text-neutral-200">
                     1000
@@ -275,11 +295,11 @@ export const Home = () => {
                     10
                   </motion.span>
                 </span>
-              </p>
+              </p> */}
 
-              <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl mb-10">
-                Organize ideas, plans, and goals with AI-powered structure that
-                grows with you.
+              <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
+                Organize your ideas, goals, and knowledge as easily as in File
+                Explorer, without wasting hours on "pretty settings."
               </p>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
@@ -502,10 +522,7 @@ export const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                variant="colorfull"
-                onClick={() => navigate("workspace")}
-              >
+              <Button variant="colorfull" onClick={() => navigate("workspace")}>
                 <GiProgression className="w-6 h-6 mr-2" />
                 Start with 5 steps
               </Button>
