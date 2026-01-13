@@ -9,7 +9,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-white shadow-2xl shadow-sky-500/50 hover:shadow-2xl bg-blue-600 hover:bg-blue-500 px-4 py-2 transition-all duration-150",
+        default: "dark:bg-white/90 dark:text-black bg-neutral-800 text-neutral-200",
         disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
@@ -29,7 +29,7 @@ export const buttonVariants = cva(
         default: "px-6 py-2 ",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+        icon: "py-2 px-4",
       }
     },
     defaultVariants: {

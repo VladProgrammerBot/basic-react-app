@@ -202,12 +202,15 @@ export const Home = () => {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             {!isLoggedIn ? (
               <>
-                <Button variant="ghost" onClick={() => navigate("login")}>
+                <Button variant="ghost" size={"icon"} onClick={() => navigate("login")}>
                   Sign In
                 </Button>
+                <p className="text-xs bg-neutral-500/10 rounded-md px-2 py-1 border-1 border-neutral-500/30 text-white/50">
+                  Press <b>L</b>
+                </p>
               </>
             ) : (
               <Button onClick={() => navigate("workspace")} className="gap-2">
@@ -298,8 +301,9 @@ export const Home = () => {
               </p> */}
 
               <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
-                Organize your ideas, goals, and knowledge as easily as in File
-                Explorer, without wasting hours on "pretty settings."
+                Organize your ideas, goals, and knowledge as easily as in{" "}
+                <b>File Explorer</b>, without wasting hours on "pretty
+                settings."
               </p>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
@@ -311,11 +315,11 @@ export const Home = () => {
                   Start with 5 steps
                 </Button>
 
-                <p className="text-xs text-start text-neutral-400 hidden sm:block">
+                {/* <p className="text-xs text-start text-neutral-400 hidden sm:block">
                   Press <b>W</b> · Workspace
                   <br />
                   Press <b>L</b> · Login
-                </p>
+                </p> */}
               </div>
 
               {/* Quick Stats */}

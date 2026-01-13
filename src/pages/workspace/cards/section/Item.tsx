@@ -4,7 +4,7 @@ import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
 import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { PiLinkSimpleBold } from "react-icons/pi";
-import { Tip } from "../Guide/Tip";
+// import { Tip } from "../Guide/Tip";
 
 export function Item({ data, index }: { data: folder; index: number }) {
   const { moveInto, renameFolder } = useItem();
@@ -13,7 +13,7 @@ export function Item({ data, index }: { data: folder; index: number }) {
   const moveBuffer = store.use.moveBuffer();
   const selectedItemId = store.use.selectedItemId();
   const setSelectedItemId = store.use.setSelectedItemId();
-  const currentStep = store.use.currentStep();
+  // const currentStep = store.use.currentStep();
 
   const handleClick = () => {
     setSelectedItemId(null);
@@ -25,7 +25,7 @@ export function Item({ data, index }: { data: folder; index: number }) {
 
   return (
     <div
-      className={`flex group/item md:min-h-10 relative min-h-12 cursor-pointer rounded-md duration-150 hover:bg-neutral-200 dark:hover:bg-white/10 ${
+      className={`flex group/item md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-300 dark:border-neutral-700 duration-150 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
         selectedItemId === index && "bg-neutral-200 dark:bg-white/10"
       }`}
     >
@@ -39,7 +39,7 @@ export function Item({ data, index }: { data: folder; index: number }) {
             onClick={handleClick}
           >
             <div
-              className={`text-sky-400 pr-2 dark:text-sky-500 pt-2 text-center flex justify-center `}
+              className={`text-white/50 pr-2 dar:text-sky-500 pt-2 text-center flex justify-center `}
             >
               {data.ref ? (
                 <PiLinkSimpleBold />

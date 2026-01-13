@@ -24,7 +24,7 @@ export const Folders = () => {
 
   return (
     <div
-      className={`h-fit mt-13 mb-[50vh] max-md:px-2 border-neutral-300 dark:border-neutral-700`}
+      className={`h-fit mt-13 mb-[50vh] space-y-1 max-md:px-2 border-neutral-300 dark:border-neutral-700`}
     >
       {childrensData?.map((data, index) => {
         return <Item key={data.id} data={data} index={index} />;
@@ -46,14 +46,14 @@ export const Folders = () => {
           }}
         />
       )}
-      {mode === "normal" && (
-        <div className={`flex gap-2 ${childrensId.length !== 0 && "pt-2"}`}>
+      {/* {mode === "normal" && (
+        <div className={`flex gap-1`}>
           {buttons.map((button, index) => {
             if (button.cond) {
               return (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild onClick={button.func}>
-                    <Button variant="outline" className="py-3 md:py-2 relative">
+                    <Button variant="outline" size={"icon"} className="py-3 md:py-2 relative">
                       {button.icon} {button.title}
                       {!button.title && currentStep === 2 && (
                         <Tip className="left-2 items-start" text="Click to add new paragraph" />
@@ -68,6 +68,12 @@ export const Folders = () => {
             }
           })}
         </div>
+      )} */}
+      {/* <div className="border-b-1 border-neutral-700 w-full my-4"></div> */}
+      {mode === "normal" && (
+        <Button onClick={() => setMode("Add Folder")} variant={"outline"} className="w-full max-md:py-3">
+          + New note
+        </Button>
       )}
     </div>
   );

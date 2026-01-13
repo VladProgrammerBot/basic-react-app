@@ -66,7 +66,7 @@ export const Edit = () => {
           <div className="w-full max-w-4xl mx-auto flex flex-col justify-between">
             <Folders />
           </div>
-          {isGuideOpen && <Guide />}
+          {/* {isGuideOpen && <Guide />} */}
         </>
       )}
       <Messages />
