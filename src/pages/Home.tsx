@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
-import { GiProgression, GiStarsStack } from "react-icons/gi";
+import { GiClick, GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import {
   TbArrowRight,
@@ -11,6 +11,9 @@ import {
   TbSparkles,
 } from "react-icons/tb";
 import { motion, useMotionValue } from "framer-motion";
+import { BsCheck, BsCursor, BsCursorFill, BsMarkdown } from "react-icons/bs";
+import { HiCursorClick } from "react-icons/hi";
+import { Item } from "./workspace/cards/section/Item";
 
 export const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -67,7 +70,7 @@ export const Home = () => {
   };
 
   const diffTable = [
-    ["Критерій", "Блокнот", "Word", "Нотатки", "Notion", "Strukt"],
+    ["Критерій", "Notebook", "Word", "Notes", "Notion", "Strukt"],
     ["Організація", "✓", "✓✓", "✓", "✓✓", "✓✓✓"],
     ["Масштабованість", "✗", "✗", "✗", "✓", "∞"],
     ["Зручність використання", "✓", "✗", "✓✓", "✓", "✓✓✓"],
@@ -79,8 +82,8 @@ export const Home = () => {
   const features = [
     {
       icon: <TbKeyboard className="w-6 h-6" />,
-      title: "Keyboard First",
-      description: "Full keyboard navigation with intuitive shortcuts",
+      title: "Full Keyboard",
+      description: "Comfurtable vim-like shortcuts for light speed",
     },
     {
       icon: <GiStarsStack className="w-6 h-6" />,
@@ -88,14 +91,14 @@ export const Home = () => {
       description: "Smart structuring that adapts to your needs",
     },
     {
-      icon: <TbDeviceMobile className="w-6 h-6" />,
-      title: "Mobile Ready",
-      description: "Seamless experience across all devices",
+      icon: <BsCheck className="w-6 h-6" />,
+      title: "Simple interface",
+      description: "All attention on the content",
     },
     {
-      icon: <TbSparkles className="w-6 h-6" />,
-      title: "Zero Lag",
-      description: "Instant response with any amount of notes",
+      icon: <BsMarkdown className="w-6 h-6" />,
+      title: "Markdown export",
+      description: "Use information outside",
     },
   ];
 
@@ -205,10 +208,14 @@ export const Home = () => {
           <div className="flex items-center gap-2">
             {!isLoggedIn ? (
               <>
-                <Button variant="ghost" size={"icon"} onClick={() => navigate("login")}>
+                <Button
+                  variant="ghost"
+                  size={"icon"}
+                  onClick={() => navigate("login")}
+                >
                   Sign In
                 </Button>
-                <p className="text-xs bg-neutral-500/10 rounded-md px-2 py-1 border-1 border-neutral-500/30 text-white/50">
+                <p className="text-xs bg-neutral-500/10 rounded-md px-2 py-1 border-1 border-neutral-500/30 text-black/50 dark:text-white/50">
                   Press <b>L</b>
                 </p>
               </>
@@ -253,7 +260,7 @@ export const Home = () => {
                   AI Powered
                 </span>
               </motion.div>
-              <p className="max-w-4xl relative text-5xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+              <p className="max-w-4xl relative text-5xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
                 Stop keeping <br /> everything in{" "}
                 <motion.span
                   animate={{
@@ -309,10 +316,11 @@ export const Home = () => {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
                 <Button
                   onClick={() => navigate("workspace")}
-                  variant={"colorfull"}
+                  size={"lg"}
+                  // variant={"colorfull"}
                 >
-                  <GiProgression className="w-6 h-6 mr-2" />
-                  Start with 5 steps
+                  Get Started
+                  <HiCursorClick className="w-5 h-5" />
                 </Button>
 
                 {/* <p className="text-xs text-start text-neutral-400 hidden sm:block">
@@ -332,8 +340,25 @@ export const Home = () => {
               transition={{ delay: 0.4 }}
               className="flex-1 w-full flex items-center justify-center"
             >
-              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md flex items-center justify-center text-neutral-400">
-                {/* Workspace preview */}
+              {/* <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md flex items-center justify-center text-neutral-400"> */}
+              {/* Workspace preview */}
+              {/* </div> */}
+              <div className="w-full space-y-1">
+                {[0, 1, 1, 2, 1, 0, 1, 0, 0].map((elem) => {
+                  return (
+                    <Item
+                      className={`${elem === 2 ? "ml-16" : elem === 1 ? "ml-8" : ""} w-2/3`}
+                      index={1}
+                      data={{
+                        title: "hahaha",
+                        childrens: [],
+                        parent: 1,
+                        id: 2,
+                        ref: null,
+                      }}
+                    ></Item>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
@@ -384,7 +409,7 @@ export const Home = () => {
           className="mb-20"
         >
           <h2 className="text-3xl font-bold text-center mb-10 text-neutral-800 dark:text-neutral-100">
-            Чому Strukt?
+            Why Strukt?
           </h2>
 
           <div className="bg-whit dark:bg-gradient-to-b dark:from-black/5 dark:to-transparent rounded-3xl p-6 border border-neutral-200 dark:border-white/10 shadow-">
@@ -528,7 +553,7 @@ export const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="colorfull" onClick={() => navigate("workspace")}>
                 <GiProgression className="w-6 h-6 mr-2" />
-                Start with 5 steps
+                Get Started. it's FREE.
               </Button>
             </div>
 

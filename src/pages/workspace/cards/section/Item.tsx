@@ -6,7 +6,15 @@ import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { PiLinkSimpleBold } from "react-icons/pi";
 // import { Tip } from "../Guide/Tip";
 
-export function Item({ data, index }: { data: folder; index: number }) {
+export function Item({
+  data,
+  index,
+  className,
+}: {
+  data: folder;
+  index: number;
+  className: string;
+}) {
   const { moveInto, renameFolder } = useItem();
   const renameBuffer = store.use.renameBuffer();
   const setRenameBuffer = store.use.setRenameBuffer();
@@ -27,11 +35,8 @@ export function Item({ data, index }: { data: folder; index: number }) {
     <div
       className={`flex group/item md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-300 dark:border-neutral-700 duration-150 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
         selectedItemId === index && "bg-neutral-200 dark:bg-white/10"
-      }`}
+      } ${className}`}
     >
-      {/* <Tip className="items-center left-4 max-w-75" text="Перегляньте цю папку, там містяться приклади використання можливостей Strukt для організації тексту" />
-      {currentStep === 0 && data.title === "Plans for today" && <Tip className="items-center left-20" text="Click to see goals" />}
-      {currentStep === 3 && index === 1 && <Tip className="items-end right-2" text="Menu" />} */}
       {renameBuffer !== data.id ? (
         <>
           <div
