@@ -1,19 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
-import { GiClick, GiProgression, GiStarsStack } from "react-icons/gi";
+import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import {
   TbArrowRight,
   TbChevronDown,
-  TbDeviceMobile,
   TbKeyboard,
   TbRocket,
-  TbSparkles,
 } from "react-icons/tb";
 import { motion, useMotionValue } from "framer-motion";
-import { BsCheck, BsCursor, BsCursorFill, BsMarkdown } from "react-icons/bs";
+import { BsCheck, BsMarkdown } from "react-icons/bs";
 import { HiCursorClick } from "react-icons/hi";
-import { Item } from "./workspace/cards/section/Item";
 import NotesStructurePreview from "./Preview";
 
 export const Home = () => {
@@ -336,7 +333,7 @@ export const Home = () => {
             >
               {/* Workspace preview */}
               {/* <div className="w-full space-y-1"> */}
-              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[430px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md text-neutral-400">
+              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl min-h-[440px] h-[430px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
                 <NotesStructurePreview/>
               </div>
                 {/* {[0, 1, 1, 2, 1, 0, 1, 0, 0].map((elem) => {
