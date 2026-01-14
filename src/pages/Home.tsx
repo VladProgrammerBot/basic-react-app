@@ -14,6 +14,7 @@ import { motion, useMotionValue } from "framer-motion";
 import { BsCheck, BsCursor, BsCursorFill, BsMarkdown } from "react-icons/bs";
 import { HiCursorClick } from "react-icons/hi";
 import { Item } from "./workspace/cards/section/Item";
+import NotesStructurePreview from "./Preview";
 
 export const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -309,25 +310,18 @@ export const Home = () => {
 
               <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
                 Organize your ideas, goals, and knowledge as easily as in{" "}
-                <b>File Explorer</b>, without wasting hours on "pretty
-                settings."
+                <b>File Explorer</b>, without chaos like in notes.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-4">
                 <Button
                   onClick={() => navigate("workspace")}
                   size={"lg"}
-                  // variant={"colorfull"}
+                  variant={"colorfull"}
                 >
                   Get Started
                   <HiCursorClick className="w-5 h-5" />
                 </Button>
-
-                {/* <p className="text-xs text-start text-neutral-400 hidden sm:block">
-                  Press <b>W</b> · Workspace
-                  <br />
-                  Press <b>L</b> · Login
-                </p> */}
               </div>
 
               {/* Quick Stats */}
@@ -340,11 +334,12 @@ export const Home = () => {
               transition={{ delay: 0.4 }}
               className="flex-1 w-full flex items-center justify-center"
             >
-              {/* <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[480px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md flex items-center justify-center text-neutral-400"> */}
               {/* Workspace preview */}
-              {/* </div> */}
-              <div className="w-full space-y-1">
-                {[0, 1, 1, 2, 1, 0, 1, 0, 0].map((elem) => {
+              {/* <div className="w-full space-y-1"> */}
+              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl h-[430px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/50 backdrop-blur-md text-neutral-400">
+                <NotesStructurePreview/>
+              </div>
+                {/* {[0, 1, 1, 2, 1, 0, 1, 0, 0].map((elem) => {
                   return (
                     <Item
                       className={`${elem === 2 ? "ml-16" : elem === 1 ? "ml-8" : ""} w-2/3`}
@@ -358,8 +353,8 @@ export const Home = () => {
                       }}
                     ></Item>
                   );
-                })}
-              </div>
+                })} */}
+              {/* </div> */}
             </motion.div>
           </div>
         </div>
