@@ -2,12 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
-import {
-  TbArrowRight,
-  TbChevronDown,
-  TbKeyboard,
-  TbRocket,
-} from "react-icons/tb";
+import { TbChevronDown, TbKeyboard, TbRocket } from "react-icons/tb";
 import { motion, useMotionValue } from "framer-motion";
 import { BsCheck, BsMarkdown } from "react-icons/bs";
 import { HiCursorClick } from "react-icons/hi";
@@ -249,13 +244,11 @@ export const Home = () => {
                   AI Powered
                 </span>
               </motion.div>
-              <p className="max-w-4xl relative text-5xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+              <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
                 <p className="drop-shadow-xl drop-shadow-white/20">
                   Stop keeping <br /> everything in{" "}
                 </p>
-                <motion.span
-                  className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50"
-                >
+                <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
                   your head.
                 </motion.span>
               </p>
@@ -288,7 +281,7 @@ export const Home = () => {
               className="flex-1 w-full flex items-center justify-center"
             >
               {/* Workspace preview */}
-              <div className="w-full dark:shadow-2xl shadow-xl dark:shadow-blue-500/20 shadow-neutral-300 max-w-xl min-h-[440px] h-[430px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
+              <div className="w-full dark:shadow-2xl shadow-xl dark:shadow-blue-500/20 shadow-neutral-300 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
                 <NotesStructurePreview />
               </div>
             </motion.div>
@@ -496,6 +489,11 @@ export const Home = () => {
         <p className="text-center text-neutral-500 p-12 border-t-1 border-neutral-300 dark:border-neutral-700">
           © 2025, Made in Ukraine by Vlad 🇺🇦
         </p>
+      </div>
+      <div className="floater fixed bottom-8 left-8">
+        <div className="spinner p-4">
+          <span className="text-content ml-2">It's FREE!</span>
+        </div>
       </div>
     </div>
   );
