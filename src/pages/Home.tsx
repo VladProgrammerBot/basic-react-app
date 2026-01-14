@@ -204,7 +204,7 @@ export const Home = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            {!isLoggedIn ? (
+            {!isLoggedIn && (
               <>
                 <Button
                   variant="ghost"
@@ -217,10 +217,6 @@ export const Home = () => {
                   Press <b>L</b>
                 </p>
               </>
-            ) : (
-              <Button onClick={() => navigate("workspace")} className="gap-2">
-                Go to Workspace <TbArrowRight className="w-4 h-4" />
-              </Button>
             )}
           </div>
         </motion.div>
@@ -239,11 +235,6 @@ export const Home = () => {
         lg:items-start lg:text-left
       "
             >
-              {/* <div className="inline-flex -rotate-3 items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-purple-500/10 dark:from-cyan-500/20 dark:to-purple-500/20 border border-cyan-500/30 mb-12">
-                <span className="text-sm font-medium text-cyan-600 dark:text-cyan-300">
-                  ⚡ Version 1.0 Now Live
-                </span>
-              </div> */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -259,51 +250,15 @@ export const Home = () => {
                 </span>
               </motion.div>
               <p className="max-w-4xl relative text-5xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-                Stop keeping <br /> everything in{" "}
+                <p className="drop-shadow-xl drop-shadow-white/20">
+                  Stop keeping <br /> everything in{" "}
+                </p>
                 <motion.span
-                  animate={{
-                    textShadow: [
-                      "0 0 10px rgba(0, 255, 255, 0.5)",
-                      "0 0 20px rgba(0, 255, 255, 0.5)",
-                      "0 0 10px rgba(0, 255, 255, 0.5)",
-                    ],
-                  }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                  className="text-cyan-500 dark:text-cyan-300"
+                  className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50"
                 >
                   your head.
                 </motion.span>
               </p>
-
-              {/* <p className="text-5xl sm:text-6xl md:text-7xl tracking-tight mb-6">
-                Stop keeping
-                <br /> everything in your head.
-              </p> */}
-              {/* <p className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter mb-6">
-                <span>
-                  <span className="text-cyan-500 dark:text-neutral-200">
-                    1000
-                  </span>{" "}
-                  notes
-                </span>
-                <br />
-                <span className="text-neutral-800 dark:text-sky-400">
-                  Feel like{" "}
-                  <motion.span
-                    animate={{
-                      textShadow: [
-                        "0 0 10px rgba(0, 255, 255, 0.5)",
-                        "0 0 20px rgba(0, 255, 255, 0.5)",
-                        "0 0 10px rgba(0, 255, 255, 0.5)",
-                      ],
-                    }}
-                    transition={{ duration: 5, repeat: Infinity }}
-                    className="text-cyan-500 dark:text-cyan-300"
-                  >
-                    10
-                  </motion.span>
-                </span>
-              </p> */}
 
               <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
                 Organize your ideas, goals, and knowledge as easily as in{" "}
@@ -332,26 +287,9 @@ export const Home = () => {
               className="flex-1 w-full flex items-center justify-center"
             >
               {/* Workspace preview */}
-              {/* <div className="w-full space-y-1"> */}
-              <div className="w-full shadow-2xl shadow-blue-500/20 max-w-xl min-h-[440px] h-[430px] rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
-                <NotesStructurePreview/>
+              <div className="w-full dark:shadow-2xl shadow-xl dark:shadow-blue-500/20 shadow-neutral-300 max-w-xl min-h-[440px] h-[430px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
+                <NotesStructurePreview />
               </div>
-                {/* {[0, 1, 1, 2, 1, 0, 1, 0, 0].map((elem) => {
-                  return (
-                    <Item
-                      className={`${elem === 2 ? "ml-16" : elem === 1 ? "ml-8" : ""} w-2/3`}
-                      index={1}
-                      data={{
-                        title: "hahaha",
-                        childrens: [],
-                        parent: 1,
-                        id: 2,
-                        ref: null,
-                      }}
-                    ></Item>
-                  );
-                })} */}
-              {/* </div> */}
             </motion.div>
           </div>
         </div>

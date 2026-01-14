@@ -3,22 +3,14 @@ import { useFolders } from "@/hooks/folders/useFolders";
 import { InputForm } from "./InputForm";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 import { Button } from "@/components/ui/button";
-import { Tip } from "../Guide/Tip";
 
 export const Folders = () => {
-  const { childrensData, generateFolders, buttons } = useFolders();
+  const { childrensData, generateFolders } = useFolders();
   const { addFolder } = useFolderManipulation();
   const setMode = store((state) => state.setMode);
   const mode = store.use.mode();
-  const childrensId = store.use.childrensId();
-  const currentStep = store.use.currentStep();
 
   useKeyboard();
 

@@ -13,7 +13,7 @@ export function Item({
 }: {
   data: folder;
   index: number;
-  className: string;
+  className?: string;
 }) {
   const { moveInto, renameFolder } = useItem();
   const renameBuffer = store.use.renameBuffer();
@@ -44,7 +44,7 @@ export function Item({
             onClick={handleClick}
           >
             <div
-              className={`text-white/50 pr-2 dar:text-sky-500 pt-2 text-center flex justify-center `}
+              className={`dark:text-white/50 pr-2 text-black/50 pt-2 text-center flex justify-center `}
             >
               {data.ref ? (
                 <PiLinkSimpleBold />
