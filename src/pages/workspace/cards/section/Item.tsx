@@ -54,7 +54,7 @@ export function Item({
               )}
             </div>
             <p
-              className={`duration-150 py-1 ${
+              className={`duration-150 py-1 text-white ${
                 moveBuffer?.id === data.id && "opacity-50"
               }`}
             >
