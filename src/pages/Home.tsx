@@ -97,20 +97,20 @@ export const Home = () => {
 
   const testimonials = [
     {
-      name: "Alex Chen",
-      role: "Product Manager",
+      name: "ChatGPT",
+      role: "Top 1 LLM",
       text: "Strukt revolutionized how I organize my meeting notes and product specs.",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
     },
     {
-      name: "Maria Rodriguez",
-      role: "Researcher",
+      name: "Gemini",
+      role: "LLM",
       text: "Finally a tool that scales with my research without becoming messy.",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
     },
     {
-      name: "David Kim",
-      role: "Developer",
+      name: "Claude",
+      role: "LLM",
       text: "The keyboard shortcuts save me hours every week. Pure productivity.",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
     },
@@ -249,7 +249,7 @@ export const Home = () => {
                   Stop keeping <br /> everything in{" "}
                 </p>
                 <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
-                  your head.
+                  your head!
                 </motion.span>
               </p>
 
@@ -263,7 +263,6 @@ export const Home = () => {
                   onClick={() => navigate("workspace")}
                   size={"lg"}
                   variant={"colorfull"}
-                  className="animate-scale"
                 >
                   Get Started
                   <HiCursorClick className="w-5 h-5" />
@@ -409,7 +408,7 @@ export const Home = () => {
           className="mb-20"
         >
           <h2 className="text-3xl font-bold text-center mb-10 text-neutral-800 dark:text-neutral-100">
-            Loved by Thousands
+            Loved by LLMs
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
@@ -466,12 +465,13 @@ export const Home = () => {
 
           <div className="relative p-12 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">
-              Готові до{" "}
-              <span className="text-sky-500 dark:text-sky-300">квантового</span>{" "}
-              <span className="text-pink-500 dark:text-pink-300">стрибка?</span>
+              Ready to{" "}
+              <span className="text-sky-500 dark:text-sky-300">free up</span>
+              {" your "}
+              <span className="text-pink-500 dark:text-pink-300">memory?</span>
             </h2>
             <p className="text-xl text-neutral-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Приєднуйтесь до тих, хто вже подорожує вимірами власного мислення
+              Start using Strukt as your reliable memory
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -482,17 +482,19 @@ export const Home = () => {
             </div>
 
             <p className="text-sm text-cyan-600 dark:text-cyan-300/70 mt-6">
-              ⚡ Нульовий поріг входу
+              ⚡ Zero entry threshold
             </p>
           </div>
         </motion.div>
-        <p className="text-center text-neutral-500 p-12 border-t-1 border-neutral-300 dark:border-neutral-700">
-          © 2025, Made in Ukraine by Vlad 🇺🇦
-        </p>
-      </div>
-      <div className="floater fixed bottom-8 left-8">
-        <div className="spinner p-4">
-          <span className="text-content ml-2">It's FREE!</span>
+          <div className="floater mb-24 mx-auto w-fit">
+            <div className="spinner p-4">
+              <span className="text-content ml-2">It's FREE!</span>
+            </div>
+          </div>
+        <div className="relative">
+          <p className="text-center text-neutral-500 p-18 border-t-1 border-neutral-300 dark:border-neutral-700">
+            © 2025, Made in Ukraine by Vlad 🇺🇦
+          </p>
         </div>
       </div>
     </div>

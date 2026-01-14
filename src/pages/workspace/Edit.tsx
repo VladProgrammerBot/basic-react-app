@@ -6,7 +6,6 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
-import { Guide } from "./cards/Guide/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
@@ -15,7 +14,6 @@ export const Edit = () => {
   const closeBar = store.use.closeBar();
   const setIsLogin = store.use.setIsLogin();
   const setIsGuideOpen = store.use.setIsGuideOpen();
-  const isGuideOpen = store.use.isGuideOpen();
   const isStyled = store.use.isStyled();
   const setCurrentStep = store.use.setCurrentStep();
   const { getUsersFolders, getTemplateFolders } = useEdit();
