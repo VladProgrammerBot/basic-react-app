@@ -477,7 +477,7 @@ export const Home = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="colorfull" onClick={() => navigate("workspace")}>
                 <GiProgression className="w-6 h-6 mr-2" />
-                Get Started. it's FREE.
+                Get Started for FREE
               </Button>
             </div>
 

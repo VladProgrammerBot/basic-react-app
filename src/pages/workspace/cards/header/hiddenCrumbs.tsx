@@ -30,7 +30,7 @@ export const HiddenCrumbs = ({ hiddenCrumbs }: { hiddenCrumbs: () => folder[] })
                 {hiddenCrumbs().map((crumb, index) => {
                     return (
                         <DropdownMenuItem key={index} className="flex gap-1 p-0 cursor-pointer duration-150 text-nowrap">
-                            <Breadcrumb maxLen={20} key={index} elem={crumb} index={index + 1} className="dark:text-neutral-500 dark:hover:text-white w-full px-4 py-1" />
+                            <Breadcrumb maxLen={30} key={index} elem={crumb} index={index + 1} className="dark:text-neutral-500 dark:hover:text-white w-full px-4 py-1" />
                         </DropdownMenuItem>
                     )
                 })}

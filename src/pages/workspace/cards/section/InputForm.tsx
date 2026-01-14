@@ -1,40 +1,69 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { RiGeminiFill } from "react-icons/ri";
 import { useEffect, useRef, useState } from "react";
+import { useFolders } from "@/hooks/folders/useFolders";
+import store from "@/state/store";
 
-export const InputForm = ({ placeholder, defaultValue, cancelFunc, submitFunc, submitTitle }: {
-    placeholder?: string
-    submitTitle: string
-    defaultValue?: string
-    cancelFunc: () => void
-    submitFunc: (value: string, ref: number | null) => void
+export const InputForm = ({
+  placeholder,
+  defaultValue,
+  cancelFunc,
+  submitFunc,
+  submitTitle,
+}: {
+  placeholder?: string;
+  submitTitle: string;
+  defaultValue?: string;
+  cancelFunc: () => void;
+  submitFunc: (value: string, ref: number | null) => void;
 }) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const ref = useRef<HTMLTextAreaElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const ref = useRef<HTMLTextAreaElement | null>(null);
+  const { generateFolders } = useFolders();
+  const mode = store.use.mode();
 
-    useEffect(() => {
-        if (defaultValue && ref.current)
-            ref.current.value = defaultValue
-        ref.current?.focus()
-    }, [])
+  useEffect(() => {
+    if (defaultValue && ref.current) ref.current.value = defaultValue;
+    ref.current?.focus();
+  }, []);
 
-    const submit = () => {
-        setIsLoading(true)
-        ref.current && submitFunc(ref.current.value, null)
-    }
+  const submit = () => {
+    setIsLoading(true);
+    ref.current && submitFunc(ref.current.value, null);
+  };
 
-    return (
-        <div className={`pl-4 pr-2 w-full`} onKeyDown={(e) => {
-            e.key === "Enter" ? submit() :
-                e.key === "Escape" ? cancelFunc() : null
-        }
-        }>
-            <div className="flex pl-4">
-                <textarea ref={ref} placeholder={placeholder ?? "Enter text"} className="px-4 pb-2 mt-2 w-full min-h-20 mb-2 outline-none resize-none" />
-            </div>
-            <div className="flex justify-end gap-2 pb-2">
-                <Button onClick={cancelFunc} variant={"ghost"}>Cancel</Button>
-                <Button onClick={submit}>{isLoading && <span className="auth-loader"></span>}{submitTitle}</Button>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div
+      className={`pl-4 pr-1 pb-1 w-full`}
+      onKeyDown={(e) => {
+        e.key === "Enter" ? submit() : e.key === "Escape" ? cancelFunc() : null;
+      }}
+    >
+      <div className="flex pl-4">
+        <textarea
+          ref={ref}
+          placeholder={placeholder ?? "Enter info or prompt"}
+          className="px-4 pb-2 mt-2 w-full min-h-20 mb-2 outline-none resize-none"
+        />
+      </div>
+      <div className="flex justify-end gap-1">
+        <Button onClick={cancelFunc} variant={"outline"}>
+          Cancel
+        </Button>
+        <Button onClick={submit}>
+          {submitTitle}
+        </Button>
+        {mode === "Add Folder" && (
+        <Button
+          onClick={() => {
+            generateFolders(ref.current?.value || "");
+            setIsLoading(true);
+          }}
+          size={"icon"}
+        >
+          {isLoading ? <span className="auth-loader"></span> : <RiGeminiFill />}
+        </Button>)}
+      </div>
+    </div>
+  );
+};
