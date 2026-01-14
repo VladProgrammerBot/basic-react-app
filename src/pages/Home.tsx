@@ -270,6 +270,7 @@ export const Home = () => {
                   onClick={() => navigate("workspace")}
                   size={"lg"}
                   variant={"colorfull"}
+                  className="animate-scale"
                 >
                   Get Started
                   <HiCursorClick className="w-5 h-5" />

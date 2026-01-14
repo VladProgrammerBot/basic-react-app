@@ -18,7 +18,7 @@ export const buttonVariants = cva(
         outlineNotActive:
           "border-1 text-black dark:text-white border-neutral-300 dark:border-neutral-900/0 cursor-auto text-neutral-400 dark:text-neutral-800",
         colorfull:
-          "text-lg shadow-2xl shadow-sky-500/50 hover:shadow-2xl border-none hover:scale-105 px-8 py-6 transition-all duration-300 bg-sky-600 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white",
+          "text-lg shadow-2xl shadow-sky-500/50 hover:shadow-2xl border-none over:scale-105 px-8 py-6 transition-all duration-300 bg-sky-600 bg-gradient-to-r from-blue-600 to-purple-600 over:from-blue-700 over:to-purple-700 text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
