@@ -13,6 +13,7 @@ export const useKeyboard = () => {
     const resetMoveBuffer = store.use.resetMoveBuffer()
     const renameBuffer = store.use.renameBuffer()
     const childrensId = store.use.childrensId()
+    const filteredChildrensId = store.use.filteredChildrensId()
     const folders = store.use.folders()
     const moveBuffer = store.use.moveBuffer()
     const setMode = store.use.setMode()
@@ -25,15 +26,20 @@ export const useKeyboard = () => {
     const { removeFolder, replaceFolders, addFolder, copyMarkdown } = useFolderManipulation()
 
     const Hotkeys = (e: KeyboardEvent) => {
+        if (e.code === "Escape") {
+            setMode("normal")
+            setSelectedItemId(null)
+        }
+
         if (mode !== "normal" || renameBuffer) return
-        const selectedId = typeof selectedItemId === "number" ? childrensId[selectedItemId] : null
+        const selectedId = typeof selectedItemId === "number" ? filteredChildrensId[selectedItemId] : null
 
         if (e.code === "KeyJ") {
             if (selectedItemId === null) {
                 return setSelectedItemId(0)
             }
             if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, -1)
-            if (selectedItemId < childrensId.length - 1) {
+            if (selectedItemId < filteredChildrensId.length - 1) {
                 return setSelectedItemId(selectedItemId + 1)
             }
         }
@@ -77,6 +83,11 @@ export const useKeyboard = () => {
             toggleMenu()
         }
 
+        if (e.code === "KeyF" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) {
+            e.preventDefault()
+            return setMode("Filter")
+        }
+
         if (!selectedId) return
         const selectedFolder = folders[selectedId]
 
@@ -118,3 +129,7 @@ export const useKeyboard = () => {
         }
     }, [mode, selectedItemId, childrensId, moveBuffer, renameBuffer, folders, path, toggleMenu, setSelectedItemId, setBuffer, resetMoveBuffer, setMode, setRenameBuffer, moveInto, moveOut, moveFolder, removeFolder, replaceFolders, addFolder, copyMarkdown])
 };
+
+// reset filter when move in or out
+// make imposible to sort when filtering
+// start filtering by shortcut

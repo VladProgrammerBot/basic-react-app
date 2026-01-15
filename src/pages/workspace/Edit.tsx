@@ -6,6 +6,8 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
+import { Button } from "@/components/ui/button";
+import { LuMenu } from "react-icons/lu";
 
 export const Edit = () => {
   const folders = store.use.folders();
@@ -59,8 +61,9 @@ export const Edit = () => {
             ></span>
           )}
           <Bar />
+          {/* <div className="max-w-4"></div> */}
+          
           <Path />
-          <div></div>
           <div className="w-full max-w-4xl mx-auto flex flex-col justify-between">
             <Folders />
           </div>

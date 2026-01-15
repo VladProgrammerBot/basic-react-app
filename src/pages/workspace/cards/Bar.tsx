@@ -18,7 +18,7 @@ export const Bar = () => {
                 .map(({ key, label, icon: Icon, onClick }) => (
                     <Button
                         key={key}
-                        variant="ghost"
+                        // variant="ghost"
                         className="w-full px-3 justify-start"
                         onClick={onClick}
                     >

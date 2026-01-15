@@ -2,13 +2,13 @@ import { usePath } from "@/hooks/folders/usePath";
 
 export const Breadcrumb = ({ elem, index, current, className, maxLen }: { maxLen?: number, elem: folder, index: number, current?: boolean, className?: string }) => {
     const { moveOut } = usePath();
-    const maxLength = maxLen ?? 10;
+    const maxLength = maxLen ?? 8;
 
     return (
         <div
             onClick={() => !current && moveOut(elem.childrens, index)}
-            className={`${!current && "text-neutral-500 hover:text-black hover:bg-neutral-200dark:hover:bg-neutral-800 rounded-md dark:text-neutral-500 dark:hover:text-white"} ${!current
-                ? "duration-150 cursor-pointer"
+            className={`${!current && "text-neutral-500 rounded-md dark:text-neutral-500 ark:hover:text-white"} ${!current
+                ? "duration-150 cursor-pointer hover:underline"
                 : "dark:text-white"
                 } ${className}`}
         >

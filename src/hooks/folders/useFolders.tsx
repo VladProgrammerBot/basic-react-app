@@ -28,8 +28,8 @@ export const useFolders = () => {
         ...data
       })
     })
-
-    return sortedChildrens;
+ 
+    return sortedChildrens as folder[];
   }, [childrensId, folders, path]);
 
   const generateFolders = async (prompt: string) => {

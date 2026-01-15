@@ -5,10 +5,16 @@ import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 import { Button } from "@/components/ui/button";
-import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
+import { Input } from "@/components/ui/input";
+import { useEffect, useMemo, useState } from "react";
+import { MdContentPaste } from "react-icons/md";
+import { FaFilter } from "react-icons/fa";
+import { IoSearchSharp } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 
 export const Folders = () => {
+  const setFilteredChildrens = store.use.setFilteredChildrens();
   const { childrensData, generateFolders } = useFolders();
   const { addFolder } = useFolderManipulation();
   const setMode = store((state) => state.setMode);
@@ -16,53 +22,101 @@ export const Folders = () => {
   const renameBuffer = store.use.renameBuffer();
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
+  const [filter, setFilter] = useState("");
+  const childrensId = store.use.childrensId();
 
   useKeyboard();
 
+  const filteredChildrensData = useMemo(() => {
+    if (filter === "") return childrensData;
+
+    return childrensData.filter((child) =>
+      child.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+    );
+  }, [filter, childrensData]);
+
+  // 2. Оновлюємо глобальний стор ПІСЛЯ рендеру через useEffect
+  useEffect(() => {
+    const filteredIds = filteredChildrensData.map((child) => child.id);
+
+    // Якщо filter порожній, передаємо початкові childrensId
+    if (filter === "") {
+      setFilteredChildrens(childrensId);
+    } else {
+      setFilteredChildrens(filteredIds);
+    }
+  }, [filteredChildrensData, filter, childrensId, setFilteredChildrens]);
+
   return (
     <div
-      className={`h-fit mt-13 mb-[50vh] space-y-1 max-md:px-2 border-neutral-300 dark:border-neutral-700`}
+      className={`h-fit mt-14.5 mb-[50vh] space-y-1 max-lg:px-2 border-neutral-300 dark:border-neutral-700`}
     >
-      {childrensData?.map((data, index) => {
+      {filteredChildrensData?.map((data, index) => {
         return <Item key={data.id} data={data} index={index} />;
       })}
-      {mode === "Add Folder" && (
-        <div className="border-1 dark:border-neutral-700 border-neutral-300 rounded-md">
+
+      <div className="fixed bottom-2 left-1/2 -translate-x-1/2 w-full max-w-4xl max-lg:px-2">
+        {mode === "AI Generate" && (
           <InputForm
-            submitTitle="+ Add"
+            placeholder="Enter your prompt"
+            submitTitle="Generate"
             cancelFunc={() => setMode("normal")}
-            submitFunc={addFolder}
+            submitFunc={(value) => {
+              generateFolders(value);
+            }}
           />
-        </div>
-      )}
-      {mode === "AI Generate" && (
-        <InputForm
-          placeholder="Enter your prompt"
-          submitTitle="Generate"
-          cancelFunc={() => setMode("normal")}
-          submitFunc={(value) => {
-            generateFolders(value);
-          }}
-        />
-      )}
-      {!moveBuffer && mode === "normal" && renameBuffer === null && (
-        <Button
-          onClick={() => setMode("Add Folder")}
-          variant={"outline"}
-          className="w-full max-md:py-3"
-        >
-          + New note
-        </Button>
-      )}
-      {moveBuffer && (
-        <Button
-          onClick={moveFolder}
-          variant={"outline"}
-          className="w-full max-md:py-3"
-        >
-          <FaPaste /> Paste
-        </Button>
-      )}
+        )}
+
+        {mode === "normal" && (
+          <div className="flex justify-between gap-1">
+            {childrensId.length > 1 && (
+              <Button
+                size="icon"
+                className="flex-1"
+                onClick={() => setMode("Filter")}
+              >
+                <IoSearchSharp />{" "}
+                <span className="text-neutral-500">
+                  {filter && "(" + filter + ")"}
+                </span>
+              </Button>
+            )}
+            <Button
+              className="flex-1"
+              size="icon"
+              onClick={() => setMode("Add Folder")}
+            >
+              <IoMdAdd />
+            </Button>
+            {moveBuffer && (
+              <Button className="flex-1" size="icon" onClick={moveFolder}>
+                <MdContentPaste />
+              </Button>
+            )}
+          </div>
+        )}
+        {mode === "Add Folder" && (
+          <div className="border-1 backdrop-blur-sm dark:border-white/20 border-neutral-300 rounded-md">
+            <InputForm
+              submitTitle="+ Add"
+              cancelFunc={() => setMode("normal")}
+              submitFunc={addFolder}
+            />
+          </div>
+        )}
+
+        {mode === "Filter" && (
+          <InputForm
+            placeholder="Search"
+            submitTitle="Search"
+            cancelFunc={() => setMode("normal")}
+            submitFunc={(value) => {
+              setFilter(value);
+              setMode("normal");
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

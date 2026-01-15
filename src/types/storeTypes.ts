@@ -1,4 +1,4 @@
-type mode = "normal" | "Add Folder" | "AI Generate";
+type mode = "normal" | "Add Folder" | "AI Generate" | "Filter";
 
 export interface foldersSlice {
     folders: objectFolder
@@ -13,6 +13,8 @@ export interface foldersSlice {
 
 export interface childrensSlice {
     childrensId: number[];
+    filteredChildrensId: number[];
+    setFilteredChildrens: (array: number[]) => void
     setChildrens: (array: number[]) => void;
     pushChildren: (child: number) => void;
     childrensRemove: (id: number) => void;
