@@ -6,8 +6,6 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
-import { Button } from "@/components/ui/button";
-import { LuMenu } from "react-icons/lu";
 
 export const Edit = () => {
   const folders = store.use.folders();

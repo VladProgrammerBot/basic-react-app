@@ -6,10 +6,8 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 import { Button } from "@/components/ui/button";
 import { usePath } from "@/hooks/folders/usePath";
-import { Input } from "@/components/ui/input";
 import { useEffect, useMemo, useState } from "react";
 import { MdContentPaste } from "react-icons/md";
-import { FaFilter } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 
@@ -19,7 +17,6 @@ export const Folders = () => {
   const { addFolder } = useFolderManipulation();
   const setMode = store((state) => state.setMode);
   const mode = store.use.mode();
-  const renameBuffer = store.use.renameBuffer();
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
   const [filter, setFilter] = useState("");
