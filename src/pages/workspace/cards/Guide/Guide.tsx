@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "../../../../components/ui/button";
 import { guideMarkdownSteps } from "@/GuideMarkdown";
 import { GuideContent } from "./GuideContent";
 import { useTypingEffect } from "./useTypingEffect";

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import store from "@/state/store"
 import { TiHome } from "react-icons/ti"
