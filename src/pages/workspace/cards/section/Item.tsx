@@ -32,7 +32,7 @@ export function Item({
 
   return (
     <div
-      className={`flex group/item md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-300 dark:border-neutral-700 duration-150 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
+      className={`flex group/item md:mr-2 md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-300 dark:border-white/20 duration-150 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
         selectedItemId === index && renameBuffer === null && "bg-neutral-200 dark:bg-white/10"
       } ${className}`}
     >

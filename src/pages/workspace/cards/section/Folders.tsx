@@ -21,6 +21,7 @@ export const Folders = () => {
   const moveBuffer = store.use.moveBuffer();
   const [filter, setFilter] = useState("");
   const childrensId = store.use.childrensId();
+  const filteredChildrensId = store.use.filteredChildrensId();
 
   useKeyboard();
 
@@ -46,13 +47,20 @@ export const Folders = () => {
 
   return (
     <div
-      className={`h-fit mt-14.5 mb-[50vh] space-y-1 max-lg:px-2 border-neutral-300 dark:border-neutral-700`}
+      className={`h-fit mt-14.5 pb-[50vh] space-y-1 max-w-4xl mx-auto max-lg:px-2 border-neutral-300 dark:border-neutral-700`}
     >
-      {filteredChildrensData?.map((data, index) => {
-        return <Item key={data.id} data={data} index={index} />;
-      })}
+      {/* <div className="md:pr-2"> */}
+        {filteredChildrensData?.map((data, index) => {
+          return <Item key={data.id} data={data} index={index} />;
+        })}
+      {/* </div> */}
 
-      <div className="fixed bottom-2 left-1/2 -translate-x-1/2 w-full max-w-4xl max-lg:px-2">
+      <div
+        className={`${
+          filteredChildrensId.length > 5 &&
+          "md:absolute fixed bottom-2 left-1/2 -translate-x-1/2 max-lg:pl-2"
+        } w-full max-w-4xl lg:pr-2`}
+      >
         {mode === "AI Generate" && (
           <InputForm
             placeholder="Enter your prompt"
@@ -117,3 +125,6 @@ export const Folders = () => {
     </div>
   );
 };
+
+// ідея: кнопки  відобразити зверху і з шириною fit, а інтпут для створення елементів
+// відображатиметься теж зверху, але якщо елементів багато, тоді fixed

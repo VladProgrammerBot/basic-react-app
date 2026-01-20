@@ -6,6 +6,7 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
+import { Guide } from "@/pages/workspace/cards/Guide/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
@@ -55,15 +56,19 @@ export const Edit = () => {
           {isBarOpen && (
             <span
               onClick={toggleBar}
-              className="fixed bg-black/20 dark:bg-black/30 w-screen h-screen top-0 right-0 z-90"
+              className="fixed backdrop-blur-sm w-screen h-screen top-0 right-0 z-90"
             ></span>
           )}
           <Bar />
           {/* <div className="max-w-4"></div> */}
-          
-          <Path />
-          <div className="w-full max-w-4xl mx-auto flex flex-col justify-between">
-            <Folders />
+          <div className="flex w-full max-h-screen">
+            <Guide />
+            <div className="relative flex-1 w-full mx-auto flex flex-col justify-between">
+              <Path />
+              <div className="overflow-y-auto">
+                <Folders />
+              </div>
+            </div>
           </div>
           {/* {isGuideOpen && <Guide />} */}
         </>

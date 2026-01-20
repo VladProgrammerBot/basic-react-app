@@ -9,7 +9,7 @@ import { HiUserAdd } from "react-icons/hi";
 export const useBar = () => {
     const navigate = useNavigate()
 
-    const isBarOpen = store.use.isBarOpen()
+    
     const toggleBar = store.use.toggleBar()
     const setFolders = store.use.setFolders()
     const isLogin = store.use.isLogin()
@@ -31,11 +31,11 @@ export const useBar = () => {
         } catch {}
     }, [])
 
-    const containerClass = useMemo(
-        () =>
-            `${!isBarOpen ? "translate-x-full" : ""} space-y-1 bg-white dark:bg-white/0 border-l-1 border-white/20 backdrop-blur-sm right-0 w-screen sm:w-75 h-screen fixed p-4 z-100 duration-150`,
-        [isBarOpen]
-    )
+    // const containerClass = useMemo(
+    //     () =>
+    //         ,
+    //     [isBarOpen]
+    // )
 
     const go = (path: string) => {
         navigate(path)
@@ -95,7 +95,7 @@ export const useBar = () => {
     ]
 
     return {
-        containerClass,
+        // containerClass,
         toggleBar,
         username,
         actions

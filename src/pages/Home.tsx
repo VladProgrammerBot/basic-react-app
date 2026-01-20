@@ -245,9 +245,10 @@ export const Home = () => {
                 </span>
               </motion.div>
               <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-                <p className="drop-shadow-xl drop-shadow-white/20">
+                <span className="drop-shadow-xl drop-shadow-white/20">
                   Stop keeping <br /> everything in{" "}
-                </p>
+                </span>
+                <br/>
                 <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
                   your head!
                 </motion.span>

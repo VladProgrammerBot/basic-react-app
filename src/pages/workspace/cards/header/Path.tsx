@@ -9,7 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import { Tip } from "../Guide/Tip";
+import { Tip } from "../Guide-old/Tip";
 import { IoIosArrowForward } from "react-icons/io";
 
 export const Path = () => {
@@ -19,7 +19,7 @@ export const Path = () => {
   const guideStep = store.use.currentStep();
 
   return (
-    <div className="fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
+    <div className="md:absolute pr-2 fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
       {guideStep === 1 && path.length > 1 && (
         <Tip className="items-center left-2" text="Context" />
       )}
@@ -27,7 +27,7 @@ export const Path = () => {
         <Tooltip>
           <TooltipTrigger>
             <Breadcrumb
-              className="pr-2"
+              className="sm:pr-2"
               elem={{ ...path[0], title: "Root" }}
               index={0}
               current={path.length === 1}
@@ -61,7 +61,7 @@ export const Path = () => {
                       (path.length > 2 && index === 1) ||
                       (path.length <= 2 && !index)
                     }
-                    className={index === 0 ? "px-2" : "pl-2"}
+                    className={index === 0 ? "sm:px-2" : "sm:pl-2"}
                   />
                 </div>
               </TooltipTrigger>
