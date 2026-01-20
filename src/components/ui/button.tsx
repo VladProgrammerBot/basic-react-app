@@ -9,7 +9,7 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-black border-1 dark:text-white border-neutral-300 dark:border-white/20 dark:bg-white/5 hover:bg-neutral-200 backdrop-blur-sm dark:hover:bg-white/10",
+        default: "text-black border-1 dark:text-white border-neutral-300 dark:border-white/20 dark:bg-white/5 hover:bg-neutral-200 backdrop-blur-lg dark:hover:bg-white/10",
         disactive: "bg-sky-600 cursor-auto",
         destructive:
           "text-white",
