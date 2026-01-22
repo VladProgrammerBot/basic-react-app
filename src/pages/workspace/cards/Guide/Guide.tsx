@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { guideMarkdownSteps } from "@/GuideMarkdown";
+import { guideMarkdownSteps } from "@/pages/workspace/cards/Guide/GuideMarkdown";
 import { GuideContent } from "./GuideContent";
 import { useTypingEffect } from "./useTypingEffect";
 import { useDarkMode } from "./useDarkMode";

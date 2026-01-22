@@ -62,7 +62,7 @@ export const Edit = () => {
           <Bar />
           {/* <div className="max-w-4"></div> */}
           <div className="flex w-full max-h-screen">
-            <Guide />
+            {/* <Guide /> */}
             <div className="relative flex-1 w-full mx-auto flex flex-col justify-between">
               <Path />
               <div className="overflow-y-auto">
