@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { guideMarkdownSteps } from "@/pages/workspace/cards/Guide/GuideMarkdown";
 import { GuideContent } from "./GuideContent";
 import { useTypingEffect } from "./useTypingEffect";
-import { useDarkMode } from "./useDarkMode";
 
 export const Guide: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -13,7 +12,6 @@ export const Guide: React.FC = () => {
       : false;
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(!isUserLoggedIn);
 
-  const isDarkMode = useDarkMode();
   const { displayedText, isTyping, skipTyping } = useTypingEffect({
     text: guideMarkdownSteps[currentStep],
     currentStep,
@@ -40,7 +38,6 @@ export const Guide: React.FC = () => {
       {isGuideOpen ? (
         <GuideContent
           displayedText={displayedText}
-          isDarkMode={isDarkMode}
           isTyping={isTyping}
           currentStep={currentStep}
           totalSteps={guideMarkdownSteps.length}

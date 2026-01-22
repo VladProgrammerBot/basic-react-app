@@ -7,7 +7,6 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 
 interface GuideContentProps {
   displayedText: string;
-  isDarkMode: boolean;
   isTyping: boolean;
   currentStep: number;
   totalSteps: number;
@@ -20,7 +19,6 @@ interface GuideContentProps {
 
 export const GuideContent: React.FC<GuideContentProps> = ({
   displayedText,
-  isDarkMode,
   isTyping,
   currentStep,
   totalSteps,
@@ -41,7 +39,7 @@ export const GuideContent: React.FC<GuideContentProps> = ({
         <div className="w-10 mx-auto mb-4 mt-2 visible md:hidden rounded-full h-1 bg-white/20" />
         
         <div className="prose overflow-y-scroll flex-1 prose-slate p-4 dark:prose-invert max-w-none">
-          <MarkdownRenderer content={displayedText} isDarkMode={isDarkMode} />
+          <MarkdownRenderer content={displayedText} />
           <TypingCursor isTyping={isTyping} />
         </div>
         
