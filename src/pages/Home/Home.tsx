@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { GiProgression, GiStarsStack } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import { TbChevronDown, TbKeyboard, TbRocket } from "react-icons/tb";
@@ -248,7 +248,7 @@ export const Home = () => {
                 <span className="drop-shadow-xl drop-shadow-white/20">
                   Stop keeping <br /> everything in{" "}
                 </span>
-                <br/>
+                <br />
                 <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
                   your head!
                 </motion.span>
@@ -383,8 +383,8 @@ export const Home = () => {
                                 cell.includes("🟢")
                                   ? "bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-300"
                                   : cell.includes("🟡")
-                                  ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-300"
-                                  : "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-300"
+                                    ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-300"
+                                    : "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-300"
                               }`}
                               whileHover={{ scale: 1.1 }}
                             >
@@ -487,15 +487,17 @@ export const Home = () => {
             </p>
           </div>
         </motion.div>
-          <div className="floater mb-24 mx-auto w-fit">
-            <div className="spinner p-4">
-              <span className="text-content ml-2">It's FREE!</span>
-            </div>
+        <div className="floater mb-24 mx-auto w-fit">
+          <div className="spinner p-4">
+            <span className="text-content ml-2">It's FREE!</span>
           </div>
+        </div>
         <div className="relative">
-          <p className="text-center text-neutral-500 p-18 border-t-1 border-neutral-300 dark:border-neutral-700">
-            © 2025, Made in Ukraine by Vlad 🇺🇦
-          </p>
+          <Link to="/experements">
+            <p className="text-center text-neutral-500 p-18 border-t-1 border-neutral-300 dark:border-neutral-700">
+              © 2025, Made in Ukraine by Vlad 🇺🇦
+            </p>
+          </Link>
         </div>
       </div>
     </div>
