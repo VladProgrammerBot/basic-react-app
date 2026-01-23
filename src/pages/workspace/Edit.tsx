@@ -6,6 +6,7 @@ import store from "@/state/store";
 import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
+import { Guide } from "./cards/Guide/Guide";
 // import { Guide } from "@/pages/workspace/cards/Guide/Guide";
 
 export const Edit = () => {
@@ -62,7 +63,7 @@ export const Edit = () => {
           <Bar />
           {/* <div className="max-w-4"></div> */}
           <div className="flex w-full max-h-screen">
-            {/* <Guide /> */}
+            <Guide />
             <div className="relative flex-1 w-full mx-auto flex flex-col justify-between">
               <Path />
               <div className="overflow-y-auto">

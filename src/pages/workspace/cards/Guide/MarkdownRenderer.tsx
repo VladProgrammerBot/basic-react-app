@@ -1,6 +1,5 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 // import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import {
 //   oneDark,
@@ -16,7 +15,6 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
 }) => {
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
       components={{
         p: ({ children }) => (
           <p className="mb-4 whitespace-pre-wrap">{children}</p>
