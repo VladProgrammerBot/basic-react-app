@@ -8,6 +8,8 @@ import { GlobalLayout } from "./pages/GlobalLayout.tsx";
 import { Experements } from "./pages/experemental/Experement.tsx";
 import { NGA } from "./pages/experemental/NewGuideAnim.tsx";
 import { Guide } from "./pages/workspace/cards/Guide/Guide.tsx";
+import { WithoutMarkdown } from "./pages/experemental/WithoutMarkdown.tsx";
+import { OnluMD } from "./pages/experemental/OnlyMD.tsx";
 // import { Experements } from "./Experements.tsx";
 
 export const router = createBrowserRouter([
@@ -34,6 +36,14 @@ export const router = createBrowserRouter([
           {
             path: "guide",
             Component: Guide,
+          },
+          {
+            path: "without-markdown",
+            Component: WithoutMarkdown,
+          },
+          {
+            path: "only-md",
+            Component: OnluMD,
           },
         ],
       },
