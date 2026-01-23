@@ -7,6 +7,7 @@ import { Bar } from "./cards/Bar";
 import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
 import { Guide } from "./cards/Guide/Guide";
+import { GradientBackground } from "@/components/GradientBg";
 // import { Guide } from "@/pages/workspace/cards/Guide/Guide";
 
 export const Edit = () => {
@@ -39,15 +40,7 @@ export const Edit = () => {
     <div className="workspace flex h-full min-h-screen">
       {isStyled && (
         <>
-          <div className="fixed -z-10 inset-0 hidden dark:block">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-900/10 rounded-full blur-3xl" />
-          </div>
-          <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none hidden dark:block">
-            <div className="absolute -top-40 -right-40 w-120 h-120 bg-blue-500/10 rounded-full blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 w-120 h-120 bg-purple-500/10 rounded-full blur-3xl" />
-          </div>
+          <GradientBackground />
         </>
       )}
       {Object.keys(folders).length === 0 ? (

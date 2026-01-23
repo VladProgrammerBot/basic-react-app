@@ -9,20 +9,20 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
-import { Tip } from "../Guide-old/Tip";
+// import { Tip } from "../Guide-old/Tip";
 import { IoIosArrowForward } from "react-icons/io";
 
 export const Path = () => {
   const path = store.use.path();
   const toggleBar = store.use.toggleBar();
   const { hiddenCrumbs, lastCrumbs } = useBreadcrumbs();
-  const guideStep = store.use.currentStep();
+  // const guideStep = store.use.currentStep();
 
   return (
     <div className="md:absolute pr-2 fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
-      {guideStep === 1 && path.length > 1 && (
+      {/* {guideStep === 1 && path.length > 1 && (
         <Tip className="items-center left-2" text="Context" />
-      )}
+      )} */}
       <div className="flex items-center py-1 backdrop-blur-xs border-1 border-white/20 rounded-md pl-4 pr-1 w-full">
         <Tooltip>
           <TooltipTrigger>
