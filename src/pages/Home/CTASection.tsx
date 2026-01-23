@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { GiProgression } from "react-icons/gi";
+import { HiCursorClick } from "react-icons/hi";
 
 interface CTASectionProps {
   onGetStarted: () => void;
@@ -40,9 +40,9 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="colorfull" onClick={onGetStarted}>
-            <GiProgression className="w-6 h-6 mr-2" />
-            Get Started for FREE
+          <Button onClick={onGetStarted} size="lg" variant="colorfull">
+            Get Started
+            <HiCursorClick className="w-5 h-5" />
           </Button>
         </div>
 

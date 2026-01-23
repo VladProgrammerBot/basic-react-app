@@ -1,7 +1,7 @@
-export const BigButton: React.FC<{Func: () => void, text: string, tooltip: string}> = ({Func, text, tooltip}) => {
+export const BigButton: React.FC<{Func: () => void, text: string, tooltip: string, className?: string}> = ({Func, text, tooltip, className}) => {
     return <div
           onClick={Func}
-          className="fixed bottom-4 right-4 z-100 group cursor-pointer"
+          className={`fixed bottom-4 right-4 z-100 group cursor-pointer ${className}`}
         >
           {/* Анімовані кільця навколо кнопки */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-75 group-hover:opacity-100 animate-pulse blur-md transition-all duration-300" />

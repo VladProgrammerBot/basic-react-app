@@ -29,7 +29,7 @@ export const GuideNavigation: React.FC<GuideNavigationProps> = ({
       )}
       
       {isTyping ? (
-        <Button onClick={onSkip}>Skip</Button>
+        <Button onClick={onSkip}>Show all</Button>
       ) : currentStep < totalSteps - 1 ? (
         <Button onClick={onNext}>Next</Button>
       ) : (

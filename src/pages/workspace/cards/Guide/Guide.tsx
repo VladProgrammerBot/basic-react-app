@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { guideMarkdownSteps } from "@/pages/workspace/cards/Guide/GuideMarkdown";
 import { GuideContent } from "./GuideContent";
 import { useTypingEffect } from "./useTypingEffect";
-import { BigButton } from "./BigButton";
+import { BigButton } from "../../../../components/BigButton";
 
 export const Guide: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -49,7 +49,7 @@ export const Guide: React.FC = () => {
           onFinish={handleFinish}
         />
       ) : (
-        <BigButton Func={() => setIsGuideOpen(true)} text="?" tooltip="Open Guide" />
+        <BigButton className="animate-fade-in" Func={() => setIsGuideOpen(true)} text="?" tooltip="Open Guide" />
       )}
     </div>
   );
