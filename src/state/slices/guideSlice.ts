@@ -1,9 +1,7 @@
 import type { StateCreator } from "zustand";
-import type { guideSlice } from "../../types/storeTypes";
+import type { filterSlice } from "../../types/storeTypes";
 
-export const createGuideSlice: StateCreator<guideSlice> = (set) => ({
-    isGuideOpen: false,
-    currentStep: 6,
-    setCurrentStep: (state) => set({ currentStep: state }),
-    setIsGuideOpen: (state) => set({ isGuideOpen: state })
-})
+export const createFilterSlice: StateCreator<filterSlice> = (set) => ({
+  filter: "",
+  setFilter: (text) => set({ filter: text }),
+});

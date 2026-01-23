@@ -20,6 +20,7 @@ export const useKeyboard = () => {
   const path = store.use.path();
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
+  const setFilter = store.use.setFilter();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
@@ -103,6 +104,7 @@ export const useKeyboard = () => {
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
       setSelectedItemId(0);
+      setFilter("")
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 

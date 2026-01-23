@@ -8,7 +8,6 @@ import { Messages } from "./cards/section/Messages";
 import { useEdit } from "@/hooks/folders/useEdit";
 import { Guide } from "./cards/Guide/Guide";
 import { GradientBackground } from "@/components/GradientBg";
-// import { Guide } from "@/pages/workspace/cards/Guide/Guide";
 
 export const Edit = () => {
   const folders = store.use.folders();
@@ -16,21 +15,16 @@ export const Edit = () => {
   const toggleBar = store.use.toggleBar();
   const closeBar = store.use.closeBar();
   const setIsLogin = store.use.setIsLogin();
-  const setIsGuideOpen = store.use.setIsGuideOpen();
   const isStyled = store.use.isStyled();
-  const setCurrentStep = store.use.setCurrentStep();
   const { getUsersFolders, getTemplateFolders } = useEdit();
 
   useEffect(() => {
-    setCurrentStep(0);
     closeBar();
     if (Object.keys(folders).length !== 0) return;
     if (localStorage.getItem("token")) {
-      setIsGuideOpen(false);
       setIsLogin(true);
       getUsersFolders();
     } else {
-      setIsGuideOpen(true);
       setIsLogin(false);
       getTemplateFolders();
     }
@@ -38,11 +32,7 @@ export const Edit = () => {
 
   return (
     <div className="workspace flex h-full min-h-screen">
-      {isStyled && (
-        <>
-          <GradientBackground />
-        </>
-      )}
+      {isStyled && <GradientBackground />}
       {Object.keys(folders).length === 0 ? (
         <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
       ) : (
@@ -54,7 +44,6 @@ export const Edit = () => {
             ></span>
           )}
           <Bar />
-          {/* <div className="max-w-4"></div> */}
           <div className="flex w-full max-h-screen">
             <Guide />
             <div className="relative flex-1 w-full mx-auto flex flex-col justify-between">
@@ -64,7 +53,6 @@ export const Edit = () => {
               </div>
             </div>
           </div>
-          {/* {isGuideOpen && <Guide />} */}
         </>
       )}
       <Messages />

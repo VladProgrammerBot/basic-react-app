@@ -6,7 +6,7 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useKeyboard } from "@/hooks/folders/useKeyboard";
 import { Button } from "@/components/ui/button";
 import { usePath } from "@/hooks/folders/usePath";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { MdContentPaste } from "react-icons/md";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
@@ -19,7 +19,8 @@ export const Folders = () => {
   const mode = store.use.mode();
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
-  const [filter, setFilter] = useState("");
+  const filter = store.use.filter();
+  const setFilter = store.use.setFilter();
   const childrensId = store.use.childrensId();
   const filteredChildrensId = store.use.filteredChildrensId();
 
@@ -51,7 +52,9 @@ export const Folders = () => {
     >
       {/* <div className="md:pr-2"> */}
       {filteredChildrensData?.map((data, index) => {
-        return <Item key={data.id} data={data} index={index} />;
+        return (
+          <Item key={data.id} data={data} index={index} />
+        );
       })}
       {/* </div> */}
 
@@ -101,11 +104,11 @@ export const Folders = () => {
           </div>
         )}
         {mode === "Add Folder" && (
-            <InputForm
-              submitTitle="+ Add"
-              cancelFunc={() => setMode("normal")}
-              submitFunc={addFolder}
-            />
+          <InputForm
+            submitTitle="+ Add"
+            cancelFunc={() => setMode("normal")}
+            submitFunc={addFolder}
+          />
         )}
         {mode === "Filter" && (
           <InputForm
@@ -122,6 +125,3 @@ export const Folders = () => {
     </div>
   );
 };
-
-// ідея: кнопки  відобразити зверху і з шириною fit, а інтпут для створення елементів
-// відображатиметься теж зверху, але якщо елементів багато, тоді fixed

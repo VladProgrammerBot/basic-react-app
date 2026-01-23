@@ -1,103 +1,87 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
-import store from "@/state/store"
-import { TiHome } from "react-icons/ti"
-import { FaBook } from "react-icons/fa"
-import { MdLogout, MdOutlineBorderStyle } from "react-icons/md"
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import store from "@/state/store";
+import { TiHome } from "react-icons/ti";
+import { MdLogout, MdOutlineBorderStyle } from "react-icons/md";
 import { HiUserAdd } from "react-icons/hi";
 
 export const useBar = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    
-    const toggleBar = store.use.toggleBar()
-    const setFolders = store.use.setFolders()
-    const isLogin = store.use.isLogin()
-    const isGuideOpen = store.use.isGuideOpen()
-    const setIsGuideOpen = store.use.setIsGuideOpen()
-    const setIsStyled = store.use.setIsStyled()
-    const setCurrentStep = store.use.setCurrentStep()
-    const isStyled = store.use.isStyled()
+  const toggleBar = store.use.toggleBar();
+  const setFolders = store.use.setFolders();
+  const isLogin = store.use.isLogin();
+  const setIsStyled = store.use.setIsStyled();
+  const isStyled = store.use.isStyled();
 
-    const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("");
 
-    useEffect(() => {
-        try {
-            const token = localStorage.getItem("token")
-            if (!token) return
-            const [, payload] = token.split(".")
-            const { username } = JSON.parse(atob(payload))
-            setUsername(username ?? "")
-        } catch {}
-    }, [])
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      const [, payload] = token.split(".");
+      const { username } = JSON.parse(atob(payload));
+      setUsername(username ?? "");
+    } catch {}
+  }, []);
 
-    // const containerClass = useMemo(
-    //     () =>
-    //         ,
-    //     [isBarOpen]
-    // )
+  // const containerClass = useMemo(
+  //     () =>
+  //         ,
+  //     [isBarOpen]
+  // )
 
-    const go = (path: string) => {
-        navigate(path)
-        toggleBar()
-    }
+  const go = (path: string) => {
+    navigate(path);
+    toggleBar();
+  };
 
-    const logout = () => {
-        localStorage.clear()
-        setFolders({})
-        navigate("/login")
-        toggleBar()
-    }
+  const logout = () => {
+    localStorage.clear();
+    setFolders({});
+    navigate("/login");
+    toggleBar();
+  };
 
-    const actions = [
-        {
-            key: "home",
-            label: "Home",
-            icon: TiHome,
-            show: true,
-            onClick: () => go("/")
-        },
-        {
-            key: "guide",
-            label: "Guide",
-            icon: FaBook,
-            show: !isGuideOpen,
-            onClick: () => {
-                setCurrentStep(0)
-                setIsGuideOpen(true)
-                toggleBar()
-            }
-        },
-        {
-            key: "logout",
-            label: "Log out",
-            icon: MdLogout,
-            show: isLogin,
-            onClick: logout
-        },
-        {
-            key: "signin",
-            label: "Create account",
-            icon: HiUserAdd,
-            show: !isLogin,
-            onClick: () => go("/signup")
-        },
-        {
-            key: "styles",
-            label: "Toggle styles",
-            icon: MdOutlineBorderStyle,
-            show: true,
-            onClick: () => {
-                localStorage.setItem("isNotStyled", String(!isStyled))
-                setIsStyled()
-            }
-        }
-    ]
+  const actions = [
+    {
+      key: "home",
+      label: "Home",
+      icon: TiHome,
+      show: true,
+      onClick: () => go("/"),
+    },
+    {
+      key: "logout",
+      label: "Log out",
+      icon: MdLogout,
+      show: isLogin,
+      onClick: logout,
+    },
+    {
+      key: "signin",
+      label: "Create account",
+      icon: HiUserAdd,
+      show: !isLogin,
+      onClick: () => go("/signup"),
+    },
+    {
+      key: "styles",
+      label: "Toggle styles",
+      icon: MdOutlineBorderStyle,
+      show: true,
+      onClick: () => {
+        localStorage.setItem("isNotStyled", String(!isStyled));
+        setIsStyled();
+      },
+    },
+  ];
 
-    return {
-        // containerClass,
-        toggleBar,
-        username,
-        actions
-    }
-}
+  return {
+    // containerClass,
+    toggleBar,
+    username,
+    actions,
+  };
+};

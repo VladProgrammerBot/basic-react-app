@@ -1,48 +1,72 @@
 import { create } from "zustand";
-import { createFoldersSlice } from "./slices/foldersSlice"
-import type { alertsSlice, authSlice, barSlice, childrensSlice, foldersSlice, guideSlice, keyNaviSlice, modeSlice, moveBufferSlice, pathSlice, renameBufferSlice } from "../types/storeTypes";
+import { createFoldersSlice } from "./slices/foldersSlice";
+import type {
+  alertsSlice,
+  authSlice,
+  barSlice,
+  childrensSlice,
+  foldersSlice,
+  filterSlice,
+  keyNaviSlice,
+  modeSlice,
+  moveBufferSlice,
+  pathSlice,
+  renameBufferSlice,
+} from "../types/storeTypes";
 import { createChildrensSlice } from "./slices/childrensSlice";
 import { createModeSlice } from "./slices/modeSlice";
 import { createMoveBufferSlice } from "./slices/moveBufferSlice";
 import { createPathSlice } from "./slices/pathSlice";
 import { createRenameSlice } from "./slices/renameBufferSlice";
-import { type StoreApi, type UseBoundStore } from 'zustand'
+import { type StoreApi, type UseBoundStore } from "zustand";
 import { createBarSlice } from "./slices/barSlice";
 import { createAlertsSlice } from "./slices/alertsSlice";
 import { createAuthSlice } from "./slices/authSlice";
 import { createKeyNaviSlice } from "./slices/keyNaviSlice";
-import { createGuideSlice } from "./slices/guideSlice";
+import { createFilterSlice } from "./slices/guideSlice";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
-    ? S & { use: { [K in keyof T]: () => T[K] } }
-    : never
+  ? S & { use: { [K in keyof T]: () => T[K] } }
+  : never;
 
 const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
-    _store: S,
+  _store: S,
 ) => {
-    const store = _store as WithSelectors<typeof _store>
-    store.use = {}
-    for (const k of Object.keys(store.getState())) {
-        ; (store.use as any)[k] = () => store((s) => s[k as keyof typeof s])
-    }
+  const store = _store as WithSelectors<typeof _store>;
+  store.use = {};
+  for (const k of Object.keys(store.getState())) {
+    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
+  }
 
-    return store
-}
+  return store;
+};
 
-const storeBase = create<foldersSlice & keyNaviSlice & childrensSlice & guideSlice & modeSlice & moveBufferSlice & authSlice & pathSlice & renameBufferSlice & barSlice & alertsSlice>()((...a) => ({
-    ...createFoldersSlice(...a),
-    ...createChildrensSlice(...a),
-    ...createModeSlice(...a),
-    ...createMoveBufferSlice(...a),
-    ...createPathSlice(...a),
-    ...createRenameSlice(...a),
-    ...createBarSlice(...a),
-    ...createAlertsSlice(...a),
-    ...createAuthSlice(...a),
-    ...createKeyNaviSlice(...a),
-    ...createGuideSlice(...a)
-}))
+const storeBase = create<
+  foldersSlice &
+    keyNaviSlice &
+    childrensSlice &
+    filterSlice &
+    modeSlice &
+    moveBufferSlice &
+    authSlice &
+    pathSlice &
+    renameBufferSlice &
+    barSlice &
+    alertsSlice
+>()((...a) => ({
+  ...createFoldersSlice(...a),
+  ...createChildrensSlice(...a),
+  ...createModeSlice(...a),
+  ...createMoveBufferSlice(...a),
+  ...createPathSlice(...a),
+  ...createRenameSlice(...a),
+  ...createBarSlice(...a),
+  ...createAlertsSlice(...a),
+  ...createAuthSlice(...a),
+  ...createKeyNaviSlice(...a),
+  ...createFilterSlice(...a),
+}));
 
-const store = createSelectors(storeBase)
+const store = createSelectors(storeBase);
 
-export default store
+export default store;
