@@ -32,6 +32,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               AI Powered
             </span>
           </motion.div>
+          
 
           <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             <span className="drop-shadow-xl drop-shadow-white/20">
@@ -42,7 +43,6 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               </motion.span>
             </span>
             your
-            <br className="lg:hidden" />
             <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
               {" "}
               ideas{" "}
@@ -56,7 +56,9 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             {/* In strukt, your ideas, goals, and knowledge will be quickly found at
             the right moment, just like files on a computer. */}
             {/* In Strukt, information is organized like files on your computer, with related information in a shared folder. */}
-            Strukt is a place for ideas, plans, and knowledge, where it can all be found quickly, organized as easily as files on a computer.</p>
+            Strukt is a place for ideas, plans, and knowledge, where it can all
+            be found quickly, organized as easily as files on a computer.
+          </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-4">
             <Button onClick={onGetStarted} size="lg" variant="colorfull">
