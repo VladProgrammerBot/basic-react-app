@@ -8,7 +8,7 @@ export const Bar = () => {
     const isBarOpen = store.use.isBarOpen()
 
     return (
-        <div className={`${!isBarOpen ? "translate-x-[100vw]" : ""} space-y-1 bg-white dark:bg-white/0 border-1 rounded-md border-white/20 backdrop-blur-sm right-2 top-2 w-[calc(100vw-1rem)] sm:w-75 h-[calc(100vh-1rem)] fixed p-4 z-100 duration-150`}>
+        <div className={`${!isBarOpen ? "translate-x-[100vw]" : ""} space-y-1 bg-white dark:bg-white/0 dark:border-1 rounded-md border-neutral-400 dark:border-white/20 backdrop-blur-sm right-2 top-2 w-[calc(100vw-1rem)] sm:w-75 h-[calc(100vh-1rem)] fixed p-4 z-100 duration-150`}>
             <Button variant="ghost" size="icon" onClick={toggleBar}>
                 <IoClose />
             </Button>

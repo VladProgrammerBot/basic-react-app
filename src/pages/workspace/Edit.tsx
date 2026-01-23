@@ -50,7 +50,7 @@ export const Edit = () => {
           {isBarOpen && (
             <span
               onClick={toggleBar}
-              className="fixed backdrop-blur-sm w-screen h-screen top-0 right-0 z-90"
+              className="fixed backdrop-blur-sm bg-black/30 dark:bg-black/0 w-screen h-screen top-0 right-0 z-90"
             ></span>
           )}
           <Bar />

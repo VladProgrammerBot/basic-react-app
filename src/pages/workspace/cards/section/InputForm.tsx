@@ -10,7 +10,9 @@ export const InputForm = ({
   cancelFunc,
   submitFunc,
   submitTitle,
+  border = true,
 }: {
+  border?: boolean;
   placeholder?: string;
   submitTitle: string;
   defaultValue?: string;
@@ -34,7 +36,7 @@ export const InputForm = ({
 
   return (
     <div
-      className={`pl-4 pr-1 pb-1 w-full`}
+      className={`pl-4 pr-1 pb-1 w-full ${border && "border-1 backdrop-blur-sm dark:border-white/20 border-neutral-400 rounded-md"}`}
       onKeyDown={(e) => {
         e.key === "Enter" ? submit() : e.key === "Escape" ? cancelFunc() : null;
       }}
@@ -50,19 +52,22 @@ export const InputForm = ({
         <Button onClick={cancelFunc} variant={"outline"}>
           Cancel
         </Button>
-        <Button onClick={submit}>
-          {submitTitle}
-        </Button>
+        <Button onClick={submit}>{submitTitle}</Button>
         {mode === "Add Folder" && (
-        <Button
-          onClick={() => {
-            generateFolders(ref.current?.value || "");
-            setIsLoading(true);
-          }}
-          size={"icon"}
-        >
-          {isLoading ? <span className="auth-loader"></span> : <RiGeminiFill />}
-        </Button>)}
+          <Button
+            onClick={() => {
+              generateFolders(ref.current?.value || "");
+              setIsLoading(true);
+            }}
+            size={"icon"}
+          >
+            {isLoading ? (
+              <span className="auth-loader"></span>
+            ) : (
+              <RiGeminiFill />
+            )}
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -32,8 +32,10 @@ export function Item({
 
   return (
     <div
-      className={`flex group/item lg:mr-2 md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-300 dark:border-white/20 duration-150 bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
-        selectedItemId === index && renameBuffer === null && "bg-neutral-200 dark:bg-white/10"
+      className={`flex group/item lg:mr-2 md:min-h-10 relative min-h-12 cursor-pointer rounded-md border-1 border-neutral-400 dark:border-white/20 duration-150 bg-neutral-50 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 ${
+        selectedItemId === index &&
+        renameBuffer === null &&
+        "bg-neutral-200 dark:bg-white/10"
       } ${className}`}
     >
       {renameBuffer !== data.id ? (
@@ -43,7 +45,7 @@ export function Item({
             onClick={handleClick}
           >
             <div
-              className={`dark:text-white/50 pr-2 text-black/50 pt-2 text-center flex justify-center `}
+              className={`dark:text-white/50 pr-2 text-neutral-500 pt-2 text-center flex justify-center`}
             >
               {data.ref ? (
                 <PiLinkSimpleBold />
@@ -54,7 +56,7 @@ export function Item({
               )}
             </div>
             <p
-              className={`duration-150 py-1 text-white ${
+              className={`duration-150 py-1 ext-white ${
                 moveBuffer?.id === data.id && "opacity-50"
               }`}
             >
@@ -65,6 +67,7 @@ export function Item({
         </>
       ) : (
         <InputForm
+          border={false}
           submitTitle="rename"
           cancelFunc={() => setRenameBuffer(null)}
           submitFunc={renameFolder}
