@@ -13,6 +13,7 @@ import { IoMdAdd } from "react-icons/io";
 
 export const Folders = () => {
   const setFilteredChildrens = store.use.setFilteredChildrens();
+  const setSelectedItemId = store.use.setSelectedItemId();
   const { childrensData, generateFolders } = useFolders();
   const { addFolder } = useFolderManipulation();
   const setMode = store((state) => state.setMode);
@@ -50,13 +51,9 @@ export const Folders = () => {
     <div
       className={`h-fit mt-14.5 pb-[50vh] space-y-1 max-w-4xl mx-auto max-lg:px-2 border-neutral-300 dark:border-neutral-700`}
     >
-      {/* <div className="md:pr-2"> */}
       {filteredChildrensData?.map((data, index) => {
-        return (
-          <Item key={data.id} data={data} index={index} />
-        );
+        return <Item key={data.id} data={data} index={index} />;
       })}
-      {/* </div> */}
 
       <div
         className={`${
@@ -117,6 +114,7 @@ export const Folders = () => {
             cancelFunc={() => setMode("normal")}
             submitFunc={(value) => {
               setFilter(value);
+              setSelectedItemId(0);
               setMode("normal");
             }}
           />
