@@ -10,6 +10,8 @@ import { NGA } from "./pages/experemental/NewGuideAnim.tsx";
 import { Guide } from "./pages/workspace/cards/Guide/Guide.tsx";
 import { WithoutMarkdown } from "./pages/experemental/WithoutMarkdown.tsx";
 import { OnluMD } from "./pages/experemental/OnlyMD.tsx";
+import { SimpleMd } from "./pages/experemental/SimpleMd.tsx";
+import { SimpleMd2 } from "./pages/experemental/SimpleMd2.tsx";
 // import { Experements } from "./Experements.tsx";
 
 export const router = createBrowserRouter([
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
           {
             path: "only-md",
             Component: OnluMD,
+          },
+          {
+            path: "simple-md-1",
+            Component: SimpleMd,
+          },
+          {
+            path: "simple-md-2",
+            Component: SimpleMd2,
           },
         ],
       },

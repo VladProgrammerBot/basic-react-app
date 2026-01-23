@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import { Link } from "react-router";
 
 export const Experements = () => {
-  const links = ["guide", "nga", "without-markdown", "only-md"];
+  const links = ["guide", "nga", "without-markdown", "only-md", "simple-md-1", "simple-md-2"];
 
   return (
     <div className="p-4">
