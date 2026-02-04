@@ -13,15 +13,13 @@ import {
 import store from "@/state/store";
 import { FaHistory } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
 
-export const HiddenCrumbs = ({
-  hiddenCrumbs,
-}: {
-  hiddenCrumbs: () => folder[];
-}) => {
+export const HiddenCrumbs = () => {
   const isMenuOpen = store.use.isMenuOpen();
   const toggleMenu = store.use.toggleMenu();
   const path = store.use.path();
+  const { hiddenCrumbs } = useBreadcrumbs();
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
@@ -29,7 +27,6 @@ export const HiddenCrumbs = ({
         <Tooltip>
           <TooltipTrigger
             asChild
-            // className="cursor-pointer px-2 hover:bg-neutral-200 duration-150 dark:hover:bg-neutral-800 rounded-md outline-none"
           >
             <Button disabled={path.length === 1} size={"icon"}>
               <FaHistory />
@@ -42,15 +39,15 @@ export const HiddenCrumbs = ({
         {hiddenCrumbs().map((crumb, index) => {
           return (
             <DropdownMenuItem
-              key={index}
-              className="flex gap-1 p-0 cursor-pointer duration-150 text-nowrap"
+              key={crumb.id}
+              // className="text-white"
+              className="p-0"
             >
               <Breadcrumb
                 maxLen={30}
-                key={index}
                 elem={crumb}
                 index={index}
-                className="dark:text-neutral-500 dark:hover:text-white w-full px-4 py-1"
+                className="w-full px-4 py-2"
               />
             </DropdownMenuItem>
           );

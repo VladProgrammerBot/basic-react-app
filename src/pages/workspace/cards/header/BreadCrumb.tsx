@@ -6,9 +6,12 @@ export const Breadcrumb = ({ elem, index, current, className, maxLen }: { maxLen
 
     return (
         <div
-            onClick={() => !current && moveOut(elem.childrens, index)}
-            className={`${!current && "text-neutral-500 rounded-md dark:text-neutral-500 ark:hover:text-white"} ${!current
-                ? "duration-150 cursor-pointer hover:underline"
+            onClick={() => {
+                console.log(2)
+                !current && moveOut(elem.childrens, index)
+            }}
+            className={`${!current && "rounded-md"} ${!current
+                ? "duration-150 cursor-pointer"
                 : "dark:text-white"
                 } ${className}`}
         >

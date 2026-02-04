@@ -1,4 +1,3 @@
-import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
 import store from "@/state/store";
 import { HiddenCrumbs } from "./hiddenCrumbs";
 import { LuMenu } from "react-icons/lu";
@@ -16,7 +15,7 @@ export const Path = () => {
   const path = store.use.path();
   const toggleBar = store.use.toggleBar();
   const { moveOut } = usePath();
-  const { hiddenCrumbs } = useBreadcrumbs();
+  
 
   return (
     <div className="md:absolute pr-2 fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
@@ -47,7 +46,7 @@ export const Path = () => {
         </TooltipTrigger>
         <TooltipContent>Shift + h</TooltipContent>
       </Tooltip>
-      <HiddenCrumbs hiddenCrumbs={hiddenCrumbs} />
+      <HiddenCrumbs />
       <div className="flex items-center py-1 overflow-x-hidden text-nowrap backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
         {path[path.length - 1].title}
       </div>
