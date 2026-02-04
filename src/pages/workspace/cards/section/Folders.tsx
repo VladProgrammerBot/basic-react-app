@@ -24,6 +24,7 @@ export const Folders = () => {
   const setFilter = store.use.setFilter();
   const childrensId = store.use.childrensId();
   const filteredChildrensId = store.use.filteredChildrensId();
+  const isStyled = store.use.isStyled();
 
   useKeyboard();
 
@@ -72,34 +73,6 @@ export const Folders = () => {
           />
         )}
 
-        {mode === "normal" && (
-          <div className="flex justify-between gap-1">
-            {childrensId.length > 1 && (
-              <Button
-                size="icon"
-                className="flex-1"
-                onClick={() => setMode("Filter")}
-              >
-                <IoSearchSharp />{" "}
-                <span className="text-neutral-500">
-                  {filter && "(" + filter + ")"}
-                </span>
-              </Button>
-            )}
-            <Button
-              className="flex-1"
-              size="icon"
-              onClick={() => setMode("Add Folder")}
-            >
-              <IoMdAdd />
-            </Button>
-            {moveBuffer && (
-              <Button className="flex-1" size="icon" onClick={moveFolder}>
-                <MdContentPaste />
-              </Button>
-            )}
-          </div>
-        )}
         {mode === "Add Folder" && (
           <InputForm
             submitTitle="+ Add"
@@ -107,6 +80,7 @@ export const Folders = () => {
             submitFunc={addFolder}
           />
         )}
+
         {mode === "Filter" && (
           <InputForm
             placeholder="Search"
@@ -119,6 +93,37 @@ export const Folders = () => {
             }}
           />
         )}
+
+        <div className={`${!isStyled && "lg:hidden"}`}>
+          {mode === "normal" && (
+            <div className="flex justify-between gap-1">
+              {childrensId.length > 1 && (
+                <Button
+                  size="icon"
+                  className="flex-1"
+                  onClick={() => setMode("Filter")}
+                >
+                  <IoSearchSharp />{" "}
+                  <span className="text-neutral-500">
+                    {filter && "(" + filter + ")"}
+                  </span>
+                </Button>
+              )}
+              <Button
+                className="flex-1"
+                size="icon"
+                onClick={() => setMode("Add Folder")}
+              >
+                <IoMdAdd />
+              </Button>
+              {moveBuffer && (
+                <Button className="flex-1" size="icon" onClick={moveFolder}>
+                  <MdContentPaste />
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

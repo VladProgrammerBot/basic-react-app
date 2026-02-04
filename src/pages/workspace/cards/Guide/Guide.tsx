@@ -3,6 +3,7 @@ import { guideMarkdownSteps } from "@/pages/workspace/cards/Guide/GuideMarkdown"
 import { GuideContent } from "./GuideContent";
 import { useTypingEffect } from "./useTypingEffect";
 import { BigButton } from "../../../../components/BigButton";
+import store from "@/state/store";
 
 export const Guide: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0);
@@ -18,6 +19,7 @@ export const Guide: React.FC = () => {
     currentStep,
     viewedSteps,
   });
+  const isStyled = store.use.isStyled();
 
   const handleBack = () => setCurrentStep((prev) => prev - 1);
 
@@ -34,7 +36,7 @@ export const Guide: React.FC = () => {
     <div
       className={`max-md:fixed z-20 bottom-0 ${
         isGuideOpen && "d:w-full"
-      }  p-2 max-lg:pr-0 left-0`}
+      }  p-2 max-lg:pr-0 left-0 ${!isStyled && "hidden"}`}
     >
       {isGuideOpen ? (
         <GuideContent

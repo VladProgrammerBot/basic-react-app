@@ -26,12 +26,6 @@ export const useBar = () => {
     } catch {}
   }, []);
 
-  // const containerClass = useMemo(
-  //     () =>
-  //         ,
-  //     [isBarOpen]
-  // )
-
   const go = (path: string) => {
     navigate(path);
     toggleBar();
@@ -68,7 +62,7 @@ export const useBar = () => {
     },
     {
       key: "styles",
-      label: "Toggle styles",
+      label: "Pro mode",
       icon: MdOutlineBorderStyle,
       show: true,
       onClick: () => {

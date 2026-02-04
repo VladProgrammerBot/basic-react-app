@@ -20,6 +20,7 @@ export const HiddenCrumbs = () => {
   const toggleMenu = store.use.toggleMenu();
   const path = store.use.path();
   const { hiddenCrumbs } = useBreadcrumbs();
+  const isStyled = store.use.isStyled();
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
@@ -28,7 +29,7 @@ export const HiddenCrumbs = () => {
           <TooltipTrigger
             asChild
           >
-            <Button disabled={path.length === 1} size={"icon"}>
+            <Button disabled={path.length === 1} className={`${!isStyled && "lg:hidden"}`} size={"icon"}>
               <FaHistory />
             </Button>
           </TooltipTrigger>

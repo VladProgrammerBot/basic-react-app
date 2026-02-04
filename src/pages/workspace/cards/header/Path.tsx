@@ -15,37 +15,39 @@ export const Path = () => {
   const path = store.use.path();
   const toggleBar = store.use.toggleBar();
   const { moveOut } = usePath();
-  
+  const isStyled = store.use.isStyled();
 
   return (
     <div className="md:absolute pr-2 fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            disabled={path.length === 1}
-            size={"icon"}
-            onClick={() => path.length !== 1 && moveOut(path[0].childrens, 0)}
-          >
-            <FaHouse />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Shift + h</TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            disabled={path.length === 1}
-            size={"icon"}
-            onClick={() =>
-              path.length !== 1 &&
-              moveOut(path[path.length - 2].childrens, path.length - 2)
-            }
-          >
-            <IoArrowBack />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Shift + h</TooltipContent>
-      </Tooltip>
+      <div className={`${!isStyled && "lg:hidden"} flex gap-1`}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              disabled={path.length === 1}
+              size={"icon"}
+              onClick={() => path.length !== 1 && moveOut(path[0].childrens, 0)}
+            >
+              <FaHouse />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Shift + h</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              disabled={path.length === 1}
+              size={"icon"}
+              onClick={() =>
+                path.length !== 1 &&
+                moveOut(path[path.length - 2].childrens, path.length - 2)
+              }
+            >
+              <IoArrowBack />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Shift + h</TooltipContent>
+        </Tooltip>
+      </div>
       <HiddenCrumbs />
       <div className="flex items-center py-1 overflow-x-hidden text-nowrap backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
         {path[path.length - 1].title}
