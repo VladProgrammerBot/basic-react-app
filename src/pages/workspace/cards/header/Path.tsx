@@ -49,7 +49,7 @@ export const Path = () => {
         </Tooltip>
       </div>
       <HiddenCrumbs />
-      <div className="flex items-center py-1 overflow-x-hidden text-nowrap backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
+      <div className="flex items-center py-1 truncate backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
         {path[path.length - 1].title}
       </div>
       <div className="text-right">

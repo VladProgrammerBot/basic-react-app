@@ -29,7 +29,7 @@ export const buttonVariants = cva(
         default: "px-6 py-2 ",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h- rounded-md text-lg px-8 has-[>svg]:px-6 py-3",
-        icon: "py-3 sm:px-4 px-3",
+        icon: "py-3 px-4",
         smIcon: "p-3",
       }
     },
