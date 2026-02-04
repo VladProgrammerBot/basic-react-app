@@ -29,7 +29,7 @@ export const HiddenCrumbs = () => {
           <TooltipTrigger
             asChild
           >
-            <Button disabled={path.length === 1} className={`${!isStyled && "lg:hidden"}`} size={"icon"}>
+            <Button disabled={path.length === 1} className={`${!isStyled && "lg:hidden"} mx-1`} size={"icon"}>
               <FaHistory />
             </Button>
           </TooltipTrigger>

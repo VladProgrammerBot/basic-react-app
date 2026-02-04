@@ -18,7 +18,7 @@ export const Path = () => {
   const isStyled = store.use.isStyled();
 
   return (
-    <div className="md:absolute pr-2 fixed max-w-4xl gap-1 z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
+    <div className="md:absolute pr-2 fixed max-w-4xl z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
       <div className={`${!isStyled && "lg:hidden"} flex gap-1`}>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -52,7 +52,7 @@ export const Path = () => {
       <div className="flex items-center py-1 truncate backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
         {path[path.length - 1].title}
       </div>
-      <div className="text-right">
+      <div className="text-right ml-1">
         <Button size={"icon"} onClick={toggleBar}>
           <LuMenu />
         </Button>
