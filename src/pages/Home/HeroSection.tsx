@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { HiCursorClick } from "react-icons/hi";
 import NotesStructurePreview from "./Preview";
+import { Link } from "react-router";
 
 interface HeroSectionProps {
   onGetStarted: () => void;
@@ -11,7 +12,6 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
   return (
     <div className="max-w-7xl mt-20 mb-20 mx-auto">
       <div className="flex flex-col items-center g:flex-row gap-16 w-full">
-        {/* LEFT — HERO CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,6 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               AI Powered
             </span>
           </motion.div>
-          
 
           <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             <span className="drop-shadow-xl drop-shadow-white/20">
@@ -56,19 +55,24 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             {/* In strukt, your ideas, goals, and knowledge will be quickly found at
             the right moment, just like files on a computer. */}
             {/* In Strukt, information is organized like files on your computer, with related information in a shared folder. */}
-            Strukt is a place for ideas, plans, and knowledge, where it can all
-            be found quickly, organized as easily as files on a computer.
+            Strukt is a place where your text information can be found quickly,
+            organized as easily as files on a computer.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mt-4">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
             <Button onClick={onGetStarted} size="lg" variant="colorfull">
               Get Started
               <HiCursorClick className="w-5 h-5" />
             </Button>
+            <Link to={"about"}>
+              <Button size="lg" variant="outline">
+                About
+              </Button>
+            </Link>
           </div>
         </motion.div>
 
-        {/* RIGHT — WORKSPACE */}
+        {/* WORKSPACE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}

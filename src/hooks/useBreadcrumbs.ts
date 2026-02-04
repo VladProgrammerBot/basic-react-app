@@ -6,24 +6,12 @@ export const useBreadcrumbs = () => {
     const hiddenCrumbs = () => {
         const hiddenArr = []
 
-        for (let i = 0; i < path.length - 3; i++) {
-            hiddenArr.push(path[i + 1])
+        for (let i = 0; i < path.length; i++) {
+            hiddenArr.push(path[i])
         }
 
         return hiddenArr
     }
 
-    const lastCrumbs = () => {
-        const visibleArr = []
-
-        for (let i = path.length - 2; i < path.length; i++) {
-            if (i > 0) {
-                visibleArr.push(path[i])
-            }
-        }
-
-        return visibleArr
-    }
-
-    return { hiddenCrumbs, lastCrumbs }
+    return { hiddenCrumbs }
 }

@@ -24,7 +24,7 @@ export const StatsSection = () => {
       <Stat value="∞" label="Scalability" color="text-blue-600" />
       <Stat value="100%" label="Own rules" color="text-purple-600" />
       <Stat value="10+" label="Shortcuts" color="text-pink-600" />
-      <Stat value="0ms" label="Typing Lag" color="text-green-600" />
+      <Stat value="0" label="Learning" color="text-green-600" />
     </motion.div>
   );
 };

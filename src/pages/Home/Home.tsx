@@ -7,7 +7,7 @@ import { FeaturesSection } from "./FeaturesSection";
 import { ComparisonTable } from "./ComparisonTable";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { CTASection } from "./CTASection";
-import { ParticleBackground } from "./BackgroundEffects";
+import { ParticleBackground } from "../../components/BackgroundEffects";
 import { ScrollToTopButton } from "./ScrollToTopButton";
 import { GradientBackground } from "@/components/GradientBg";
 
