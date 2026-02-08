@@ -1,28 +1,29 @@
 import { motion } from "framer-motion";
-import { TbKeyboard } from "react-icons/tb";
-import { GiStarsStack } from "react-icons/gi";
-import { BsCheck, BsMarkdown } from "react-icons/bs";
+import { IoSearchSharp } from "react-icons/io5";
+import { MdFilterCenterFocus } from "react-icons/md";
+import { IoSpeedometerOutline } from "react-icons/io5";
+import { FaLink } from "react-icons/fa6";
 
 const features = [
   {
-    icon: <TbKeyboard className="w-6 h-6" />,
-    title: "Full Keyboard",
-    description: "Comfurtable vim-like shortcuts for light speed",
+    icon: <FaLink className="w-6 h-6" />,
+    title: "Holistic approach",
+    description: "Information is stored in small, logically linked elements.",
   },
   {
-    icon: <GiStarsStack className="w-6 h-6" />,
-    title: "AI Powered",
-    description: "Smart structuring that adapts to your needs",
+    icon: <IoSearchSharp className="w-6 h-6" />,
+    title: "Quick search",
+    description: "Navigating from the abstract to the concrete",
   },
   {
-    icon: <BsCheck className="w-6 h-6" />,
-    title: "Simple interface",
-    description: "All attention on the content",
+    icon: <MdFilterCenterFocus className="w-6 h-6" />,
+    title: "Content-oriented interface",
+    description: "The interface is minimalist and simple, like a file explorer",
   },
   {
-    icon: <BsMarkdown className="w-6 h-6" />,
-    title: "Markdown export",
-    description: "Use information outside",
+    icon: <IoSpeedometerOutline className="w-6 h-6" />,
+    title: "Work at high speed",
+    description: "Full keyboard support",
   },
 ];
 
@@ -34,6 +35,7 @@ export const FeaturesSection = () => {
       viewport={{ once: true }}
       className="mb-20"
     >
+      <h2 className="font-bold text-center mb-8">Features</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {features.map((feature, index) => (
           <motion.div
@@ -41,8 +43,8 @@ export const FeaturesSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            whileHover={{ y: -5 }}
-            className="bg-white shadow-2xl shadow-blue-500/10 dark:bg-neutral-800/20 backdrop-blur-xs p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+            // whileHover={{ y: -5 }}
+            className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 bg-white dark:bg-neutral-800/10 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
           >
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
               {feature.icon}

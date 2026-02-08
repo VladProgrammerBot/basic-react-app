@@ -41,12 +41,6 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
                 effectively!
               </motion.span>
             </span>
-            {/* your
-            <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
-              {" "}
-              ideas{" "}
-            </motion.span>
-            in notes! */}
           </p>
 
           <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
@@ -57,7 +51,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             {/* In Strukt, information is organized like files on your computer, with related information in a shared folder. */}
             {/* Strukt is a place where your text information can be found quickly,
             organized as easily as files on a computer. */}
-            Minimalist app for storing text information without chaos
+            A minimalist and simple app for big and long-term thinking
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
@@ -65,11 +59,11 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               Get Started
               <HiCursorClick className="w-5 h-5" />
             </Button>
-            <Link to={"about"}>
+            {/* <Link to={"about"}>
               <Button size="lg" variant="outline">
                 About
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </motion.div>
 
@@ -78,9 +72,9 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex-1 w-full flex items-center justify-center"
+          className="flex-1 w-full flex items-center justify-center "
         >
-          <div className="w-full dark:shadow-2xl shadow-xl dark:shadow-blue-500/20 shadow-neutral-300 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
+          <div className="w-full hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
             <NotesStructurePreview />
           </div>
         </motion.div>

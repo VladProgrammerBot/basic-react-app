@@ -11,7 +11,7 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      className="relative overflow-hidden rounded-3xl mb-20 dark:shadow-2xl shadow-blue-300/10 shadow-none"
+      className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 relative overflow-hidden rounded-3xl mb-20"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-purple-600/10 to-pink-600/10 dark:from-cyan-600/20 dark:via-purple-600/20 dark:to-pink-600/20" />
       <div className="absolute inset-0">
@@ -31,12 +31,12 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
       <div className="relative p-12 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">
           Ready to{" "}
-          <span className="text-sky-500 dark:text-sky-300">free up</span>
-          {" your "}
-          <span className="text-pink-500 dark:text-pink-300">memory?</span>
+          <span className="text-sky-500 dark:text-sky-300">think</span>
+          {" more "}
+          <span className="text-pink-500 dark:text-pink-300">effectively?</span>
         </h2>
         <p className="text-xl text-neutral-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Start using Strukt as your reliable memory
+          It's a simple and powerful tool for building your external memory.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

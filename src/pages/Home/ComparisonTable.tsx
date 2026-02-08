@@ -21,7 +21,7 @@ export const ComparisonTable = () => {
         Why Strukt?
       </h2>
 
-      <div className="bg-whit dark:bg-gradient-to-b dark:from-black/5 dark:to-transparent rounded-3xl p-6 border border-neutral-200 dark:border-white/10 shadow-">
+      <div className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 dark:bg-gradient-to-b dark:from-black/5 dark:to-transparent rounded-3xl p-6 border border-neutral-200 dark:border-white/10 shadow-">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
