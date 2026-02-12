@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# Strukt
+<!-- Пам'ять як у мозку, що не забуває і не допускає хаосу -->
+A brain-like memory that never forgets and never yields to chaos.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- Веб-додаток, що пам'ятає замість вас, не забуває і не плутається при великих обсягах інформації -->
+<!-- Програма, з якою взаємодієш як з додатковою памятю, яка нічого не забуває, немає хаосу при великих обсягах інформації -->
 
-Currently, two official plugins are available:
+## Про проєкт
+Причиною створення була потреба у деталізованому та структурованому плануванні, але інтерфейс провідника файлів виявився універсальнішим.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Посилання на веб-сайт: https://strukt.onrender.com
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## Стек технологій
+* **Frontend:** React, Tailwind, Zustand, TypeScript, React Router
+* **Backend:** Express, PostgreSQL, Redis, GeminiAPI
+* **DevOps:** Render, Neon, Redis Cloud
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Запустити локально
+Потрібно мати встановлений Node js
+```
+git clone https://github.com/VladProgrammerBot/Strukt.git
+cd Strukt
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Архітектурні та інженерні рішення
+* **Map замість array,** тому що найчастіша операція - пошук по індексу
+* **Доступ виключно із:** для обмеження
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Продуктові та дизайнерські рішення
+* **Керування виключно з клавіатури:** значно пришвидшує взаємодію з мозком через зовнішній інтерфейс, враховуючи високу частоту введення.
+* **Демо без авторизації:** спробувати завжди в пріорітеті
+* **Режим концентрації:** керування клавіатурою виключає потребу у ui елементах
+* **Guide writing animation:** Знижує когнітивне навантаження, привертає увагу, виглядає сучасно як у chatGPT
+* **Bento style (модульний UI):** Сучасний дизайн інтерфейсів характерний для Google та Apple
+* **Авторизація та віддалене зберігання:** незалежність від пристрою
+* **Markdown export:** Можливість використовувати зовнішні інструменти (як от LLMs для аналізу)

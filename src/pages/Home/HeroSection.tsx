@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { HiCursorClick } from "react-icons/hi";
 import NotesStructurePreview from "./Preview";
 import { Link } from "react-router";
+import { TooltipTrigger } from "@radix-ui/react-tooltip";
+import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
 
 interface HeroSectionProps {
   onGetStarted: () => void;
@@ -51,7 +53,8 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             {/* In Strukt, information is organized like files on your computer, with related information in a shared folder. */}
             {/* Strukt is a place where your text information can be found quickly,
             organized as easily as files on a computer. */}
-            A minimalist and simple app for big and long-term thinking
+            {/* A minimalist and simple app for big and long-term thinking */}
+            A brain-like memory that never forgets<br/> and never yields to chaos.
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
@@ -59,7 +62,17 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               Get Started
               <HiCursorClick className="w-5 h-5" />
             </Button>
-            {/* <Link to={"about"}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to={"/about"}>
+                  <Button onClick={onGetStarted} size="lg">
+                    Docs
+                  </Button>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>Recomended after getting started</TooltipContent>
+            </Tooltip>
+            {/* 
               <Button size="lg" variant="outline">
                 About
               </Button>
@@ -74,7 +87,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           transition={{ delay: 0.4 }}
           className="flex-1 w-full flex items-center justify-center "
         >
-          <div className="w-full hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
+          <div className="w-full hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
             <NotesStructurePreview />
           </div>
         </motion.div>

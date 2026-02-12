@@ -11,7 +11,7 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
     <motion.div
       initial={{ opacity: 0, scale: 0.7 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 relative overflow-hidden rounded-3xl mb-20"
+      className="hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 relative overflow-hidden rounded-3xl mb-20"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-purple-600/10 to-pink-600/10 dark:from-cyan-600/20 dark:via-purple-600/20 dark:to-pink-600/20" />
       <div className="absolute inset-0">
