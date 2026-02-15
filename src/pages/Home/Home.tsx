@@ -4,7 +4,7 @@ import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { ComparisonTable } from "./ComparisonTable";
-import { TestimonialsSection } from "./TestimonialsSection";
+// import { TestimonialsSection } from "./TestimonialsSection";
 import { CTASection } from "./CTASection";
 import { ParticleBackground } from "../../components/BackgroundEffects";
 import { ScrollToTopButton } from "./ScrollToTopButton";
