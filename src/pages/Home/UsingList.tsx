@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa6";
 export const UsingList = () => {
   const usingExamples = [
     "Creating detailed plans and strategies",
-    "Thinking without the risk of forgetting",
+    "Saving code tamplates",
     "Building a Zettelkasten knowledge system",
     "Organizing goals and achievements in easy-to-create manual calendars",
     "Storing instructions and ideas",

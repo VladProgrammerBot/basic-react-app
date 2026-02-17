@@ -46,15 +46,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           </p>
 
           <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
-            {/* Organize your ideas, goals, and knowledge as easily as in{" "}
-            <b>File Explorer</b>, without chaos like in notes. */}
-            {/* In strukt, your ideas, goals, and knowledge will be quickly found at
-            the right moment, just like files on a computer. */}
-            {/* In Strukt, information is organized like files on your computer, with related information in a shared folder. */}
-            {/* Strukt is a place where your text information can be found quickly,
-            organized as easily as files on a computer. */}
-            {/* A minimalist and simple app for big and long-term thinking */}
-            A brain-like memory that never forgets<br/> and never yields to chaos.
+            A simple app to organize your notes without turning them into a mess
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
