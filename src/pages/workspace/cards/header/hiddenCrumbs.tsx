@@ -5,11 +5,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Breadcrumb } from "./BreadCrumb";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+// import {
+//   Tooltip,
+//   TooltipContent,
+//   TooltipTrigger,
+// } from "@/components/ui/tooltip";
 import store from "@/state/store";
 import { FaHistory } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -24,17 +24,17 @@ export const HiddenCrumbs = () => {
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
-      <DropdownMenuTrigger className="outline-none">
-        <Tooltip>
+      <DropdownMenuTrigger asChild className="outline-none">
+        {/* <Tooltip>
           <TooltipTrigger
             asChild
-          >
+          > */}
             <Button disabled={path.length === 1} className={`${!isStyled && "lg:hidden"} mx-1`} size={"icon"}>
               <FaHistory />
             </Button>
-          </TooltipTrigger>
+          {/* </TooltipTrigger>
           <TooltipContent>p</TooltipContent>
-        </Tooltip>
+        </Tooltip> */}
       </DropdownMenuTrigger>
       <DropdownMenuContent alignOffset={-10} align="start" sideOffset={-5}>
         {hiddenCrumbs().map((crumb, index) => {

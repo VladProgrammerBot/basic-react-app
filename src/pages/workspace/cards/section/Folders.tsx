@@ -36,7 +36,7 @@ export const Folders = () => {
     );
   }, [filter, childrensData]);
 
-  // 2. Оновлюємо глобальний стор ПІСЛЯ рендеру через useEffect
+  // Оновлюємо глобальний стор ПІСЛЯ рендеру через useEffect
   useEffect(() => {
     const filteredIds = filteredChildrensData.map((child) => child.id);
 
