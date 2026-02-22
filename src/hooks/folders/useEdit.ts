@@ -81,7 +81,6 @@ export const useEdit = () => {
     } catch (error) {
       alertError("get folders");
       createMinStructure();
-      // console.log(error);
     }
   };
 

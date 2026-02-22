@@ -20,10 +20,10 @@ export function Item({
   const moveBuffer = store.use.moveBuffer();
   const selectedItemId = store.use.selectedItemId();
   const setSelectedItemId = store.use.setSelectedItemId();
-  const setFilter = store.use.setFilter();
+  // const setFilter = store.use.setFilter();
 
   const handleClick = () => {
-    setFilter("");
+    // setFilter("");
     setSelectedItemId(null);
     moveInto(data.ref ? data.ref : data.id, index);
   };

@@ -18,8 +18,8 @@ export interface foldersSlice {
 
 export interface childrensSlice {
   childrensId: number[];
-  filteredChildrensId: number[];
-  setFilteredChildrens: (array: number[]) => void;
+  // filteredChildrensId: number[];
+  // setFilteredChildrens: (array: number[]) => void;
   setChildrens: (array: number[]) => void;
   pushChildren: (child: number) => void;
   childrensRemove: (id: number) => void;
@@ -77,6 +77,6 @@ export interface keyNaviSlice {
 }
 
 export interface filterSlice {
-  filter: string;
-  setFilter: (text: string) => void;
+  filteredElements: folder[];
+  setFilterElements: (elements: folder[]) => void;
 }

@@ -38,7 +38,12 @@ export const InputForm = ({
     <div
       className={`pl-4 pr-1 pb-1 w-full ${border && "border-1 backdrop-blur-sm dark:border-white/20 border-neutral-400 rounded-md"}`}
       onKeyDown={(e) => {
-        e.key === "Enter" ? submit() : e.key === "Escape" ? cancelFunc() : null;
+        if (e.key === "Enter") {
+          e.preventDefault();
+          submit();
+        } else if (e.key === "Escape") {
+          cancelFunc();
+        }
       }}
     >
       <div className="flex pl-4">

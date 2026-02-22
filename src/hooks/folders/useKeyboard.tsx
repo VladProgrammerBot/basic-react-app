@@ -13,14 +13,14 @@ export const useKeyboard = () => {
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
   const childrensId = store.use.childrensId();
-  const filteredChildrensId = store.use.filteredChildrensId();
+  // const filteredChildrensId = store.use.filteredChildrensId();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
   const path = store.use.path();
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
-  const setFilter = store.use.setFilter();
+  // const setFilter = store.use.setFilter();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
@@ -36,7 +36,7 @@ export const useKeyboard = () => {
     if (mode !== "normal" || renameBuffer) return;
     const selectedId =
       typeof selectedItemId === "number"
-        ? filteredChildrensId[selectedItemId]
+        ? childrensId[selectedItemId]
         : null;
 
     if (e.code === "KeyJ") {
@@ -44,7 +44,7 @@ export const useKeyboard = () => {
         return setSelectedItemId(0);
       }
       if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, -1);
-      if (selectedItemId < filteredChildrensId.length - 1) {
+      if (selectedItemId < childrensId.length - 1) {
         return setSelectedItemId(selectedItemId + 1);
       }
     }
@@ -89,7 +89,7 @@ export const useKeyboard = () => {
     }
 
     if (
-      e.code === "KeyF" &&
+      e.code === "KeyS" &&
       !e.shiftKey &&
       !e.ctrlKey &&
       !e.altKey &&
@@ -104,7 +104,7 @@ export const useKeyboard = () => {
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
       setSelectedItemId(0);
-      setFilter("")
+      // setFilter("")
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 
@@ -168,7 +168,3 @@ export const useKeyboard = () => {
     copyMarkdown,
   ]);
 };
-
-// reset filter when move in or out
-// make imposible to sort when filtering
-// start filtering by shortcut
