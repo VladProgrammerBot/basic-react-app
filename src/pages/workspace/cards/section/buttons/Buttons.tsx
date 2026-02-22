@@ -7,8 +7,7 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useFolders } from "@/hooks/folders/useFolders";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
-import { useAlerts } from "@/hooks/useAlerts";
-const api = import.meta.env.VITE_API;
+import { SearchInput } from "./SearchInput";
 
 export const Buttons = () => {
   const { generateFolders } = useFolders();
@@ -19,35 +18,15 @@ export const Buttons = () => {
   const moveBuffer = store.use.moveBuffer();
   const isStyled = store.use.isStyled();
   const childrensId = store.use.childrensId();
-  const { alertError } = useAlerts()
 
-  const handleSearch = async (value: string) => {
-    try {
-      await fetch(api + "/folders/getbykeyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          keyword: value,
-          token: localStorage.getItem("token"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-        });
-    } catch (error) {
-      alertError("get folders");
-    }
-  };
+  
 
   return (
     <div
       className={`${
         childrensId.length > 5 &&
         "md:absolute fixed bottom-2 left-1/2 -translate-x-1/2 max-lg:pl-2"
-      } w-full max-w-4xl lg:pr-2`}
+      } w-full max-w-4xl pr-2`}
     >
       {mode === "AI Generate" && (
         <InputForm
@@ -68,14 +47,7 @@ export const Buttons = () => {
         />
       )}
 
-      {mode === "Filter" && (
-        <InputForm
-          placeholder="Search"
-          submitTitle="Search"
-          cancelFunc={() => setMode("normal")}
-          submitFunc={(value) => handleSearch(value)}
-        />
-      )}
+      {mode === "Filter" && <SearchInput />}
 
       <div className={`${!isStyled && "lg:hidden"}`}>
         {mode === "normal" && (
