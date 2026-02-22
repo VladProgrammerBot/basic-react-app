@@ -7,7 +7,6 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useFolders } from "@/hooks/folders/useFolders";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
-import { SearchInput } from "./SearchInput";
 
 export const Buttons = () => {
   const { generateFolders } = useFolders();
@@ -46,8 +45,6 @@ export const Buttons = () => {
           submitFunc={addFolder}
         />
       )}
-
-      {mode === "Filter" && <SearchInput />}
 
       <div className={`${!isStyled && "lg:hidden"}`}>
         {mode === "normal" && (
