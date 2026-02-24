@@ -16,14 +16,12 @@ export interface foldersSlice {
   setReplaceFolder: (id: number, newArr: number[]) => void;
 }
 
-export interface childrensSlice {
-  childrensId: number[];
-  // filteredChildrensId: number[];
-  // setFilteredChildrens: (array: number[]) => void;
-  setChildrens: (array: number[]) => void;
-  pushChildren: (child: number) => void;
-  childrensRemove: (id: number) => void;
-}
+// export interface childrensSlice {
+//   childrensId: number[];
+//   setChildrens: (array: number[]) => void;
+//   pushChildren: (child: number) => void;
+//   childrensRemove: (id: number) => void;
+// }
 
 export interface pathSlice {
   path: (folder & { index?: number })[];

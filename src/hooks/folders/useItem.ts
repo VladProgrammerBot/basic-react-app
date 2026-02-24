@@ -1,16 +1,18 @@
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
+import { useChildrens } from "./useChildrens";
 const api = import.meta.env.VITE_API;
 
 export const useItem = () => {
     const { alertError, useAlert } = useAlerts();
 
     const path = store.use.path();
-    const childrensId = store.use.childrensId();
+    // const childrensId = store.use.childrensId();
+    const childrensId = useChildrens()
     const renameBuffer = store.use.renameBuffer();
 
     const setParentChildrens = store.use.setParentChildrens();
-    const setChildrens = store.use.setChildrens();
+    // const setChildrens = store.use.setChildrens();
     const pushPath = store.use.pushPath();
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
@@ -23,7 +25,7 @@ export const useItem = () => {
         if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
         setParentChildrens(path.length - 1, childrensId);
 
-        setChildrens(newParent.childrens);
+        // setChildrens(newParent.childrens);
         pushPath({ ...newParent, index });
         window.scrollTo(0, 0);
     };

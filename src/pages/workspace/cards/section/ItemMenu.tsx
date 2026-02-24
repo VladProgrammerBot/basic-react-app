@@ -27,10 +27,12 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { useChildrens } from "@/hooks/folders/useChildrens";
 
 export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
     const { removeFolder, addFolder, replaceFolders, copyMarkdown } = useFolderManipulation()
-    const { setBuffer, setRenameBuffer, childrensId } = store()
+    const { setBuffer, setRenameBuffer } = store()
+    const childrensId = useChildrens()
 
     return (
         <DropdownMenu>

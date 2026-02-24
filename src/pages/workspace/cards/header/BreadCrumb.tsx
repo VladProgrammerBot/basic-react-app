@@ -8,7 +8,7 @@ export const Breadcrumb = ({ elem, index, current, className, maxLen }: { maxLen
         <div
             onClick={() => {
                 console.log(2)
-                !current && moveOut(elem.childrens, index)
+                !current && moveOut(index)
             }}
             className={`${!current && "rounded-md"} ${!current
                 ? "duration-150 cursor-pointer"

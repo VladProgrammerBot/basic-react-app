@@ -25,7 +25,7 @@ export const Path = () => {
             <Button
               disabled={path.length === 1}
               size={"icon"}
-              onClick={() => path.length !== 1 && moveOut(path[0].childrens, 0)}
+              onClick={() => path.length !== 1 && moveOut(0)}
             >
               <FaHouse />
             </Button>
@@ -39,7 +39,7 @@ export const Path = () => {
               size={"icon"}
               onClick={() =>
                 path.length !== 1 &&
-                moveOut(path[path.length - 2].childrens, path.length - 2)
+                moveOut(path.length - 2)
               }
             >
               <IoArrowBack />

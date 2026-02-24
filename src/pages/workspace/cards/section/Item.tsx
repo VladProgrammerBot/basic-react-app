@@ -4,7 +4,6 @@ import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
 import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { PiLinkSimpleBold } from "react-icons/pi";
-import { useEffect } from "react";
 
 export function Item({
   data,
@@ -29,11 +28,6 @@ export function Item({
 
   const childrensLength =
     data && data?.childrens.length > 0 ? data.childrens.length : 0;
-
-  useEffect(() => {
-    console.log(selectedItemId);
-    
-  }, [selectedItemId]);
 
   return (
     <div

@@ -5,3 +5,5 @@ export const createFilterSlice: StateCreator<filterSlice> = (set) => ({
   filteredElements: [],
   setFilterElements: (elements) => set({ filteredElements: elements }),
 });
+
+//////////////

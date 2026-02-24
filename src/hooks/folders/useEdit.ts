@@ -7,7 +7,7 @@ const api = import.meta.env.VITE_API;
 export const useEdit = () => {
   const { alertError } = useAlerts();
   const setFolders = store.use.setFolders();
-  const setChildrens = store.use.setChildrens();
+  // const setChildrens = store.use.setChildrens();
   const setPath = store.use.setPath();
   const setIsLogin = store.use.setIsLogin();
 
@@ -21,7 +21,7 @@ export const useEdit = () => {
     const parent = folders[rootId];
 
     setFolders(folders);
-    setChildrens(parent.childrens);
+    // setChildrens(parent.childrens);
     setPath(parent);
   };
 
@@ -35,7 +35,7 @@ export const useEdit = () => {
     };
 
     setFolders({ folder });
-    setChildrens([]);
+    // setChildrens([]);
     setPath(folder);
     setIsLogin(false);
   };

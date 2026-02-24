@@ -2,22 +2,24 @@ import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
 import { useRef } from "react";
 import { addTextToClipboard } from "@/utils/addToClipboard";
+import { useChildrens } from "./useChildrens";
 const api = import.meta.env.VITE_API;
 
 export const useFolderManipulation = () => {
-  const childrensId = store.use.childrensId();
+  // const childrensId = store.use.childrensId();
   const path = store.use.path();
   const markdownBuffer = useRef<string>("")
   const isLogin = store.use.isLogin()
+  const childrensId = useChildrens()
 
   const {
     folders,
-    setChildrens,
+    // setChildrens,
     pushFolder,
-    pushChildren,
+    // pushChildren,
     setMode,
     foldersRemove,
-    childrensRemove,
+    // childrensRemove,
     setReplaceFolder,
     setSelectedItemId
   } = store();
@@ -54,7 +56,7 @@ export const useFolderManipulation = () => {
       childrensId,
       id
     );
-    pushChildren(id);
+    // pushChildren(id);
     setSelectedItemId(childrensId.length);
 
     if (!isLogin) return
@@ -101,7 +103,7 @@ export const useFolderManipulation = () => {
 
   const removeFolder = async (id: number) => {
     const parent = path[path.length - 1].id;
-    childrensRemove(id);
+    // childrensRemove(id);
 
     const keysToDelete = structureArray(id);
     foldersRemove(keysToDelete, id, parent);
@@ -131,7 +133,7 @@ export const useFolderManipulation = () => {
     if (!newArray) return
 
     const parentId = path[path.length - 1].id
-    setChildrens(newArray)
+    // setChildrens(newArray)
     setReplaceFolder(parentId, newArray)
 
     if (!isLogin) return

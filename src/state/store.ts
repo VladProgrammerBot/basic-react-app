@@ -4,7 +4,7 @@ import type {
   alertsSlice,
   authSlice,
   barSlice,
-  childrensSlice,
+  // childrensSlice,
   foldersSlice,
   filterSlice,
   keyNaviSlice,
@@ -13,7 +13,7 @@ import type {
   pathSlice,
   renameBufferSlice,
 } from "../types/storeTypes";
-import { createChildrensSlice } from "./slices/childrensSlice";
+// import { createChildrensSlice } from "./slices/childrensSlice";
 import { createModeSlice } from "./slices/modeSlice";
 import { createMoveBufferSlice } from "./slices/moveBufferSlice";
 import { createPathSlice } from "./slices/pathSlice";
@@ -44,7 +44,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 const storeBase = create<
   foldersSlice &
     keyNaviSlice &
-    childrensSlice &
+    // childrensSlice &
     filterSlice &
     modeSlice &
     moveBufferSlice &
@@ -55,7 +55,7 @@ const storeBase = create<
     alertsSlice
 >()((...a) => ({
   ...createFoldersSlice(...a),
-  ...createChildrensSlice(...a),
+  // ...createChildrensSlice(...a),
   ...createModeSlice(...a),
   ...createMoveBufferSlice(...a),
   ...createPathSlice(...a),

@@ -4,6 +4,7 @@ import { useItem } from "./useItem";
 import { useFolderManipulation } from "./useItemMenu";
 import { usePath } from "./usePath";
 import { addTextToClipboard } from "@/utils/addToClipboard";
+import { useChildrens } from "./useChildrens";
 
 export const useKeyboard = () => {
   const mode = store.use.mode();
@@ -12,13 +13,14 @@ export const useKeyboard = () => {
   const setBuffer = store.use.setBuffer();
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
-  const childrensId = store.use.childrensId();
+  // const childrensId = store.use.childrensId();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
   const path = store.use.path();
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
+  const childrensId = useChildrens();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
@@ -33,9 +35,7 @@ export const useKeyboard = () => {
 
     if (mode !== "normal" || renameBuffer) return;
     const selectedId =
-      typeof selectedItemId === "number"
-        ? childrensId[selectedItemId]
-        : null;
+      typeof selectedItemId === "number" ? childrensId[selectedItemId] : null;
 
     if (e.code === "KeyJ") {
       if (selectedItemId === null) {
@@ -60,8 +60,8 @@ export const useKeyboard = () => {
     if (e.repeat) return;
 
     if (e.code === "KeyH" && path.length !== 1) {
-      if (e.shiftKey) return moveOut(path[0].childrens, 0);
-      return moveOut(path[path.length - 2].childrens, path.length - 2);
+      if (e.shiftKey) return moveOut(0);
+      return moveOut(path.length - 2);
     }
 
     if (e.code === "KeyA") {

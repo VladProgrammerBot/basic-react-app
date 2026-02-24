@@ -6,11 +6,11 @@ import { FaPaste } from "react-icons/fa";
 import { usePath } from "@/hooks/folders/usePath";
 import { RiGeminiFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
+import { useChildrens } from "./useChildrens";
 
 export const useFolders = () => {
   const folders = store.use.folders();
-  const childrensId = store.use.childrensId();
-  const pushChildren = store.use.pushChildren();
+  const childrensId = useChildrens()
   const pushMultipleFolder = store.use.pushMultipleFolder()
   const setMode = store.use.setMode()
   const path = store.use.path();
@@ -52,7 +52,7 @@ export const useFolders = () => {
         .then(data => {
           setMode("normal")
           pushMultipleFolder(data.data, childrensId, data.mainParentChildrens, id)
-          pushChildren(data.mainParentChildrens[0])
+          // pushChildren(data.mainParentChildrens[0])
         })
     } catch (error) {
       alertError("generate folders")

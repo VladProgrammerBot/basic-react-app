@@ -7,6 +7,7 @@ import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useFolders } from "@/hooks/folders/useFolders";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
+import { useChildrens } from "@/hooks/folders/useChildrens";
 
 export const Buttons = () => {
   const { generateFolders } = useFolders();
@@ -16,7 +17,8 @@ export const Buttons = () => {
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
   const isStyled = store.use.isStyled();
-  const childrensId = store.use.childrensId();
+  // const childrensId = store.use.childrensId();
+  const childrensId = useChildrens()
 
   
 
