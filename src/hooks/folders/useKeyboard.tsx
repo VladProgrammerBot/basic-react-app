@@ -13,14 +13,12 @@ export const useKeyboard = () => {
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
   const childrensId = store.use.childrensId();
-  // const filteredChildrensId = store.use.filteredChildrensId();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
   const path = store.use.path();
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
-  // const setFilter = store.use.setFilter();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();

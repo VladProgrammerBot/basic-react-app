@@ -4,6 +4,7 @@ import { InputForm } from "./InputForm";
 import { useItem } from "@/hooks/folders/useItem";
 import { FaFolder, FaRegFolder } from "react-icons/fa";
 import { PiLinkSimpleBold } from "react-icons/pi";
+import { useEffect } from "react";
 
 export function Item({
   data,
@@ -20,16 +21,19 @@ export function Item({
   const moveBuffer = store.use.moveBuffer();
   const selectedItemId = store.use.selectedItemId();
   const setSelectedItemId = store.use.setSelectedItemId();
-  // const setFilter = store.use.setFilter();
 
   const handleClick = () => {
-    // setFilter("");
     setSelectedItemId(null);
     moveInto(data.ref ? data.ref : data.id, index);
   };
 
   const childrensLength =
     data && data?.childrens.length > 0 ? data.childrens.length : 0;
+
+  useEffect(() => {
+    console.log(selectedItemId);
+    
+  }, [selectedItemId]);
 
   return (
     <div

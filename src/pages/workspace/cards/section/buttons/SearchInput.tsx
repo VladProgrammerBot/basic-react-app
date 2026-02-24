@@ -58,7 +58,7 @@ export const SearchInput = () => {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
-            handleSearch(ref.current?.value || "");
+            ref.current?.blur();
           } else if (e.key === "Escape") {
             setMode("normal");
           }
