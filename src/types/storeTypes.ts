@@ -1,4 +1,4 @@
-type mode = "normal" | "Add Folder" | "AI Generate" | "Filter";
+type mode = "normal" | "Add Folder" | "AI Generate" | "Filter" | "Filter Result";
 
 export interface foldersSlice {
   folders: objectFolder;
@@ -75,6 +75,7 @@ export interface keyNaviSlice {
 }
 
 export interface filterSlice {
+  filteredElementsId: number[];
   filteredElements: folder[];
   setFilterElements: (elements: folder[]) => void;
 }

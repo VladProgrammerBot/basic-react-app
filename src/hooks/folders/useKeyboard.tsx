@@ -33,7 +33,7 @@ export const useKeyboard = () => {
       setSelectedItemId(null);
     }
 
-    if (mode !== "normal" || renameBuffer) return;
+    if ((mode !== "normal" && mode !== "Filter Result") || renameBuffer) return;
     const selectedId =
       typeof selectedItemId === "number" ? childrensId[selectedItemId] : null;
 

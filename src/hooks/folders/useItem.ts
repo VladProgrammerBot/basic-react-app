@@ -10,6 +10,7 @@ export const useItem = () => {
     // const childrensId = store.use.childrensId();
     const childrensId = useChildrens()
     const renameBuffer = store.use.renameBuffer();
+    const setMode = store.use.setMode();
 
     const setParentChildrens = store.use.setParentChildrens();
     // const setChildrens = store.use.setChildrens();
@@ -25,6 +26,7 @@ export const useItem = () => {
         if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
         setParentChildrens(path.length - 1, childrensId);
 
+        setMode("normal");
         // setChildrens(newParent.childrens);
         pushPath({ ...newParent, index });
         window.scrollTo(0, 0);
