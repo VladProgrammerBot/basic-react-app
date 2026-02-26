@@ -1,7 +1,7 @@
 declare interface folder {
   id: number;
   title: string;
-  parent: number | null;
+  // parent: number | null;
   childrens: number[];
   ref: number | null;
 }

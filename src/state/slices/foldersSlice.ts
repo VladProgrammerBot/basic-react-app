@@ -4,12 +4,12 @@ import type { foldersSlice } from "../../types/storeTypes";
 export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
     folders: {},
     setFolders: (data) => set({ folders: data }),
-    pushFolder: (folder, childrens, id) =>
+    pushFolder: (folder, childrens, id, parentId) =>
         set((state) => ({
             folders: {
                 ...state.folders,
-                [folder.parent ?? ""]: {
-                    ...state.folders[folder.parent ?? ""],
+                [parentId]: {
+                    ...state.folders[parentId],
                     childrens: [...childrens, id]
                 },
                 [folder.id]: folder,

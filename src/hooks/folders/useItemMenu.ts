@@ -14,12 +14,9 @@ export const useFolderManipulation = () => {
 
   const {
     folders,
-    // setChildrens,
     pushFolder,
-    // pushChildren,
     setMode,
     foldersRemove,
-    // childrensRemove,
     setReplaceFolder,
     setSelectedItemId
   } = store();
@@ -48,13 +45,13 @@ export const useFolderManipulation = () => {
     pushFolder(
       {
         id: id,
-        parent: parentId,
         childrens: [],
         title: value,
         ref: ref
       },
       childrensId,
-      id
+      id,
+      parentId
     );
     // pushChildren(id);
     setSelectedItemId(childrensId.length);

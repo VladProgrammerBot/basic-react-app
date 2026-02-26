@@ -33,6 +33,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
     const { removeFolder, addFolder, replaceFolders, copyMarkdown } = useFolderManipulation()
     const { setBuffer, setRenameBuffer } = store()
     const childrensId = useChildrens()
+    const path = store.use.path()
 
     return (
         <DropdownMenu>
@@ -46,7 +47,7 @@ export const ItemMenu = ({ data, index }: { data: folder, index: number }) => {
             <DropdownMenuContent side="left" sideOffset={0} align="start" alignOffset={-10}>
                 <DropdownMenuItem
                     onClick={() => {
-                        setBuffer(data.id, data.parent ?? 0)
+                        setBuffer(data.id, path[path.length - 1].id ?? 0)
                     }}>
                     <MdOutlineShortcut /> Cut {"(move)"}
                     <DropdownMenuShortcut>m</DropdownMenuShortcut>

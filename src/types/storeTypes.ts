@@ -2,7 +2,7 @@ type mode = "normal" | "Add Folder" | "AI Generate" | "Filter" | "Filter Result"
 
 export interface foldersSlice {
   folders: objectFolder;
-  pushFolder: (folder: folder, childrens: number[], newId: number) => void;
+  pushFolder: (folder: folder, childrens: number[], newId: number, parentId: number) => void;
   pushMultipleFolder: (
     folders: folder[],
     childrens: number[],
