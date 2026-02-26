@@ -31,6 +31,7 @@ export const useEdit = () => {
       title: "Root",
       parent: null,
       childrens: [],
+      backlinks: [],
       ref: null,
     };
 

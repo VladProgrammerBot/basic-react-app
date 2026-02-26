@@ -5,6 +5,7 @@ import { useFolderManipulation } from "./useItemMenu";
 import { usePath } from "./usePath";
 import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
+import { useButtons } from "./useButtons";
 
 export const useKeyboard = () => {
   const mode = store.use.mode();
@@ -13,7 +14,8 @@ export const useKeyboard = () => {
   const setBuffer = store.use.setBuffer();
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
-  // const childrensId = store.use.childrensId();
+  const setIdForNewConnection = store.use.setIdForNewConnection();
+  const IdForNewConnection = store.use.IdForNewConnection();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
@@ -26,6 +28,7 @@ export const useKeyboard = () => {
   const { moveOut, moveFolder } = usePath();
   const { removeFolder, replaceFolders, addFolder, copyMarkdown } =
     useFolderManipulation();
+  const { handleAddConnection } = useButtons();
 
   const Hotkeys = (e: KeyboardEvent) => {
     if (e.code === "Escape") {
@@ -58,6 +61,7 @@ export const useKeyboard = () => {
     }
 
     if (e.repeat) return;
+    const parentId = path[path.length - 1].id
 
     if (e.code === "KeyH" && path.length !== 1) {
       if (e.shiftKey) return moveOut(0);
@@ -77,7 +81,7 @@ export const useKeyboard = () => {
     if (e.code === "KeyM") {
       if (e.shiftKey) return resetMoveBuffer();
       if (moveBuffer === null && selectedId) {
-        return setBuffer(selectedId, path[path.length - 1].id);
+        return setBuffer(selectedId, parentId);
       }
       return moveFolder();
     }
@@ -97,12 +101,24 @@ export const useKeyboard = () => {
       return setMode("Filter");
     }
 
+    if (
+      e.code === "KeyR" &&
+      !e.shiftKey &&
+      !e.ctrlKey &&
+      !e.altKey &&
+      !e.metaKey
+    ) {
+      if (typeof IdForNewConnection === "number") {
+        return handleAddConnection(parentId, IdForNewConnection);
+      }
+      return setIdForNewConnection(selectedId);
+    }
+
     if (!selectedId) return;
     const selectedFolder = folders[selectedId];
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
       setSelectedItemId(0);
-      // setFilter("")
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 
@@ -118,19 +134,9 @@ export const useKeyboard = () => {
       return removeFolder(selectedId);
     }
 
-    if (
-      e.code === "KeyR" &&
-      !e.shiftKey &&
-      !e.ctrlKey &&
-      !e.altKey &&
-      !e.metaKey
-    ) {
-      return addFolder(selectedFolder.title + " (ref)", selectedId);
-    }
-
     if (e.code === "KeyC" && !e.ctrlKey && !e.altKey && !e.metaKey) {
       if (e.shiftKey) {
-        return copyMarkdown(path[path.length - 1].id);
+        return copyMarkdown(parentId);
       }
 
       e.preventDefault();

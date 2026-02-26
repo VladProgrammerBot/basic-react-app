@@ -4,6 +4,7 @@ declare interface folder {
   // parent: number | null;
   childrens: number[];
   ref: number | null;
+  backlinks: number[];
 }
 
 declare interface alert {

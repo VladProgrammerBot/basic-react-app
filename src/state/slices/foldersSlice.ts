@@ -96,4 +96,21 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
             }
         }))
     },
+    addConnection: (parentId, childId) => {
+        set((state) => {
+            const newObject = {...state.folders};
+
+            newObject[parentId] = {
+                ...newObject[parentId],
+                childrens: [...newObject[parentId].childrens, childId]
+            }
+
+            newObject[childId] = {
+                ...newObject[childId],
+                backlinks: [...newObject[childId].backlinks, parentId]
+            }
+
+            return { folders: newObject }
+        })
+    }
 })

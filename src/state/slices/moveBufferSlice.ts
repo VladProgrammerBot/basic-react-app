@@ -6,5 +6,8 @@ export const createMoveBufferSlice: StateCreator<moveBufferSlice> = (set) => ({
     setBuffer: (id, parent) => {
         set({ moveBuffer: { id: id, parent: parent } })
     },
-    resetMoveBuffer: () => set({ moveBuffer: null })
+    resetMoveBuffer: () => set({ moveBuffer: null }),
+
+    IdForNewConnection: null,
+    setIdForNewConnection: (value) => set({ IdForNewConnection: value }),
 })

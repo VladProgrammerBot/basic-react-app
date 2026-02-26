@@ -1,8 +1,18 @@
-type mode = "normal" | "Add Folder" | "AI Generate" | "Filter" | "Filter Result";
+type mode =
+  | "normal"
+  | "Add Folder"
+  | "AI Generate"
+  | "Filter"
+  | "Filter Result";
 
 export interface foldersSlice {
   folders: objectFolder;
-  pushFolder: (folder: folder, childrens: number[], newId: number, parentId: number) => void;
+  pushFolder: (
+    folder: folder,
+    childrens: number[],
+    newId: number,
+    parentId: number,
+  ) => void;
   pushMultipleFolder: (
     folders: folder[],
     childrens: number[],
@@ -14,14 +24,8 @@ export interface foldersSlice {
   foldersRemove: (keysToDelete: number[], id: number, parentId: number) => void;
   setRenameFolder: (id: number, title: string) => void;
   setReplaceFolder: (id: number, newArr: number[]) => void;
+  addConnection: (parentId: number, childId: number) => void;
 }
-
-// export interface childrensSlice {
-//   childrensId: number[];
-//   setChildrens: (array: number[]) => void;
-//   pushChildren: (child: number) => void;
-//   childrensRemove: (id: number) => void;
-// }
 
 export interface pathSlice {
   path: (folder & { index?: number })[];
@@ -43,6 +47,9 @@ export interface moveBufferSlice {
   moveBuffer: { id: number; parent: number } | null;
   setBuffer: (id: number, parent: number) => void;
   resetMoveBuffer: () => void;
+
+  IdForNewConnection: null | number;
+  setIdForNewConnection: (value: number | null) => void;
 }
 
 export interface renameBufferSlice {

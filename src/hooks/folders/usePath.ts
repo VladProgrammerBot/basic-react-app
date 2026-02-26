@@ -37,7 +37,6 @@ export const usePath = () => {
     const futureParent = path[path.length - 1].id;
 
     setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent);
-    // pushChildren(moveBuffer.id)
     removeChild(moveBuffer.id, moveBuffer.parent);
     resetMoveBuffer();
 

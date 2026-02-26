@@ -47,7 +47,8 @@ export const useFolderManipulation = () => {
         id: id,
         childrens: [],
         title: value,
-        ref: ref
+        ref: ref,
+        backlinks: []
       },
       childrensId,
       id,
