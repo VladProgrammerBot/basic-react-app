@@ -21,7 +21,7 @@ export interface foldersSlice {
   ) => void;
   setFolders: (data: objectFolder) => void;
   setMoveFolder: (id: number, parent: number, futureParent: number) => void;
-  foldersRemove: (keysToDelete: number[], id: number, parentId: number) => void;
+  foldersRemove: (id: number, parentId: number) => void;
   setRenameFolder: (id: number, title: string) => void;
   setReplaceFolder: (id: number, newArr: number[]) => void;
   addConnection: (parentId: number, childId: number) => void;

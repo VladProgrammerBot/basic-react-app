@@ -48,7 +48,7 @@ export const useFolderManipulation = () => {
         childrens: [],
         title: value,
         ref: ref,
-        backlinks: []
+        backlinks: [parentId]
       },
       childrensId,
       id,
@@ -82,29 +82,29 @@ export const useFolderManipulation = () => {
 
   };
 
-  const getAndSetElem = (id: number, array: number[]) => {
-    const folder = folders[id]
-    if (!folder) return
+  // const getAndSetElem = (id: number, array: number[]) => {
+  //   const folder = folders[id]
+  //   if (!folder) return
 
-    array.push(folder.id)
-    folder.childrens.forEach((child) => {
-      getAndSetElem(child, array)
-    })
-  }
+  //   array.push(folder.id)
+  //   folder.childrens.forEach((child) => {
+  //     getAndSetElem(child, array)
+  //   })
+  // }
 
-  const structureArray = (id: number) => {
-    const keysToDelete = [] as number[]
-    getAndSetElem(id, keysToDelete)
+  // const structureArray = (id: number) => {
+  //   const keysToDelete = [] as number[]
+  //   getAndSetElem(id, keysToDelete)
 
-    return keysToDelete
-  }
+  //   return keysToDelete
+  // }
 
   const removeFolder = async (id: number) => {
     const parent = path[path.length - 1].id;
-    // childrensRemove(id);
 
-    const keysToDelete = structureArray(id);
-    foldersRemove(keysToDelete, id, parent);
+    // const keysToDelete = structureArray(id);
+    if (folders[id].childrens.length !== 0 || folders[id].backlinks.length > 1) return
+    foldersRemove(id, parent);
 
     if (!isLogin) return
     try {
