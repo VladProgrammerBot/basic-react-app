@@ -25,6 +25,7 @@ export interface foldersSlice {
   setRenameFolder: (id: number, title: string) => void;
   setReplaceFolder: (id: number, newArr: number[]) => void;
   addConnection: (parentId: number, childId: number) => void;
+  removeConnection: (parentId: number, childId: number) => void;
 }
 
 export interface pathSlice {

@@ -3,14 +3,16 @@ import { useAlerts } from "../useAlerts";
 import { useRef } from "react";
 import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
+import { fetchApi } from "./useApi";
 const api = import.meta.env.VITE_API;
 
 export const useFolderManipulation = () => {
   // const childrensId = store.use.childrensId();
   const path = store.use.path();
-  const markdownBuffer = useRef<string>("")
-  const isLogin = store.use.isLogin()
-  const childrensId = useChildrens()
+  const markdownBuffer = useRef<string>("");
+  const isLogin = store.use.isLogin();
+  const childrensId = useChildrens();
+  const removeConnection = store.use.removeConnection();
 
   const {
     folders,
@@ -18,24 +20,30 @@ export const useFolderManipulation = () => {
     setMode,
     foldersRemove,
     setReplaceFolder,
-    setSelectedItemId
+    setSelectedItemId,
   } = store();
 
-  const { alertError } = useAlerts()
+  const { alertError } = useAlerts();
 
   const generateId = () => {
     return Math.floor(Math.random() * 200000000);
   };
 
   const arrayReplacer = (array: number[], index1: number, index2: number) => {
-    if (index1 < 0 || index1 >= array.length || index2 < 0 || index2 >= array.length) return null
-    const newArray = [...array]
-    const temp = newArray[index1]
-    newArray[index1] = newArray[index2]
-    newArray[index2] = temp
+    if (
+      index1 < 0 ||
+      index1 >= array.length ||
+      index2 < 0 ||
+      index2 >= array.length
+    )
+      return null;
+    const newArray = [...array];
+    const temp = newArray[index1];
+    newArray[index1] = newArray[index2];
+    newArray[index2] = temp;
 
-    return newArray
-  }
+    return newArray;
+  };
 
   const addFolder = async (value: string, ref: number | null) => {
     const id = generateId();
@@ -48,16 +56,16 @@ export const useFolderManipulation = () => {
         childrens: [],
         title: value,
         ref: ref,
-        backlinks: [parentId]
+        backlinks: [parentId],
       },
       childrensId,
       id,
-      parentId
+      parentId,
     );
     // pushChildren(id);
     setSelectedItemId(childrensId.length);
 
-    if (!isLogin) return
+    if (!isLogin) return;
     try {
       const response = await fetch(api + "/folders/add", {
         method: "POST",
@@ -69,17 +77,16 @@ export const useFolderManipulation = () => {
           title: value,
           id: parentId,
           token: localStorage.getItem("token"),
-          ref: ref
-        })
-      })
+          ref: ref,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error(`Помилка HTTP: ${response.status}`);
       }
     } catch (error) {
-      alertError("add folder")
+      alertError("add folder");
     }
-
   };
 
   // const getAndSetElem = (id: number, array: number[]) => {
@@ -103,10 +110,11 @@ export const useFolderManipulation = () => {
     const parent = path[path.length - 1].id;
 
     // const keysToDelete = structureArray(id);
-    if (folders[id].childrens.length !== 0 || folders[id].backlinks.length > 1) return
+    if (folders[id].childrens.length !== 0 || folders[id].backlinks.length > 1)
+      return;
     foldersRemove(id, parent);
 
-    if (!isLogin) return
+    if (!isLogin) return;
     try {
       await fetch(api + "/folders/remove", {
         method: "DELETE",
@@ -115,26 +123,41 @@ export const useFolderManipulation = () => {
         },
         body: JSON.stringify({
           id: id,
-          token: localStorage.getItem("token")
-        })
-      })
+          token: localStorage.getItem("token"),
+        }),
+      });
     } catch (error) {
-      alertError("remove folder")
+      alertError("remove folder");
       // console.log(error)
     }
   };
 
+  const handleRemoveConnection = async (id: number) => {
+    const parent = path[path.length - 1].id;
+
+    removeConnection(parent, id);
+    await fetchApi({
+      method: "POST",
+      path: "/folders/remove-connection",
+      body: {
+        id: parent,
+        childId: id,
+      },
+      auth: true,
+    });
+  };
+
   const replaceFolders = async (id: number, dir: 1 | -1) => {
-    const index = childrensId.indexOf(id)
-    const newArray = arrayReplacer(childrensId, index, index - dir)
+    const index = childrensId.indexOf(id);
+    const newArray = arrayReplacer(childrensId, index, index - dir);
 
-    if (!newArray) return
+    if (!newArray) return;
 
-    const parentId = path[path.length - 1].id
+    const parentId = path[path.length - 1].id;
     // setChildrens(newArray)
-    setReplaceFolder(parentId, newArray)
+    setReplaceFolder(parentId, newArray);
 
-    if (!isLogin) return
+    if (!isLogin) return;
     try {
       await fetch(api + "/folders/replace", {
         method: "POST",
@@ -144,39 +167,45 @@ export const useFolderManipulation = () => {
         body: JSON.stringify({
           id: parentId,
           newArr: newArray,
-          token: localStorage.getItem("token")
-        })
-      })
+          token: localStorage.getItem("token"),
+        }),
+      });
     } catch (error) {
-      alertError("replace folder")
+      alertError("replace folder");
     }
-  }
+  };
 
   const generateStructure = (id: number, parents: number) => {
-    const folder = folders[id]
-    if (!folder) return
+    const folder = folders[id];
+    if (!folder) return;
 
-    markdownBuffer.current = markdownBuffer.current + "  ".repeat(parents) + "* " + folder?.title + "\n"
+    markdownBuffer.current =
+      markdownBuffer.current +
+      "  ".repeat(parents) +
+      "* " +
+      folder?.title +
+      "\n";
 
-    const childrens = folder.childrens
+    const childrens = folder.childrens;
     if (childrens.length > 0) {
       childrens.forEach((child) => {
-        generateStructure(child, parents + 1)
-      })
+        generateStructure(child, parents + 1);
+      });
     }
-  }
+  };
 
   const copyMarkdown = (id: number) => {
-    markdownBuffer.current = ""
-    generateStructure(id, 0)
+    markdownBuffer.current = "";
+    generateStructure(id, 0);
 
-    addTextToClipboard(markdownBuffer.current)
-  }
+    addTextToClipboard(markdownBuffer.current);
+  };
 
   return {
     removeFolder,
     addFolder,
     replaceFolders,
-    copyMarkdown
+    copyMarkdown,
+    handleRemoveConnection,
   };
 };

@@ -110,4 +110,25 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
       return { folders: newObject };
     });
   },
+  removeConnection: (parentId, childId) => {
+    set((state) => {
+      const newObject = { ...state.folders };
+
+      newObject[parentId] = {
+        ...newObject[parentId],
+        childrens: newObject[parentId].childrens.filter(
+          (child) => child !== childId,
+        ),
+      };
+
+      newObject[childId] = {
+        ...newObject[childId],
+        backlinks: newObject[childId].backlinks.filter(
+          (link) => link !== parentId,
+        ),
+      };
+
+      return { folders: newObject };
+    });
+  },
 });

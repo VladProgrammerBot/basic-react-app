@@ -26,7 +26,7 @@ export const useKeyboard = () => {
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
-  const { removeFolder, replaceFolders, addFolder, copyMarkdown } =
+  const { removeFolder, replaceFolders, addFolder, copyMarkdown, handleRemoveConnection } =
     useFolderManipulation();
   const { handleAddConnection } = useButtons();
 
@@ -127,11 +127,15 @@ export const useKeyboard = () => {
       setRenameBuffer(selectedId);
     }
 
-    if (e.code === "KeyD" && e.shiftKey) {
-      if (selectedItemId === childrensId.length - 1) {
-        setSelectedItemId(childrensId.length - 2);
+    if (e.code === "KeyD") {
+      if (e.shiftKey) {
+        if (selectedItemId === childrensId.length - 1) {
+          setSelectedItemId(childrensId.length - 2);
+        }
+        return removeFolder(selectedId);
+      } else {
+        handleRemoveConnection(selectedId)
       }
-      return removeFolder(selectedId);
     }
 
     if (e.code === "KeyC" && !e.ctrlKey && !e.altKey && !e.metaKey) {
