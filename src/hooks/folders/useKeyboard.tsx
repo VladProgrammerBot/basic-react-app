@@ -70,6 +70,10 @@ export const useKeyboard = () => {
 
     if (e.code === "KeyA") {
       e.preventDefault();
+      if (e.shiftKey) {
+        setMode("Add Unrelated Folder");
+        return;
+      }
       return setMode("Add Folder");
     }
 

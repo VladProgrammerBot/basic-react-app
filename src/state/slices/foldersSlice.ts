@@ -4,17 +4,23 @@ import type { foldersSlice } from "../../types/storeTypes";
 export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
   folders: {},
   setFolders: (data) => set({ folders: data }),
-  pushFolder: (folder, childrens, id, parentId) =>
-    set((state) => ({
-      folders: {
-        ...state.folders,
-        [parentId]: {
-          ...state.folders[parentId],
-          childrens: [...childrens, id],
-        },
-        [folder.id]: folder,
-      },
-    })),
+  pushFolder: (folder, id, parentId) =>
+  set((state) => {
+    const newFolders = {
+      ...state.folders,
+      [folder.id]: folder,
+    } as objectFolder;
+
+    // Якщо parentId є, оновлюємо його childrens
+    if (parentId) {
+      newFolders[parentId] = {
+        ...state.folders[parentId],
+        childrens: [...(state.folders[parentId]?.childrens || []), id],
+      };
+    }
+
+    return { folders: newFolders };
+  }),
   pushMultipleFolder: (foldersObj, childrens, newChildrens, parentId) => {
     const folders = foldersObj.reduce((acc, user) => {
       const id = String(user.id);

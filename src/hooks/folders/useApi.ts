@@ -18,7 +18,7 @@ export const fetchApi = async ({
   // const { alertError } = useAlerts();
 
   try {
-    await fetch(api + path, {
+    const response = await fetch(api + path, {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,13 @@ export const fetchApi = async ({
         ...(auth && { token: localStorage.getItem("token") }),
       }),
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
   } catch (error) {
+    alert("An error occurred while communicating with the server. Please try again.");
+    console.error("API Error:", error);
     // alertError(path);
   }
 };

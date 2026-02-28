@@ -11,16 +11,13 @@ import { useChildrens } from "@/hooks/folders/useChildrens";
 
 export const Buttons = () => {
   const { generateFolders } = useFolders();
-  const { addFolder } = useFolderManipulation();
+  const { addFolder, addUnrelatedFolder } = useFolderManipulation();
   const setMode = store((state) => state.setMode);
   const mode = store.use.mode();
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
   const isStyled = store.use.isStyled();
-  // const childrensId = store.use.childrensId();
   const childrensId = useChildrens()
-
-  
 
   return (
     <div
@@ -45,6 +42,14 @@ export const Buttons = () => {
           submitTitle="+ Add"
           cancelFunc={() => setMode("normal")}
           submitFunc={addFolder}
+        />
+      )}
+
+      {mode === "Add Unrelated Folder" && (
+        <InputForm
+          submitTitle="+ Add Unrelated"
+          cancelFunc={() => setMode("normal")}
+          submitFunc={addUnrelatedFolder}
         />
       )}
 

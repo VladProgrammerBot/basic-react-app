@@ -1,13 +1,10 @@
 import store from "@/state/store";
-import { useAlerts } from "../useAlerts";
 import { useRef } from "react";
 import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
 import { fetchApi } from "./useApi";
-const api = import.meta.env.VITE_API;
 
 export const useFolderManipulation = () => {
-  // const childrensId = store.use.childrensId();
   const path = store.use.path();
   const markdownBuffer = useRef<string>("");
   const isLogin = store.use.isLogin();
@@ -22,8 +19,6 @@ export const useFolderManipulation = () => {
     setReplaceFolder,
     setSelectedItemId,
   } = store();
-
-  const { alertError } = useAlerts();
 
   const generateId = () => {
     return Math.floor(Math.random() * 200000000);
@@ -58,78 +53,76 @@ export const useFolderManipulation = () => {
         ref: ref,
         backlinks: [parentId],
       },
-      childrensId,
       id,
       parentId,
     );
-    // pushChildren(id);
     setSelectedItemId(childrensId.length);
 
     if (!isLogin) return;
-    try {
-      const response = await fetch(api + "/folders/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newId: id,
-          title: value,
-          id: parentId,
-          token: localStorage.getItem("token"),
-          ref: ref,
-        }),
-      });
 
-      if (!response.ok) {
-        throw new Error(`Помилка HTTP: ${response.status}`);
-      }
-    } catch (error) {
-      alertError("add folder");
-    }
+    await fetchApi({
+      method: "POST",
+      path: "/folders/add",
+      body: {
+        newId: id,
+        title: value,
+        id: parentId,
+        ref: ref,
+      },
+      auth: true,
+    });
   };
 
-  // const getAndSetElem = (id: number, array: number[]) => {
-  //   const folder = folders[id]
-  //   if (!folder) return
+  const addUnrelatedFolder = async (value: string, ref: number | null) => {
+    const id = generateId();
 
-  //   array.push(folder.id)
-  //   folder.childrens.forEach((child) => {
-  //     getAndSetElem(child, array)
-  //   })
-  // }
+    setMode("normal");
+    pushFolder(
+      {
+        id: id,
+        childrens: [],
+        title: value,
+        ref: ref,
+        backlinks: [],
+      },
+      id,
+      null,
+    );
+    setSelectedItemId(childrensId.length);
 
-  // const structureArray = (id: number) => {
-  //   const keysToDelete = [] as number[]
-  //   getAndSetElem(id, keysToDelete)
+    if (!isLogin) return;
 
-  //   return keysToDelete
-  // }
+    await fetchApi({
+      method: "POST",
+      path: "/folders/add-unrelated",
+      body: {
+        title: value,
+        id: id,
+        ref: ref,
+      },
+      auth: true,
+    });
+  };
 
   const removeFolder = async (id: number) => {
     const parent = path[path.length - 1].id;
 
-    // const keysToDelete = structureArray(id);
     if (folders[id].childrens.length !== 0 || folders[id].backlinks.length > 1)
       return;
     foldersRemove(id, parent);
 
+    console.log(1);
+    
     if (!isLogin) return;
-    try {
-      await fetch(api + "/folders/remove", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: id,
-          token: localStorage.getItem("token"),
-        }),
-      });
-    } catch (error) {
-      alertError("remove folder");
-      // console.log(error)
-    }
+
+    await fetchApi({
+      method: "DELETE",
+      path: "/folders/remove",
+      body: {
+        id: id,
+      },
+      auth: true,
+    });
   };
 
   const handleRemoveConnection = async (id: number) => {
@@ -154,25 +147,19 @@ export const useFolderManipulation = () => {
     if (!newArray) return;
 
     const parentId = path[path.length - 1].id;
-    // setChildrens(newArray)
     setReplaceFolder(parentId, newArray);
 
     if (!isLogin) return;
-    try {
-      await fetch(api + "/folders/replace", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: parentId,
-          newArr: newArray,
-          token: localStorage.getItem("token"),
-        }),
-      });
-    } catch (error) {
-      alertError("replace folder");
-    }
+
+    await fetchApi({
+      method: "POST",
+      path: "/folders/replace",
+      body: {
+        id: parentId,
+        newArr: newArray,
+      },
+      auth: true,
+    });
   };
 
   const generateStructure = (id: number, parents: number) => {
@@ -197,7 +184,6 @@ export const useFolderManipulation = () => {
   const copyMarkdown = (id: number) => {
     markdownBuffer.current = "";
     generateStructure(id, 0);
-
     addTextToClipboard(markdownBuffer.current);
   };
 
@@ -207,5 +193,6 @@ export const useFolderManipulation = () => {
     replaceFolders,
     copyMarkdown,
     handleRemoveConnection,
+    addUnrelatedFolder,
   };
 };
