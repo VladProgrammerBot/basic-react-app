@@ -7,13 +7,10 @@ export const useItem = () => {
     const { alertError, useAlert } = useAlerts();
 
     const path = store.use.path();
-    // const childrensId = store.use.childrensId();
     const childrensId = useChildrens()
     const renameBuffer = store.use.renameBuffer();
     const setMode = store.use.setMode();
-
     const setParentChildrens = store.use.setParentChildrens();
-    // const setChildrens = store.use.setChildrens();
     const pushPath = store.use.pushPath();
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
@@ -27,7 +24,6 @@ export const useItem = () => {
         setParentChildrens(path.length - 1, childrensId);
 
         setMode("normal");
-        // setChildrens(newParent.childrens);
         pushPath({ ...newParent, index });
         window.scrollTo(0, 0);
     };

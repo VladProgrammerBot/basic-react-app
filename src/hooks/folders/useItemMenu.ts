@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
 import { fetchApi } from "./useApi";
+import { useItem } from "./useItem";
 
 export const useFolderManipulation = () => {
   const path = store.use.path();
@@ -10,6 +11,7 @@ export const useFolderManipulation = () => {
   const isLogin = store.use.isLogin();
   const childrensId = useChildrens();
   const removeConnection = store.use.removeConnection();
+  const { moveInto } = useItem();
 
   const {
     folders,
@@ -89,6 +91,7 @@ export const useFolderManipulation = () => {
       null,
     );
     setSelectedItemId(childrensId.length);
+    // moveInto(id, 0);
 
     if (!isLogin) return;
 
@@ -111,8 +114,6 @@ export const useFolderManipulation = () => {
       return;
     foldersRemove(id, parent);
 
-    console.log(1);
-    
     if (!isLogin) return;
 
     await fetchApi({

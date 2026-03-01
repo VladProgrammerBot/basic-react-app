@@ -13,6 +13,7 @@ export const SearchInput = () => {
   const api = import.meta.env.VITE_API;
   const filteredElements = store.use.filteredElements();
   const { alertError } = useAlerts();
+  const setSelectedItemId = store.use.setSelectedItemId();
 
   useEffect(() => {
     ref.current?.focus();
@@ -29,6 +30,7 @@ export const SearchInput = () => {
   }, [debouncedSearch]);
 
   const handleSearch = async (value: string) => {
+    setSelectedItemId(0);
     setIsLoading(true);
     try {
       await fetch(api + "/folders/getbykeyword", {
