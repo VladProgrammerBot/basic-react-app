@@ -27,7 +27,7 @@ export function Item({
   };
 
   const childrensLength =
-    data && data?.childrens.length > 0 ? data.childrens.length : 0;
+    data && data?.childrens?.length > 0 ? data.childrens.length : 0;
 
   return (
     <div

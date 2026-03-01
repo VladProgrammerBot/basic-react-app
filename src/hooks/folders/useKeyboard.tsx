@@ -7,7 +7,7 @@ import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
 import { useButtons } from "./useButtons";
 
-export const useKeyboard = () => {
+export const useKeyboardShortcuts = () => {
   const mode = store.use.mode();
   const setSelectedItemId = store.use.setSelectedItemId();
   const selectedItemId = store.use.selectedItemId();
