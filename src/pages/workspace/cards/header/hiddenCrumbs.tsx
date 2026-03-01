@@ -5,11 +5,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Breadcrumb } from "./BreadCrumb";
-// import {
-//   Tooltip,
-//   TooltipContent,
-//   TooltipTrigger,
-// } from "@/components/ui/tooltip";
 import store from "@/state/store";
 import { FaHistory } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -41,7 +36,6 @@ export const HiddenCrumbs = () => {
           return (
             <DropdownMenuItem
               key={crumb.id}
-              // className="text-white"
               className="p-0"
             >
               <Breadcrumb

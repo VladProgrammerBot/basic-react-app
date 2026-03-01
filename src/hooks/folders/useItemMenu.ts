@@ -91,7 +91,7 @@ export const useFolderManipulation = () => {
       null,
     );
     setSelectedItemId(childrensId.length);
-    // moveInto(id, 0);
+    moveInto(id, 0);
 
     if (!isLogin) return;
 

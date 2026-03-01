@@ -8,11 +8,7 @@ type mode =
 
 export interface foldersSlice {
   folders: objectFolder;
-  pushFolder: (
-    folder: folder,
-    newId: number,
-    parentId: number | null,
-  ) => void;
+  pushFolder: (folder: folder, newId: number, parentId: number | null) => void;
   pushMultipleFolder: (
     folders: folder[],
     childrens: number[],
@@ -28,15 +24,15 @@ export interface foldersSlice {
   removeConnection: (parentId: number, childId: number) => void;
 }
 
+export type path = { id: number; index: number }
+
 export interface pathSlice {
-  path: (folder & { index?: number })[];
+  path: path[];
   isMenuOpen: boolean;
   toggleMenu: () => void;
-  pushPath: (folder: folder & { index: number }) => void;
-  setPath: (folder: folder) => void;
+  pushPath: (folder: path) => void;
+  setPath: (folder: path) => void;
   reducePath: (index: number) => void;
-  setParentChildrens: (index: number, childrensId: number[]) => void;
-  removeChild: (id: number, parent: number) => void;
 }
 
 export interface modeSlice {

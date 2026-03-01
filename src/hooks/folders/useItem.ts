@@ -6,11 +6,9 @@ const api = import.meta.env.VITE_API;
 export const useItem = () => {
     const { alertError, useAlert } = useAlerts();
 
-    const path = store.use.path();
     const childrensId = useChildrens()
     const renameBuffer = store.use.renameBuffer();
     const setMode = store.use.setMode();
-    const setParentChildrens = store.use.setParentChildrens();
     const pushPath = store.use.pushPath();
     const setRenameFolder = store.use.setRenameFolder();
     const setRenameBuffer = store.use.setRenameBuffer();
@@ -19,12 +17,11 @@ export const useItem = () => {
 
     const moveInto = (id: number, index: number) => {
         if (childrensId.length === 0) return
-        const newParent = folders[id];
-        if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
-        setParentChildrens(path.length - 1, childrensId);
+        // const newParent = folders[id];
+        // if (!newParent) return useAlert({ color: "red", text: "Folder not found" });
 
         setMode("normal");
-        pushPath({ ...newParent, index });
+        pushPath({ id, index });
         window.scrollTo(0, 0);
     };
 

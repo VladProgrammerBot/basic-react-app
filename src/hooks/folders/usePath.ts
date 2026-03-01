@@ -4,12 +4,9 @@ const api = import.meta.env.VITE_API;
 
 export const usePath = () => {
   const reducePath = store.use.reducePath();
-  // const setChildrens = store.use.setChildrens();
   const moveBuffer = store.use.moveBuffer();
   const setMoveFolder = store.use.setMoveFolder();
   const resetMoveBuffer = store.use.resetMoveBuffer();
-  const removeChild = store.use.removeChild();
-  // const pushChildren = store.use.pushChildren();
   const path = store.use.path();
   const { alertError, useAlert } = useAlerts();
   const isLogin = store.use.isLogin();
@@ -37,7 +34,6 @@ export const usePath = () => {
     const futureParent = path[path.length - 1].id;
 
     setMoveFolder(moveBuffer.id, moveBuffer.parent, futureParent);
-    removeChild(moveBuffer.id, moveBuffer.parent);
     resetMoveBuffer();
 
     if (!isLogin) return;

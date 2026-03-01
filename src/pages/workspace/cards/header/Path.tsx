@@ -16,6 +16,7 @@ export const Path = () => {
   const toggleBar = store.use.toggleBar();
   const { moveOut } = usePath();
   const isStyled = store.use.isStyled();
+  const folders = store.use.folders();
 
   return (
     <div className="md:absolute pr-2 fixed max-w-4xl z-10 max-lg:px-2 pt-2 w-full right-1/2 translate-x-1/2 flex justify-between">
@@ -50,7 +51,7 @@ export const Path = () => {
       </div>
       <HiddenCrumbs />
       <div className="flex items-center py-1 truncate backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
-        {path[path.length - 1].title}
+        {folders[path[path.length - 1].id].title}
       </div>
       <div className="text-right ml-1">
         <Button size={"icon"} onClick={toggleBar}>

@@ -21,8 +21,7 @@ export const useEdit = () => {
     const parent = folders[rootId];
 
     setFolders(folders);
-    // setChildrens(parent.childrens);
-    setPath(parent);
+    setPath({ id: parent.id, index: 0 });
   };
 
   const createMinStructure = () => {
@@ -37,7 +36,7 @@ export const useEdit = () => {
 
     setFolders({ folder });
     // setChildrens([]);
-    setPath(folder);
+    setPath({ id: folder.id, index: 0 });
     setIsLogin(false);
   };
 
