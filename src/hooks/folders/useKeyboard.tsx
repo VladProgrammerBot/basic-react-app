@@ -144,7 +144,8 @@ export const useKeyboardShortcuts = () => {
 
     if (e.code === "KeyC" && !e.ctrlKey && !e.altKey && !e.metaKey) {
       if (e.shiftKey) {
-        return copyMarkdown(parentId);
+        // navigator.clipboard.writeText("text/markdown");
+        // return copyMarkdown(parentId);
       }
 
       e.preventDefault();
