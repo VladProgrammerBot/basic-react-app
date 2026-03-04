@@ -42,7 +42,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
+    <div className="min-h-screen bg-gradient-to-b dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
       <ParticleBackground />
       <ScrollToTopButton />
       <GradientBackground />

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Hotkey } from "./HotKeyTip";
 
-export const Button = ({
+export const MenuButton = ({
   icon,
   hotkey,
 }: {
