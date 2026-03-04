@@ -1,10 +1,6 @@
 import { HiArrowTurnDownRight, HiArrowTurnRightDown } from "react-icons/hi2";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+import { ContextMenu, ContextMenuTrigger } from "@/components/ui/context-menu";
+import { ItemContextMenu } from "./ContextMenu";
 
 export const ConnectedItem = ({ title }: { title: string }) => {
   const isMinimalist = false;
@@ -24,12 +20,7 @@ export const ConnectedItem = ({ title }: { title: string }) => {
           </span>
         </li>
       </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuItem>Profile</ContextMenuItem>
-        <ContextMenuItem>Billing</ContextMenuItem>
-        <ContextMenuItem>Team</ContextMenuItem>
-        <ContextMenuItem>Subscription</ContextMenuItem>
-      </ContextMenuContent>
+      <ItemContextMenu />
     </ContextMenu>
   );
 };

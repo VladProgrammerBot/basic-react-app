@@ -1,17 +1,9 @@
 import type { ReactNode } from "react";
-import { Hotkey } from "./HotKeyTip";
 
-export const MenuButton = ({
-  icon,
-  hotkey,
-}: {
-  icon: ReactNode;
-  hotkey: string;
-}) => {
+export const Button = ({ children, className }: { children: ReactNode, className?: string }) => {
   return (
-    <div className="flex gap-1 items-center px-4 border border-neutral-600 bg-neutral-800 hover:bg-neutral-700 duration-150 cursor-pointer rounded-xl">
-      {icon}
-      <Hotkey is={hotkey} />
-    </div>
+    <button className={"py-1 px-4 m-1 cursor-pointer flex items-center gap-1 rounded-xl bg-neutral-700 hover:bg-neutral-600 duration-150 " + className}>
+      {children}
+    </button>
   );
 };

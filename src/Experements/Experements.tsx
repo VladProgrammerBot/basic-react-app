@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ItemContent } from "./ItemContent";
 import { SearchedItems } from "./SearchedItems";
 import { SearchInput } from "./SearchInput";
-import { MenuButton } from "./Button";
+import { MenuButton } from "./MenuButton";
 import { Navigation } from "./Navigation";
 
 export const Experements = () => {
