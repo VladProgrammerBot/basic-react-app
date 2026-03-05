@@ -8,13 +8,13 @@ import { HiUserAdd } from "react-icons/hi";
 export const useBar = () => {
   const navigate = useNavigate();
 
-  const toggleBar = store.use.toggleBar();
   const setFolders = store.use.setFolders();
   const isLogin = store.use.isLogin();
   const setIsStyled = store.use.setIsStyled();
   const isStyled = store.use.isStyled();
 
   const [username, setUsername] = useState("");
+  const [isBarOpen, setIsBarOpen] = useState(false)
 
   useEffect(() => {
     try {
@@ -28,14 +28,14 @@ export const useBar = () => {
 
   const go = (path: string) => {
     navigate(path);
-    toggleBar();
+    setIsBarOpen(false);
   };
 
   const logout = () => {
     localStorage.clear();
     setFolders({});
     navigate("/login");
-    toggleBar();
+    setIsBarOpen(false);
   };
 
   const actions = [
@@ -73,8 +73,9 @@ export const useBar = () => {
   ];
 
   return {
-    // containerClass,
-    toggleBar,
+    // containerClass
+    isBarOpen,
+    setIsBarOpen,
     username,
     actions,
   };

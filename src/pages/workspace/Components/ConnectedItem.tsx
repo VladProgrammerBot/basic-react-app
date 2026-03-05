@@ -1,6 +1,6 @@
 import { HiArrowTurnDownRight, HiArrowTurnRightDown } from "react-icons/hi2";
 import { ContextMenu, ContextMenuTrigger } from "@/components/ui/context-menu";
-import { ItemContextMenu } from "./ContextMenu";
+import { ItemContextMenu } from "../ui-elements/ContextMenu";
 
 export const ConnectedItem = ({ title }: { title: string }) => {
   const isMinimalist = false;

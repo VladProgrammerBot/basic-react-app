@@ -54,12 +54,6 @@ export interface renameBufferSlice {
   setRenameBuffer: (value: number | null) => void;
 }
 
-export interface barSlice {
-  isBarOpen: boolean;
-  toggleBar: () => void;
-  closeBar: () => void;
-}
-
 export interface alertsSlice {
   alerts: alert[];
   pushAlert: (alert: alert) => void;

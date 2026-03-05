@@ -1,4 +1,4 @@
-import { Hotkey } from "./HotKeyTip";
+import { Hotkey } from "../ui-elements/HotKeyTip";
 import { PiMouseLeftClickFill, PiMouseRightClickFill } from "react-icons/pi";
 
 export const TipForRelated = () => {

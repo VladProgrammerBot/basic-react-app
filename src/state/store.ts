@@ -3,7 +3,6 @@ import { createFoldersSlice } from "./slices/foldersSlice";
 import type {
   alertsSlice,
   authSlice,
-  barSlice,
   // childrensSlice,
   foldersSlice,
   filterSlice,
@@ -19,7 +18,6 @@ import { createMoveBufferSlice } from "./slices/moveBufferSlice";
 import { createPathSlice } from "./slices/pathSlice";
 import { createRenameSlice } from "./slices/renameBufferSlice";
 import { type StoreApi, type UseBoundStore } from "zustand";
-import { createBarSlice } from "./slices/barSlice";
 import { createAlertsSlice } from "./slices/alertsSlice";
 import { createAuthSlice } from "./slices/authSlice";
 import { createKeyNaviSlice } from "./slices/keyNaviSlice";
@@ -51,7 +49,6 @@ const storeBase = create<
     authSlice &
     pathSlice &
     renameBufferSlice &
-    barSlice &
     alertsSlice
 >()((...a) => ({
   ...createFoldersSlice(...a),
@@ -60,7 +57,6 @@ const storeBase = create<
   ...createMoveBufferSlice(...a),
   ...createPathSlice(...a),
   ...createRenameSlice(...a),
-  ...createBarSlice(...a),
   ...createAlertsSlice(...a),
   ...createAuthSlice(...a),
   ...createKeyNaviSlice(...a),

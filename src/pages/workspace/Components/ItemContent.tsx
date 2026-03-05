@@ -1,6 +1,6 @@
 import { ConnectedItem } from "./ConnectedItem";
 import { TipForRelated } from "./TipForRelated";
-import { Input } from "./Input";
+import { Input } from "../ui-elements/Input";
 import { ItemTitle } from "./ItemTitle";
 
 export const ItemContent = () => {

@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { RiHistoryFill } from "react-icons/ri";
-import { Hotkey } from "./HotKeyTip";
+import { Hotkey } from "../ui-elements/HotKeyTip";
 
 export const Navigation = () => {
   return (

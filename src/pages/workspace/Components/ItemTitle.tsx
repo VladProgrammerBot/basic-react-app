@@ -1,7 +1,7 @@
 import { HiArrowTurnDownRight } from "react-icons/hi2";
-import { Hotkey } from "./HotKeyTip";
+import { Hotkey } from "../ui-elements/HotKeyTip";
 import { FaLink } from "react-icons/fa6";
-import { Button } from "./Button";
+import { Button } from "../ui-elements/Button";
 
 export const ItemTitle = () => {
   return (

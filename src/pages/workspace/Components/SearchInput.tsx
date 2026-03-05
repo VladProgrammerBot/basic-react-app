@@ -1,6 +1,6 @@
 import { IoClose, IoSearchOutline } from "react-icons/io5";
-import { Hotkey } from "./HotKeyTip";
-import { MenuButton } from "./MenuButton";
+import { Hotkey } from "../ui-elements/HotKeyTip";
+import { MenuButton } from "../ui-elements/MenuButton";
 
 export const SearchInput = () => {
   return (

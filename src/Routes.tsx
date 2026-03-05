@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
-import { Edit } from "./pages/workspace/Edit.tsx";
+import { Edit } from "./pages/workspace2/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
 import { GlobalLayout } from "./pages/GlobalLayout.tsx";
-import { Experements } from "./Experements/Experements.tsx";
+import { Workspace } from "./pages/workspace/Workspace.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "experements",
-        Component: Experements,
+        Component: Workspace,
       },
       {
         path: "workspace",
