@@ -21,7 +21,7 @@ export const ItemContent = () => {
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {!isMinimalist && <Input />}
+      {!isMinimalist && <Input hotkey="A" />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import store from "@/state/store";
 
 interface InputProps {
   mode?: string;
-  submitFunction?: (title: string, ref: number | null) => Promise<void>;
+  submitFunction?: (title: string) => Promise<void>;
   placeholder?: string;
   hotkey?: string;
   setModeOnFocus?: string;
@@ -17,7 +17,7 @@ export const Input = ({
   mode: propMode, 
   submitFunction, 
   placeholder = "Add note and connect to it",
-  hotkey = "A",
+  hotkey,
   setModeOnFocus = "Add Folder",
   setModeOnBlur = "normal"
 }: InputProps = {}) => {
@@ -37,13 +37,17 @@ export const Input = ({
     setIsLoading(true);
     try {
       // Call the provided submit function or default addFolder
-      await handleSubmitFn(inputValue, null);
+      await handleSubmitFn(inputValue);
       setInputValue(""); // Clear input after successful submission
     } catch (error) {
       console.error("Error adding folder:", error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleButtonClick = () => {
+    handleSubmit();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -66,7 +70,7 @@ export const Input = ({
 
   return (
     <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full mt-1 pr-1">
-      <Hotkey className="ml-2" is={hotkey} />
+      {hotkey && <Hotkey className="ml-2" is={hotkey} />}
       <input
         ref={inputRef}
         value={inputValue}
@@ -78,8 +82,8 @@ export const Input = ({
         className="outline-none w-full placeholder:text-white/30 px-4 py-2 flex-1 disabled:opacity-50"
         placeholder={placeholder}
       />
-      {mode === setModeOnFocus && (
-        <Button onClick={handleSubmit} disabled={isLoading || !inputValue.trim()}>
+      {(submitFunction || mode === setModeOnFocus) && (
+        <Button onClick={handleButtonClick} disabled={isLoading || !inputValue.trim()}>
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />
         </Button>

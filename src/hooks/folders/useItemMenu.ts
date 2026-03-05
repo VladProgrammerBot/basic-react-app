@@ -42,7 +42,7 @@ export const useFolderManipulation = () => {
     return newArray;
   };
 
-  const addFolder = async (value: string, ref: number | null) => {
+  const addFolder = async (value: string) => {
     const id = generateId();
     const parentId = path[path.length - 1].id;
 
@@ -52,7 +52,7 @@ export const useFolderManipulation = () => {
         id: id,
         childrens: [],
         title: value,
-        ref: ref,
+        ref: null,
         backlinks: [parentId],
       },
       id,
@@ -69,13 +69,13 @@ export const useFolderManipulation = () => {
         newId: id,
         title: value,
         id: parentId,
-        ref: ref,
+        ref: null,
       },
       auth: true,
     });
   };
 
-  const addUnrelatedFolder = async (value: string, ref: number | null) => {
+  const addUnrelatedFolder = async (value: string) => {
     const id = generateId();
 
     setMode("normal");
@@ -84,7 +84,7 @@ export const useFolderManipulation = () => {
         id: id,
         childrens: [],
         title: value,
-        ref: ref,
+        ref: null,
         backlinks: [],
       },
       id,
@@ -101,7 +101,7 @@ export const useFolderManipulation = () => {
       body: {
         title: value,
         id: id,
-        ref: ref,
+        ref: null,
       },
       auth: true,
     });

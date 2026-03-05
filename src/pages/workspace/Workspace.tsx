@@ -17,6 +17,7 @@ export const Workspace = () => {
   const fullNavigation = isStyled && !isSearch;
   const searchBar = isStyled || isSearch;
   const { addUnrelatedFolder } = useFolderManipulation();
+  const setMode = store.use.setMode();
   useKeyboardShortcuts();
 
   return (
@@ -24,7 +25,7 @@ export const Workspace = () => {
       <div className="flex justify-between mb-1 gap-1">
         {fullNavigation && <Navigation />}
         {searchBar && <SearchInput />}
-        {fullNavigation && <MenuButton icon={<IoMdAdd />} hotkey="Shift+A" />}
+        {fullNavigation && <MenuButton onClick={() => setMode("Add Unrelated Folder")} icon={<IoMdAdd />} hotkey="Shift+A" />}
         <Bar />
       </div>
       {mode === "Add Unrelated Folder" ? (
@@ -32,7 +33,6 @@ export const Workspace = () => {
           mode="Add Unrelated Folder"
           submitFunction={addUnrelatedFolder}
           placeholder="Add unrelated folder"
-          hotkey="U"
           setModeOnFocus="Add Unrelated Folder"
           setModeOnBlur="normal"
         />

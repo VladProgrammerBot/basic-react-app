@@ -18,7 +18,6 @@ export const useSearch = () => {
     } else {
       setFilterElements([]);
     }
-    console.log(debouncedSearch);
   }, [debouncedSearch]);
 
   const handleSearch = async (value: string) => {
@@ -37,7 +36,6 @@ export const useSearch = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           setFilterElements(data);
         });
     } catch (error) {
