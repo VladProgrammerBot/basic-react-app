@@ -37,9 +37,9 @@ export const useKeyboardShortcuts = () => {
 
   const Hotkeys = (e: KeyboardEvent) => {
     if (e.code === "Escape") {
-      console.log("numel");
       setMode("normal");
       setSelectedItemId(null);
+      setRenameBuffer(null);
     }
 
     if ((mode !== "normal" && mode !== "Filter Result") || renameBuffer) return;

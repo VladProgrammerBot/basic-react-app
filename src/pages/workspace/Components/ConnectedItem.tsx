@@ -3,6 +3,7 @@ import { ContextMenu, ContextMenuTrigger } from "@/components/ui/context-menu";
 import { ItemContextMenu } from "../ui-elements/ContextMenu";
 import { useItem } from "@/hooks/folders/useItem";
 import store from "@/state/store";
+import { useState, useRef, useEffect } from "react";
 
 export const ConnectedItem = ({
   data,
@@ -14,7 +15,11 @@ export const ConnectedItem = ({
   const selectedItemId = store.use.selectedItemId()
   const { backlinks, childrens, title, id } = data;
   const isMinimalist = false;
-  const { moveInto } = useItem();
+  const { moveInto, renameFolder } = useItem();
+  const [editValue, setEditValue] = useState(title);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const renameBuffer = store.use.renameBuffer();
+  const setRenameBuffer = store.use.setRenameBuffer();
 
   const backlinksNumber = backlinks.length !== 0 && (
     <>
@@ -30,6 +35,35 @@ export const ConnectedItem = ({
     </>
   );
 
+  const handleSubmit = () => {
+    if (editValue.trim() && editValue !== title) {
+      renameFolder(editValue);
+    }
+    setRenameBuffer(null);
+  };
+
+  const handleCancel = () => {
+    setEditValue(title);
+    setRenameBuffer(null);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      handleCancel();
+    }
+  };
+
+  useEffect(() => {
+    if (renameBuffer === id && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [renameBuffer, id]);
+
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
@@ -40,7 +74,22 @@ export const ConnectedItem = ({
           <span className="text-sm text-neutral-400 flex items-center">
             {backlinksNumber}
           </span>
-          <p className="flex-1 p-2 px-2">{title}</p>
+          
+          {renameBuffer === id ? (
+            <input
+              ref={inputRef}
+              type="text"
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              onBlur={handleCancel}
+              className="flex-1 p-2 px-2 bg-neutral-800 text-white outline-none rounded"
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <p className="flex-1 p-2 px-2">{title}</p>
+          )}
+          
           <span className="text-sm p-2 text-neutral-400 flex items-center">
             {relationsNumber}
           </span>
