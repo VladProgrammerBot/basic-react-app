@@ -46,7 +46,7 @@ export const ConnectedItem = ({
           </span>
         </li>
       </ContextMenuTrigger>
-      <ItemContextMenu />
+      <ItemContextMenu data={data} index={index} />
     </ContextMenu>
   );
 };
