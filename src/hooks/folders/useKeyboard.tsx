@@ -26,12 +26,18 @@ export const useKeyboardShortcuts = () => {
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
-  const { removeFolder, replaceFolders, addFolder, copyMarkdown, handleRemoveConnection } =
-    useFolderManipulation();
+  const {
+    removeFolder,
+    replaceFolders,
+    addFolder,
+    copyMarkdown,
+    handleRemoveConnection,
+  } = useFolderManipulation();
   const { handleAddConnection } = useButtons();
 
   const Hotkeys = (e: KeyboardEvent) => {
     if (e.code === "Escape") {
+      console.log("numel");
       setMode("normal");
       setSelectedItemId(null);
     }
@@ -61,7 +67,7 @@ export const useKeyboardShortcuts = () => {
     }
 
     if (e.repeat) return;
-    const parentId = path[path.length - 1].id
+    const parentId = path[path.length - 1].id;
 
     if (e.code === "KeyH" && path.length !== 1) {
       if (e.shiftKey) return moveOut(0);
@@ -70,10 +76,7 @@ export const useKeyboardShortcuts = () => {
 
     if (e.code === "KeyA") {
       e.preventDefault();
-      if (e.shiftKey) {
-        setMode("Add Unrelated Folder");
-        return;
-      }
+      if (e.shiftKey) return setMode("Add Unrelated Folder");
       return setMode("Add Folder");
     }
 
@@ -132,21 +135,20 @@ export const useKeyboardShortcuts = () => {
     }
 
     if (e.code === "KeyD") {
-      if (e.shiftKey) {
-        if (selectedItemId === childrensId.length - 1) {
-          setSelectedItemId(childrensId.length - 2);
-        }
-        return removeFolder(selectedId);
-      } else {
-        handleRemoveConnection(selectedId)
+      if (!e.shiftKey) {
+        handleRemoveConnection(selectedId);
       }
+      if (selectedItemId === childrensId.length - 1) {
+        setSelectedItemId(childrensId.length - 2);
+      }
+      return removeFolder(selectedId);
     }
 
     if (e.code === "KeyC" && !e.ctrlKey && !e.altKey && !e.metaKey) {
-      if (e.shiftKey) {
-        // navigator.clipboard.writeText("text/markdown");
-        // return copyMarkdown(parentId);
-      }
+      // if (e.shiftKey) {
+      //   navigator.clipboard.writeText("text/markdown");
+      //   return copyMarkdown(parentId);
+      // }
 
       e.preventDefault();
       return addTextToClipboard(selectedFolder.title);

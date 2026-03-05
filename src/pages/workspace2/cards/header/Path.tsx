@@ -13,7 +13,7 @@ import { IoArrowBack } from "react-icons/io5";
 
 export const Path = () => {
   const path = store.use.path();
-  const toggleBar = store.use.toggleBar();
+  // const toggleBar = store.use.toggleBar();
   const { moveOut } = usePath();
   const isStyled = store.use.isStyled();
   const folders = store.use.folders();
@@ -53,11 +53,11 @@ export const Path = () => {
       <div className="flex items-center py-1 truncate backdrop-blur-xs border-1 border-neutral-400 dark:border-white/20 rounded-md p-4 w-full">
         {folders[path[path.length - 1]?.id]?.title}
       </div>
-      <div className="text-right ml-1">
+      {/* <div className="text-right ml-1">
         <Button size={"icon"} onClick={toggleBar}>
           <LuMenu />
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

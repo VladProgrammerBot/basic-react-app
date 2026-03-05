@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home/Home.tsx";
 import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
-import { Edit } from "./pages/workspace2/Edit.tsx";
+// import { Edit } from "./pages/workspace2/Edit.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
 import { GlobalLayout } from "./pages/GlobalLayout.tsx";
-import { Workspace } from "./pages/workspace/Workspace.tsx";
+import { WorkspaceLayout } from "./pages/workspace/WorkspaceLayout.tsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    // Component: GlobalLayout,
+    Component: GlobalLayout,
     children: [
       {
         index: true,
@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "experements",
-        Component: Workspace,
+        Component: WorkspaceLayout,
       },
       {
         path: "workspace",
-        Component: Edit,
+        Component: WorkspaceLayout,
       },
       {
         path: "about",

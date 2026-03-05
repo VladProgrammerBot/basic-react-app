@@ -1,15 +1,35 @@
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
-// import { generatedId } from "@/utils/generateId";
+import { useEffect } from "react";
+// import { useKeyboardShortcuts } from "./useKeyboard";
 
 const api = import.meta.env.VITE_API;
 
 export const useEdit = () => {
   const { alertError } = useAlerts();
   const setFolders = store.use.setFolders();
-  // const setChildrens = store.use.setChildrens();
   const setPath = store.use.setPath();
   const setIsLogin = store.use.setIsLogin();
+  const folders = store.use.folders();
+  
+  // 
+
+  const thereAreFolders = Object.keys(folders).length !== 0;
+  const isUserLoggedIn = localStorage.getItem("token") !== null;
+
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
+    if (thereAreFolders) return;
+    if (isUserLoggedIn) {
+      setIsLogin(true);
+      getUsersFolders();
+    } else {
+      setIsLogin(false);
+      getTemplateFolders();
+    }
+    return () => document.removeEventListener("contextmenu", handleContextMenu);
+  }, []);
 
   const setFoldersToState = (data: folder[], rootId: number) => {
     const folders = data.reduce((acc, user) => {
@@ -35,7 +55,6 @@ export const useEdit = () => {
     };
 
     setFolders({ folder });
-    // setChildrens([]);
     setPath({ id: folder.id, index: 0 });
     setIsLogin(false);
   };
@@ -84,5 +103,7 @@ export const useEdit = () => {
     }
   };
 
-  return { getUsersFolders, getTemplateFolders };
+  return {
+    thereAreFolders,
+  };
 };

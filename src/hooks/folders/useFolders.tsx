@@ -7,7 +7,6 @@ import { usePath } from "@/hooks/folders/usePath";
 import { RiGeminiFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import { useChildrens } from "./useChildrens";
-import { useKeyboardShortcuts } from "./useKeyboard";
 
 export const useFolders = () => {
   const folders = store.use.folders();
@@ -16,8 +15,8 @@ export const useFolders = () => {
   const setMode = store.use.setMode()
   const path = store.use.path();
   const moveBuffer = store.use.moveBuffer()
-
-  useKeyboardShortcuts();
+  const mode = store.use.mode()
+  const isUserSearching = mode === "Filter" || mode === "Filter Result";
 
   const { moveFolder } = usePath()
   const { alertError, useAlert } = useAlerts()
@@ -86,9 +85,16 @@ export const useFolders = () => {
     }
   ]
 
+  // const elements =
+  //   isUserSearching
+  //     ? filteredElements
+  //     : childrensData;
+
   return {
     childrensData,
     generateFolders,
-    buttons
+    buttons,
+    // elements,
+    isUserSearching
   };
 };

@@ -1,57 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import store from "@/state/store";
-import { useAlerts } from "@/hooks/useAlerts";
-import useDebounce from "@/hooks/useDebounce";
+
 import { IoSearch } from "react-icons/io5";
 
 export const SearchInput = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  
   const ref = useRef<HTMLInputElement | null>(null);
   const setMode = store((state) => state.setMode);
-  const setFilterElements = store.use.setFilterElements();
-  const api = import.meta.env.VITE_API;
   const filteredElements = store.use.filteredElements();
-  const { alertError } = useAlerts();
-  const setSelectedItemId = store.use.setSelectedItemId();
+
 
   useEffect(() => {
     ref.current?.focus();
   }, []);
 
-  const debouncedSearch = useDebounce(searchValue, 400);
-  useEffect(() => {
-    if (debouncedSearch) {
-      handleSearch(debouncedSearch);
-    } else {
-      setFilterElements([]);
-    }
-    console.log(debouncedSearch);
-  }, [debouncedSearch]);
-
-  const handleSearch = async (value: string) => {
-    setSelectedItemId(0);
-    setIsLoading(true);
-    try {
-      await fetch(api + "/folders/getbykeyword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          keyword: value,
-          token: localStorage.getItem("token"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setFilterElements(data);
-        });
-    } catch (error) {
-      alertError("get folders");
-    }
-    setIsLoading(false);
-  };
+  
 
   return (
     <>

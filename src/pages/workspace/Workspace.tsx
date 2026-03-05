@@ -1,28 +1,23 @@
 import { IoMdAdd } from "react-icons/io";
-import { useEffect } from "react";
 import { ItemContent } from "./Components/ItemContent";
 import { SearchedItems } from "./Components/SearchedItems";
 import { SearchInput } from "./Components/SearchInput";
 import { MenuButton } from "./ui-elements/MenuButton";
 import { Navigation } from "./Components/Navigation";
 import { Bar } from "./Components/Bar";
+import store from "@/state/store";
+import { useKeyboardShortcuts } from "@/hooks/folders/useKeyboard";
 
 export const Workspace = () => {
-  const isSearch = false;
-  const isMinimalist = false;
-
-  useEffect(() => {
-    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
-    document.addEventListener("contextmenu", handleContextMenu);
-    return () => document.removeEventListener("contextmenu", handleContextMenu);
-  }, []);
-
-  const fullNavigation = !isMinimalist && !isSearch;
-  const searchBar = !isMinimalist || isSearch;
+  const mode = store.use.mode();
+  const isStyled = store.use.isStyled();
+  const isSearch = mode === "Filter" || mode === "Filter Result";
+  const fullNavigation = isStyled && !isSearch;
+  const searchBar = isStyled || isSearch;
+  useKeyboardShortcuts();
 
   return (
-    <div className="p-2 max-w-xl mx-auto">
-      {/* <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div> */}
+    <>
       <div className="flex justify-between mb-1 gap-1">
         {fullNavigation && <Navigation />}
         {searchBar && <SearchInput />}
@@ -30,6 +25,6 @@ export const Workspace = () => {
         <Bar />
       </div>
       {isSearch ? <SearchedItems /> : <ItemContent />}
-    </div>
+    </>
   );
 };

@@ -5,39 +5,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Breadcrumb } from "./BreadCrumb";
-import store from "@/state/store";
-import { FaHistory } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
+import store from "@/state/store";1
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
+import { RiHistoryFill } from "react-icons/ri";
+import { Hotkey } from "@/pages/workspace/ui-elements/HotKeyTip";
 
 export const HiddenCrumbs = () => {
   const isMenuOpen = store.use.isMenuOpen();
   const toggleMenu = store.use.toggleMenu();
-  const path = store.use.path();
   const { hiddenCrumbs } = useBreadcrumbs();
-  const isStyled = store.use.isStyled();
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
       <DropdownMenuTrigger asChild className="outline-none">
-        {/* <Tooltip>
-          <TooltipTrigger
-            asChild
-          > */}
-            <Button disabled={path.length === 1} className={`${!isStyled && "lg:hidden"} mx-1`} size={"icon"}>
-              <FaHistory />
-            </Button>
-          {/* </TooltipTrigger>
-          <TooltipContent>p</TooltipContent>
-        </Tooltip> */}
+        <button className="flex items-center px-4 gap-1 hover:bg-neutral-700 cursor-pointer duration-150">
+          <RiHistoryFill />
+          <Hotkey is={"P"} />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent alignOffset={-10} align="start" sideOffset={-5}>
         {hiddenCrumbs().map((crumb, index) => {
           return (
-            <DropdownMenuItem
-              key={crumb.id}
-              className="p-0"
-            >
+            <DropdownMenuItem key={crumb.id} className="p-0">
               <Breadcrumb
                 maxLen={30}
                 elem={crumb}

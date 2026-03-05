@@ -5,15 +5,7 @@ import store from "@/state/store";
 import { SearchInput } from "./buttons/SearchInput";
 
 export const Folders = () => {
-  const { childrensData } = useFolders();
-  const mode = store.use.mode();
-  const filteredElements = store.use.filteredElements();
-  const isUserSearching = mode === "Filter" || mode === "Filter Result";
-
-  const elements =
-    mode === "Filter" || mode === "Filter Result"
-      ? filteredElements
-      : childrensData;
+  const { elements, isUserSearching } = useFolders();
 
   return (
     <div
