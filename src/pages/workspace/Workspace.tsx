@@ -5,7 +5,9 @@ import { SearchInput } from "./Components/SearchInput";
 import { MenuButton } from "./ui-elements/MenuButton";
 import { Navigation } from "./Components/Navigation";
 import { Bar } from "./Components/Bar";
+import { Input } from "./ui-elements/Input";
 import store from "@/state/store";
+import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useKeyboardShortcuts } from "@/hooks/folders/useKeyboard";
 
 export const Workspace = () => {
@@ -14,6 +16,7 @@ export const Workspace = () => {
   const isSearch = mode === "Filter" || mode === "Filter Result";
   const fullNavigation = isStyled && !isSearch;
   const searchBar = isStyled || isSearch;
+  const { addUnrelatedFolder } = useFolderManipulation();
   useKeyboardShortcuts();
 
   return (
@@ -24,7 +27,18 @@ export const Workspace = () => {
         {fullNavigation && <MenuButton icon={<IoMdAdd />} hotkey="Shift+A" />}
         <Bar />
       </div>
-      {isSearch ? <SearchedItems /> : <ItemContent />}
+      {mode === "Add Unrelated Folder" ? (
+        <Input 
+          mode="Add Unrelated Folder"
+          submitFunction={addUnrelatedFolder}
+          placeholder="Add unrelated folder"
+          hotkey="U"
+          setModeOnFocus="Add Unrelated Folder"
+          setModeOnBlur="normal"
+        />
+      ) : (
+        isSearch ? <SearchedItems /> : <ItemContent />
+      )}
     </>
   );
 };

@@ -4,21 +4,40 @@ import { useState, useRef, useEffect } from "react";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import store from "@/state/store";
 
-export const Input = () => {
+interface InputProps {
+  mode?: string;
+  submitFunction?: (title: string, ref: number | null) => Promise<void>;
+  placeholder?: string;
+  hotkey?: string;
+  setModeOnFocus?: string;
+  setModeOnBlur?: string;
+}
+
+export const Input = ({ 
+  mode: propMode, 
+  submitFunction, 
+  placeholder = "Add note and connect to it",
+  hotkey = "A",
+  setModeOnFocus = "Add Folder",
+  setModeOnBlur = "normal"
+}: InputProps = {}) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { addFolder } = useFolderManipulation();
-  const mode = store.use.mode();
-  const setMode = store.use.setMode();
+  const globalMode = store.use.mode();
+  const setGlobalMode = store.use.setMode();
+  
+  const mode = propMode || globalMode;
+  const handleSubmitFn = submitFunction || addFolder;
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return;
     
     setIsLoading(true);
     try {
-      // Call addFolder with title and null ref (no reference)
-      await addFolder(inputValue, null);
+      // Call the provided submit function or default addFolder
+      await handleSubmitFn(inputValue, null);
       setInputValue(""); // Clear input after successful submission
     } catch (error) {
       console.error("Error adding folder:", error);
@@ -40,26 +59,26 @@ export const Input = () => {
   };
 
   useEffect(() => {
-    if (mode === "Add Folder") {
+    if (mode === setModeOnFocus) {
       inputRef.current?.focus();
     }
-  }, [mode]);
+  }, [mode, setModeOnFocus]);
 
   return (
     <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full mt-1 pr-1">
-      <Hotkey className="ml-2" is="A" />
+      <Hotkey className="ml-2" is={hotkey} />
       <input
         ref={inputRef}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        onClick={() => setMode("Add Folder")}
-        onBlur={() => setMode("normal")}
+        onClick={() => setGlobalMode(setModeOnFocus as any)}
+        onBlur={() => setGlobalMode(setModeOnBlur as any)}
         disabled={isLoading}
         className="outline-none w-full placeholder:text-white/30 px-4 py-2 flex-1 disabled:opacity-50"
-        placeholder="Add note and connect to it"
+        placeholder={placeholder}
       />
-      {mode === "Add Folder" && (
+      {mode === setModeOnFocus && (
         <Button onClick={handleSubmit} disabled={isLoading || !inputValue.trim()}>
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />
