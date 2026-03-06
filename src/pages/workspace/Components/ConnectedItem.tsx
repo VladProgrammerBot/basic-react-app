@@ -14,7 +14,7 @@ export const ConnectedItem = ({
 }) => {
   const selectedItemId = store.use.selectedItemId()
   const { backlinks, childrens, title, id } = data;
-  const isMinimalist = false;
+  const isStyled = store.use.isStyled();
   const { moveInto, renameFolder } = useItem();
   const [editValue, setEditValue] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,28 +24,28 @@ export const ConnectedItem = ({
   const backlinksNumber = backlinks.length !== 0 && (
     <>
       {backlinks.length}
-      {!isMinimalist && <HiArrowTurnDownRight />}
+      {isStyled && <HiArrowTurnDownRight />}
     </>
   );
 
   const relationsNumber = childrens.length !== 0 && (
     <>
-      {!isMinimalist && <HiArrowTurnRightDown />}
+      {isStyled && <HiArrowTurnRightDown />}
       {childrens.length}
     </>
   );
 
-  const handleSubmit = () => {
-    if (editValue.trim() && editValue !== title) {
-      renameFolder(editValue);
-    }
-    setRenameBuffer(null);
-  };
+    const handleSubmit = () => {
+      if (editValue.trim() && editValue !== title) {
+        renameFolder(editValue);
+      }
+      setRenameBuffer(null);
+    };
 
-  const handleCancel = () => {
-    setEditValue(title);
-    setRenameBuffer(null);
-  };
+    const handleCancel = () => {
+      setEditValue(title);
+      setRenameBuffer(null);
+    };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -64,18 +64,7 @@ export const ConnectedItem = ({
     }
   }, [renameBuffer, id]);
 
-  return (
-    <ContextMenu>
-      <ContextMenuTrigger asChild>
-        <li
-          onClick={() => moveInto(id, index)}
-          className={`flex items-center pl-2 ${selectedItemId === index ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
-        >
-          <span className="text-sm text-neutral-400 flex items-center">
-            {backlinksNumber}
-          </span>
-          
-          {renameBuffer === id ? (
+  const text = renameBuffer === id ? (
             <input
               ref={inputRef}
               type="text"
@@ -88,8 +77,19 @@ export const ConnectedItem = ({
             />
           ) : (
             <p className="flex-1 p-2 px-2">{title}</p>
-          )}
-          
+          )
+
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger asChild>
+        <li
+          onClick={() => moveInto(id, index)}
+          className={`flex items-center pl-2 ${selectedItemId === index ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
+        >
+          <span className="text-sm text-neutral-400 flex items-center">
+            {backlinksNumber}
+          </span>
+          {text}
           <span className="text-sm p-2 text-neutral-400 flex items-center">
             {relationsNumber}
           </span>
