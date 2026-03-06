@@ -11,7 +11,7 @@ export const MenuButton = ({
 }) => {
   return (
     <button
-      className="flex gap-1 items-center px-4 border border-neutral-600 bg-neutral-800 hover:bg-neutral-700 duration-150 cursor-pointer rounded-xl"
+      className="flex gap-1 items-center px-4 py-3 border border-neutral-600 bg-neutral-800 hover:bg-neutral-700 duration-150 cursor-pointer rounded-xl"
       {...props}
     >
       {icon}
