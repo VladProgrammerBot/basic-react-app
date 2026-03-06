@@ -27,6 +27,7 @@ export const Input = ({
   const { addFolder } = useFolderManipulation();
   const globalMode = store.use.mode();
   const setGlobalMode = store.use.setMode();
+  const isStyled = store.use.isStyled();
   
   const mode = propMode || globalMode;
   const handleSubmitFn = submitFunction || addFolder;
@@ -82,7 +83,7 @@ export const Input = ({
         className="outline-none w-full placeholder:text-white/30 px-4 py-2 flex-1 disabled:opacity-50"
         placeholder={placeholder}
       />
-      {(submitFunction || mode === setModeOnFocus) && (
+      {isStyled && (
         <Button onClick={handleButtonClick} disabled={isLoading || !inputValue.trim()}>
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />
