@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { MdKeyboardCommandKey } from "react-icons/md";
+import store from "@/state/store";
 
 export const Hotkey = ({
   is,
@@ -10,9 +11,11 @@ export const Hotkey = ({
   className?: string;
   icon?: ReactNode;
 }) => {
+  const isStyled = store.use.isStyled();
+  
   return (
     <div
-      className={`text-green-500 flex items-center gap-1 bg-green-500/10 w-fit px-2 rounded-full text-nowrap max-lg:hidden ${className}`}
+      className={`text-green-500 flex items-center gap-1 bg-green-500/10 w-fit px-2 rounded-full text-nowrap max-lg:hidden ${!isStyled && "hidden"} ${className}`}
     >
       {icon ?? (<MdKeyboardCommandKey size={15} />)}
       <p className="text-sm">{is}</p>
