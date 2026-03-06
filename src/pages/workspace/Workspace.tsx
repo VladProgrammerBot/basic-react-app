@@ -15,7 +15,7 @@ export const Workspace = () => {
   return (
     <>
       <Header />
-      <div className="pt-12">
+      <div className={"mt-13"}>
         {mode === "Add Unrelated Folder" ? (
           <Input 
             mode="Add Unrelated Folder"

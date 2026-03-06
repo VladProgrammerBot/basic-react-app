@@ -16,9 +16,9 @@ export const ItemContent = () => {
 
   return (
     <div className={containterStyles}>
-      <ItemTitle />
+      {isStyled && <ItemTitle />}
       <TipForRelated />
-      <ul className="space-y-1 mt-1">
+      <ul className="space-y-1 my-1">
         {childrensData.map((data, index) => (
           <ConnectedItem key={index} data={data} index={index} />
         ))}

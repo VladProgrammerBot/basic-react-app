@@ -70,7 +70,7 @@ export const Input = ({
   }, [mode, setModeOnFocus]);
 
   return (
-    <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full mt-1 pr-1">
+    <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full pr-1">
       {hotkey && <Hotkey className="ml-2" is={hotkey} />}
       <input
         ref={inputRef}
