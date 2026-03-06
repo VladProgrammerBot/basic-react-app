@@ -3,10 +3,12 @@ import { TipForRelated } from "./TipForRelated";
 import { Input } from "../ui-elements/Input";
 import { ItemTitle } from "./ItemTitle";
 import { useFolders } from "@/hooks/folders/useFolders";
+import store from "@/state/store";
 
 export const ItemContent = () => {
-  const isMinimalist = false;
-  const containterStyles = !isMinimalist
+  const isStyled = store.use.isStyled();
+  const mode = store.use.mode();
+  const containterStyles = isStyled
     ? "rounded-xl p-2 border border-neutral-700 bg-neutral-800"
     : "";
 
@@ -21,7 +23,7 @@ export const ItemContent = () => {
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {!isMinimalist && <Input hotkey="A" />}
+      {(isStyled || mode === "Add Folder") && <Input hotkey="A" />}
     </div>
   );
 };
