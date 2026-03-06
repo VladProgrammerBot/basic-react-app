@@ -17,16 +17,16 @@ export const ItemTitle = () => {
   const folders = store.use.folders();
   const path = store.use.path();
   const isStyled = store.use.isStyled();
-  
+
   // Current item data
   const currentItem = folders[path[path.length - 1].id];
-  
+
   // Backlinks data
   const backlinksCount = currentItem?.backlinks?.length || 0;
   const backlinksData = getBacklinksData(currentItem?.backlinks || [], folders);
 
   const handleBacklinkClick = (backlinkId: number) => {
-    console.log('Navigate to backlink:', backlinkId);
+    console.log("Navigate to backlink:", backlinkId);
     // TODO: Implement navigation logic
   };
 
@@ -43,16 +43,19 @@ export const ItemTitle = () => {
         )}
         <ItemTitleDisplay title={currentItem?.title} />
       </div>
-      
+
       {isStyled && <ReferenceButton />}
     </div>
   );
 };
 
 // Helper function to get backlinks data
-const getBacklinksData = (backlinkIds: number[], folders: Record<number, folder>): folder[] => {
+const getBacklinksData = (
+  backlinkIds: number[],
+  folders: Record<number, folder>,
+): folder[] => {
   return backlinkIds
-    .map(backlinkId => folders[backlinkId])
+    .map((backlinkId) => folders[backlinkId])
     .filter(Boolean) as folder[];
 };
 
@@ -72,28 +75,34 @@ const BacklinksDropdown = ({
   backlinks: folder[];
   isStyled: boolean;
   onBacklinkClick: (id: number) => void;
-}) => (
-  <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-      <Button className="text-neutral-400">
-        {count}
-        {isStyled && <HiArrowTurnDownRight />}
-        <Hotkey is="B" />
-      </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent>
-      {backlinks.map((backlink) => (
-        <DropdownMenuItem
-          key={backlink.id}
-          onClick={() => onBacklinkClick(backlink.id)}
-          className="cursor-pointer"
-        >
-          {backlink.title}
-        </DropdownMenuItem>
-      ))}
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
+}) => {
+  const mode = store.use.mode();
+  const setMode = store.use.setMode();
+  const selectedItemId = store.use.selectedItemId();
+
+  return (
+    <DropdownMenu onOpenChange={(open) => setMode(open ? "Backlinks" : "normal")} open={mode === "Backlinks"}>
+      <DropdownMenuTrigger asChild>
+        <Button className="text-neutral-400">
+          {count}
+          {isStyled && <HiArrowTurnDownRight />}
+          <Hotkey is="B" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {backlinks.map((backlink, index) => (
+          <DropdownMenuItem
+            key={backlink.id}
+            onClick={() => onBacklinkClick(backlink.id)}
+            className={`cursor-pointer ${index === selectedItemId ? "bg-neutral-700" : ""}`}
+          >
+            {backlink.title}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 // Component for reference button
 const ReferenceButton = () => (

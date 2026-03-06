@@ -4,7 +4,8 @@ type mode =
   | "Add Unrelated Folder"
   | "AI Generate"
   | "Filter"
-  | "Filter Result";
+  | "Filter Result"
+  | "Backlinks";
 
 export interface foldersSlice {
   folders: objectFolder;

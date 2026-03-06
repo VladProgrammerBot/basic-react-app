@@ -42,7 +42,11 @@ export const useKeyboardShortcuts = () => {
       setRenameBuffer(null);
     }
 
-    if ((mode !== "normal" && mode !== "Filter Result") || renameBuffer) return;
+    if (
+      (mode !== "normal" && mode !== "Filter Result" && mode !== "Backlinks") ||
+      renameBuffer
+    )
+      return;
     const selectedId =
       typeof selectedItemId === "number" ? childrensId[selectedItemId] : null;
 
@@ -68,6 +72,12 @@ export const useKeyboardShortcuts = () => {
 
     if (e.repeat) return;
     const parentId = path[path.length - 1].id;
+
+    if (e.code === "KeyB") {
+      if (mode === "Backlinks") return setMode("normal");
+      setSelectedItemId(0);
+      return setMode("Backlinks");
+    }
 
     if (e.code === "KeyH" && path.length !== 1) {
       if (e.shiftKey) return moveOut(0);
