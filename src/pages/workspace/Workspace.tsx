@@ -26,7 +26,7 @@ export const Workspace = () => {
         {fullNavigation && <Navigation />}
         {searchBar && <SearchInput />}
         {fullNavigation && <MenuButton onClick={() => setMode("Add Unrelated Folder")} icon={<IoMdAdd />} hotkey="Shift+A" />}
-        <Bar />
+        {isStyled && <Bar />}
       </div>
       {mode === "Add Unrelated Folder" ? (
         <Input 
