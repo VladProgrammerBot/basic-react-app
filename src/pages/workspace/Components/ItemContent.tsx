@@ -9,7 +9,7 @@ export const ItemContent = () => {
   const isStyled = store.use.isStyled();
   const mode = store.use.mode();
   const containterStyles = isStyled
-    ? "rounded-xl p-2 border border-neutral-700 bg-neutral-800"
+    ? "rounded-xl p-2 bg-neutral-800"
     : "";
 
   const { childrensData } = useFolders();

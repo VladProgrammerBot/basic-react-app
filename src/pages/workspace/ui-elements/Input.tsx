@@ -13,13 +13,13 @@ interface InputProps {
   setModeOnBlur?: string;
 }
 
-export const Input = ({ 
-  mode: propMode, 
-  submitFunction, 
+export const Input = ({
+  mode: propMode,
+  submitFunction,
   placeholder = "Add note and connect to it",
   hotkey,
   setModeOnFocus = "Add Folder",
-  setModeOnBlur = "normal"
+  setModeOnBlur = "normal",
 }: InputProps = {}) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +28,13 @@ export const Input = ({
   const globalMode = store.use.mode();
   const setGlobalMode = store.use.setMode();
   const isStyled = store.use.isStyled();
-  
+
   const mode = propMode || globalMode;
   const handleSubmitFn = submitFunction || addFolder;
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return;
-    
+
     setIsLoading(true);
     try {
       // Call the provided submit function or default addFolder
@@ -84,7 +84,10 @@ export const Input = ({
         placeholder={placeholder}
       />
       {isStyled && (
-        <Button onClick={handleButtonClick} disabled={isLoading || !inputValue.trim()}>
+        <Button
+          onClick={handleButtonClick}
+          disabled={isLoading || !inputValue.trim()}
+        >
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />
         </Button>

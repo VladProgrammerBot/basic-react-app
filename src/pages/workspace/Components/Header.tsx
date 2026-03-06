@@ -19,7 +19,7 @@ export const Header = () => {
       <div className="max-w-xl mx-auto p-2">
         <div className="flex justify-between gap-1">
           {!isStyled && !isSearch && (
-            <div className="flex-1 border border-neutral-600 bg-neutral-800 rounded-xl p-1">
+            <div className="flex-1 bg-neutral-800 rounded-xl p-1">
               <ItemTitle />
             </div>
           )}

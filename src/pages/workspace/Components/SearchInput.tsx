@@ -31,7 +31,7 @@ export const SearchInput = () => {
             InputRef.current?.blur();
           }
         }}
-        className="flex flex-1 items-center gap-2 pl-4 p-2 border border-white/20 bg-neutral-800 rounded-xl"
+        className="flex flex-1 items-center gap-2 pl-4 p-2 bg-neutral-800 rounded-xl"
       >
         <IoSearchOutline size={25} />
         <input
