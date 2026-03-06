@@ -23,7 +23,7 @@ export const ItemContent = () => {
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {isStyled || mode === "Add Folder" && <Input hotkey="A" />}
+      {(isStyled || mode === "Add Folder") && <Input hotkey="A" />}
     </div>
   );
 };
