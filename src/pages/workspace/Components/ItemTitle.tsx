@@ -1,61 +1,104 @@
 import { HiArrowTurnDownRight } from "react-icons/hi2";
-import { Hotkey } from "../ui-elements/HotKeyTip";
 import { FaLink } from "react-icons/fa6";
+
+import { Hotkey } from "../ui-elements/HotKeyTip";
 import { Button } from "../ui-elements/Button";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import store from "@/state/store";
 
 export const ItemTitle = () => {
+  // Store state
   const folders = store.use.folders();
   const path = store.use.path();
   const isStyled = store.use.isStyled();
-  const item = folders[path[path.length - 1].id];
   
-  const backlinksCount = item?.backlinks?.length || 0;
-  const backlinksData = item?.backlinks?.map(backlinkId => folders[backlinkId]).filter(Boolean) || [];
+  // Current item data
+  const currentItem = folders[path[path.length - 1].id];
+  
+  // Backlinks data
+  const backlinksCount = currentItem?.backlinks?.length || 0;
+  const backlinksData = getBacklinksData(currentItem?.backlinks || [], folders);
 
   const handleBacklinkClick = (backlinkId: number) => {
     console.log('Navigate to backlink:', backlinkId);
+    // TODO: Implement navigation logic
   };
 
   return (
     <div className="flex items-start justify-between">
-      <span className="flex items-start">
+      <div className="flex items-start">
         {backlinksCount > 0 && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button className="text-neutral-400">
-                {backlinksCount}
-                {isStyled && <HiArrowTurnDownRight />}
-                <Hotkey is="B" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {backlinksData.map((backlink) => (
-                <DropdownMenuItem 
-                  key={backlink.id}
-                  onClick={() => handleBacklinkClick(backlink.id)}
-                  className="cursor-pointer"
-                >
-                  {backlink.title}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <BacklinksDropdown
+            count={backlinksCount}
+            backlinks={backlinksData}
+            isStyled={isStyled}
+            onBacklinkClick={handleBacklinkClick}
+          />
         )}
-        <p className="font-bold text-xl px-2">{item?.title}</p>
-      </span>
-      {isStyled && (
-        <Button className="py-2">
-          <FaLink fontSize={17} />
-          <Hotkey is="R" />
-        </Button>
-      )}
+        <ItemTitleDisplay title={currentItem?.title} />
+      </div>
+      
+      {isStyled && <ReferenceButton />}
     </div>
   );
 };
+
+// Helper function to get backlinks data
+const getBacklinksData = (backlinkIds: number[], folders: Record<number, folder>): folder[] => {
+  return backlinkIds
+    .map(backlinkId => folders[backlinkId])
+    .filter(Boolean) as folder[];
+};
+
+// Component for displaying the item title
+const ItemTitleDisplay = ({ title }: { title?: string }) => (
+  <p className="font-bold text-xl px-2">{title}</p>
+);
+
+// Component for backlinks dropdown
+const BacklinksDropdown = ({
+  count,
+  backlinks,
+  isStyled,
+  onBacklinkClick,
+}: {
+  count: number;
+  backlinks: folder[];
+  isStyled: boolean;
+  onBacklinkClick: (id: number) => void;
+}) => (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button className="text-neutral-400">
+        {count}
+        {isStyled && <HiArrowTurnDownRight />}
+        <Hotkey is="B" />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      {backlinks.map((backlink) => (
+        <DropdownMenuItem
+          key={backlink.id}
+          onClick={() => onBacklinkClick(backlink.id)}
+          className="cursor-pointer"
+        >
+          {backlink.title}
+        </DropdownMenuItem>
+      ))}
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
+
+// Component for reference button
+const ReferenceButton = () => (
+  <Button className="py-2">
+    <FaLink fontSize={17} />
+    <Hotkey is="R" />
+  </Button>
+);
