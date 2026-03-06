@@ -14,7 +14,7 @@ export const MenuButton = ({
 
   return (
     <button
-      className={`flex gap-1 items-center hover:bg-neutral-700 duration-150 cursor-pointer rounded-xl py-2 px-4 ${isStyled && " border border-neutral-600 bg-neutral-800"}`}
+      className={`flex gap-1 items-center hover:bg-neutral-700 duration-150 cursor-pointer rounded-xl py-2 px-4 ${isStyled && " border border-white/20 bg-neutral-800"}`}
       {...props}
     >
       {icon}
