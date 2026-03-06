@@ -11,12 +11,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import store from "@/state/store";
+import { useItem } from "@/hooks/folders/useItem";
 
 export const ItemTitle = () => {
   // Store state
   const folders = store.use.folders();
   const path = store.use.path();
   const isStyled = store.use.isStyled();
+  const { moveInto } = useItem();
 
   // Current item data
   const currentItem = folders[path[path.length - 1].id];
@@ -26,8 +28,7 @@ export const ItemTitle = () => {
   const backlinksData = getBacklinksData(currentItem?.backlinks || [], folders);
 
   const handleBacklinkClick = (backlinkId: number) => {
-    console.log("Navigate to backlink:", backlinkId);
-    // TODO: Implement navigation logic
+    moveInto(backlinkId, 0);
   };
 
   return (

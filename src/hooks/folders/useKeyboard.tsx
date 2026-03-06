@@ -72,8 +72,10 @@ export const useKeyboardShortcuts = () => {
 
     if (e.repeat) return;
     const parentId = path[path.length - 1].id;
+    const parent = folders[parentId];
 
     if (e.code === "KeyB") {
+      if (parent.backlinks.length === 0) return;
       if (mode === "Backlinks") return setMode("normal");
       setSelectedItemId(0);
       return setMode("Backlinks");
@@ -136,6 +138,9 @@ export const useKeyboardShortcuts = () => {
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
       setSelectedItemId(0);
+      if (mode === "Backlinks") {
+        return moveInto(parent.backlinks[selectedItemId], 0);
+      }
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 

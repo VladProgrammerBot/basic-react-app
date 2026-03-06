@@ -85,7 +85,7 @@ export const ConnectedItem = ({
       <ContextMenuTrigger asChild>
         <li
           onClick={() => moveInto(id, index)}
-          className={`flex items-center pl-2 ${selectedItemId === index && mode === "normal" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
+          className={`flex items-center pl-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
         >
           <span className="text-sm text-neutral-400 flex items-center">
             {backlinksNumber}
