@@ -5,10 +5,10 @@ import { FaLink, FaLinkSlash } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import type { ReactNode } from "react";
 import {
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuShortcut,
-} from "@/components/ui/context-menu";
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+} from "@/components/ui/dropdown-menu";
 import store from "@/state/store";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import { useChildrens } from "@/hooks/folders/useChildrens";
@@ -92,23 +92,24 @@ export const ItemContextMenu = ({
   ];
 
   return (
-    <ContextMenuContent>
+    <DropdownMenuContent>
       {menuActions.map(({ label, shortcut, icon, onClick, disabled }) => {
         return (
-          <ContextMenuItem
+          <DropdownMenuItem
             key={shortcut}
             onClick={onClick}
             disabled={disabled}
             className="flex items-center gap-4"
+            disactive={disabled}
           >
             {icon}
             <span className="flex-1">{label}</span>
-            <ContextMenuShortcut className="max-lg:hidden">
+            <DropdownMenuShortcut className="max-lg:hidden">
               {shortcut}
-            </ContextMenuShortcut>
-          </ContextMenuItem>
+            </DropdownMenuShortcut>
+          </DropdownMenuItem>
         );
       })}
-    </ContextMenuContent>
+    </DropdownMenuContent>
   );
 };
