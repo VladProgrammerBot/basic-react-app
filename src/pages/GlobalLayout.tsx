@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 
 export const GlobalLayout = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (localStorage.getItem("token")) navigate("/workspace")
-    }, [])
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/workspace");
+  }, []);
 
-    return (
-        <Outlet />
-    );
+  return <Outlet />;
 };

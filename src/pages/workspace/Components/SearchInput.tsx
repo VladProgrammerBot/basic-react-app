@@ -26,7 +26,7 @@ export const SearchInput = () => {
             e.preventDefault();
             setMode("Filter Result");
             InputRef.current?.blur();
-          } 
+          }
           if (e.key === "Escape") {
             InputRef.current?.blur();
           }
@@ -45,13 +45,14 @@ export const SearchInput = () => {
         />
         <Hotkey is="S" />
       </div>
-      {(mode === "Filter" || mode === "Filter Result") && designMode !== "Minimalistic" && (
-        <MenuButton
-          onClick={() => setMode("normal")}
-          icon={<IoClose />}
-          hotkey="Esc"
-        />
-      )}
+      {(mode === "Filter" || mode === "Filter Result") &&
+        designMode !== "Minimalistic" && (
+          <MenuButton
+            onClick={() => setMode("normal")}
+            icon={<IoClose />}
+            hotkey="Esc"
+          />
+        )}
     </>
   );
 };

@@ -21,7 +21,7 @@ export const useBar = () => {
   const setDesignMode = store.use.setDesignMode();
 
   const [username, setUsername] = useState("");
-  const [isBarOpen, setIsBarOpen] = useState(false)
+  const [isBarOpen, setIsBarOpen] = useState(false);
 
   useEffect(() => {
     try {

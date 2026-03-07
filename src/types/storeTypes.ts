@@ -25,7 +25,7 @@ export interface foldersSlice {
   removeConnection: (parentId: number, childId: number) => void;
 }
 
-export type path = { id: number; index: number }
+export type path = { id: number; index: number };
 
 export interface pathSlice {
   path: path[];

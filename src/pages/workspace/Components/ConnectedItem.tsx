@@ -12,7 +12,7 @@ export const ConnectedItem = ({
   data: folder;
   index: number;
 }) => {
-  const selectedItemId = store.use.selectedItemId()
+  const selectedItemId = store.use.selectedItemId();
   const { backlinks, childrens, title, id } = data;
   const designMode = store.use.designMode();
   const { moveInto, renameFolder } = useItem();
@@ -36,17 +36,17 @@ export const ConnectedItem = ({
     </>
   );
 
-    const handleSubmit = () => {
-      if (editValue.trim() && editValue !== title) {
-        renameFolder(editValue);
-      }
-      setRenameBuffer(null);
-    };
+  const handleSubmit = () => {
+    if (editValue.trim() && editValue !== title) {
+      renameFolder(editValue);
+    }
+    setRenameBuffer(null);
+  };
 
-    const handleCancel = () => {
-      setEditValue(title);
-      setRenameBuffer(null);
-    };
+  const handleCancel = () => {
+    setEditValue(title);
+    setRenameBuffer(null);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -65,20 +65,21 @@ export const ConnectedItem = ({
     }
   }, [renameBuffer, id]);
 
-  const text = renameBuffer === id ? (
-            <input
-              ref={inputRef}
-              type="text"
-              value={editValue}
-              onChange={(e) => setEditValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onBlur={handleCancel}
-              className="flex-1 p-2 px-2 bg-neutral-800 text-white outline-none rounded"
-              onClick={(e) => e.stopPropagation()}
-            />
-          ) : (
-            <p className="flex-1 p-2 px-2">{title}</p>
-          )
+  const text =
+    renameBuffer === id ? (
+      <input
+        ref={inputRef}
+        type="text"
+        value={editValue}
+        onChange={(e) => setEditValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onBlur={handleCancel}
+        className="flex-1 p-2 px-2 bg-neutral-800 text-white outline-none rounded"
+        onClick={(e) => e.stopPropagation()}
+      />
+    ) : (
+      <p className="flex-1 p-2 px-2">{title}</p>
+    );
 
   return (
     <ContextMenu>

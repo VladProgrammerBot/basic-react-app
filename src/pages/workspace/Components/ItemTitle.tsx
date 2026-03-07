@@ -46,7 +46,9 @@ export const ItemTitle = () => {
         <ItemTitleDisplay title={currentItem?.title} />
       </div>
 
-      {designMode !== "Minimalistic" && moveBuffer !== null && <ReferenceButton />}
+      {designMode !== "Minimalistic" && moveBuffer !== null && (
+        <ReferenceButton />
+      )}
     </div>
   );
 };
@@ -111,7 +113,7 @@ const BacklinksDropdown = ({
 
 // Component for reference button
 const ReferenceButton = () => {
-  const {addConnection} = useItem()
+  const { addConnection } = useItem();
 
   return (
     <Button className="py-2" onClick={() => addConnection()}>

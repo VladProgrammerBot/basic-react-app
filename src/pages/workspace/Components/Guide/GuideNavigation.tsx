@@ -22,12 +22,8 @@ export const GuideNavigation: React.FC<GuideNavigationProps> = ({
 }) => {
   return (
     <div className="flex justify-between pt-4">
-      {currentStep > 0 ? (
-        <Button onClick={onBack}>Back</Button>
-      ) : (
-        <div></div>
-      )}
-      
+      {currentStep > 0 ? <Button onClick={onBack}>Back</Button> : <div></div>}
+
       {isTyping ? (
         <Button onClick={onSkip}>Show all</Button>
       ) : currentStep < totalSteps - 1 ? (

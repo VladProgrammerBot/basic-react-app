@@ -8,9 +8,8 @@ import store from "@/state/store";
 export const ItemContent = () => {
   const designMode = store.use.designMode();
   const mode = store.use.mode();
-  const containterStyles = designMode !== "Minimalistic"
-    ? "rounded-xl p-2 bg-neutral-800"
-    : "";
+  const containterStyles =
+    designMode !== "Minimalistic" ? "rounded-xl p-2 bg-neutral-800" : "";
 
   const { childrensData } = useFolders();
 
@@ -23,7 +22,9 @@ export const ItemContent = () => {
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {(designMode !== "Minimalistic" || mode === "Add Folder") && <Input hotkey="A" />}
+      {(designMode !== "Minimalistic" || mode === "Add Folder") && (
+        <Input hotkey="A" />
+      )}
     </div>
   );
 };

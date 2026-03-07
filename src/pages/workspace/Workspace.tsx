@@ -17,15 +17,17 @@ export const Workspace = () => {
       <Header />
       <div className={"mt-13"}>
         {mode === "Add Unrelated Folder" ? (
-          <Input 
+          <Input
             mode="Add Unrelated Folder"
             submitFunction={addUnrelatedFolder}
             placeholder="Add unrelated folder"
             setModeOnFocus="Add Unrelated Folder"
             setModeOnBlur="normal"
           />
+        ) : isSearch ? (
+          <SearchedItems />
         ) : (
-          isSearch ? <SearchedItems /> : <ItemContent />
+          <ItemContent />
         )}
       </div>
     </>

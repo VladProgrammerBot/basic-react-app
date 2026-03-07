@@ -10,33 +10,32 @@ import { useChildrens } from "./useChildrens";
 
 export const useFolders = () => {
   const folders = store.use.folders();
-  const childrensId = useChildrens()
-  const pushMultipleFolder = store.use.pushMultipleFolder()
-  const setMode = store.use.setMode()
+  const childrensId = useChildrens();
+  const pushMultipleFolder = store.use.pushMultipleFolder();
+  const setMode = store.use.setMode();
   const path = store.use.path();
-  const moveBuffer = store.use.moveBuffer()
-  const mode = store.use.mode()
+  const moveBuffer = store.use.moveBuffer();
+  const mode = store.use.mode();
   const isUserSearching = mode === "Filter" || mode === "Filter Result";
 
-  const { moveFolder } = usePath()
-  const { alertError, useAlert } = useAlerts()
+  const { moveFolder } = usePath();
+  const { alertError, useAlert } = useAlerts();
 
   const childrensData = useMemo(() => {
     const sortedChildrens = new Array(0);
     childrensId.forEach((child) => {
-
-      const data = folders[child]
+      const data = folders[child];
       sortedChildrens.push({
-        ...data
-      })
-    })
- 
+        ...data,
+      });
+    });
+
     return sortedChildrens as folder[];
   }, [childrensId, folders, path]);
 
   const generateFolders = async (prompt: string) => {
-    const token = localStorage.getItem("token")
-    const id = path[path.length - 1].id
+    const token = localStorage.getItem("token");
+    const id = path[path.length - 1].id;
 
     try {
       await fetch(api + "/folders/generate", {
@@ -47,19 +46,24 @@ export const useFolders = () => {
         body: JSON.stringify({
           id: id,
           prompt: prompt,
-          token: token
-        })
+          token: token,
+        }),
       })
-        .then(res => res.json())
-        .then(data => {
-          setMode("normal")
-          pushMultipleFolder(data.data, childrensId, data.mainParentChildrens, id)
+        .then((res) => res.json())
+        .then((data) => {
+          setMode("normal");
+          pushMultipleFolder(
+            data.data,
+            childrensId,
+            data.mainParentChildrens,
+            id,
+          );
           // pushChildren(data.mainParentChildrens[0])
-        })
+        });
     } catch (error) {
-      alertError("generate folders")
+      alertError("generate folders");
     }
-  }
+  };
 
   const buttons = [
     {
@@ -67,23 +71,26 @@ export const useFolders = () => {
       icon: <IoMdAdd />,
       func: () => setMode("Add Folder"),
       cond: true,
-      Hotkeys: "a"
+      Hotkeys: "a",
     },
     {
       title: "Generate",
       icon: <RiGeminiFill />,
-      func: () => localStorage.getItem("token") ? setMode("AI Generate") : useAlert({color: "blue", text: "Log in to use AI features."}),
+      func: () =>
+        localStorage.getItem("token")
+          ? setMode("AI Generate")
+          : useAlert({ color: "blue", text: "Log in to use AI features." }),
       cond: true,
-      Hotkeys: "g"
+      Hotkeys: "g",
     },
     {
       title: "Paste",
       icon: <FaPaste />,
       func: moveFolder,
       cond: moveBuffer,
-      Hotkeys: "m"
-    }
-  ]
+      Hotkeys: "m",
+    },
+  ];
 
   // const elements =
   //   isUserSearching
@@ -95,6 +102,6 @@ export const useFolders = () => {
     generateFolders,
     buttons,
     // elements,
-    isUserSearching
+    isUserSearching,
   };
 };

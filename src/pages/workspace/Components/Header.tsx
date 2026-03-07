@@ -25,7 +25,13 @@ export const Header = () => {
           )}
           {fullNavigation && <Navigation />}
           {searchBar && <SearchInput />}
-          {fullNavigation && <MenuButton onClick={() => setMode("Add Unrelated Folder")} icon={<IoMdAdd />} hotkey="Shift+A" />}
+          {fullNavigation && (
+            <MenuButton
+              onClick={() => setMode("Add Unrelated Folder")}
+              icon={<IoMdAdd />}
+              hotkey="Shift+A"
+            />
+          )}
           <Bar />
         </div>
       </div>

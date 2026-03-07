@@ -2,12 +2,12 @@ import type { StateCreator } from "zustand";
 import type { moveBufferSlice } from "../../types/storeTypes";
 
 export const createMoveBufferSlice: StateCreator<moveBufferSlice> = (set) => ({
-    moveBuffer: null,
-    setBuffer: (id, parent) => {
-        set({ moveBuffer: { id: id, parent: parent } })
-    },
-    resetMoveBuffer: () => set({ moveBuffer: null }),
+  moveBuffer: null,
+  setBuffer: (id, parent) => {
+    set({ moveBuffer: { id: id, parent: parent } });
+  },
+  resetMoveBuffer: () => set({ moveBuffer: null }),
 
-    IdForNewConnection: null,
-    setIdForNewConnection: (value) => set({ IdForNewConnection: value }),
-})
+  IdForNewConnection: null,
+  setIdForNewConnection: (value) => set({ IdForNewConnection: value }),
+});

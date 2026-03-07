@@ -15,9 +15,7 @@ export const SearchedItems = () => {
     <ul className="space-y-1">
       <TipForRelated />
       {filteredElements.map((data, index) => {
-        return (
-            <ConnectedItem key={data.id} data={data} index={index} />
-        );
+        return <ConnectedItem key={data.id} data={data} index={index} />;
       })}
     </ul>
   );

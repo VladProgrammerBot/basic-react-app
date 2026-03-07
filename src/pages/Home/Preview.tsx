@@ -14,96 +14,95 @@ const NotesStructurePreview: React.FC = () => {
   const [visibleNotes, setVisibleNotes] = useState<Note[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-const notes: Note[] = [
-  {
-    id: 1,
-    level: 0,
-    text: "Ідеї для проекту",
-    icon: "💡",
-    color: "bg-yellow-500",
-  },
+  const notes: Note[] = [
+    {
+      id: 1,
+      level: 0,
+      text: "Ідеї для проекту",
+      icon: "💡",
+      color: "bg-yellow-500",
+    },
 
-  {
-    id: 2,
-    level: 1,
-    text: "Нова функція автозбереження",
-    icon: "✨",
-    color: "bg-purple-500",
-  },
+    {
+      id: 2,
+      level: 1,
+      text: "Нова функція автозбереження",
+      icon: "✨",
+      color: "bg-purple-500",
+    },
 
-  {
-    id: 3,
-    level: 0,
-    text: "Рецепти",
-    icon: "📚",
-    color: "bg-blue-500",
-  },
+    {
+      id: 3,
+      level: 0,
+      text: "Рецепти",
+      icon: "📚",
+      color: "bg-blue-500",
+    },
 
-  {
-    id: 4,
-    level: 1,
-    text: "Омлет",
-    icon: "🍳",
-    color: "bg-green-500",
-  },
+    {
+      id: 4,
+      level: 1,
+      text: "Омлет",
+      icon: "🍳",
+      color: "bg-green-500",
+    },
 
-  {
-    id: 5,
-    level: 2,
-    text: "Збити 2 яйця з молоком",
-    icon: "1️⃣",
-    color: "bg-cyan-500",
-  },
+    {
+      id: 5,
+      level: 2,
+      text: "Збити 2 яйця з молоком",
+      icon: "1️⃣",
+      color: "bg-cyan-500",
+    },
 
-  {
-    id: 6,
-    level: 2,
-    text: "Смажити 3 хв на середньому вогні",
-    icon: "2️⃣",
-    color: "bg-cyan-500",
-  },
+    {
+      id: 6,
+      level: 2,
+      text: "Смажити 3 хв на середньому вогні",
+      icon: "2️⃣",
+      color: "bg-cyan-500",
+    },
 
-  {
-    id: 8,
-    level: 0,
-    text: "Плани на тиждень",
-    icon: "📋",
-    color: "bg-orange-500",
-  },
+    {
+      id: 8,
+      level: 0,
+      text: "Плани на тиждень",
+      icon: "📋",
+      color: "bg-orange-500",
+    },
 
-  {
-    id: 9,
-    level: 1,
-    text: "Понеділок",
-    icon: "📅",
-    color: "bg-pink-500",
-  },
+    {
+      id: 9,
+      level: 1,
+      text: "Понеділок",
+      icon: "📅",
+      color: "bg-pink-500",
+    },
 
-  {
-    id: 10,
-    level: 2,
-    text: "Дедлайн звіту",
-    icon: "📝",
-    color: "bg-gray-500",
-  },
+    {
+      id: 10,
+      level: 2,
+      text: "Дедлайн звіту",
+      icon: "📝",
+      color: "bg-gray-500",
+    },
 
-  {
-    id: 11,
-    level: 1,
-    text: "Вівторок",
-    icon: "📅",
-    color: "bg-pink-500",
-  },
+    {
+      id: 11,
+      level: 1,
+      text: "Вівторок",
+      icon: "📅",
+      color: "bg-pink-500",
+    },
 
-  {
-    id: 12,
-    level: 2,
-    text: "...",
-    icon: "",
-    color: "bg-gray-500",
-  },
-];
-
+    {
+      id: 12,
+      level: 2,
+      text: "...",
+      icon: "",
+      color: "bg-gray-500",
+    },
+  ];
 
   useEffect(() => {
     if (currentIndex >= notes.length) {

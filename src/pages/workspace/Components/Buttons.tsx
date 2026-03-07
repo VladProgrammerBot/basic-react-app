@@ -17,7 +17,7 @@ export const Buttons = () => {
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
   const designMode = store.use.designMode();
-  const childrensId = useChildrens()
+  const childrensId = useChildrens();
 
   return (
     <div

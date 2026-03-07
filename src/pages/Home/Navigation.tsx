@@ -34,9 +34,9 @@ export const Navigation = ({ isLoggedIn, onSignIn }: NavigationProps) => {
           <>
             <Button variant="default" size="icon" onClick={onSignIn}>
               Sign In
-            <p className="text-xs text-black/50 dark:text-white/50">
-              Press L
-            </p>
+              <p className="text-xs text-black/50 dark:text-white/50">
+                Press L
+              </p>
             </Button>
           </>
         )}

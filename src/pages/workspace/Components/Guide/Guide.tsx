@@ -51,7 +51,12 @@ export const Guide: React.FC = () => {
           onFinish={handleFinish}
         />
       ) : (
-        <BigButton className="animate-fade-in" Func={() => setIsGuideOpen(true)} text="?" tooltip="Open Guide" />
+        <BigButton
+          className="animate-fade-in"
+          Func={() => setIsGuideOpen(true)}
+          text="?"
+          tooltip="Open Guide"
+        />
       )}
     </div>
   );

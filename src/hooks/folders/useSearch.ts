@@ -41,5 +41,5 @@ export const useSearch = () => {
     }
   };
 
-  return {setSearchValue, searchValue}
+  return { setSearchValue, searchValue };
 };
