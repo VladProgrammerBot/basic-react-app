@@ -50,25 +50,43 @@ export const useKeyboardShortcuts = () => {
     const selectedId =
       typeof selectedItemId === "number" ? childrensId[selectedItemId] : null;
 
+    const isLastItem = selectedItemId === childrensId.length - 1;
+    const isFirstItem = selectedItemId === 0;
+    const isNotSelected = selectedItemId === null;
+
     if (e.code === "KeyJ") {
-      if (selectedItemId === null) {
+      if (isNotSelected) {
         return setSelectedItemId(0);
       }
-      if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, -1);
-      if (selectedItemId < childrensId.length - 1) {
-        return setSelectedItemId(selectedItemId + 1);
+      if (e.shiftKey && selectedId && !e.repeat) {
+        replaceFolders(selectedId, -1);
       }
+      setSelectedItemId(isLastItem ? 0 : selectedItemId + 1);
     }
 
     if (e.code === "KeyK") {
-      if (selectedItemId === null) {
+      if (isNotSelected) {
         return setSelectedItemId(childrensId.length - 1);
       }
-      if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, 1);
-      if (selectedItemId > 0) {
-        return setSelectedItemId(selectedItemId - 1);
+      if (e.shiftKey && selectedId && !e.repeat) {
+        replaceFolders(selectedId, 1);
       }
+      setSelectedItemId(isFirstItem ? childrensId.length - 1 : selectedItemId - 1);
     }
+
+    // if (e.code === "KeyK") {
+    //   if (selectedItemId === null) {
+    //     setSelectedItemId(childrensId.length - 1);
+    //     return;
+    //   }
+
+    //   if (e.shiftKey && selectedId && !e.repeat) {
+    //     replaceFolders(selectedId, 1);
+    //     return;
+    //   }
+
+    //   setSelectedItemId(selectedItemId === 0 ? childrensId.length - 1 : selectedItemId - 1);
+    // }
 
     if (e.repeat) return;
     const parentId = path[path.length - 1].id;
