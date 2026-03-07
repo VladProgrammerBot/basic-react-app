@@ -13,13 +13,13 @@ interface InputProps {
   setModeOnBlur?: string;
 }
 
-export const Input = ({ 
-  mode: propMode, 
-  submitFunction, 
+export const Input = ({
+  mode: propMode,
+  submitFunction,
   placeholder = "Add note and connect to it",
   hotkey,
   setModeOnFocus = "Add Folder",
-  setModeOnBlur = "normal"
+  setModeOnBlur = "normal",
 }: InputProps = {}) => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,14 +27,14 @@ export const Input = ({
   const { addFolder } = useFolderManipulation();
   const globalMode = store.use.mode();
   const setGlobalMode = store.use.setMode();
-  const isStyled = store.use.isStyled();
-  
+  const designMode = store.use.designMode();
+
   const mode = propMode || globalMode;
   const handleSubmitFn = submitFunction || addFolder;
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return;
-    
+
     setIsLoading(true);
     try {
       // Call the provided submit function or default addFolder
@@ -70,7 +70,7 @@ export const Input = ({
   }, [mode, setModeOnFocus]);
 
   return (
-    <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full mt-1 pr-1">
+    <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full pr-1">
       {hotkey && <Hotkey className="ml-2" is={hotkey} />}
       <input
         ref={inputRef}
@@ -83,8 +83,11 @@ export const Input = ({
         className="outline-none w-full placeholder:text-white/30 px-4 py-2 flex-1 disabled:opacity-50"
         placeholder={placeholder}
       />
-      {isStyled && (
-        <Button onClick={handleButtonClick} disabled={isLoading || !inputValue.trim()}>
+      {designMode !== "Minimalistic" && (
+        <Button
+          onClick={handleButtonClick}
+          disabled={isLoading || !inputValue.trim()}
+        >
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />
         </Button>

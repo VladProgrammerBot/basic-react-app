@@ -17,13 +17,13 @@ export type authType = "Log in" | "Sign up";
 
 export const AuthForm = ({ type }: { type: authType }) => {
   const { onSubmit, form, isLoading, isError } = useLogin(type);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const ref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    ref.current?.focus()
-  }, [])
+    ref.current?.focus();
+  }, []);
 
   return (
     <Form {...form}>
@@ -34,10 +34,7 @@ export const AuthForm = ({ type }: { type: authType }) => {
             {type === "Log in" ? (
               <NavLink to={"/signup"}>Create new account</NavLink>
             ) : (
-
-              <NavLink to={"/login"}>
-                Login into account
-              </NavLink>
+              <NavLink to={"/login"}>Login into account</NavLink>
             )}
           </p>
         </div>
@@ -63,7 +60,11 @@ export const AuthForm = ({ type }: { type: authType }) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter some password" type="password" {...field} />
+                  <Input
+                    placeholder="Enter some password"
+                    type="password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -71,9 +72,18 @@ export const AuthForm = ({ type }: { type: authType }) => {
           />
         </div>
         <div className="w-full flex justify-end gap-2">
-          <Button type="button" variant={"outline"} onClick={() => navigate("/")}>Cancel</Button>
+          <Button
+            type="button"
+            variant={"outline"}
+            onClick={() => navigate("/")}
+          >
+            Cancel
+          </Button>
           {isLoading ? (
-            <Button variant={"disactive"} type="submit"><span className="auth-loader"></span>{type}</Button>
+            <Button variant={"disactive"} type="submit">
+              <span className="auth-loader"></span>
+              {type}
+            </Button>
           ) : (
             <Button type="submit">{type}</Button>
           )}

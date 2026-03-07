@@ -5,22 +5,22 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
   folders: {},
   setFolders: (data) => set({ folders: data }),
   pushFolder: (folder, id, parentId) =>
-  set((state) => {
-    const newFolders = {
-      ...state.folders,
-      [folder.id]: folder,
-    } as objectFolder;
+    set((state) => {
+      const newFolders = {
+        ...state.folders,
+        [folder.id]: folder,
+      } as objectFolder;
 
-    // Якщо parentId є, оновлюємо його childrens
-    if (parentId) {
-      newFolders[parentId] = {
-        ...state.folders[parentId],
-        childrens: [...(state.folders[parentId]?.childrens || []), id],
-      };
-    }
+      // Якщо parentId є, оновлюємо його childrens
+      if (parentId) {
+        newFolders[parentId] = {
+          ...state.folders[parentId],
+          childrens: [...(state.folders[parentId]?.childrens || []), id],
+        };
+      }
 
-    return { folders: newFolders };
-  }),
+      return { folders: newFolders };
+    }),
   pushMultipleFolder: (foldersObj, childrens, newChildrens, parentId) => {
     const folders = foldersObj.reduce((acc, user) => {
       const id = String(user.id);
@@ -67,6 +67,9 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
         [id]: {
           ...state.folders[id],
           parent: futureParent,
+          backlinks: state.folders[id].backlinks.map((backlink) =>
+            backlink === parent ? futureParent : backlink,
+          ),
         },
         [parent]: {
           ...state.folders[parent],

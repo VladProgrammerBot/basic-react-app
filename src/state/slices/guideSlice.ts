@@ -5,11 +5,11 @@ export const createFilterSlice: StateCreator<filterSlice> = (set) => ({
   filteredElements: [],
   filteredElementsId: [],
   setFilterElements: (elements) => {
-    return set({ 
+    return set({
       filteredElements: elements,
-      filteredElementsId: elements.map(el => el.id)
+      filteredElementsId: elements.map((el) => el.id),
     });
-  }
+  },
 });
 
 //////////////

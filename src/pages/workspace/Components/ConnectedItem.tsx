@@ -12,40 +12,41 @@ export const ConnectedItem = ({
   data: folder;
   index: number;
 }) => {
-  const selectedItemId = store.use.selectedItemId()
+  const selectedItemId = store.use.selectedItemId();
   const { backlinks, childrens, title, id } = data;
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
   const { moveInto, renameFolder } = useItem();
   const [editValue, setEditValue] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
   const renameBuffer = store.use.renameBuffer();
   const setRenameBuffer = store.use.setRenameBuffer();
+  const mode = store.use.mode();
 
   const backlinksNumber = backlinks.length !== 0 && (
     <>
       {backlinks.length}
-      {isStyled && <HiArrowTurnDownRight />}
+      {designMode !== "Minimalistic" && <HiArrowTurnDownRight />}
     </>
   );
 
   const relationsNumber = childrens.length !== 0 && (
     <>
-      {isStyled && <HiArrowTurnRightDown />}
+      {designMode !== "Minimalistic" && <HiArrowTurnRightDown />}
       {childrens.length}
     </>
   );
 
-    const handleSubmit = () => {
-      if (editValue.trim() && editValue !== title) {
-        renameFolder(editValue);
-      }
-      setRenameBuffer(null);
-    };
+  const handleSubmit = () => {
+    if (editValue.trim() && editValue !== title) {
+      renameFolder(editValue);
+    }
+    setRenameBuffer(null);
+  };
 
-    const handleCancel = () => {
-      setEditValue(title);
-      setRenameBuffer(null);
-    };
+  const handleCancel = () => {
+    setEditValue(title);
+    setRenameBuffer(null);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -64,27 +65,28 @@ export const ConnectedItem = ({
     }
   }, [renameBuffer, id]);
 
-  const text = renameBuffer === id ? (
-            <input
-              ref={inputRef}
-              type="text"
-              value={editValue}
-              onChange={(e) => setEditValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onBlur={handleCancel}
-              className="flex-1 p-2 px-2 bg-neutral-800 text-white outline-none rounded"
-              onClick={(e) => e.stopPropagation()}
-            />
-          ) : (
-            <p className="flex-1 p-2 px-2">{title}</p>
-          )
+  const text =
+    renameBuffer === id ? (
+      <input
+        ref={inputRef}
+        type="text"
+        value={editValue}
+        onChange={(e) => setEditValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onBlur={handleCancel}
+        className="flex-1 p-2 px-2 bg-neutral-800 text-white outline-none rounded"
+        onClick={(e) => e.stopPropagation()}
+      />
+    ) : (
+      <p className="flex-1 p-2 px-2">{title}</p>
+    );
 
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
         <li
           onClick={() => moveInto(id, index)}
-          className={`flex items-center pl-2 ${selectedItemId === index ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
+          className={`flex items-center pl-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-pointer w-full rounded-xl`}
         >
           <span className="text-sm text-neutral-400 flex items-center">
             {backlinksNumber}

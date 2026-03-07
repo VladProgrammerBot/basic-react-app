@@ -1,5 +1,3 @@
-// import { useAlerts } from "../useAlerts";
-
 const api = import.meta.env.VITE_API;
 
 interface useApi {
@@ -33,7 +31,9 @@ export const fetchApi = async ({
       throw new Error(`HTTP error: ${response.status}`);
     }
   } catch (error) {
-    alert("An error occurred while communicating with the server. Please try again.");
+    alert(
+      "An error occurred while communicating with the server. Please try again.",
+    );
     console.error("API Error:", error);
     // alertError(path);
   }

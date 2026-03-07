@@ -1,5 +1,5 @@
 import { useEdit } from "@/hooks/folders/useEdit";
-import { Messages } from "../workspace2/cards/section/Messages";
+import { Messages } from "./Components/Messages";
 import { Workspace } from "./Workspace";
 
 export const WorkspaceLayout = () => {

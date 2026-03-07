@@ -4,7 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Breadcrumb } from "./Breadcrumb";
+import { Breadcrumb } from "./BreadCrumb";
 import store from "@/state/store";
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
 import { RiHistoryFill } from "react-icons/ri";

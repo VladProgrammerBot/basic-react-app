@@ -11,8 +11,8 @@ export const useEdit = () => {
   const setPath = store.use.setPath();
   const setIsLogin = store.use.setIsLogin();
   const folders = store.use.folders();
-  
-  // 
+
+  //
 
   const thereAreFolders = Object.keys(folders).length !== 0;
   const isUserLoggedIn = localStorage.getItem("token") !== null;

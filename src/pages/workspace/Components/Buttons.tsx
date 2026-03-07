@@ -16,8 +16,8 @@ export const Buttons = () => {
   const mode = store.use.mode();
   const { moveFolder } = usePath();
   const moveBuffer = store.use.moveBuffer();
-  const isStyled = store.use.isStyled();
-  const childrensId = useChildrens()
+  const designMode = store.use.designMode();
+  const childrensId = useChildrens();
 
   return (
     <div
@@ -53,7 +53,7 @@ export const Buttons = () => {
         />
       )}
 
-      <div className={`${!isStyled && "lg:hidden"}`}>
+      <div className={`${designMode === "Minimalistic" && "lg:hidden"}`}>
         {mode === "normal" && (
           <div className="flex justify-between gap-1">
             {childrensId.length > 1 && (

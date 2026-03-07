@@ -30,8 +30,7 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
 
       <div className="relative p-12 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">
-          Ready to{" "}
-          <span className="text-sky-500 dark:text-sky-300">think</span>
+          Ready to <span className="text-sky-500 dark:text-sky-300">think</span>
           {" more "}
           <span className="text-pink-500 dark:text-pink-300">effectively?</span>
         </h2>

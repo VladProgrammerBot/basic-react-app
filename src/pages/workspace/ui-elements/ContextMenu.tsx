@@ -21,13 +21,18 @@ interface contextMenu {
   disabled?: boolean;
 }
 
-export const ItemContextMenu = ({ data, index }: { data: folder; index: number }) => {
+export const ItemContextMenu = ({
+  data,
+  index,
+}: {
+  data: folder;
+  index: number;
+}) => {
   const { removeFolder, replaceFolders, copyMarkdown, handleRemoveConnection } =
     useFolderManipulation();
   const { setBuffer, setRenameBuffer } = store();
   const childrensId = useChildrens();
   const path = store.use.path();
-  const setIdForNewConnection = store.use.setIdForNewConnection();
 
   const parentId = path[path.length - 1]?.id ?? 0;
   const isFirst = index === 0;
@@ -52,7 +57,7 @@ export const ItemContextMenu = ({ data, index }: { data: folder; index: number }
       icon: <FaLink />,
       label: "Connect to another item",
       shortcut: "r",
-      onClick: () => setBuffer(data.id, parentId),
+      onClick: () => setBuffer(data.id, null),
     },
     {
       icon: <FaLinkSlash />,
@@ -62,9 +67,9 @@ export const ItemContextMenu = ({ data, index }: { data: folder; index: number }
     },
     {
       icon: <MdOutlineShortcut />,
-      label: "Connect this to another",
+      label: "Reconnect to another",
       shortcut: "m",
-      onClick: () => setIdForNewConnection(data.id),
+      onClick: () => setBuffer(data.id, parentId),
     },
     {
       icon: <MdContentCopy />,
@@ -90,15 +95,17 @@ export const ItemContextMenu = ({ data, index }: { data: folder; index: number }
     <ContextMenuContent>
       {menuActions.map(({ label, shortcut, icon, onClick, disabled }) => {
         return (
-          <ContextMenuItem 
-            key={shortcut} 
+          <ContextMenuItem
+            key={shortcut}
             onClick={onClick}
             disabled={disabled}
             className="flex items-center gap-4"
           >
             {icon}
             <span className="flex-1">{label}</span>
-            <ContextMenuShortcut className="max-lg:hidden">{shortcut}</ContextMenuShortcut>
+            <ContextMenuShortcut className="max-lg:hidden">
+              {shortcut}
+            </ContextMenuShortcut>
           </ContextMenuItem>
         );
       })}

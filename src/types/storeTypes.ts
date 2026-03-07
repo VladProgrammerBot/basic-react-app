@@ -4,7 +4,8 @@ type mode =
   | "Add Unrelated Folder"
   | "AI Generate"
   | "Filter"
-  | "Filter Result";
+  | "Filter Result"
+  | "Backlinks";
 
 export interface foldersSlice {
   folders: objectFolder;
@@ -24,7 +25,7 @@ export interface foldersSlice {
   removeConnection: (parentId: number, childId: number) => void;
 }
 
-export type path = { id: number; index: number }
+export type path = { id: number; index: number };
 
 export interface pathSlice {
   path: path[];
@@ -41,8 +42,8 @@ export interface modeSlice {
 }
 
 export interface moveBufferSlice {
-  moveBuffer: { id: number; parent: number } | null;
-  setBuffer: (id: number, parent: number) => void;
+  moveBuffer: { id: number; parent: number | null } | null;
+  setBuffer: (id: number, parent: number | null) => void;
   resetMoveBuffer: () => void;
 
   IdForNewConnection: null | number;
@@ -60,11 +61,13 @@ export interface alertsSlice {
   deleteAlert: (id: number) => void;
 }
 
+export type DesignMode = "normal" | "withKeyTips" | "Minimalistic";
+
 export interface authSlice {
   isLogin: boolean;
   setIsLogin: (state: boolean) => void;
-  isStyled: boolean;
-  setIsStyled: () => void;
+  designMode: DesignMode;
+  setDesignMode: (mode: DesignMode) => void;
 }
 
 export interface keyNaviSlice {

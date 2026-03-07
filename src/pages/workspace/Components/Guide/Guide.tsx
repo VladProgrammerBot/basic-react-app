@@ -19,7 +19,7 @@ export const Guide: React.FC = () => {
     currentStep,
     viewedSteps,
   });
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
 
   const handleBack = () => setCurrentStep((prev) => prev - 1);
 
@@ -36,7 +36,7 @@ export const Guide: React.FC = () => {
     <div
       className={`max-md:fixed z-20 bottom-0 ${
         isGuideOpen && "d:w-full"
-      }  p-2 max-lg:pr-0 left-0 ${!isStyled && "hidden"}`}
+      }  p-2 max-lg:pr-0 left-0 ${designMode === "Minimalistic" && "hidden"}`}
     >
       {isGuideOpen ? (
         <GuideContent
@@ -51,7 +51,12 @@ export const Guide: React.FC = () => {
           onFinish={handleFinish}
         />
       ) : (
-        <BigButton className="animate-fade-in" Func={() => setIsGuideOpen(true)} text="?" tooltip="Open Guide" />
+        <BigButton
+          className="animate-fade-in"
+          Func={() => setIsGuideOpen(true)}
+          text="?"
+          tooltip="Open Guide"
+        />
       )}
     </div>
   );

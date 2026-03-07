@@ -1,17 +1,17 @@
-import store from "@/state/store"
+import store from "@/state/store";
 
 export const useBreadcrumbs = () => {
-    const path = store.use.path()
+  const path = store.use.path();
 
-    const hiddenCrumbs = () => {
-        const hiddenArr = []
+  const hiddenCrumbs = () => {
+    const hiddenArr = [];
 
-        for (let i = 0; i < path.length; i++) {
-            hiddenArr.push(path[i])
-        }
-
-        return hiddenArr
+    for (let i = 0; i < path.length; i++) {
+      hiddenArr.push(path[i]);
     }
 
-    return { hiddenCrumbs }
-}
+    return hiddenArr;
+  };
+
+  return { hiddenCrumbs };
+};

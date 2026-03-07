@@ -14,8 +14,6 @@ export const useKeyboardShortcuts = () => {
   const setBuffer = store.use.setBuffer();
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
-  const setIdForNewConnection = store.use.setIdForNewConnection();
-  const IdForNewConnection = store.use.IdForNewConnection();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
@@ -23,6 +21,7 @@ export const useKeyboardShortcuts = () => {
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
   const childrensId = useChildrens();
+  const setDesignMode = store.use.setDesignMode();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
@@ -42,32 +41,50 @@ export const useKeyboardShortcuts = () => {
       setRenameBuffer(null);
     }
 
-    if ((mode !== "normal" && mode !== "Filter Result") || renameBuffer) return;
+    if (
+      (mode !== "normal" && mode !== "Filter Result" && mode !== "Backlinks") ||
+      renameBuffer
+    )
+      return;
     const selectedId =
       typeof selectedItemId === "number" ? childrensId[selectedItemId] : null;
 
+    const isLastItem = selectedItemId === childrensId.length - 1;
+    const isFirstItem = selectedItemId === 0;
+    const isNotSelected = selectedItemId === null;
+
     if (e.code === "KeyJ") {
-      if (selectedItemId === null) {
+      if (isNotSelected) {
         return setSelectedItemId(0);
       }
-      if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, -1);
-      if (selectedItemId < childrensId.length - 1) {
-        return setSelectedItemId(selectedItemId + 1);
+      if (e.shiftKey && selectedId && !e.repeat) {
+        replaceFolders(selectedId, -1);
       }
+      setSelectedItemId(isLastItem ? 0 : selectedItemId + 1);
     }
 
     if (e.code === "KeyK") {
-      if (selectedItemId === null) {
+      if (isNotSelected) {
         return setSelectedItemId(childrensId.length - 1);
       }
-      if (e.shiftKey && selectedId && !e.repeat) replaceFolders(selectedId, 1);
-      if (selectedItemId > 0) {
-        return setSelectedItemId(selectedItemId - 1);
+      if (e.shiftKey && selectedId && !e.repeat) {
+        replaceFolders(selectedId, 1);
       }
+      setSelectedItemId(
+        isFirstItem ? childrensId.length - 1 : selectedItemId - 1,
+      );
     }
 
     if (e.repeat) return;
     const parentId = path[path.length - 1].id;
+    const parent = folders[parentId];
+
+    if (e.code === "KeyB") {
+      if (parent.backlinks.length === 0) return;
+      if (mode === "Backlinks") return setMode("normal");
+      setSelectedItemId(0);
+      return setMode("Backlinks");
+    }
 
     if (e.code === "KeyH" && path.length !== 1) {
       if (e.shiftKey) return moveOut(0);
@@ -90,11 +107,17 @@ export const useKeyboardShortcuts = () => {
       if (moveBuffer === null && selectedId) {
         return setBuffer(selectedId, parentId);
       }
-      return moveFolder();
+      if (moveBuffer !== null && moveBuffer.parent !== null) {
+        return moveFolder();
+      }
     }
 
     if (e.code === "KeyP") {
       toggleMenu();
+    }
+
+    if (e.code === "KeyQ") {
+      setDesignMode("Minimalistic");
     }
 
     if (
@@ -110,15 +133,16 @@ export const useKeyboardShortcuts = () => {
 
     if (
       e.code === "KeyR" &&
-      !e.shiftKey &&
       !e.ctrlKey &&
       !e.altKey &&
-      !e.metaKey
+      !e.metaKey &&
+      selectedId !== null
     ) {
-      if (typeof IdForNewConnection === "number") {
-        return handleAddConnection(parentId, IdForNewConnection);
+      if (e.shiftKey) return resetMoveBuffer();
+      if (moveBuffer !== null && moveBuffer.parent === null) {
+        return handleAddConnection();
       }
-      return setIdForNewConnection(selectedId);
+      return setBuffer(selectedId, null);
     }
 
     if (!selectedId) return;
@@ -126,6 +150,9 @@ export const useKeyboardShortcuts = () => {
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
       setSelectedItemId(0);
+      if (mode === "Backlinks") {
+        return moveInto(parent.backlinks[selectedItemId], 0);
+      }
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 
@@ -174,6 +201,7 @@ export const useKeyboardShortcuts = () => {
     resetMoveBuffer,
     setMode,
     setRenameBuffer,
+    setDesignMode,
     moveInto,
     moveOut,
     moveFolder,

@@ -6,7 +6,7 @@ interface MarkdownRendererProps {
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
-  content
+  content,
 }) => {
   return (
     <ReactMarkdown

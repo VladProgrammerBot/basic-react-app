@@ -8,11 +8,11 @@ declare interface folder {
 }
 
 declare interface alert {
-  id: number
-  text: string
-  color: "red" | "blue" | "green"
+  id: number;
+  text: string;
+  color: "red" | "blue" | "green";
 }
 
 declare type objectFolder = {
-  [key: string]: folder
-}
+  [key: string]: folder;
+};

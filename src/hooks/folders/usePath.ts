@@ -22,7 +22,7 @@ export const usePath = () => {
   };
 
   const moveFolder = async () => {
-    if (!moveBuffer) return;
+    if (!moveBuffer || moveBuffer.parent === null) return;
     const isPaste =
       moveBuffer &&
       moveBuffer.parent !== path[path.length - 1].id &&
