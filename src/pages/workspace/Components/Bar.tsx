@@ -30,13 +30,14 @@ export const Bar = () => {
               return (
                 <div key={key} className="space-y-1">
                   <div className="text-sm text-neutral-400 px-2 py-1">{label}</div>
-                  {submenu.map(({ key: subKey, label: subLabel, onClick: subOnClick, active }) => (
+                  {submenu.map(({ key: subKey, label: subLabel, onClick: subOnClick, active, icon: SubIcon }) => (
                     <Button
                       key={subKey}
-                      className={`m-0 w-full p-2 py-2 mb-1 justify-start ${active ? "bg-neutral-700" : ""}`}
+                      className={`m-0 w-full p-2 py-2 mb-1 justify-between ${active ? "bg-neutral-700" : ""}`}
                       onClick={subOnClick}
                     >
-                      {subLabel}
+                      <span>{subLabel}</span>
+                      {SubIcon && <SubIcon className="text-xl" />}
                     </Button>
                   ))}
                 </div>
