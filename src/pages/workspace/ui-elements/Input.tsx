@@ -70,7 +70,7 @@ export const Input = ({
   }, [mode, setModeOnFocus]);
 
   return (
-    <div className="border border-white/20 rounded-xl border-dashed flex items-center w-full pr-1">
+    <div className="border border-neutral-700 rounded-xl border-dashed flex items-center w-full pr-1 py-1 lg:py-0">
       {hotkey && <Hotkey className="ml-2" is={hotkey} />}
       <input
         ref={inputRef}
@@ -87,6 +87,7 @@ export const Input = ({
         <Button
           onClick={handleButtonClick}
           disabled={isLoading || !inputValue.trim()}
+          className="py-2"
         >
           {isLoading ? "..." : "+"}
           <Hotkey is="Enter" />

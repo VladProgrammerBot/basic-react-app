@@ -9,7 +9,7 @@ export const ItemContent = () => {
   const designMode = store.use.designMode();
   const mode = store.use.mode();
   const containterStyles =
-    designMode !== "Minimalistic" ? "rounded-xl p-2 bg-neutral-800" : "";
+    designMode !== "Minimalistic" ? "sm:rounded-xl sm:p-2 sm:bg-neutral-800" : "";
 
   const { childrensData } = useFolders();
 
@@ -17,7 +17,7 @@ export const ItemContent = () => {
     <div className={containterStyles}>
       {designMode !== "Minimalistic" && <ItemTitle />}
       <TipForRelated />
-      <ul className="space-y-1 my-1">
+      <ul className="flex flex-col gap-1 my-2">
         {childrensData.map((data, index) => (
           <ConnectedItem key={index} data={data} index={index} />
         ))}
