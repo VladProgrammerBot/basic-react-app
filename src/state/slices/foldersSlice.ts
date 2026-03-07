@@ -67,6 +67,9 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
         [id]: {
           ...state.folders[id],
           parent: futureParent,
+          backlinks: state.folders[id].backlinks.map((backlink) =>
+            backlink === parent ? futureParent : backlink,
+          ),
         },
         [parent]: {
           ...state.folders[parent],

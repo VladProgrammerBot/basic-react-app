@@ -42,8 +42,8 @@ export interface modeSlice {
 }
 
 export interface moveBufferSlice {
-  moveBuffer: { id: number; parent: number } | null;
-  setBuffer: (id: number, parent: number) => void;
+  moveBuffer: { id: number; parent: number | null } | null;
+  setBuffer: (id: number, parent: number | null) => void;
   resetMoveBuffer: () => void;
 
   IdForNewConnection: null | number;

@@ -14,8 +14,6 @@ export const useKeyboardShortcuts = () => {
   const setBuffer = store.use.setBuffer();
   const resetMoveBuffer = store.use.resetMoveBuffer();
   const renameBuffer = store.use.renameBuffer();
-  const setIdForNewConnection = store.use.setIdForNewConnection();
-  const IdForNewConnection = store.use.IdForNewConnection();
   const folders = store.use.folders();
   const moveBuffer = store.use.moveBuffer();
   const setMode = store.use.setMode();
@@ -71,22 +69,10 @@ export const useKeyboardShortcuts = () => {
       if (e.shiftKey && selectedId && !e.repeat) {
         replaceFolders(selectedId, 1);
       }
-      setSelectedItemId(isFirstItem ? childrensId.length - 1 : selectedItemId - 1);
+      setSelectedItemId(
+        isFirstItem ? childrensId.length - 1 : selectedItemId - 1,
+      );
     }
-
-    // if (e.code === "KeyK") {
-    //   if (selectedItemId === null) {
-    //     setSelectedItemId(childrensId.length - 1);
-    //     return;
-    //   }
-
-    //   if (e.shiftKey && selectedId && !e.repeat) {
-    //     replaceFolders(selectedId, 1);
-    //     return;
-    //   }
-
-    //   setSelectedItemId(selectedItemId === 0 ? childrensId.length - 1 : selectedItemId - 1);
-    // }
 
     if (e.repeat) return;
     const parentId = path[path.length - 1].id;
@@ -120,7 +106,9 @@ export const useKeyboardShortcuts = () => {
       if (moveBuffer === null && selectedId) {
         return setBuffer(selectedId, parentId);
       }
-      return moveFolder();
+      if (moveBuffer !== null && moveBuffer.parent !== null) {
+        return moveFolder();
+      }
     }
 
     if (e.code === "KeyP") {
@@ -140,15 +128,16 @@ export const useKeyboardShortcuts = () => {
 
     if (
       e.code === "KeyR" &&
-      !e.shiftKey &&
       !e.ctrlKey &&
       !e.altKey &&
-      !e.metaKey
+      !e.metaKey &&
+      selectedId !== null
     ) {
-      if (typeof IdForNewConnection === "number") {
-        return handleAddConnection(parentId, IdForNewConnection);
+      if (e.shiftKey) return resetMoveBuffer();
+      if (moveBuffer !== null && moveBuffer.parent === null) {
+        return handleAddConnection(parentId, moveBuffer.id);
       }
-      return setIdForNewConnection(selectedId);
+      return setBuffer(selectedId, null);
     }
 
     if (!selectedId) return;

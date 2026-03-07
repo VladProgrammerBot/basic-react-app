@@ -23,7 +23,7 @@ export const ItemMenu = ({ data, index }: { data: folder; index: number }) => {
   const { setBuffer, setRenameBuffer } = store();
   const childrensId = useChildrens();
   const path = store.use.path();
-  const setIdForNewConnection = store.use.setIdForNewConnection();
+  // const setIdForNewConnection = store.use.setIdForNewConnection();
 
   const parentId = path[path.length - 1]?.id ?? 0;
   const isFirst = index === 0;
@@ -60,7 +60,7 @@ export const ItemMenu = ({ data, index }: { data: folder; index: number }) => {
       icon: <MdOutlineShortcut />,
       label: "Connect this to another",
       shortcut: "m",
-      onClick: () => setIdForNewConnection(data.id),
+      // onClick: () => setIdForNewConnection(data.id),
     },
     {
       icon: <MdContentCopy />,
