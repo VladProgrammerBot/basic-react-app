@@ -2,11 +2,8 @@ import type { authSlice, DesignMode } from "@/types/storeTypes";
 import type { StateCreator } from "zustand";
 
 const getInitialDesignMode = (): DesignMode => {
-  const stored = localStorage.getItem("isNotStyled");
-  if (stored === "false") return "normal";
-  if (stored === "true") return "Minimalistic";
-  
   const designMode = localStorage.getItem("designMode") as DesignMode;
+  console.log(designMode)
   if (designMode && ["normal", "withKeyTips", "Minimalistic"].includes(designMode)) {
     return designMode;
   }
