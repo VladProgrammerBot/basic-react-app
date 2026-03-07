@@ -6,23 +6,11 @@ import { MdLogout, MdOutlineBorderStyle } from "react-icons/md";
 import { HiUserAdd } from "react-icons/hi";
 import type { DesignMode } from "@/types/storeTypes";
 
-const getNextMode = (currentMode: DesignMode): DesignMode => {
-  switch (currentMode) {
-    case "normal": return "withKeyTips";
-    case "withKeyTips": return "Minimalistic";
-    case "Minimalistic": return "normal";
-    default: return "normal";
-  }
-};
-
-const getModeLabel = (mode: DesignMode): string => {
-  switch (mode) {
-    case "normal": return "Normal";
-    case "withKeyTips": return "Key tips";
-    case "Minimalistic": return "Minimalistic";
-    default: return "Normal";
-  }
-};
+const designModes: { value: DesignMode; label: string }[] = [
+  { value: "normal", label: "Normal" },
+  { value: "withKeyTips", label: "Key tips" },
+  { value: "Minimalistic", label: "Minimalistic" },
+];
 
 export const useBar = () => {
   const navigate = useNavigate();
@@ -83,13 +71,17 @@ export const useBar = () => {
     },
     {
       key: "styles",
-      label: getModeLabel(designMode),
+      label: "Design Mode",
       icon: MdOutlineBorderStyle,
       show: true,
-      onClick: () => {
-        const nextMode = getNextMode(designMode);
-        setDesignMode(nextMode);
-      },
+      onClick: () => {},
+      submenu: designModes.map((mode) => ({
+        key: mode.value,
+        label: mode.label,
+        show: true,
+        onClick: () => setDesignMode(mode.value),
+        active: designMode === mode.value,
+      })),
     },
   ];
 

@@ -25,15 +25,34 @@ export const Bar = () => {
         <div className="text-2xl py-2 text-center">{username}</div>
         {actions
           .filter((a) => a.show)
-          .map(({ key, label, icon: Icon, onClick }) => (
-            <Button
-              key={key}
-              className="m-0 w-full p-2 py-2 mb-1 justify-start"
-              onClick={onClick}
-            >
-              <Icon className="text-xl" /> {label}
-            </Button>
-          ))}
+          .map(({ key, label, icon: Icon, onClick, submenu }) => {
+            if (submenu) {
+              return (
+                <div key={key} className="space-y-1">
+                  <div className="text-sm text-neutral-400 px-2 py-1">{label}</div>
+                  {submenu.map(({ key: subKey, label: subLabel, onClick: subOnClick, active }) => (
+                    <Button
+                      key={subKey}
+                      className={`m-0 w-full p-2 py-2 mb-1 justify-start ${active ? "bg-neutral-700" : ""}`}
+                      onClick={subOnClick}
+                    >
+                      {subLabel}
+                    </Button>
+                  ))}
+                </div>
+              );
+            }
+            
+            return (
+              <Button
+                key={key}
+                className="m-0 w-full p-2 py-2 mb-1 justify-start"
+                onClick={onClick}
+              >
+                <Icon className="text-xl" /> {label}
+              </Button>
+            );
+          })}
       </div>
     </>
   );
