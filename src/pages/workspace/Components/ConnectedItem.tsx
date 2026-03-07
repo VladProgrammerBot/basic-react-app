@@ -14,7 +14,7 @@ export const ConnectedItem = ({
 }) => {
   const selectedItemId = store.use.selectedItemId()
   const { backlinks, childrens, title, id } = data;
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
   const { moveInto, renameFolder } = useItem();
   const [editValue, setEditValue] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -25,13 +25,13 @@ export const ConnectedItem = ({
   const backlinksNumber = backlinks.length !== 0 && (
     <>
       {backlinks.length}
-      {isStyled && <HiArrowTurnDownRight />}
+      {designMode !== "Minimalistic" && <HiArrowTurnDownRight />}
     </>
   );
 
   const relationsNumber = childrens.length !== 0 && (
     <>
-      {isStyled && <HiArrowTurnRightDown />}
+      {designMode !== "Minimalistic" && <HiArrowTurnRightDown />}
       {childrens.length}
     </>
   );

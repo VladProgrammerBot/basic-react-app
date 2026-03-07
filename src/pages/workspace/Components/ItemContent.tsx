@@ -6,9 +6,9 @@ import { useFolders } from "@/hooks/folders/useFolders";
 import store from "@/state/store";
 
 export const ItemContent = () => {
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
   const mode = store.use.mode();
-  const containterStyles = isStyled
+  const containterStyles = designMode !== "Minimalistic"
     ? "rounded-xl p-2 bg-neutral-800"
     : "";
 
@@ -16,14 +16,14 @@ export const ItemContent = () => {
 
   return (
     <div className={containterStyles}>
-      {isStyled && <ItemTitle />}
+      {designMode !== "Minimalistic" && <ItemTitle />}
       <TipForRelated />
       <ul className="space-y-1 my-1">
         {childrensData.map((data, index) => (
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {(isStyled || mode === "Add Folder") && <Input hotkey="A" />}
+      {(designMode !== "Minimalistic" || mode === "Add Folder") && <Input hotkey="A" />}
     </div>
   );
 };

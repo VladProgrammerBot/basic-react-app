@@ -7,7 +7,7 @@ import { useSearch } from "@/hooks/folders/useSearch";
 
 export const SearchInput = () => {
   const mode = store.use.mode();
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
   const InputRef = useRef<HTMLInputElement | null>(null);
   const setMode = store.use.setMode();
   const { searchValue, setSearchValue } = useSearch();
@@ -45,7 +45,7 @@ export const SearchInput = () => {
         />
         <Hotkey is="S" />
       </div>
-      {(mode === "Filter" || mode === "Filter Result") && isStyled && (
+      {(mode === "Filter" || mode === "Filter Result") && designMode !== "Minimalistic" && (
         <MenuButton
           onClick={() => setMode("normal")}
           icon={<IoClose />}

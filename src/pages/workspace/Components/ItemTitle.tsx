@@ -17,7 +17,7 @@ export const ItemTitle = () => {
   // Store state
   const folders = store.use.folders();
   const path = store.use.path();
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
   const moveBuffer = store.use.moveBuffer();
   const { moveInto } = useItem();
 
@@ -39,14 +39,14 @@ export const ItemTitle = () => {
           <BacklinksDropdown
             count={backlinksCount}
             backlinks={backlinksData}
-            isStyled={isStyled}
+            designMode={designMode}
             onBacklinkClick={handleBacklinkClick}
           />
         )}
         <ItemTitleDisplay title={currentItem?.title} />
       </div>
 
-      {isStyled && moveBuffer !== null && <ReferenceButton />}
+      {designMode !== "Minimalistic" && moveBuffer !== null && <ReferenceButton />}
     </div>
   );
 };
@@ -70,12 +70,12 @@ const ItemTitleDisplay = ({ title }: { title?: string }) => (
 const BacklinksDropdown = ({
   count,
   backlinks,
-  isStyled,
+  designMode,
   onBacklinkClick,
 }: {
   count: number;
   backlinks: folder[];
-  isStyled: boolean;
+  designMode: "normal" | "withKeyTips" | "Minimalistic";
   onBacklinkClick: (id: number) => void;
 }) => {
   const mode = store.use.mode();
@@ -90,7 +90,7 @@ const BacklinksDropdown = ({
       <DropdownMenuTrigger asChild>
         <Button className="text-neutral-400">
           {count}
-          {isStyled && <HiArrowTurnDownRight />}
+          {designMode !== "Minimalistic" && <HiArrowTurnDownRight />}
           <Hotkey is="B" />
         </Button>
       </DropdownMenuTrigger>

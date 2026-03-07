@@ -4,14 +4,33 @@ import store from "@/state/store";
 import { TiHome } from "react-icons/ti";
 import { MdLogout, MdOutlineBorderStyle } from "react-icons/md";
 import { HiUserAdd } from "react-icons/hi";
+import type { DesignMode } from "@/types/storeTypes";
+
+const getNextMode = (currentMode: DesignMode): DesignMode => {
+  switch (currentMode) {
+    case "normal": return "withKeyTips";
+    case "withKeyTips": return "Minimalistic";
+    case "Minimalistic": return "normal";
+    default: return "normal";
+  }
+};
+
+const getModeLabel = (mode: DesignMode): string => {
+  switch (mode) {
+    case "normal": return "Normal";
+    case "withKeyTips": return "Key tips";
+    case "Minimalistic": return "Minimalistic";
+    default: return "Normal";
+  }
+};
 
 export const useBar = () => {
   const navigate = useNavigate();
 
   const setFolders = store.use.setFolders();
   const isLogin = store.use.isLogin();
-  const setIsStyled = store.use.setIsStyled();
-  const isStyled = store.use.isStyled();
+  const designMode = store.use.designMode();
+  const setDesignMode = store.use.setDesignMode();
 
   const [username, setUsername] = useState("");
   const [isBarOpen, setIsBarOpen] = useState(false)
@@ -23,7 +42,9 @@ export const useBar = () => {
       const [, payload] = token.split(".");
       const { username } = JSON.parse(atob(payload));
       setUsername(username ?? "");
-    } catch {}
+    } catch {
+      // Silently handle token parsing errors
+    }
   }, []);
 
   const go = (path: string) => {
@@ -62,12 +83,12 @@ export const useBar = () => {
     },
     {
       key: "styles",
-      label: "Pro mode",
+      label: getModeLabel(designMode),
       icon: MdOutlineBorderStyle,
       show: true,
       onClick: () => {
-        localStorage.setItem("isNotStyled", String(!isStyled));
-        setIsStyled();
+        const nextMode = getNextMode(designMode);
+        setDesignMode(nextMode);
       },
     },
   ];

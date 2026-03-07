@@ -61,11 +61,13 @@ export interface alertsSlice {
   deleteAlert: (id: number) => void;
 }
 
+export type DesignMode = "normal" | "withKeyTips" | "Minimalistic";
+
 export interface authSlice {
   isLogin: boolean;
   setIsLogin: (state: boolean) => void;
-  isStyled: boolean;
-  setIsStyled: () => void;
+  designMode: DesignMode;
+  setDesignMode: (mode: DesignMode) => void;
 }
 
 export interface keyNaviSlice {
