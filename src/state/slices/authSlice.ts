@@ -3,7 +3,6 @@ import type { StateCreator } from "zustand";
 
 const getInitialDesignMode = (): DesignMode => {
   const designMode = localStorage.getItem("designMode") as DesignMode;
-  console.log(designMode)
   if (designMode && ["normal", "withKeyTips", "Minimalistic"].includes(designMode)) {
     return designMode;
   }
