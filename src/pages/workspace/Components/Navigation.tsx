@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { Hotkey } from "../ui-elements/HotKeyTip";
-import { HiddenCrumbs } from "@/pages/workspace2/cards/header/hiddenCrumbs";
+import { HiddenCrumbs } from "@/pages/workspace/Components/HiddenCrumbs";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
 
