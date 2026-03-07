@@ -21,6 +21,7 @@ export const useKeyboardShortcuts = () => {
   const setRenameBuffer = store.use.setRenameBuffer();
   const toggleMenu = store.use.toggleMenu();
   const childrensId = useChildrens();
+  const setDesignMode = store.use.setDesignMode();
 
   const { moveInto } = useItem();
   const { moveOut, moveFolder } = usePath();
@@ -115,6 +116,10 @@ export const useKeyboardShortcuts = () => {
       toggleMenu();
     }
 
+    if (e.code === "KeyQ") {
+      setDesignMode("Minimalistic");
+    }
+
     if (
       e.code === "KeyS" &&
       !e.shiftKey &&
@@ -196,6 +201,7 @@ export const useKeyboardShortcuts = () => {
     resetMoveBuffer,
     setMode,
     setRenameBuffer,
+    setDesignMode,
     moveInto,
     moveOut,
     moveFolder,
