@@ -8,7 +8,7 @@ import type { DesignMode } from "@/types/storeTypes";
 
 const designModes: { value: DesignMode; label: string }[] = [
   { value: "normal", label: "Normal" },
-  { value: "withKeyTips", label: "Key tips" },
+  { value: "withKeyTips", label: "Show key tips" },
   { value: "Minimalistic", label: "Minimalistic" },
 ];
 
