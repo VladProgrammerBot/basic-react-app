@@ -18,6 +18,7 @@ export const ItemTitle = () => {
   const folders = store.use.folders();
   const path = store.use.path();
   const isStyled = store.use.isStyled();
+  const moveBuffer = store.use.moveBuffer();
   const { moveInto } = useItem();
 
   // Current item data
@@ -45,7 +46,7 @@ export const ItemTitle = () => {
         <ItemTitleDisplay title={currentItem?.title} />
       </div>
 
-      {isStyled && <ReferenceButton />}
+      {isStyled && moveBuffer !== null && <ReferenceButton />}
     </div>
   );
 };
@@ -82,7 +83,10 @@ const BacklinksDropdown = ({
   const selectedItemId = store.use.selectedItemId();
 
   return (
-    <DropdownMenu onOpenChange={(open) => setMode(open ? "Backlinks" : "normal")} open={mode === "Backlinks"}>
+    <DropdownMenu
+      onOpenChange={(open) => setMode(open ? "Backlinks" : "normal")}
+      open={mode === "Backlinks"}
+    >
       <DropdownMenuTrigger asChild>
         <Button className="text-neutral-400">
           {count}
@@ -106,9 +110,13 @@ const BacklinksDropdown = ({
 };
 
 // Component for reference button
-const ReferenceButton = () => (
-  <Button className="py-2">
-    <FaLink fontSize={17} />
-    <Hotkey is="R" />
-  </Button>
-);
+const ReferenceButton = () => {
+  const {addConnection} = useItem()
+
+  return (
+    <Button className="py-2" onClick={() => addConnection()}>
+      <FaLink fontSize={17} />
+      <Hotkey is="R" />
+    </Button>
+  );
+};

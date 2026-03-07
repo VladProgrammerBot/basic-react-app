@@ -135,7 +135,7 @@ export const useKeyboardShortcuts = () => {
     ) {
       if (e.shiftKey) return resetMoveBuffer();
       if (moveBuffer !== null && moveBuffer.parent === null) {
-        return handleAddConnection(parentId, moveBuffer.id);
+        return handleAddConnection();
       }
       return setBuffer(selectedId, null);
     }

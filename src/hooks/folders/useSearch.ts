@@ -4,7 +4,6 @@ import store from "@/state/store";
 import { useEffect, useState } from "react";
 
 export const useSearch = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const setFilterElements = store.use.setFilterElements();
   const api = import.meta.env.VITE_API;
@@ -22,7 +21,6 @@ export const useSearch = () => {
 
   const handleSearch = async (value: string) => {
     setSelectedItemId(0);
-    setIsLoading(true);
     try {
       await fetch(api + "/folders/getbykeyword", {
         method: "POST",
@@ -41,7 +39,6 @@ export const useSearch = () => {
     } catch (error) {
       alertError("get folders");
     }
-    setIsLoading(false);
   };
 
   return {setSearchValue, searchValue}

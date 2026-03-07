@@ -67,7 +67,7 @@ export const ItemContextMenu = ({
     },
     {
       icon: <MdOutlineShortcut />,
-      label: "Connect this to another",
+      label: "Reconnect to another",
       shortcut: "m",
       onClick: () => setBuffer(data.id, parentId),
     },
