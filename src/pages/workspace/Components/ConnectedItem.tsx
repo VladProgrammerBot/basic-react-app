@@ -28,7 +28,7 @@ export const ConnectedItem = ({
     longTouchTimer.current = window.setTimeout(() => {
       e.preventDefault();
       setDropdownOpen(true);
-    }, 500); // 500ms for long touch
+    }, 100); // 500ms for long touch
   };
 
   const handleTouchEnd = () => {
@@ -118,7 +118,7 @@ export const ConnectedItem = ({
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
-            className={`flex items-center py-2 lg:py-0 pl-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
+            className={`flex items-center py-2 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
           >
           <span className="text-sm text-neutral-400 flex items-center">
             {backlinksNumber}
