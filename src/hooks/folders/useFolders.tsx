@@ -25,9 +25,12 @@ export const useFolders = () => {
     const sortedChildrens = new Array(0);
     childrensId.forEach((child) => {
       const data = folders[child];
-      sortedChildrens.push({
-        ...data,
-      });
+
+      if (data) {
+        sortedChildrens.push({
+          ...data,
+        });
+      }
     });
 
     return sortedChildrens as folder[];

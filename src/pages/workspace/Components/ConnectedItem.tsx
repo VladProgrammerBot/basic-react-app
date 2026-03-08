@@ -102,7 +102,7 @@ export const ConnectedItem = ({
         onClick={(e) => e.stopPropagation()}
       />
     ) : (
-      <p className="flex-1 p-2 px-2">{title}</p>
+      <p className="flex-1 py-2 px-2">{title}</p>
     );
 
   return (
@@ -119,7 +119,7 @@ export const ConnectedItem = ({
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onTouchMove={handleTouchMove}
-            className={`flex items-center py-2 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
+            className={`flex items-center py-1 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
           >
           <span className="text-sm text-neutral-400 flex items-center">
             {backlinksNumber}
