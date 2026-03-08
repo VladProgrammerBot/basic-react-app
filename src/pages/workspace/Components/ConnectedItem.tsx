@@ -72,6 +72,7 @@ export const ConnectedItem = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    e.stopPropagation()
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit();
