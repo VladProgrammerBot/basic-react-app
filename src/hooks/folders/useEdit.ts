@@ -1,6 +1,7 @@
 import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
 import { useEffect } from "react";
+import { fetchApi } from "./useApi";
 // import { useKeyboardShortcuts } from "./useKeyboard";
 
 const api = import.meta.env.VITE_API;
@@ -60,29 +61,22 @@ export const useEdit = () => {
   };
 
   const getUsersFolders = async () => {
-    try {
-      await fetch(api + "/folders/get", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: localStorage.getItem("token"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          const token = localStorage.getItem("token");
-          if (!token) return;
-          const payload = token.split(".");
-          const { userId } = JSON.parse(atob(payload[1]));
-          setFoldersToState(data, userId);
-        });
-    } catch (error) {
-      alertError("get folders");
-      createMinStructure();
-      // console.log(error);
-    }
+    await fetchApi({
+      method: "POST",
+      path: "/folders/get",
+      auth: true,
+      onSuccess: (data) => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+        const payload = token.split(".");
+        const { userId } = JSON.parse(atob(payload[1]));
+        setFoldersToState(data, userId);
+      },
+      onError: () => {
+        alertError("get folders");
+        createMinStructure();
+      },
+    });
   };
 
   const getTemplateFolders = async () => {
