@@ -5,6 +5,8 @@ interface useApi {
   auth?: boolean;
   path: string;
   method: "POST" | "GET" | "PUT" | "DELETE";
+  onSuccess?: (data: any) => void;
+  onError?: (message: string) => void;
 }
 
 export const fetchApi = async ({
@@ -12,11 +14,12 @@ export const fetchApi = async ({
   auth = false,
   path,
   method,
+  onSuccess,
+  onError,
 }: useApi) => {
-  // const { alertError } = useAlerts();
 
   try {
-    const response = await fetch(api + path, {
+    await fetch(api + path, {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -25,16 +28,25 @@ export const fetchApi = async ({
         ...body,
         ...(auth && { token: localStorage.getItem("token") }),
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (onSuccess) {
+          onSuccess(data);
+        }
+      });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
-    }
+    // if (!response.ok) {
+    //   throw new Error(`HTTP error: ${response.status}`);
+    // }
   } catch (error) {
     alert(
       "An error occurred while communicating with the server. Please try again.",
     );
     console.error("API Error:", error);
+    if (onError) {
+      onError(error as string);
+    }
     // alertError(path);
   }
 };

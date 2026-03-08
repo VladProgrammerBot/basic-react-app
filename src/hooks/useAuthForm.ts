@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import store from "@/state/store";
 import { generatedId } from "@/utils/generateId";
+import { fetchApi } from "./folders/useApi";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -36,45 +37,27 @@ export const useLogin = (type: authType) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsError(false);
     setIsLoading(true);
-    const api = import.meta.env.VITE_API;
-    // if (Object.keys(folders).length === 0) {
-    //   setFolders({{
-    //     id: 1,
-    //     parent: null,
-    //     title: "Root",
-    //     childrens: [],
-    //     userId: 1,
-    //     ref: null
-    //   }})
-    // }
 
-    try {
-      await fetch(`${api}/auth/${type === "Log in" ? "login" : "signup"}`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...values,
-          folders,
-          rootId: (path[0] && path[0].id) ?? generatedId(),
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          if (type === "Log in") setFolders({});
-          setIsLoading(false);
-          localStorage.setItem("token", data);
-          navigate("/workspace");
-        });
-    } catch (error) {
-      // console.log(error)
-      setIsError(true);
-      setIsLoading(false);
-    }
+    await fetchApi({
+      method: "POST",
+      path: `/auth/${type === "Log in" ? "login" : "signup"}`,
+      body: {
+        ...values,
+        folders,
+        rootId: (path[0] && path[0].id) ?? generatedId(),
+      },
+      auth: false,
+      onSuccess: (data) => {
+        if (type === "Log in") setFolders({});
+        setIsLoading(false);
+        localStorage.setItem("token", data);
+        navigate("/workspace");
+      },
+      onError: () => {
+        setIsError(true);
+        setIsLoading(false);
+      },
+    });
   }
 
   return { form, onSubmit, isLoading, isError };

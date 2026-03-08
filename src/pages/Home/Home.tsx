@@ -1,45 +1,16 @@
-import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
 import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { ComparisonTable } from "./ComparisonTable";
-// import { TestimonialsSection } from "./TestimonialsSection";
 import { CTASection } from "./CTASection";
 import { ParticleBackground } from "../../components/BackgroundEffects";
 import { ScrollToTopButton } from "./ScrollToTopButton";
 import { GradientBackground } from "@/components/GradientBg";
 import { UsingList } from "./UsingList";
+import { useHome } from "@/hooks/homepage/useHome";
 
 export const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
-
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === "l") {
-      navigate("login");
-    }
-    if (e.key === "w") {
-      navigate("workspace");
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
-    return () => document.removeEventListener("keydown", handleKeyPress);
-  }, []);
-
-  const handleGetStarted = () => {
-    navigate("workspace");
-  };
-
-  const handleSignIn = () => {
-    navigate("login");
-  };
+  const { isLoggedIn, handleGetStarted, handleSignIn } = useHome();
 
   return (
     <div className="min-h-screen bg-gradient-to-b dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
