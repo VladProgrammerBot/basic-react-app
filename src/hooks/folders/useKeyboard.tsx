@@ -163,7 +163,7 @@ export const useKeyboardShortcuts = () => {
 
     if (e.code === "KeyD") {
       if (!e.shiftKey) {
-        handleRemoveConnection(selectedId);
+        return handleRemoveConnection(selectedId);
       }
       if (selectedItemId === childrensId.length - 1) {
         setSelectedItemId(childrensId.length - 2);
