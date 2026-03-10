@@ -15,15 +15,25 @@ export const useItemInput = ({
   }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Allow space and other normal typing keys to work in the input
     if (e.key === "Enter") {
       e.preventDefault();
+      e.stopPropagation();
       handleSubmit();
     }
+
+    if (e.key === "Escape") {
+      setRenameBuffer(null)
+      setMode("normal")
+    }
+
+    // Stop propagation to prevent global keyboard handlers from interfering
+    e.stopPropagation();
   };
 
   const handleSubmit = () => {
     submitFunction(inputRef.current?.value || "");
-    setMode("normal")
+    handleCancel()
   };
 
   const handleCancel = () => {

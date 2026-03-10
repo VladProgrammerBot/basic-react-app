@@ -68,43 +68,44 @@ export const ConnectedItem = ({
     }
   }, [renameBuffer, id]);
 
-  const text =
-    renameBuffer === id ? (
-      <Input submitFunction={renameFolder} placeholder="Rename folder" defaultValue={title} />
-    ) : (
-      <p className="flex-1 py-2 px-2">{title}</p>
-    );
-
   return (
-    <DropdownMenu
-      open={dropdownOpen}
-      onOpenChange={(open) => !open && setDropdownOpen(false)}
-    >
-      <DropdownMenuTrigger asChild>
-        <div>
-          <li
-            onClick={() => !renameBuffer && moveInto(id, index)}
-            onContextMenu={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDropdownOpen(true);
-            }}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onTouchMove={handleTouchMove}
-            className={`flex items-center py-1 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
-          >
-            <span className="text-sm text-neutral-400 flex items-center">
-              {backlinksNumber}
-            </span>
-            {text}
-            <span className="text-sm text-neutral-400 flex items-center">
-              {relationsNumber}
-            </span>
-          </li>
-        </div>
-      </DropdownMenuTrigger>
-      <ItemContextMenu data={data} index={index} />
-    </DropdownMenu>
+    <div>
+      {renameBuffer === id ? (
+        <Input
+          submitFunction={renameFolder}
+          placeholder="Rename folder"
+          defaultValue={title}
+        />
+      ) : (
+        <DropdownMenu
+          open={dropdownOpen}
+          onOpenChange={(open) => !open && setDropdownOpen(false)}
+        >
+          <DropdownMenuTrigger asChild>
+            <li
+              onClick={() => !renameBuffer && moveInto(id, index)}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setDropdownOpen(true);
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onTouchMove={handleTouchMove}
+              className={`flex items-center py-1 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
+            >
+              <span className="text-sm text-neutral-400 flex items-center">
+                {backlinksNumber}
+              </span>
+              <p className="flex-1 py-2 px-2">{title}</p>
+              <span className="text-sm text-neutral-400 flex items-center">
+                {relationsNumber}
+              </span>
+            </li>
+          </DropdownMenuTrigger>
+          <ItemContextMenu data={data} index={index} />
+        </DropdownMenu>
+      )}
+    </div>
   );
 };

@@ -15,11 +15,11 @@ export const Workspace = () => {
   return (
     <>
       <Header />
-      <div className={"mt-13"}>
+      <div className={"mt-12"}>
         {mode === "Add Unrelated Folder" ? (
           <Input
-            submitFunction={addUnrelatedFolder}
-            placeholder="Add unrelated folder"
+          submitFunction={addUnrelatedFolder}
+          placeholder="Add unrelated folder"
           />
         ) : isSearch ? (
           <SearchedItems />

@@ -65,6 +65,9 @@ a:hover {
 body {
   background-color: #171717;
   color: white;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;
   /* height: 100vh; */
   /* -webkit-overflow-scrolling: touch; */
 }
