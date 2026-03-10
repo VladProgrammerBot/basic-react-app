@@ -1,4 +1,4 @@
-type mode =
+export type mode =
   | "normal"
   | "Add Folder"
   | "Add Unrelated Folder"

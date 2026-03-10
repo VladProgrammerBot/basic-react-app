@@ -30,6 +30,14 @@ export const useFolders = () => {
         sortedChildrens.push({
           ...data,
         });
+      } else {
+        sortedChildrens.push({
+          backlinks: [],
+          childrens: [],
+          id: child,
+          title: "[Not found]",
+          ref: null,
+        } as folder);
       }
     });
 

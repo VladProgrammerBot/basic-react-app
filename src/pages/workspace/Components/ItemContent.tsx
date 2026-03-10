@@ -4,12 +4,17 @@ import { Input } from "../ui-elements/Input";
 import { ItemTitle } from "./ItemTitle";
 import { useFolders } from "@/hooks/folders/useFolders";
 import store from "@/state/store";
+import { IoMdAdd } from "react-icons/io";
+import { Hotkey } from "../ui-elements/HotKeyTip";
 
 export const ItemContent = () => {
   const designMode = store.use.designMode();
   const mode = store.use.mode();
+  const setMode = store.use.setMode();
   const containterStyles =
-    designMode !== "Minimalistic" ? "sm:rounded-xl sm:p-2 sm:bg-neutral-800" : "";
+    designMode !== "Minimalistic"
+      ? "sm:rounded-xl sm:p-2 sm:bg-neutral-800"
+      : "";
 
   const { childrensData } = useFolders();
 
@@ -17,13 +22,18 @@ export const ItemContent = () => {
     <div className={containterStyles}>
       {designMode !== "Minimalistic" && <ItemTitle />}
       <TipForRelated />
-      <ul className="flex flex-col gap-1 my-2">
+      <ul className="flex flex-col gap-1 mt-2 mb-1">
         {childrensData.map((data, index) => (
           <ConnectedItem key={index} data={data} index={index} />
         ))}
       </ul>
-      {(designMode !== "Minimalistic" || mode === "Add Folder") && (
+      {mode === "Add Folder" && (
         <Input hotkey="A" />
+      )}
+      {designMode !== "Minimalistic" && mode === "normal" && (
+        <button onClick={() => setMode("Add Folder")} className="w-full flex items-center justify-center text-neutral-500 duration-150 cursor-pointer border h-12 lg:h-10 rounded-xl border-neutral-600 border-dashed">
+          <IoMdAdd /><Hotkey is="A"/>
+        </button>
       )}
     </div>
   );

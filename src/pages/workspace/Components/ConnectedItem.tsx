@@ -28,7 +28,7 @@ export const ConnectedItem = ({
     longTouchTimer.current = window.setTimeout(() => {
       e.preventDefault();
       setDropdownOpen(true);
-    }, 100); // 500ms for long touch
+    }, 300); // 500ms for long touch
   };
 
   const handleTouchEnd = () => {

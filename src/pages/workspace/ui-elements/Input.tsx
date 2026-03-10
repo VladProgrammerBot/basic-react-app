@@ -3,6 +3,9 @@ import { Hotkey } from "./HotKeyTip";
 import { useState, useRef, useEffect } from "react";
 import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
 import store from "@/state/store";
+import type { mode } from "@/types/storeTypes";
+import { IoClose } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 
 interface InputProps {
   mode?: string;
@@ -14,10 +17,8 @@ interface InputProps {
 }
 
 export const Input = ({
-  mode: propMode,
   submitFunction,
   placeholder = "Add note and connect to it",
-  hotkey,
   setModeOnFocus = "Add Folder",
   setModeOnBlur = "normal",
 }: InputProps = {}) => {
@@ -25,11 +26,9 @@ export const Input = ({
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { addFolder } = useFolderManipulation();
-  const globalMode = store.use.mode();
   const setGlobalMode = store.use.setMode();
   const designMode = store.use.designMode();
 
-  const mode = propMode || globalMode;
   const handleSubmitFn = submitFunction || addFolder;
 
   const handleSubmit = async () => {
@@ -37,9 +36,8 @@ export const Input = ({
 
     setIsLoading(true);
     try {
-      // Call the provided submit function or default addFolder
       await handleSubmitFn(inputValue);
-      setInputValue(""); // Clear input after successful submission
+      setInputValue("");
     } catch (error) {
       console.error("Error adding folder:", error);
     } finally {
@@ -64,34 +62,36 @@ export const Input = ({
   };
 
   useEffect(() => {
-    if (mode === setModeOnFocus) {
-      inputRef.current?.focus();
-    }
-  }, [mode, setModeOnFocus]);
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <div className="border border-neutral-700 rounded-xl border-dashed flex items-center w-full pr-1 py-1 lg:py-0">
-      {hotkey && <Hotkey className="ml-2" is={hotkey} />}
       <input
         ref={inputRef}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        onClick={() => setGlobalMode(setModeOnFocus as any)}
-        onBlur={() => setGlobalMode(setModeOnBlur as any)}
+        onClick={() => setGlobalMode(setModeOnFocus as mode)}
+        // onBlur={() => setGlobalMode(setModeOnBlur as any)}
         disabled={isLoading}
         className="outline-none w-full placeholder:text-white/30 px-4 py-2 flex-1 disabled:opacity-50"
         placeholder={placeholder}
       />
       {designMode !== "Minimalistic" && (
-        <Button
-          onClick={handleButtonClick}
-          disabled={isLoading || !inputValue.trim()}
-          className="py-2"
-        >
-          {isLoading ? "..." : "+"}
-          <Hotkey is="Enter" />
-        </Button>
+        <>
+          <Button onClick={handleButtonClick} className="py-3  mr-1">
+            <IoMdAdd />
+            <Hotkey is="Enter" />
+          </Button>
+          <Button
+            onClick={() => setGlobalMode(setModeOnBlur as mode)}
+            className="py-3"
+          >
+            <IoClose />
+            <Hotkey is="Esc" />
+          </Button>
+        </>
       )}
     </div>
   );
