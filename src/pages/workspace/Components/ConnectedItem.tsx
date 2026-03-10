@@ -1,9 +1,13 @@
 import { HiArrowTurnDownRight, HiArrowTurnRightDown } from "react-icons/hi2";
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ItemContextMenu } from "../ui-elements/ContextMenu";
 import { useItem } from "@/hooks/folders/useItem";
 import store from "@/state/store";
 import { useState, useRef, useEffect } from "react";
+import { Input } from "../ui-elements/ItemInput";
 
 export const ConnectedItem = ({
   data,
@@ -16,10 +20,8 @@ export const ConnectedItem = ({
   const { backlinks, childrens, title, id } = data;
   const designMode = store.use.designMode();
   const { moveInto, renameFolder } = useItem();
-  const [editValue, setEditValue] = useState(title);
   const inputRef = useRef<HTMLInputElement>(null);
   const renameBuffer = store.use.renameBuffer();
-  const setRenameBuffer = store.use.setRenameBuffer();
   const mode = store.use.mode();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const longTouchTimer = useRef<number | null>(null);
@@ -59,29 +61,6 @@ export const ConnectedItem = ({
     </>
   );
 
-  const handleSubmit = () => {
-    if (editValue.trim() && editValue !== title) {
-      renameFolder(editValue);
-    }
-    setRenameBuffer(null);
-  };
-
-  const handleCancel = () => {
-    setEditValue(title);
-    setRenameBuffer(null);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    e.stopPropagation()
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSubmit();
-    } else if (e.key === "Escape") {
-      e.preventDefault();
-      handleCancel();
-    }
-  };
-
   useEffect(() => {
     if (renameBuffer === id && inputRef.current) {
       inputRef.current.focus();
@@ -91,26 +70,20 @@ export const ConnectedItem = ({
 
   const text =
     renameBuffer === id ? (
-      <input
-        ref={inputRef}
-        type="text"
-        value={editValue}
-        onChange={(e) => setEditValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        onBlur={handleCancel}
-        className="flex-1 py-2 px-2 bg-neutral-800 text-white outline-none rounded"
-        onClick={(e) => e.stopPropagation()}
-      />
+      <Input submitFunction={renameFolder} placeholder="Rename folder" defaultValue={title} />
     ) : (
       <p className="flex-1 py-2 px-2">{title}</p>
     );
 
   return (
-    <DropdownMenu open={dropdownOpen} onOpenChange={(open) => !open && setDropdownOpen(false)}>
+    <DropdownMenu
+      open={dropdownOpen}
+      onOpenChange={(open) => !open && setDropdownOpen(false)}
+    >
       <DropdownMenuTrigger asChild>
         <div>
           <li
-            onClick={() => moveInto(id, index)}
+            onClick={() => !renameBuffer && moveInto(id, index)}
             onContextMenu={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -121,14 +94,14 @@ export const ConnectedItem = ({
             onTouchMove={handleTouchMove}
             className={`flex items-center py-1 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
           >
-          <span className="text-sm text-neutral-400 flex items-center">
-            {backlinksNumber}
-          </span>
-          {text}
-          <span className="text-sm text-neutral-400 flex items-center">
-            {relationsNumber}
-          </span>
-        </li>
+            <span className="text-sm text-neutral-400 flex items-center">
+              {backlinksNumber}
+            </span>
+            {text}
+            <span className="text-sm text-neutral-400 flex items-center">
+              {relationsNumber}
+            </span>
+          </li>
         </div>
       </DropdownMenuTrigger>
       <ItemContextMenu data={data} index={index} />

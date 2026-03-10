@@ -8,6 +8,7 @@ export const useItemInput = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const setMode = store.use.setMode();
+  const setRenameBuffer = store.use.setRenameBuffer();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -25,5 +26,10 @@ export const useItemInput = ({
     setMode("normal")
   };
 
-  return { handleKeyDown, handleSubmit, inputRef };
+  const handleCancel = () => {
+    setMode("normal")
+    setRenameBuffer(null)
+  }
+
+  return { handleKeyDown, handleSubmit, handleCancel, inputRef };
 };
