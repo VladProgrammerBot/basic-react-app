@@ -149,10 +149,10 @@ export const useKeyboardShortcuts = () => {
     const selectedFolder = folders[selectedId];
 
     if (e.code === "KeyL" && typeof selectedItemId === "number") {
-      setSelectedItemId(0);
       if (mode === "Backlinks") {
         return moveInto(parent.backlinks[selectedItemId], 0);
       }
+      setSelectedItemId(0);
       return moveInto(selectedFolder.ref ?? selectedId, selectedItemId);
     }
 
