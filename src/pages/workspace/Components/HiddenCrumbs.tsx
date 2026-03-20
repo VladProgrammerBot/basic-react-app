@@ -14,11 +14,16 @@ export const HiddenCrumbs = () => {
   const isMenuOpen = store.use.isMenuOpen();
   const toggleMenu = store.use.toggleMenu();
   const { hiddenCrumbs } = useBreadcrumbs();
+  const designMode = store.use.designMode();
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
       <DropdownMenuTrigger asChild className="outline-none">
-        <button className="flex items-center px-4 gap-1 hover:bg-neutral-700 cursor-pointer duration-150">
+        <button
+          className={`${
+            designMode === "Minimalistic" && "hidden"
+          } flex items-center px-4 gap-1 hover:bg-neutral-700 cursor-pointer duration-150`}
+        >
           <RiHistoryFill />
           <Hotkey is={"P"} />
         </button>

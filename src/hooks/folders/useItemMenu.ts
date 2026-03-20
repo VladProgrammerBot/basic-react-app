@@ -4,6 +4,7 @@ import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
 import { fetchApi } from "./useApi";
 import { useItem } from "./useItem";
+import { generateId } from "../generateId";
 
 export const useFolderManipulation = () => {
   const path = store.use.path();
@@ -21,10 +22,6 @@ export const useFolderManipulation = () => {
     setReplaceFolder,
     setSelectedItemId,
   } = store();
-
-  const generateId = () => {
-    return Math.floor(Math.random() * 200000000);
-  };
 
   const arrayReplacer = (array: number[], index1: number, index2: number) => {
     if (
@@ -61,7 +58,7 @@ export const useFolderManipulation = () => {
     setSelectedItemId(childrensId.length);
 
     if (!isLogin) return;
-
+    
     await fetchApi({
       method: "POST",
       path: "/folders/add",

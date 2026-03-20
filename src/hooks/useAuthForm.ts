@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import store from "@/state/store";
-import { generatedId } from "@/utils/generateId";
+import { generateId } from "@/hooks/generateId";
 import { fetchApi } from "./folders/useApi";
 
 const formSchema = z.object({
@@ -44,7 +44,7 @@ export const useLogin = (type: authType) => {
       body: {
         ...values,
         folders,
-        rootId: (path[0] && path[0].id) ?? generatedId(),
+        rootId: (path[0] && path[0].id) ?? generateId(),
       },
       auth: false,
       onSuccess: (data) => {

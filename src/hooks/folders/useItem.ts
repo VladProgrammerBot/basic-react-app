@@ -20,6 +20,7 @@ export const useItem = () => {
   const { moveFolder } = usePath();
 
   const moveInto = (id: number, index: number) => {
+    console.log(id, childrensId)
     if (childrensId.length === 0) return;
 
     setMode("normal");

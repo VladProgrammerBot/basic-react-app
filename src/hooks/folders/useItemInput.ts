@@ -6,7 +6,7 @@ export const useItemInput = ({
 }: {
   submitFunction: (title: string) => void;
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const setMode = store.use.setMode();
   const setRenameBuffer = store.use.setRenameBuffer();
 

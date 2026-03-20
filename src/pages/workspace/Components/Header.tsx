@@ -18,12 +18,12 @@ export const Header = () => {
     <div className="fixed top-0 left-0 right-0 z-10">
       <div className="max-w-xl mx-auto p-2">
         <div className="flex justify-between max-w-xl gap-1">
+          {!isSearch && <Navigation />}
           {designMode === "Minimalistic" && !isSearch && (
             <div className="flex-1 bg-neutral-800 overflow-hidden text-nowrap rounded-xl p-1">
               <ItemTitle />
             </div>
           )}
-          {fullNavigation && <Navigation />}
           {searchBar && <SearchInput />}
           {fullNavigation && (
             <MenuButton
