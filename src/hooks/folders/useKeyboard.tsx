@@ -165,17 +165,17 @@ export const useKeyboardShortcuts = () => {
       if (!e.shiftKey) {
         return handleRemoveConnection(selectedId);
       }
-      if (selectedItemId === childrensId.length - 1) {
+      if (isLastItem) {
         setSelectedItemId(childrensId.length - 2);
       }
       return removeFolder(selectedId);
     }
 
     if (e.code === "KeyC" && !e.ctrlKey && !e.altKey && !e.metaKey) {
-      // if (e.shiftKey) {
-      //   navigator.clipboard.writeText("text/markdown");
-      //   return copyMarkdown(parentId);
-      // }
+      if (e.shiftKey) {
+        navigator.clipboard.writeText("text/markdown");
+        return copyMarkdown(parentId);
+      }
 
       e.preventDefault();
       return addTextToClipboard(selectedFolder.title);
