@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import store from "@/state/store";
 import { TiHome } from "react-icons/ti";
-import { MdLogout, MdOutlineBorderStyle, MdCheck } from "react-icons/md";
+import { MdLogout, MdOutlineBorderStyle, MdCheck, MdBarChart } from "react-icons/md";
 import { HiUserAdd } from "react-icons/hi";
 import type { DesignMode } from "@/types/storeTypes";
 
@@ -54,6 +54,13 @@ export const useBar = () => {
       icon: TiHome,
       show: true,
       onClick: () => go("/"),
+    },
+    {
+      key: "analytics",
+      label: "Analytics",
+      icon: MdBarChart,
+      show: isLogin,
+      onClick: () => go("/analytics"),
     },
     {
       key: "logout",
