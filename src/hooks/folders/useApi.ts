@@ -40,9 +40,6 @@ export const fetchApi = async ({
     //   throw new Error(`HTTP error: ${response.status}`);
     // }
   } catch (error) {
-    alert(
-      "An error occurred while communicating with the server. Please try again.",
-    );
     console.error("API Error:", error);
     if (onError) {
       onError(error as string);
