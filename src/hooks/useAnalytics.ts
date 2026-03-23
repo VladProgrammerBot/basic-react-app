@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchApi } from "./folders/useApi";
 
-interface Analytics {
+export interface Analytics {
   avgSessionsPerDay: number;
   avgEventsCountInOneDay: number;
   topMostPopularDevices: {
