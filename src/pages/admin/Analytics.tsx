@@ -2,7 +2,6 @@ import { useAnalytics } from "../../hooks/useAnalytics";
 
 export const Analytics = () => {
   const { analytics } = useAnalytics();
-  console.log(analytics);
 
   return (
     <div>

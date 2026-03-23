@@ -2,35 +2,42 @@ import { useEffect, useState } from "react";
 import { fetchApi } from "./folders/useApi";
 
 export interface Analytics {
-  avgSessionsPerDay: number;
-  avgEventsCountInOneDay: number;
-  topMostPopularDevices: {
-    type: string;
-    count: number;
+  averageSessionsPerDay: number;
+  averageEventsPerDay: number;
+
+  topDevices: {
+    device: string;
+    session_count: number;
   }[];
-  topMostPopularFunctions: {
+
+  topFunctions: {
     type: string;
-    count: number;
+    event_count: number;
   }[];
-  topMostActiveUsers: {
+
+  topActiveUsers: {
     username: string;
-    sessions: number;
+    session_count: number;
   }[];
-  daysSessionsCount: {
-    day: number;
-    sessions: number;
+
+  sessionsByDay: {
+    day: string;
+    session_count: number;
   }[];
-  daysEventsCount: {
-    day: number;
-    events: number;
+
+  eventsByDay: {
+    day: string;
+    event_count: number;
   }[];
-  hoursAverageEventsCount: {
+
+  hourlyEventAverage: {
     hour: number;
     events: number;
   }[];
-  hoursLastDayEventsCount: {
+
+  lastDayHourlyEvents: {
     hour: number;
-    events: number;
+    event_count: number;
   }[];
 }
 
