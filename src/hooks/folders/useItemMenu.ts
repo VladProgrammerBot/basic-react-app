@@ -118,7 +118,7 @@ export const useFolderManipulation = () => {
       path: "/folders/remove",
       body: {
         id,
-        parent
+        // parent
       },
       auth: true,
     });

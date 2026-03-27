@@ -1,22 +1,24 @@
 import { BarList } from "@/components/analytics/BarList";
 import { useAnalytics } from "../../hooks/useAnalytics";
 import { LineChart } from "@/components/analytics/LineChart";
+import { AnalyticCard } from "./AnalyticCard";
 
 export const Analytics = () => {
-  const { analytics } = useAnalytics();
+  const { analytics, osTopList } = useAnalytics();
 
   return (
-    <div>
-      <h1>Analytics</h1>
+    <div className="flex gap-4 p-4 flex-wrap">
+      <p className="font-bold text-3xl w-full">Analytics</p>
       {analytics && (
         <>
-          <h2>Average events per day</h2>
-          {analytics.averageEventsPerDay}
+          <AnalyticCard title="AverageEventsCard">
+            <p className="text-3xl font-bold">{analytics.averageEventsPerDay}</p>
+          </AnalyticCard>
           <h2>Average sessions per day</h2>
           {analytics.averageSessionsPerDay}
           <h2>Top Devices</h2>
           <BarList
-            data={analytics.topDevices.map(({ device, session_count }) => ({
+            data={osTopList().map(([device, session_count]) => ({
               name: device,
               value: session_count,
             }))}
@@ -27,6 +29,15 @@ export const Analytics = () => {
               name: type,
               value: event_count,
             }))}
+          />
+          <h2>Top Active Users</h2>
+          <BarList
+            data={analytics.topActiveUsers.map(
+              ({ username, session_count }) => ({
+                name: username,
+                value: session_count,
+              }),
+            )}
           />
           <h2>Hourly Event Average</h2>
           <LineChart
@@ -40,13 +51,6 @@ export const Analytics = () => {
             onValueChange={(v) => console.log(v)}
             xAxisLabel="Hour"
             yAxisLabel="Events"
-          />
-          <h2>Top Active Users</h2>
-          <BarList
-            data={analytics.topActiveUsers.map(({ username, session_count }) => ({
-              name: username,
-              value: session_count,
-            }))}
           />
           <h2>Sessions by Day</h2>
           <LineChart
