@@ -4,6 +4,8 @@ import { fetchApi } from "./folders/useApi";
 export interface Analytics {
   averageSessionsPerDay: number;
   averageEventsPerDay: number;
+  numberOfNotes: number;
+  numberOfRelations: number;
 
   topDevices: {
     device: string;
@@ -39,6 +41,8 @@ export interface Analytics {
     hour: number;
     event_count: number;
   }[];
+
+
 }
 
 export const useAnalytics = () => {
@@ -54,6 +58,8 @@ export const useAnalytics = () => {
       path: "/analytics",
       auth: true,
       onSuccess: (data) => {
+        console.log(data);
+        
         setAnalytics(data);
       }
     });

@@ -37,13 +37,13 @@ export const Analytics = () => {
               />
               <StatCard 
                 title="Number of notes" 
-                value={analytics.topActiveUsers.length}
+                value={analytics.numberOfNotes}
                 icon="user"
                 color="emerald"
               />
               <StatCard 
                 title="Number of relations" 
-                value={osTopList().length}
+                value={analytics.numberOfRelations}
                 icon="device"
                 color="orange"
               />
