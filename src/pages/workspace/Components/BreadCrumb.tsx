@@ -27,7 +27,6 @@ export const Breadcrumb = ({
   return (
     <div
       onClick={() => {
-        console.log(2);
         !current && moveOut(index);
       }}
       className={`${!current && "rounded-md"} ${

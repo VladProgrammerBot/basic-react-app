@@ -2,8 +2,6 @@ import store from "@/state/store";
 import { useAlerts } from "../useAlerts";
 import { useEffect } from "react";
 import { fetchApi } from "./useApi";
-// import { useKeyboardShortcuts } from "./useKeyboard";
-
 const api = import.meta.env.VITE_API;
 
 export const useEdit = () => {
@@ -12,8 +10,6 @@ export const useEdit = () => {
   const setPath = store.use.setPath();
   const setIsLogin = store.use.setIsLogin();
   const folders = store.use.folders();
-
-  //
 
   const thereAreFolders = Object.keys(folders).length !== 0;
   const isUserLoggedIn = localStorage.getItem("token") !== null;

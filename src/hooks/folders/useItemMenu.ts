@@ -58,7 +58,7 @@ export const useFolderManipulation = () => {
     setSelectedItemId(childrensId.length);
 
     if (!isLogin) return;
-    
+
     await fetchApi({
       method: "POST",
       path: "/folders/add",
@@ -106,18 +106,19 @@ export const useFolderManipulation = () => {
 
   const removeFolder = async (id: number) => {
     const parent = path[path.length - 1].id;
+    const hasChildrens = folders[id].childrens.length !== 0;
+    const hasManyParents = folders[id].backlinks.length > 1;
 
-    if (folders[id].childrens.length !== 0 || folders[id].backlinks.length > 1)
-      return;
+    if (hasChildrens || hasManyParents) return;
     foldersRemove(id, parent);
-
     if (!isLogin) return;
 
     await fetchApi({
       method: "DELETE",
       path: "/folders/remove",
       body: {
-        id: id,
+        id,
+        // parent
       },
       auth: true,
     });
