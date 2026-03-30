@@ -55,10 +55,7 @@ export const useAnalytics = () => {
       auth: true,
       onSuccess: (data) => {
         setAnalytics(data);
-      },
-      onError: (error) => {
-        console.error("Analytics error:", error);
-      },
+      }
     });
   };
 

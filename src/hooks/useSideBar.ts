@@ -5,6 +5,7 @@ import { TiHome } from "react-icons/ti";
 import { MdLogout, MdOutlineBorderStyle, MdCheck, MdBarChart } from "react-icons/md";
 import { HiUserAdd } from "react-icons/hi";
 import type { DesignMode } from "@/types/storeTypes";
+const adminId = import.meta.env.VITE_ADMIN_ID;
 
 const designModes: { value: DesignMode; label: string }[] = [
   { value: "normal", label: "Normal" },
@@ -21,6 +22,7 @@ export const useBar = () => {
   const setDesignMode = store.use.setDesignMode();
 
   const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState(null)
   const [isBarOpen, setIsBarOpen] = useState(false);
 
   useEffect(() => {
@@ -28,8 +30,11 @@ export const useBar = () => {
       const token = localStorage.getItem("token");
       if (!token) return;
       const [, payload] = token.split(".");
-      const { username } = JSON.parse(atob(payload));
+      const { username, userId } = JSON.parse(atob(payload));
       setUsername(username ?? "");
+      setUserId(userId ?? null);
+      console.log(userId);
+      
     } catch {
       // Silently handle token parsing errors
     }
@@ -47,6 +52,9 @@ export const useBar = () => {
     setIsBarOpen(false);
   };
 
+  console.log(adminId);
+  
+
   const actions = [
     {
       key: "home",
@@ -59,7 +67,7 @@ export const useBar = () => {
       key: "analytics",
       label: "Analytics",
       icon: MdBarChart,
-      show: isLogin,
+      show: isLogin && userId === Number(adminId),
       onClick: () => go("/analytics"),
     },
     {
@@ -94,7 +102,6 @@ export const useBar = () => {
   ];
 
   return {
-    // containerClass
     isBarOpen,
     setIsBarOpen,
     username,
