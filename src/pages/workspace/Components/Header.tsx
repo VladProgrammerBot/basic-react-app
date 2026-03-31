@@ -20,7 +20,7 @@ export const Header = () => {
         <div className="flex justify-between max-w-xl gap-1">
           {!isSearch && <Navigation />}
           {designMode === "Minimalistic" && !isSearch && (
-            <div className="flex-1 bg-neutral-800 overflow-hidden text-nowrap rounded-xl p-1">
+            <div className="flex-1 flex items-center bg-neutral-800 overflow-hidden text-nowrap rounded-xl p-1">
               <ItemTitle />
             </div>
           )}

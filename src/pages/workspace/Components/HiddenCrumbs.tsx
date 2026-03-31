@@ -36,7 +36,7 @@ export const HiddenCrumbs = () => {
                 maxLen={30}
                 elem={crumb}
                 index={index}
-                className="w-full px-4 py-2"
+                className="w-full px-4 py-4 lg:p-0"
               />
             </DropdownMenuItem>
           );

@@ -10,7 +10,7 @@ export const Navigation = () => {
   const designMode = store.use.designMode();
 
   return (
-    <div className="bg-neutral-800 flex overflow-hidden rounded-xl">
+    <div className="bg-neutral-800 text-xl flex overflow-hidden rounded-xl">
       {designMode !== "Minimalistic" && (
         <button
           onClick={() => path.length !== 1 && moveOut(path.length - 2)}

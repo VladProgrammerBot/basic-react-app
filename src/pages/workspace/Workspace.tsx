@@ -15,7 +15,7 @@ export const Workspace = () => {
   return (
     <>
       <Header />
-      <div className={"mt-12"}>
+      <div className="mt-14 lg:mt-12">
         {mode === "Add Unrelated Folder" ? (
           <Input
           submitFunction={addUnrelatedFolder}

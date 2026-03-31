@@ -33,7 +33,9 @@ export const SearchInput = () => {
         }}
         className="flex flex-1 items-center gap-2 pl-4 p-2 bg-neutral-800 rounded-xl"
       >
-        <IoSearchOutline size={25} />
+        <p>
+          <IoSearchOutline size={25} />
+        </p>
         <input
           ref={InputRef}
           onFocus={() => setMode("Filter")}
