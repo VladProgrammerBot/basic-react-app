@@ -8,6 +8,7 @@ import { useItem } from "@/hooks/folders/useItem";
 import store from "@/state/store";
 import { useState, useRef, useEffect } from "react";
 import { Input } from "../ui-elements/ItemInput";
+import { useLongTouch } from "@/hooks/folders/useLongTouch";
 
 export const ConnectedItem = ({
   data,
@@ -24,40 +25,12 @@ export const ConnectedItem = ({
   const renameBuffer = store.use.renameBuffer();
   const mode = store.use.mode();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const longTouchTimer = useRef<number | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    longTouchTimer.current = window.setTimeout(() => {
-      e.preventDefault();
-      setDropdownOpen(true);
-    }, 300); // 500ms for long touch
-  };
-
-  const handleTouchEnd = () => {
-    if (longTouchTimer.current) {
-      clearTimeout(longTouchTimer.current);
-      longTouchTimer.current = null;
-    }
-  };
-
-  const handleTouchMove = () => {
-    if (longTouchTimer.current) {
-      clearTimeout(longTouchTimer.current);
-      longTouchTimer.current = null;
-    }
-  };
+  const { longTouchTrigger } = useLongTouch(() => setDropdownOpen(true));
 
   const backlinksNumber = backlinks.length !== 0 && (
     <>
       {backlinks.length}
       {designMode !== "Minimalistic" && <HiArrowTurnDownRight />}
-    </>
-  );
-
-  const relationsNumber = childrens.length !== 0 && (
-    <>
-      {designMode !== "Minimalistic" && <HiArrowTurnRightDown />}
-      {childrens.length}
     </>
   );
 
@@ -67,6 +40,13 @@ export const ConnectedItem = ({
       inputRef.current.select();
     }
   }, [renameBuffer, id]);
+
+  const relationsNumber = childrens.length !== 0 && (
+    <>
+      {designMode !== "Minimalistic" && <HiArrowTurnRightDown />}
+      {childrens.length}
+    </>
+  );
 
   return (
     <div>
@@ -89,9 +69,7 @@ export const ConnectedItem = ({
                 e.stopPropagation();
                 setDropdownOpen(true);
               }}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-              onTouchMove={handleTouchMove}
+              {...longTouchTrigger}
               className={`flex items-center py-1 lg:py-0 px-2 ${selectedItemId === index && mode !== "Backlinks" ? "bg-neutral-600" : "hover:bg-neutral-600 bg-neutral-700"}  duration-150 cursor-default w-full rounded-xl select-none`}
             >
               <span className="text-sm text-neutral-400 flex items-center">

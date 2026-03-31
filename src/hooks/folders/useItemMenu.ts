@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { addTextToClipboard } from "@/utils/addToClipboard";
 import { useChildrens } from "./useChildrens";
 import { fetchApi } from "./useApi";
-import { useItem } from "./useItem";
 import { generateId } from "../generateId";
 
 export const useFolderManipulation = () => {
@@ -12,16 +11,12 @@ export const useFolderManipulation = () => {
   const isLogin = store.use.isLogin();
   const childrensId = useChildrens();
   const removeConnection = store.use.removeConnection();
-  const { moveInto } = useItem();
-
-  const {
-    folders,
-    pushFolder,
-    setMode,
-    foldersRemove,
-    setReplaceFolder,
-    setSelectedItemId,
-  } = store();
+  const folders = store.use.folders();
+  const pushFolder = store.use.pushFolder();
+  const setMode = store.use.setMode();
+  const foldersRemove = store.use.foldersRemove();
+  const setReplaceFolder = store.use.setReplaceFolder();
+  const setSelectedItemId = store.use.setSelectedItemId();
 
   const arrayReplacer = (array: number[], index1: number, index2: number) => {
     if (
@@ -73,37 +68,7 @@ export const useFolderManipulation = () => {
     });
   };
 
-  const addUnrelatedFolder = async (value: string) => {
-    const id = generateId();
-
-    setMode("normal");
-    pushFolder(
-      {
-        id: id,
-        childrens: [],
-        title: value,
-        ref: null,
-        backlinks: [],
-      },
-      id,
-      null,
-    );
-    setSelectedItemId(childrensId.length);
-    moveInto(id, 0);
-
-    if (!isLogin) return;
-
-    await fetchApi({
-      method: "POST",
-      path: "/folders/add-unrelated",
-      body: {
-        title: value,
-        id: id,
-        ref: null,
-      },
-      auth: true,
-    });
-  };
+  
 
   const removeFolder = async (id: number) => {
     const parent = path[path.length - 1]?.id;
@@ -193,6 +158,5 @@ export const useFolderManipulation = () => {
     replaceFolders,
     copyMarkdown,
     handleRemoveConnection,
-    addUnrelatedFolder,
   };
 };

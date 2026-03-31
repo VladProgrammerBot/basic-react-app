@@ -42,7 +42,7 @@ export const SearchInput = () => {
           type="text"
           placeholder="Search item"
           className="outline-none w-full bg-transparent"
-          value={searchValue} // Прив'язуємо значення
+          value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <Hotkey is="S" />

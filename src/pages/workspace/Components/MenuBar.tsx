@@ -4,7 +4,7 @@ import { useBar } from "@/hooks/useSideBar";
 import { FiMenu } from "react-icons/fi";
 import { MenuButton } from "../ui-elements/MenuButton";
 
-export const Bar = () => {
+export const MenuBar = () => {
   const { isBarOpen, setIsBarOpen, actions, username } = useBar();
   const CloseButton = (
     <Button className="py-3 bg-neutral-800" onClick={() => setIsBarOpen(false)}>

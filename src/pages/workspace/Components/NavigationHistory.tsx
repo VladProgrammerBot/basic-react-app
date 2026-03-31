@@ -10,7 +10,7 @@ import { useBreadcrumbs } from "@/hooks/useBreadcrumbs";
 import { RiHistoryFill } from "react-icons/ri";
 import { Hotkey } from "../ui-elements/HotKeyTip";
 
-export const HiddenCrumbs = () => {
+export const NavigationHistory = () => {
   const isMenuOpen = store.use.isMenuOpen();
   const toggleMenu = store.use.toggleMenu();
   const { hiddenCrumbs } = useBreadcrumbs();

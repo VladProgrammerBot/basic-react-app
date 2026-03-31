@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { Hotkey } from "../ui-elements/HotKeyTip";
-import { HiddenCrumbs } from "@/pages/workspace/Components/HiddenCrumbs";
+import { NavigationHistory } from "@/pages/workspace/Components/NavigationHistory";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
 
@@ -20,7 +20,7 @@ export const Navigation = () => {
           <Hotkey is={"H"} />
         </button>
       )}
-      <HiddenCrumbs />
+      <NavigationHistory />
     </div>
   );
 };

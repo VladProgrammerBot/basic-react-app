@@ -14,17 +14,14 @@ import store from "@/state/store";
 import { useItem } from "@/hooks/folders/useItem";
 
 export const ItemTitle = () => {
-  // Store state
   const folders = store.use.folders();
   const path = store.use.path();
   const designMode = store.use.designMode();
   const moveBuffer = store.use.moveBuffer();
   const { moveInto } = useItem();
 
-  // Current item data
   const currentItem = folders[path[path.length - 1].id];
 
-  // Backlinks data
   const backlinksCount = currentItem?.backlinks?.length || 0;
   const backlinksData = getBacklinksData(currentItem?.backlinks || [], folders);
 
@@ -53,7 +50,6 @@ export const ItemTitle = () => {
   );
 };
 
-// Helper function to get backlinks data
 const getBacklinksData = (
   backlinkIds: number[],
   folders: Record<number, folder>,
@@ -63,12 +59,10 @@ const getBacklinksData = (
     .filter(Boolean) as folder[];
 };
 
-// Component for displaying the item title
 const ItemTitleDisplay = ({ title }: { title?: string }) => (
   <p className="font-bold text-xl px-2">{title}</p>
 );
 
-// Component for backlinks dropdown
 const BacklinksDropdown = ({
   count,
   backlinks,
@@ -111,7 +105,6 @@ const BacklinksDropdown = ({
   );
 };
 
-// Component for reference button
 const ReferenceButton = () => {
   const { addConnection } = useItem();
 
