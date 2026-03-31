@@ -4,7 +4,7 @@ import { AuthLayout } from "./pages/auth/AuthLayout.tsx";
 import { AuthForm } from "./pages/auth/AuthForm.tsx";
 import { About } from "./pages/about/About.tsx";
 import { GlobalLayout } from "./pages/GlobalLayout.tsx";
-import { WorkspaceLayout } from "./pages/workspace/WorkspaceLayout.tsx";
+import { Workspace } from "./pages/workspace/Workspace.tsx";
 import { Analytics } from "./pages/admin/Analytics.tsx";
 
 export const router = createBrowserRouter([
@@ -21,12 +21,8 @@ export const router = createBrowserRouter([
         Component: Analytics,
       },
       {
-        path: "experements",
-        Component: WorkspaceLayout,
-      },
-      {
         path: "workspace",
-        Component: WorkspaceLayout,
+        Component: Workspace,
       },
       {
         path: "about",

@@ -41,7 +41,8 @@ export const useFolderManipulation = () => {
 
   const addFolder = async (value: string) => {
     const id = generateId();
-    const parentId = path[path.length - 1].id;
+    if (!path) return
+    const parentId = path[path.length - 1]?.id;
 
     setMode("normal");
     pushFolder(
@@ -105,7 +106,7 @@ export const useFolderManipulation = () => {
   };
 
   const removeFolder = async (id: number) => {
-    const parent = path[path.length - 1].id;
+    const parent = path[path.length - 1]?.id;
     const hasChildrens = folders[id].childrens.length !== 0;
     const hasManyParents = folders[id].backlinks.length > 1;
 
@@ -125,7 +126,7 @@ export const useFolderManipulation = () => {
   };
 
   const handleRemoveConnection = async (id: number) => {
-    const parent = path[path.length - 1].id;
+    const parent = path[path.length - 1]?.id;
 
     removeConnection(parent, id);
     await fetchApi({
@@ -145,7 +146,7 @@ export const useFolderManipulation = () => {
 
     if (!newArray) return;
 
-    const parentId = path[path.length - 1].id;
+    const parentId = path[path.length - 1]?.id;
     setReplaceFolder(parentId, newArray);
 
     if (!isLogin) return;
