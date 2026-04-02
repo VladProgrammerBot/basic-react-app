@@ -3,15 +3,16 @@ import { IoClose } from "react-icons/io5";
 import { useBar } from "@/hooks/useSideBar";
 import { FiMenu } from "react-icons/fi";
 import { MenuButton } from "../ui-elements/MenuButton";
+import { memo } from "react";
 
-export const MenuBar = () => {
+export const MenuBar = memo(() => {
   const { isBarOpen, setIsBarOpen, actions, username } = useBar();
   const CloseButton = (
     <Button className="py-3 bg-neutral-800" onClick={() => setIsBarOpen(false)}>
       <IoClose />
     </Button>
   );
-
+  
   return (
     <>
       <MenuButton onClick={() => setIsBarOpen(true)} icon={<FiMenu />} />
@@ -67,4 +68,4 @@ export const MenuBar = () => {
       </div>
     </>
   );
-};
+});
