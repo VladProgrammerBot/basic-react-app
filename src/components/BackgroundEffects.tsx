@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 export const ParticleBackground = () => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {[...Array(10)].map((_, i) => (
+      {/* {[...Array(10)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-blue-500/20 rounded-full"
@@ -21,7 +21,7 @@ export const ParticleBackground = () => {
             repeatType: "reverse",
           }}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import tailwind from "@tailwindcss/typography"
 
 export default {
   content: [
@@ -10,5 +11,5 @@ export default {
       // Тут ми додаємо свої стилі, не видаляючи стандартні
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [tailwind],
 } satisfies Config

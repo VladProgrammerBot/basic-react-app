@@ -41,7 +41,7 @@ export const createFoldersSlice: StateCreator<foldersSlice> = (set) => ({
   },
   foldersRemove: (id, parentId) => {
     set((state) => {
-      const { [id]: _, ...remainingFolders } = state.folders;
+      const { [id]: elem, ...remainingFolders } = state.folders;
 
       return {
         folders: {

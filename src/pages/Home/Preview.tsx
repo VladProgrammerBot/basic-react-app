@@ -119,7 +119,7 @@ const NotesStructurePreview: React.FC = () => {
     }, 700);
 
     return () => clearTimeout(timeout);
-  }, [currentIndex]);
+  }, [currentIndex, notes]);
 
   return (
     <div className="w-full h-full p-6 font-sans">
