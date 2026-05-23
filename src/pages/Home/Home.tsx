@@ -13,7 +13,7 @@ export const Home = () => {
   const { isLoggedIn, handleGetStarted, handleSignIn } = useHome();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
+    <div className="min-h-screen bg-gradient-to-b from-neutral-950 to-neutral-900 text-neutral-100">
       <ParticleBackground />
       <ScrollToTopButton />
       <GradientBackground />

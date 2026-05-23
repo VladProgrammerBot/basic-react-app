@@ -12,15 +12,15 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
   return (
-    <div className="max-w-7xl mt-20 mb-20 mx-auto">
-      <div className="flex flex-col items-center g:flex-row gap-16 w-full">
+    <div className="max-w-7xl mt-40 mb-20 mx-auto">
+      <div className="flex flex-col tems-center g:flex-row gap-16 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex-1 flex flex-col items-center text-center g:items-start g:text-left"
+          className="flex-1 flex flex-col items-start"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -33,20 +33,21 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
               AI Powered
             </span>
-          </motion.div>
+          </motion.div> */}
 
           <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             <span className="drop-shadow-xl drop-shadow-white/20">
-              Think more
+              No chaos in the
               <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
                 {" "}
-                effectively!
+                head!
               </motion.span>
             </span>
           </p>
 
           <p className="text-md md:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl my-5">
-            A simple app to organize your notes without turning them into a mess
+            Minimalistic tool for storing text information with easy orientation
+            regardless of scale
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
@@ -54,21 +55,11 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
               Get Started
               <HiCursorClick className="w-5 h-5" />
             </Button>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link to={"/about"}>
-                  <Button onClick={onGetStarted} size="lg">
-                    Docs
-                  </Button>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>Recomended after getting started</TooltipContent>
-            </Tooltip>
-            {/* 
-              <Button size="lg" variant="outline">
-                About
+            <Link to={"/about"}>
+              <Button onClick={onGetStarted} size="lg">
+                Docs
               </Button>
-            </Link> */}
+            </Link>
           </div>
         </motion.div>
 
@@ -79,8 +70,8 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           transition={{ delay: 0.4 }}
           className="flex-1 w-full flex items-center justify-center "
         >
-          <div className="w-full hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 max-w-xl h-[480px] rounded-2xl border border-neutral-300 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
-            <NotesStructurePreview />
+          <div className="w-full hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 h-[480px] rounded-2xl border border-neutral-800 bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
+            {/* <NotesStructurePreview /> */}
           </div>
         </motion.div>
       </div>

@@ -18,7 +18,7 @@ export const Navigation = ({ isLoggedIn, onSignIn }: NavigationProps) => {
         damping: 15,
         stiffness: 100,
       }}
-      className="flex fixed w-full z-10 items-center justify-between mb-12 left-0 top-0 p-4 backdrop-blur-sm border-b border-neutral-200/50 dark:border-transparent"
+      className="flex fixed w-full z-10 items-center justify-between mb-12 left-0 top-0 p-4 backdrop-blur-sm"
     >
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
