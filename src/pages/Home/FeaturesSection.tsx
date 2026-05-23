@@ -44,13 +44,13 @@ export const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             // whileHover={{ y: -5 }}
-            className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 bg-white dark:bg-neutral-800/10 p-6 rounded-2xl border border-neutral-200 dark:border-neutral-700"
+            className="hover:scale-105 hover:shadow-blue-400/10 shadow-2xl duration-200 bg-neutral-800/10 p-6 rounded-2xl border border-neutral-700"
           >
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-4 text-blue-400">
               {feature.icon}
             </div>
             <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-            <p className="text-neutral-600 dark:text-neutral-400">
+            <p className="text-neutral-400">
               {feature.description}
             </p>
           </motion.div>

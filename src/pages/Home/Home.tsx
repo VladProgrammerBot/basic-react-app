@@ -3,7 +3,7 @@ import { HeroSection } from "./HeroSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { ComparisonTable } from "./ComparisonTable";
 import { CTASection } from "./CTASection";
-import { ParticleBackground } from "../../components/BackgroundEffects";
+// import { ParticleBackground } from "../../components/BackgroundEffects";
 import { ScrollToTopButton } from "./ScrollToTopButton";
 import { GradientBackground } from "@/components/GradientBg";
 import { UsingList } from "./UsingList";
@@ -14,7 +14,7 @@ export const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-950 to-neutral-900 text-neutral-100">
-      <ParticleBackground />
+      {/* <ParticleBackground /> */}
       <ScrollToTopButton />
       <GradientBackground />
 
@@ -25,7 +25,7 @@ export const Home = () => {
         <FeaturesSection />
         <ComparisonTable />
         <CTASection onGetStarted={handleGetStarted} />
-        <p className="text-center text-neutral-500 p-18 border-t-1 border-neutral-300 dark:border-neutral-700">
+        <p className="text-center text-neutral-500 p-18 border-t-1 border-neutral-700">
           © 2025, Made in Ukraine by Vlad 🇺🇦
         </p>
       </div>

@@ -24,7 +24,7 @@ export const Navigation = ({ isLoggedIn, onSignIn }: NavigationProps) => {
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
           <TbRocket className="w-6 h-6 text-white" />
         </div>
-        <span className="text-2xl font-bold text-blue-600 dark:text-blue-300">
+        <span className="text-2xl font-bold text-blue-300">
           Strukt
         </span>
       </div>
@@ -34,7 +34,7 @@ export const Navigation = ({ isLoggedIn, onSignIn }: NavigationProps) => {
           <>
             <Button variant="default" size="icon" onClick={onSignIn}>
               Sign In
-              <p className="text-xs text-black/50 dark:text-white/50">
+              <p className="text-xs text-white/50">
                 Press L
               </p>
             </Button>
