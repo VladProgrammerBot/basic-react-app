@@ -1,29 +1,29 @@
 import { motion } from "framer-motion";
-import { IoSearchSharp } from "react-icons/io5";
 import { MdFilterCenterFocus } from "react-icons/md";
 import { IoSpeedometerOutline } from "react-icons/io5";
-import { FaLink } from "react-icons/fa6";
+import { PiGraphLight } from "react-icons/pi";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 const features = [
   {
-    icon: <FaLink className="w-6 h-6" />,
-    title: "Holistic approach",
-    description: "Information is stored in small, logically linked elements.",
-  },
-  {
-    icon: <IoSearchSharp className="w-6 h-6" />,
-    title: "Quick search",
-    description: "Navigating from the abstract to the concrete",
-  },
-  {
-    icon: <MdFilterCenterFocus className="w-6 h-6" />,
-    title: "Content-oriented interface",
-    description: "The interface is minimalist and simple, like a file explorer",
+    icon: <FaGlobeAmericas className="w-6 h-6" />,
+    title: "Universal Workspace",
+    description: "Knowledge, ideas, plans, instructions, and calendars — all your crucial information structured in one single place.",
   },
   {
     icon: <IoSpeedometerOutline className="w-6 h-6" />,
-    title: "Work at high speed",
-    description: "Full keyboard support",
+    title: "Fast to Use",
+    description: "Full keyboard and hotkey support eliminates interface clutter. No nested menus or useless buttons — just pure speed.",
+  },
+  {
+    icon: <MdFilterCenterFocus className="w-6 h-6" />,
+    title: "Easy to Use",
+    description: "A content-oriented interface that feels immediately familiar. Minimalist and clean, just like your favorite file explorer.",
+  },
+  {
+    icon: <PiGraphLight className="w-6 h-6" />,
+    title: "Perfect Understanding",
+    description: "Effortlessly manage information on a large scale. A flexible, network-like structure that is incredibly easy to edit and navigate.",
   },
 ];
 

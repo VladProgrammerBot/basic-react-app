@@ -1,10 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { HiCursorClick } from "react-icons/hi";
-import NotesStructurePreview from "./Preview";
 import { Link } from "react-router";
-import { TooltipTrigger } from "@radix-ui/react-tooltip";
-import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
 
 interface HeroSectionProps {
   onGetStarted: () => void;
@@ -35,7 +32,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             </span>
           </motion.div> */}
 
-          <p className="max-w-4xl relative text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <p className="max-w-4xl relative font-extrabold tracking-tight text-5xl md:text-6xl">
             <span className="drop-shadow-xl drop-shadow-white/20">
               No chaos in the
               <motion.span className="text-cyan-600 dark:text-cyan-300 drop-shadow-xl dark:drop-shadow-cyan-500/50">
@@ -70,9 +67,14 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
           transition={{ delay: 0.4 }}
           className="flex-1 w-full flex items-center justify-center "
         >
-          <div className="w-full hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 h-[480px] rounded-2xl border border-neutral-800 bg-neutral-900/20 backdrop-blur-sm text-neutral-400">
-            {/* <NotesStructurePreview /> */}
-          </div>
+          {/* <div className="w-full hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 h-[480px] rounded-2xl border border-neutral-800 bg-neutral-900/20 backdrop-blur-sm text-neutral-400"> */}
+          {/* <NotesStructurePreview /> */}
+          <video
+            src="/plan.mp4"
+            controls
+            className="h-full rounded-xl object-cover border-neutral-800 border"
+          />
+          {/* </div> */}
         </motion.div>
       </div>
     </div>

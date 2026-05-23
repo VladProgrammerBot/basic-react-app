@@ -2,32 +2,37 @@ import { FaCheck } from "react-icons/fa6";
 
 export const UsingList = () => {
   const usingExamples = [
-    "Creating detailed plans and strategies",
-    "Saving code tamplates",
-    "Building a Zettelkasten knowledge system",
-    "Organizing goals and achievements in easy-to-create manual calendars",
-    "Storing instructions and ideas",
-    "Prototype documentation",
+    "Developing detailed strategic plans",
+    "Storing reusable code templates",
+    "Building a Zettelkasten knowledge management system",
+    "Tracking goals and achievements via structured calendars",
+    "Centralizing documentation, guides, and ideas",
+    "Managing prototype and project documentation",
   ];
 
   return (
-    <div>
-      <h2 className="font-bold mb-8 text-center">What can you do</h2>
-      <div className="w-full text-lg border-white/20 hover:scale-103 hover:shadow-blue-500/10 shadow-2xl duration-200 border rounded-xl p-6 mb-20 bg-neutral-800/10">
-        <div className="flex flex-wrap space-y-2">
+    <section className="mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400">
+        What can you do
+      </h2>
+      
+      <div className="w-full border border-neutral-800 bg-neutral-900/40 backdrop-blur-md rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/5">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {usingExamples.map((example, index) => (
-            <div
-              className="flex md:w-1/2 gap-2 backdrop-blur-sm hover:z-10 duration-200 p-2 rounded-xl shadow-black/50"
+            <li
+              className="flex items-start gap-4 p-3 rounded-xl transition-colors duration-200 hover:bg-neutral-800/30"
               key={index}
             >
-              <span className="text-green-500 h-fit p-2 rounded-full bg-green-500/10">
-                <FaCheck />
+              <span className="flex-shrink-0 text-green-400 p-2 rounded-lg bg-green-500/10 border border-green-500/10">
+                <FaCheck className="w-4 h-4" />
               </span>
-              <p className="drop-shadow-lg drop-shadow-white/30">{example}</p>
-            </div>
+              <p className="text-neutral-300 text-base md:text-lg leading-relaxed pt-0.5">
+                {example}
+              </p>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };

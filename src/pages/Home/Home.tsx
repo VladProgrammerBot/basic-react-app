@@ -18,7 +18,7 @@ export const Home = () => {
       <ScrollToTopButton />
       <GradientBackground />
 
-      <div className="relative p-4 pb-0 md:pb-0 md:p-6 max-w-7xl mx-auto">
+      <div className="relative p-4 pb-0 md:pb-0 md:p-6 max-w-4xl mx-auto">
         <Navigation isLoggedIn={isLoggedIn} onSignIn={handleSignIn} />
         <HeroSection onGetStarted={handleGetStarted} />
         <UsingList />
