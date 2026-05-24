@@ -27,7 +27,7 @@ export const Breadcrumb = ({
   return (
     <div
       onClick={() => {
-        !current && moveOut(index);
+        if (!current) moveOut(index);
       }}
       className={`${!current && "rounded-md"} ${
         !current ? "duration-150 cursor-pointer" : "dark:text-white"

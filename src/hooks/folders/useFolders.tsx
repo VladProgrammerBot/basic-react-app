@@ -69,7 +69,6 @@ export const useFolders = () => {
             data.mainParentChildrens,
             id,
           );
-          // pushChildren(data.mainParentChildrens[0])
         });
     } catch (error) {
       alertError("generate folders");

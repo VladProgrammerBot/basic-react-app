@@ -1,45 +1,25 @@
 import { useAnalytics } from "../../hooks/useAnalytics";
-import { 
-  AnalyticCard,
-  AverageSessionsCard,
-  TopDevicesCard,
-  TopFunctionsCard,
-  TopActiveUsersCard,
-  HourlyEventAverageCard,
-  SessionsByDayCard,
-  EventsByDayCard,
-  LastDayHourlyEventsCard
-} from "./AnalyticCard";
+import { StatCard, BarListCard, LineChartCard } from "./AnalyticCard";
 
 export const Analytics = () => {
-  const { analytics, osTopList } = useAnalytics();
+  const { statCards, lineChartConfigs, barListConfigs } = useAnalytics();
 
   return (
-    <div className="flex gap-4 p-4 flex-wrap">
-      <p className="font-bold text-3xl w-full">Analytics</p>
-      {analytics && (
-        <>
-          <div className="flex gap-4 w-full">
-            <AnalyticCard title="AverageEventsCard">
-              <p className="text-3xl font-bold">{analytics.averageEventsPerDay}</p>
-            </AnalyticCard>
-            <AverageSessionsCard analytics={analytics} />
-          </div>
-          <div className="flex gap-4 w-full">
-            <TopDevicesCard osTopList={osTopList} />
-            <TopFunctionsCard analytics={analytics} />
-          </div>
-          <div className="flex gap-4 w-full">
-            <TopActiveUsersCard analytics={analytics} />
-            <HourlyEventAverageCard analytics={analytics} />
-          </div>
-          <div className="flex gap-4 w-full">
-            <SessionsByDayCard analytics={analytics} />
-            <EventsByDayCard analytics={analytics} />
-          </div>
-          <LastDayHourlyEventsCard analytics={analytics} />
-        </>
-      )}
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
+      <div className="max-w-7xl mx-auto flex flex-wrap gap-4">
+        <h1 className="text-4xl mb-4 w-full font-bold text-white">
+          Analytics Dashboard
+        </h1>
+        {statCards.map((item) => (
+          <StatCard key={item.title} {...item} />
+        ))}
+        {barListConfigs.map(({ key, ...config }) => (
+          <BarListCard key={key} {...config} />
+        ))}
+        {lineChartConfigs.map((chart) => {
+          return <LineChartCard {...chart} key={chart.title} />;
+        })}
+      </div>
     </div>
   );
 };

@@ -32,9 +32,7 @@ export const useBar = () => {
       const [, payload] = token.split(".");
       const { username, userId } = JSON.parse(atob(payload));
       setUsername(username ?? "");
-      setUserId(userId ?? null);
-      console.log(userId);
-      
+      setUserId(userId ?? null);      
     } catch {
       // Silently handle token parsing errors
     }
@@ -50,10 +48,7 @@ export const useBar = () => {
     setFolders({});
     navigate("/login");
     setIsBarOpen(false);
-  };
-
-  console.log(adminId);
-  
+  };  
 
   const actions = [
     {

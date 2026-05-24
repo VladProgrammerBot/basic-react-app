@@ -9,6 +9,8 @@ function validateAnalyticsData(data: Analytics) {
 expect(data).toMatchObject<Analytics>({
   averageSessionsPerDay: expect.any(Number),
   averageEventsPerDay: expect.any(Number),
+  numberOfNotes: 6842,
+  numberOfRelations: 6829,
 
   topDevices: expect.arrayContaining([
     expect.objectContaining({

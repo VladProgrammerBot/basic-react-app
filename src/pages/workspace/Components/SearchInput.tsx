@@ -33,14 +33,16 @@ export const SearchInput = () => {
         }}
         className="flex flex-1 items-center gap-2 pl-4 p-2 bg-neutral-800 rounded-xl"
       >
-        <IoSearchOutline size={25} />
+        <p>
+          <IoSearchOutline size={25} />
+        </p>
         <input
           ref={InputRef}
           onFocus={() => setMode("Filter")}
           type="text"
           placeholder="Search item"
           className="outline-none w-full bg-transparent"
-          value={searchValue} // Прив'язуємо значення
+          value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <Hotkey is="S" />

@@ -13,7 +13,7 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
       whileInView={{ opacity: 1, scale: 1 }}
       className="hover:scale-103 hover:shadow-blue-400/10 shadow-2xl duration-200 relative overflow-hidden rounded-3xl mb-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-purple-600/10 to-pink-600/10 dark:from-cyan-600/20 dark:via-purple-600/20 dark:to-pink-600/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-pink-600/20" />
       <div className="absolute inset-0">
         <motion.div
           animate={{
@@ -24,17 +24,17 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
             rotate: { duration: 20, repeat: Infinity, ease: "linear" },
             scale: { duration: 4, repeat: Infinity },
           }}
-          className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-purple-500/5 dark:from-cyan-500/10 dark:to-purple-500/10"
+          className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10"
         />
       </div>
 
       <div className="relative p-12 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-white">
-          Ready to <span className="text-sky-500 dark:text-sky-300">think</span>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          Ready to <span className="text-sky-300">think</span>
           {" more "}
-          <span className="text-pink-500 dark:text-pink-300">effectively?</span>
+          <span className="text-pink-300">effectively?</span>
         </h2>
-        <p className="text-xl text-neutral-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
           It's a simple and powerful tool for building your external memory.
         </p>
 
@@ -45,7 +45,7 @@ export const CTASection = ({ onGetStarted }: CTASectionProps) => {
           </Button>
         </div>
 
-        <p className="text-sm text-cyan-600 dark:text-cyan-300/70 mt-6">
+        <p className="text-sm text-cyan-300/70 mt-6">
           ⚡ Zero entry threshold
         </p>
       </div>

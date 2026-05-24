@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { Hotkey } from "../ui-elements/HotKeyTip";
-import { HiddenCrumbs } from "@/pages/workspace/Components/HiddenCrumbs";
+import { NavigationHistory } from "@/pages/workspace/Components/NavigationHistory";
 import store from "@/state/store";
 import { usePath } from "@/hooks/folders/usePath";
 
@@ -10,7 +10,7 @@ export const Navigation = () => {
   const designMode = store.use.designMode();
 
   return (
-    <div className="bg-neutral-800 flex overflow-hidden rounded-xl">
+    <div className="bg-neutral-800 text-xl flex overflow-hidden rounded-xl">
       {designMode !== "Minimalistic" && (
         <button
           onClick={() => path.length !== 1 && moveOut(path.length - 2)}
@@ -20,7 +20,7 @@ export const Navigation = () => {
           <Hotkey is={"H"} />
         </button>
       )}
-      <HiddenCrumbs />
+      <NavigationHistory />
     </div>
   );
 };

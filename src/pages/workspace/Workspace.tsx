@@ -1,32 +1,25 @@
-import { SearchedItems } from "./Components/SearchedItems";
-import { ItemContent } from "./Components/ItemContent";
+import { Messages } from "./Components/Messages";
 import { Header } from "./Components/Header";
-import { Input } from "./ui-elements/ItemInput";
-import store from "@/state/store";
-import { useFolderManipulation } from "@/hooks/folders/useItemMenu";
-import { useKeyboardShortcuts } from "@/hooks/folders/useKeyboard";
+import { WorkspaceContent } from "./WorkspaceContent";
+import { useWorkspace } from "@/hooks/folders/useWorkspace";
 
 export const Workspace = () => {
-  const mode = store.use.mode();
-  const isSearch = mode === "Filter" || mode === "Filter Result";
-  const { addUnrelatedFolder } = useFolderManipulation();
-  useKeyboardShortcuts();
+  const { thereAreFolders } = useWorkspace();
+  const loader = (
+    <div className="loader translate-1/2 right-1/2 bottom-1/2 fixed"></div>
+  );
 
   return (
-    <>
-      <Header />
-      <div className={"mt-12"}>
-        {mode === "Add Unrelated Folder" ? (
-          <Input
-          submitFunction={addUnrelatedFolder}
-          placeholder="Add unrelated folder"
-          />
-        ) : isSearch ? (
-          <SearchedItems />
-        ) : (
-          <ItemContent />
-        )}
-      </div>
-    </>
+    <div className="p-2 max-w-xl mx-auto">
+      {thereAreFolders ? (
+        <>
+          <Header />
+          <WorkspaceContent />
+        </>
+      ) : (
+        loader
+      )}
+      <Messages />
+    </div>
   );
 };
