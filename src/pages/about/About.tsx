@@ -1,6 +1,66 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
 // ─────────────────────────────────────────────────────────────────────────────
+// TYPE DEFINITIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+type InlineNodeKind = "text" | "bold" | "code";
+
+interface InlineNode {
+  kind: InlineNodeKind;
+  text: string;
+}
+
+interface BaseToken {
+  type: string;
+}
+
+interface HeadingToken extends BaseToken {
+  type: "h1" | "h2" | "h3" | "h4";
+  text: string;
+  id: string;
+}
+
+interface ParagraphToken extends BaseToken {
+  type: "p";
+  nodes: InlineNode[];
+}
+
+interface HorizontalRuleToken extends BaseToken {
+  type: "hr";
+}
+
+interface MermaidToken extends BaseToken {
+  type: "mermaid";
+  code: string;
+}
+
+interface CodeToken extends BaseToken {
+  type: "code";
+  lang: string;
+  code: string;
+}
+
+interface ListToken extends BaseToken {
+  type: "ul" | "ol";
+  items: InlineNode[][];
+}
+
+type Token =
+  | HeadingToken
+  | ParagraphToken
+  | HorizontalRuleToken
+  | MermaidToken
+  | CodeToken
+  | ListToken;
+
+interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // DOCUMENT CONTENT
 // ─────────────────────────────────────────────────────────────────────────────
 const MARKDOWN = `# Strukt Documentation
@@ -369,7 +429,7 @@ A comprehensive keyboard shortcut reference is available within the application'
 // ─────────────────────────────────────────────────────────────────────────────
 // UTILITIES
 // ─────────────────────────────────────────────────────────────────────────────
-function slugify(text) {
+function slugify(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^\w\s-]/g, "")
@@ -378,8 +438,8 @@ function slugify(text) {
     .trim();
 }
 
-function parseInline(text) {
-  const nodes = [];
+function parseInline(text: string): InlineNode[] {
+  const nodes: InlineNode[] = [];
   let pos = 0;
   while (pos < text.length) {
     if (text[pos] === "*" && text[pos + 1] === "*") {
@@ -413,9 +473,9 @@ function parseInline(text) {
   return nodes;
 }
 
-function parseMarkdown(md) {
+function parseMarkdown(md: string): Token[] {
   const lines = md.split("\n");
-  const tokens = [];
+  const tokens: Token[] = [];
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
@@ -423,7 +483,7 @@ function parseMarkdown(md) {
 
     if (trimmed.startsWith("```")) {
       const lang = trimmed.slice(3).trim();
-      const codeLines = [];
+      const codeLines: string[] = [];
       i++;
       while (i < lines.length && !lines[i].trim().startsWith("```")) {
         codeLines.push(lines[i]);
@@ -443,7 +503,7 @@ function parseMarkdown(md) {
     if (/^-{3,}$/.test(trimmed)) { tokens.push({ type: "hr" }); i++; continue; }
 
     if (trimmed.startsWith("- ")) {
-      const items = [];
+      const items: InlineNode[][] = [];
       while (i < lines.length && lines[i].trim().startsWith("- ")) {
         items.push(parseInline(lines[i].trim().slice(2)));
         i++;
@@ -453,7 +513,7 @@ function parseMarkdown(md) {
     }
 
     if (/^\d+\. /.test(trimmed)) {
-      const items = [];
+      const items: InlineNode[][] = [];
       while (i < lines.length && /^\d+\. /.test(lines[i].trim())) {
         items.push(parseInline(lines[i].trim().replace(/^\d+\. /, "")));
         i++;
@@ -470,26 +530,36 @@ function parseMarkdown(md) {
   return tokens;
 }
 
-function getToc(tokens) {
+function getToc(tokens: Token[]): TocItem[] {
   return tokens
-    .filter((t) => ["h1", "h2", "h3", "h4"].includes(t.type))
+    .filter((t): t is HeadingToken => ["h1", "h2", "h3", "h4"].includes(t.type))
     .map((t) => ({ id: t.id, text: t.text, level: Number(t.type[1]) }));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MERMAID LOADER
 // ─────────────────────────────────────────────────────────────────────────────
-let _mermaidReady = false;
-let _mermaidCallbacks = [];
 
-function ensureMermaid() {
+declare global {
+  interface Window {
+    mermaid?: {
+      initialize: (config: any) => void;
+      render: (id: string, code: string) => Promise<{ svg: string }>;
+    };
+  }
+}
+
+let _mermaidReady = false;
+let _mermaidCallbacks: (() => void)[] = [];
+
+function ensureMermaid(): void {
   if (_mermaidReady) return;
   if (document.querySelector('script[data-mermaid]')) return;
   const script = document.createElement("script");
   script.setAttribute("data-mermaid", "1");
   script.src = "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js";
   script.onload = () => {
-    window.mermaid.initialize({
+    window.mermaid?.initialize({
       startOnLoad: false,
       theme: "dark",
       themeVariables: {
@@ -514,17 +584,21 @@ function ensureMermaid() {
 
 let _diagCount = 0;
 
-function MermaidDiagram({ code }) {
-  const [svg, setSvg] = useState("");
-  const [err, setErr] = useState("");
-  const id = useRef(`mdiag-${++_diagCount}`).current;
+interface MermaidDiagramProps {
+  code: string;
+}
+
+function MermaidDiagram({ code }: MermaidDiagramProps) {
+  const [svg, setSvg] = useState<string>("");
+  const [err, setErr] = useState<string>("");
+  const id = useRef<string>(`mdiag-${++_diagCount}`).current;
 
   useEffect(() => {
     const render = () => {
       window.mermaid
-        .render(id, code)
+        ?.render(id, code)
         .then(({ svg: s }) => setSvg(s))
-        .catch((e) => setErr(String(e)));
+        .catch((e: Error) => setErr(String(e)));
     };
     if (_mermaidReady) render();
     else { _mermaidCallbacks.push(render); ensureMermaid(); }
@@ -577,30 +651,38 @@ function MermaidDiagram({ code }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // INLINE TEXT RENDERER
 // ─────────────────────────────────────────────────────────────────────────────
-function InlineText({ nodes }) {
-  return nodes.map((n, i) => {
-    if (n.kind === "bold") {
-      return (
-        <strong key={i} style={{ color: "#E0EDFF", fontWeight: 600, fontFamily: "'Fraunces', Georgia, serif" }}>
-          {n.text}
-        </strong>
-      );
-    }
-    if (n.kind === "code") {
-      return (
-        <code key={i} style={{
-          background: "#0C1828", color: "#7EC8E3",
-          border: "1px solid #1A3050", padding: "1px 7px",
-          borderRadius: "4px", fontSize: "0.83em",
-          fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-          letterSpacing: "-0.01em",
-        }}>
-          {n.text}
-        </code>
-      );
-    }
-    return <span key={i}>{n.text}</span>;
-  });
+interface InlineTextProps {
+  nodes: InlineNode[];
+}
+
+function InlineText({ nodes }: InlineTextProps) {
+  return (
+    <>
+      {nodes.map((n, i) => {
+        if (n.kind === "bold") {
+          return (
+            <strong key={i} style={{ color: "#E0EDFF", fontWeight: 600, fontFamily: "'Fraunces', Georgia, serif" }}>
+              {n.text}
+            </strong>
+          );
+        }
+        if (n.kind === "code") {
+          return (
+            <code key={i} style={{
+              background: "#0C1828", color: "#7EC8E3",
+              border: "1px solid #1A3050", padding: "1px 7px",
+              borderRadius: "4px", fontSize: "0.83em",
+              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+              letterSpacing: "-0.01em",
+            }}>
+              {n.text}
+            </code>
+          );
+        }
+        return <span key={i}>{n.text}</span>;
+      })}
+    </>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -631,7 +713,7 @@ const S = {
     fontFamily: "'JetBrains Mono', monospace",
     fontSize: "0.72rem", fontWeight: 500,
     color: "#5A7A9A", lineHeight: 1.4,
-    margin: "28px 0 10px", textTransform: "uppercase",
+    margin: "28px 0 10px", textTransform: "uppercase" as const,
     letterSpacing: "0.1em",
   },
   p: {
@@ -641,100 +723,115 @@ const S = {
   },
 };
 
-function TokenList({ tokens }) {
-  return tokens.map((tok, i) => {
-    switch (tok.type) {
-      case "h1": return <h1 key={i} id={tok.id} style={S.h1}>{tok.text}</h1>;
-      case "h2": return <h2 key={i} id={tok.id} style={S.h2}>{tok.text}</h2>;
-      case "h3": return <h3 key={i} id={tok.id} style={S.h3}>{tok.text}</h3>;
-      case "h4": return <h4 key={i} id={tok.id} style={S.h4}>{tok.text}</h4>;
+interface TokenListProps {
+  tokens: Token[];
+}
 
-      case "p":
-        return (
-          <p key={i} style={S.p}>
-            <InlineText nodes={tok.nodes} />
-          </p>
-        );
+function TokenList({ tokens }: TokenListProps) {
+  return (
+    <>
+      {tokens.map((tok, i) => {
+        switch (tok.type) {
+          case "h1": return <h1 key={i} id={tok.id} style={S.h1}>{tok.text}</h1>;
+          case "h2": return <h2 key={i} id={tok.id} style={S.h2}>{tok.text}</h2>;
+          case "h3": return <h3 key={i} id={tok.id} style={S.h3}>{tok.text}</h3>;
+          case "h4": return <h4 key={i} id={tok.id} style={S.h4}>{tok.text}</h4>;
 
-      case "hr":
-        return (
-          <div key={i} style={{ margin: "44px 0", display: "flex", alignItems: "center", gap: "16px" }}>
-            <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, transparent, #1A3050)" }} />
-            <div style={{ width: "5px", height: "5px", background: "#C8820A", borderRadius: "50%", flexShrink: 0 }} />
-            <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, #1A3050, transparent)" }} />
-          </div>
-        );
+          case "p":
+            return (
+              <p key={i} style={S.p}>
+                <InlineText nodes={tok.nodes} />
+              </p>
+            );
 
-      case "mermaid":
-        return <MermaidDiagram key={i} code={tok.code} />;
+          case "hr":
+            return (
+              <div key={i} style={{ margin: "44px 0", display: "flex", alignItems: "center", gap: "16px" }}>
+                <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, transparent, #1A3050)" }} />
+                <div style={{ width: "5px", height: "5px", background: "#C8820A", borderRadius: "50%", flexShrink: 0 }} />
+                <div style={{ flex: 1, height: "1px", background: "linear-gradient(90deg, #1A3050, transparent)" }} />
+              </div>
+            );
 
-      case "code":
-        return (
-          <pre key={i} style={{
-            background: "#07101E", border: "1px solid #122035",
-            borderRadius: "8px", padding: "20px 22px",
-            overflow: "auto", margin: "6px 0 24px",
-            fontSize: "0.83rem", lineHeight: 1.75,
-            boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
-          }}>
-            <code style={{ color: "#7EC8E3", fontFamily: "'JetBrains Mono', monospace" }}>
-              {tok.code}
-            </code>
-          </pre>
-        );
+          case "mermaid":
+            return <MermaidDiagram key={i} code={tok.code} />;
 
-      case "ul":
-        return (
-          <ul key={i} style={{ listStyle: "none", padding: 0, margin: "4px 0 20px" }}>
-            {tok.items.map((item, j) => (
-              <li key={j} style={{
-                display: "flex", gap: "13px", marginBottom: "10px",
-                color: "#8CA0BC", lineHeight: 1.75, fontSize: "0.975rem",
-                fontFamily: "'Lora', Georgia, serif",
+          case "code":
+            return (
+              <pre key={i} style={{
+                background: "#07101E", border: "1px solid #122035",
+                borderRadius: "8px", padding: "20px 22px",
+                overflow: "auto", margin: "6px 0 24px",
+                fontSize: "0.83rem", lineHeight: 1.75,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
               }}>
-                <span style={{
-                  color: "#C8820A", flexShrink: 0, marginTop: "6px",
-                  fontSize: "8px", letterSpacing: "0",
-                }}>◆</span>
-                <span><InlineText nodes={item} /></span>
-              </li>
-            ))}
-          </ul>
-        );
+                <code style={{ color: "#7EC8E3", fontFamily: "'JetBrains Mono', monospace" }}>
+                  {tok.code}
+                </code>
+              </pre>
+            );
 
-      case "ol":
-        return (
-          <ol key={i} style={{ listStyle: "none", padding: 0, margin: "4px 0 20px" }}>
-            {tok.items.map((item, j) => (
-              <li key={j} style={{
-                display: "flex", gap: "14px", marginBottom: "10px",
-                color: "#8CA0BC", lineHeight: 1.75, fontSize: "0.975rem",
-                fontFamily: "'Lora', Georgia, serif", alignItems: "flex-start",
-              }}>
-                <span style={{
-                  color: "#C8820A", flexShrink: 0, paddingTop: "1px",
-                  fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
-                  minWidth: "22px",
-                }}>
-                  {String(j + 1).padStart(2, "0")}.
-                </span>
-                <span><InlineText nodes={item} /></span>
-              </li>
-            ))}
-          </ol>
-        );
+          case "ul":
+            return (
+              <ul key={i} style={{ listStyle: "none", padding: 0, margin: "4px 0 20px" }}>
+                {tok.items.map((item, j) => (
+                  <li key={j} style={{
+                    display: "flex", gap: "13px", marginBottom: "10px",
+                    color: "#8CA0BC", lineHeight: 1.75, fontSize: "0.975rem",
+                    fontFamily: "'Lora', Georgia, serif",
+                  }}>
+                    <span style={{
+                      color: "#C8820A", flexShrink: 0, marginTop: "6px",
+                      fontSize: "8px", letterSpacing: "0",
+                    }}>◆</span>
+                    <span><InlineText nodes={item} /></span>
+                  </li>
+                ))}
+              </ul>
+            );
 
-      default:
-        return null;
-    }
-  });
+          case "ol":
+            return (
+              <ol key={i} style={{ listStyle: "none", padding: 0, margin: "4px 0 20px" }}>
+                {tok.items.map((item, j) => (
+                  <li key={j} style={{
+                    display: "flex", gap: "14px", marginBottom: "10px",
+                    color: "#8CA0BC", lineHeight: 1.75, fontSize: "0.975rem",
+                    fontFamily: "'Lora', Georgia, serif", alignItems: "flex-start",
+                  }}>
+                    <span style={{
+                      color: "#C8820A", flexShrink: 0, paddingTop: "1px",
+                      fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem",
+                      minWidth: "22px",
+                    }}>
+                      {String(j + 1).padStart(2, "0")}.
+                    </span>
+                    <span><InlineText nodes={item} /></span>
+                  </li>
+                ))}
+              </ol>
+            );
+
+          default:
+            return null;
+        }
+      })}
+    </>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SIDEBAR TOC
 // ─────────────────────────────────────────────────────────────────────────────
-function SidebarToc({ toc, activeId, onSelect, progress }) {
-  const activeRef = useRef(null);
+interface SidebarTocProps {
+  toc: TocItem[];
+  activeId: string;
+  onSelect: (id: string) => void;
+  progress: number;
+}
+
+function SidebarToc({ toc, activeId, onSelect, progress }: SidebarTocProps) {
+  const activeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (activeRef.current) {
       activeRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
@@ -881,9 +978,9 @@ function SidebarToc({ toc, activeId, onSelect, progress }) {
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 export default function Documentation() {
-  const [activeId, setActiveId] = useState("");
-  const [progress, setProgress] = useState(0);
-  const contentRef = useRef(null);
+  const [activeId, setActiveId] = useState<string>("");
+  const [progress, setProgress] = useState<number>(0);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const tokens = useMemo(() => parseMarkdown(MARKDOWN), []);
   const toc = useMemo(() => getToc(tokens), [tokens]);
@@ -936,7 +1033,7 @@ export default function Documentation() {
     return () => { clearTimeout(timer); observer.disconnect(); };
   }, [tokens]);
 
-  const scrollTo = useCallback((id) => {
+  const scrollTo = useCallback((id: string) => {
     const el = contentRef.current?.querySelector(`#${id}`);
     const container = contentRef.current;
     if (el && container) {
