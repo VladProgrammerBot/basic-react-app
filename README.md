@@ -1,6 +1,7 @@
 # 🚀 STRUKT: No chaos in the head
 > A web application for storing text information that is easy to navigate regardless of scale
 
+![Strukt using demonstration](/public/strukt2.gif)
 ## 🌐 Live Demo & Links
 * **Live Site:** https://strukt.onrender.com
 * **Backend API Base URL:** https://express-deploy-udgw.onrender.com
