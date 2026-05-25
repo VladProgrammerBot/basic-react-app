@@ -1,25 +1,64 @@
-# Strukt
-<!-- Пам'ять як у мозку, що не забуває і не допускає хаосу -->
-A brain-like memory that never forgets and never yields to chaos.
+# 🚀 STRUKT: No chaos in the head
+> A web application for storing text information that is easy to navigate regardless of scale
 
-[workspace](./public/2026-03-05_11-42.png)
-<!-- Веб-додаток, що пам'ятає замість вас, не забуває і не плутається при великих обсягах інформації -->
-<!-- Програма, з якою взаємодієш як з додатковою памятю, яка нічого не забуває, немає хаосу при великих обсягах інформації -->
+## 🌐 Live Demo & Links
+* **Live Site:** https://strukt.onrender.com
+* **Backend API Base URL:** https://express-deploy-udgw.onrender.com
+---
 
-## Про проєкт
-Причиною створення була потреба у деталізованому та структурованому плануванні, згодом і у зберіганні будь-якої інформації.
+## ✨ Features
+* **User Authentication:** Secure signup/login using JWT/Firebase.
+* **CRUD Operations:** Users can create, read, update, and delete.
+* **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
+* **State Management:** Handled via Redux/Context API.
+* **Server-side storage:** All information in the postgres tables.
 
-Посилання на веб-сайт: https://strukt.onrender.com
+---
 
+## 🛠️ Tech Stack
+Break down the technologies you used so employers can see your skills at a glance.
 
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS, TypeScript, Zustand |
+| **Backend** | Node.js, Express.js |
+| **Database** | Postgresql, Redis |
+| **Deployment** | Render (Frontend, Backend), Neon (Postgres), Redis could |
 
-## Стек технологій
-* **Frontend:** React, Tailwind, Zustand, TypeScript, React Router
-* **Backend:** Express, PostgreSQL, Redis, GeminiAPI
-* **DevOps:** Render, Neon, Redis Cloud
+---
 
-## Запустити локально
-Потрібно мати встановлений Node js
+## 📂 Architecture & Folder Structure
+Give a high-level overview of how your frontend and backend directories interact.
+
+```text
+my-fullstack-app/
+├── client/                 # Frontend (React)
+│   ├── src/
+│   │   ├── components/     # UI Components
+│   │   ├── pages/          # Page views
+│   │   └── App.js
+├── server/                 # Backend (Node/Express)
+│   ├── config/             # Database connection
+│   ├── controllers/        # Logic for routes
+│   ├── models/             # Database schemas
+│   ├── routes/             # API endpoints
+│   └── server.js
+└── README.md
+```
+
+# 🚀 Getting Started
+
+Follow these steps to run the project locally on your machine.
+Prerequisites
+
+    Node.js installed (v18 or higher recommended)
+
+    npm or yarn
+
+    Postgresql
+
+Installation & Setup
+
 ```
 git clone https://github.com/VladProgrammerBot/Strukt.git
 cd Strukt
@@ -27,6 +66,26 @@ npm install
 npm run dev
 ```
 
+🛣️ API Endpoints
+
+Briefly document your main backend routes so people know how to interact with your API.
+Auth Routes
+
+    POST /api/auth/register - Register a new user
+
+    POST /api/auth/login - Login user and return JWT
+
+Data Routes (e.g., Posts)
+
+    GET /api/posts - Get all posts
+
+    POST /api/posts - Create a new post (Protected)
+
+    DELETE /api/posts/:id - Delete a specific post (Protected)
+
+🧠 Key Learnings & Challenges
+
+This is the most important section for a beginner! Write a short paragraph about what you learned.
 ## Архітектурні та інженерні рішення
 * **Map замість array,** тому що найчастіша операція - пошук по індексу
 * **Доступ виключно із:** для обмеження
@@ -39,3 +98,7 @@ npm run dev
 * **Bento style (модульний UI):** Сучасний дизайн інтерфейсів характерний для Google та Apple
 * **Авторизація та віддалене зберігання:** незалежність від пристрою
 * **Markdown export:** Можливість використовувати зовнішні інструменти (як от LLMs для аналізу)
+
+👤 Author
+
+    Your Name - GitHub | LinkedIn
