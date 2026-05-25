@@ -9,29 +9,25 @@
 ---
 
 ## ✨ Features
-* **User Authentication:** Secure signup/login using JWT/Firebase.
+* **User Authentication:** Secure signup/login using JWT.
 * **CRUD Operations:** Users can create, read, update, and delete.
 * **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
-* **State Management:** Handled via Redux/Context API.
+* **State Management:** Handled via Zustand.
 * **Server-side storage:** All information in the postgres tables.
 
 ---
 
 ## 🛠️ Tech Stack
-Break down the technologies you used so employers can see your skills at a glance.
-
 | Layer | Technologies Used |
 | :--- | :--- |
 | **Frontend** | React.js, Tailwind CSS, TypeScript, Zustand |
 | **Backend** | Node.js, Express.js |
 | **Database** | Postgresql, Redis |
-| **Deployment** | Render (Frontend, Backend), Neon (Postgres), Redis could |
+| **Deployment** | Render (Frontend, Backend), Neon (Postgres), Redis cloud |
 
 ---
 
 ## 📂 Architecture & Folder Structure
-Give a high-level overview of how your frontend and backend directories interact.
-
 ```text
 my-fullstack-app/
 ├── client/                 # Frontend (React)
@@ -70,9 +66,6 @@ npm run dev
 
 🛣️ API Endpoints
 
-Briefly document your main backend routes so people know how to interact with your API.
-Auth Routes
-
     POST /api/auth/register - Register a new user
 
     POST /api/auth/login - Login user and return JWT
@@ -86,8 +79,6 @@ Data Routes (e.g., Posts)
     DELETE /api/posts/:id - Delete a specific post (Protected)
 
 🧠 Key Learnings & Challenges
-
-This is the most important section for a beginner! Write a short paragraph about what you learned.
 ## Архітектурні та інженерні рішення
 * **Map замість array,** тому що найчастіша операція - пошук по індексу
 * **Доступ виключно із:** для обмеження
