@@ -80,15 +80,10 @@ Data Routes (e.g., Posts)
 
 ---
 
-## 📊 System Analytics & Metrics
-Here is a breakdown of the application tracking and performance metrics:
+## 📊Analytics dashboard 
 
-### 📈 Usage & Engagement Dashboard
-Detailed breakdown of user interactions, system load, and operational throughput.
 <img src="/public/analytics1.png" width="700" alt="Usage Dashboard">
 
-### ⚡ Performance & Server Health
-Monitoring real-time latency, Redis cache hit rates, and database queries.
 <img src="/public/analytics2.png" width="700" alt="Server Performance Metrics">
 
 ## 🧠 Key Learnings & Engineering Challenges
