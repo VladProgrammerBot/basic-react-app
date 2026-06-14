@@ -78,20 +78,27 @@ Data Routes (e.g., Posts)
 
     DELETE /api/posts/:id - Delete a specific post (Protected)
 
-🧠 Key Learnings & Challenges
-## Архітектурні та інженерні рішення
-* **Map замість array,** тому що найчастіша операція - пошук по індексу
-* **Доступ виключно із:** для обмеження
+---
 
-## Продуктові та дизайнерські рішення
-* **Керування виключно з клавіатури:** значно пришвидшує взаємодію з мозком через зовнішній інтерфейс, враховуючи високу частоту введення.
-* **Демо без авторизації:** спробувати завжди в пріорітеті
-* **Режим концентрації:** керування клавіатурою виключає потребу у ui елементах
-* **Guide writing animation:** Знижує когнітивне навантаження, привертає увагу, виглядає сучасно як у chatGPT
-* **Bento style (модульний UI):** Сучасний дизайн інтерфейсів характерний для Google та Apple
-* **Авторизація та віддалене зберігання:** незалежність від пристрою
-* **Markdown export:** Можливість використовувати зовнішні інструменти (як от LLMs для аналізу)
+## 🧠 Key Learnings & Engineering Challenges
 
-👤 Author
+### Architectural & Engineering Decisions
 
-    Your Name - GitHub | LinkedIn
+* **Data Structure Optimization ($O(1)$ Lookups):** Utilized `Map` collections instead of standard arrays (`Array`). Since the most frequent operation in the system is looking up an item by its identifier, this reduced the algorithmic time complexity from $O(N)$ to $O(1)$, ensuring stable interface performance as the database scales.
+* **Encapsulation & Access Control:** Implemented strict access restrictions to internal methods and component states. Data mutation and retrieval are permitted exclusively through a well-defined public API/interface, minimizing the risk of side effects and simplifying testing.
+
+### Product & Design Decisions
+
+* **Keyboard-Driven UI (Keyboard-First):** Full navigation and application control are mapped to hotkeys. This eliminates the need to constantly switch between mouse and keyboard, reduces cognitive load, and maximizes interaction speed during high-frequency data entry.
+* **Frictionless Onboarding (Instant Demo):** Users can test the full functionality of the application in a single click without creating an account. This lowers the barrier to entry and optimizes product adoption metrics.
+* **Focus Mode (Zen Mode):** Because the interface is entirely optimized for keyboard operation, unnecessary visual UI elements (buttons, toolbars) were removed. The user is left completely uninterrupted with their content.
+* **Ergonomic Animation (Interactive Micro-interactions):** The integration of smooth guiding animations serves more than an aesthetic purpose; it anchors user focus to the current context, making dynamic content consumption feel seamless and natural.
+* **Modular Interface (Bento Grid UI):** Information blocks are arranged using a modular grid system. This ensures responsiveness, a clear visual hierarchy of data, and highly efficient screen real estate utilization.
+* **Cross-Platform Synchronization:** Implemented cloud authentication and remote state persistence, guaranteeing data integrity and freeing the user from device or local storage lock-in.
+* **Ecosystem Compatibility (Markdown Export):** Native support for exporting data in Markdown format. This allows users to easily integrate the app into their legacy Personal Knowledge Management (PKM) workflows or pipe clean data into LLMs (Large Language Models) for analysis.
+
+## Contact
+
+- **Portfolio:** [yourportfolio.com](https://yourportfolio.com)
+- **Email:** garbuz.vlada4@gmail.com
+- **LinkedIn:** [linkedin.com/in/username](https://linkedin.com/in/username)
