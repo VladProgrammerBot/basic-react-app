@@ -49,7 +49,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-4">
             <Button onClick={onGetStarted} size="lg" variant="colorfull">
-              Get Started
+              Getting Started
               <HiCursorClick className="w-5 h-5" />
             </Button>
             <Link to={"/about"}>
