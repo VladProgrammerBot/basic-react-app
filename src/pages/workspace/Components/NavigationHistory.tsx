@@ -22,7 +22,7 @@ export const NavigationHistory = () => {
         <button
           className={`${
             designMode === "Minimalistic" && "hidden"
-          } flex items-center px-4 gap-1 hover:bg-neutral-700 cursor-pointer duration-150`}
+          } flex items-center rounded-xl px-4 gap-1 hover:bg-neutral-700 cursor-pointer duration-150`}
         >
           <RiHistoryFill />
           <Hotkey is={"P"} />

@@ -38,13 +38,15 @@ export const useLogin = (type: authType) => {
     setIsError(false);
     setIsLoading(true);
 
+    console.log(path[0])
+
     await fetchApi({
       method: "POST",
       path: `/auth/${type === "Log in" ? "login" : "signup"}`,
       body: {
         ...values,
         folders,
-        rootId: (path[0] && path[0].id) ?? generateId(),
+        rootId: generateId(),
       },
       auth: false,
       onSuccess: (data) => {

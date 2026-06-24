@@ -30,8 +30,8 @@ export const ItemTitle = () => {
   };
 
   return (
-    <div className="flex items-start justify-between">
-      <div className="flex items-start">
+    <div className="flex items-start justify-between pt-2">
+      <div className="text-center flex justify-center items-center w-full">
         {backlinksCount > 0 && (
           <BacklinksDropdown
             count={backlinksCount}
@@ -40,7 +40,7 @@ export const ItemTitle = () => {
             onBacklinkClick={handleBacklinkClick}
           />
         )}
-        <ItemTitleDisplay title={currentItem?.title} />
+        <p className="px-2 w-fit text-center font-bold text-lg">{currentItem?.title}</p>
       </div>
 
       {designMode !== "Minimalistic" && moveBuffer !== null && (
@@ -58,10 +58,6 @@ const getBacklinksData = (
     .map((backlinkId) => folders[backlinkId])
     .filter(Boolean) as folder[];
 };
-
-const ItemTitleDisplay = ({ title }: { title?: string }) => (
-  <p className="font-bold text-xl px-2">{title}</p>
-);
 
 const BacklinksDropdown = ({
   count,

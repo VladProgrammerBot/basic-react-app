@@ -27,10 +27,10 @@ export const AuthForm = ({ type }: { type: authType }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <div className="space-y-2">
-          <p className="text-4xl">{type}</p>
-          <p className="text-md cursor-pointer  underline underline-offset-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-center">
+        <div className="space-y-2 text-center ">
+          <p className="text-4xl mb-4">{type}</p>
+          <p className="text-md cursor-pointer underline underline-offset-2">
             {type === "Log in" ? (
               <NavLink to={"/signup"}>Create new account</NavLink>
             ) : (
@@ -39,15 +39,15 @@ export const AuthForm = ({ type }: { type: authType }) => {
           </p>
         </div>
         {isError && <p className="text-red-500 text-lg">Failed to {type}</p>}
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter username..." {...field} ref={ref} />
+              <FormItem className="w-full">
+                <FormLabel className="mx-auto">Username:</FormLabel>
+                <FormControl className="text-center">
+                  <Input placeholder="Enter username" {...field} ref={ref} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -57,11 +57,11 @@ export const AuthForm = ({ type }: { type: authType }) => {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
+              <FormItem className="w-full">
+                <FormLabel className="text-center mx-auto">Password:</FormLabel>
+                <FormControl className="text-center">
                   <Input
-                    placeholder="Enter some password"
+                    placeholder="Enter password"
                     type="password"
                     {...field}
                   />
@@ -71,21 +71,24 @@ export const AuthForm = ({ type }: { type: authType }) => {
             )}
           />
         </div>
-        <div className="w-full flex justify-end gap-2">
+        <div className="w-full flex justify-center gap-2">
           <Button
             type="button"
             variant={"outline"}
+            className="flex-1"
             onClick={() => navigate("/")}
           >
             Cancel
           </Button>
           {isLoading ? (
-            <Button variant={"disactive"} type="submit">
+            <Button className="flex-1" variant={"disactive"} type="submit">
               <span className="auth-loader"></span>
               {type}
             </Button>
           ) : (
-            <Button type="submit">{type}</Button>
+            <Button type="submit" className="flex-1">
+              {type}
+            </Button>
           )}
         </div>
       </form>

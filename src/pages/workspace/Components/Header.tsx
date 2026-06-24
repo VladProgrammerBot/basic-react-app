@@ -28,10 +28,10 @@ export const Header = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-10 max-w-xl mx-auto p-2 flex justify-between gap-1">
+    <div className="fixed bg-neutral-900 top-0 left-0 right-0 z-10 max-w-xl mx-auto pt-2 px-2 flex justify-between">
       {!isSearch && <Navigation />}
       {showMinimalTitle && (
-        <div className="flex-1 flex items-center bg-neutral-800 overflow-hidden text-nowrap rounded-xl p-1">
+        <div className="flex-1 flex items-center overflow-hidden text-nowrap rounded-xl p-1">
           <ItemTitle />
         </div>
       )}

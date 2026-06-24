@@ -14,7 +14,7 @@ export const ItemContent = () => {
   const setMode = store.use.setMode();
   const containterStyles =
     designMode !== "Minimalistic"
-      ? "sm:rounded-xl sm:p-2 m-0 p-0 sm:bg-neutral-800"
+      ? "sm:rounded-xl m-0 p-0"
       : "";
 
   const { childrensData } = useFolders();
@@ -35,9 +35,9 @@ export const ItemContent = () => {
       {designMode !== "Minimalistic" && mode === "normal" && (
         <button
           onClick={() => setMode("Add Folder")}
-          className="w-full flex items-center justify-center text-neutral-500 duration-150 cursor-pointer border h-12 lg:h-10 rounded-xl border-neutral-600 border-dashed"
+          className="w-full text-neutral-400 gap-1 flex items-center justify-center duration-150 cursor-pointer h-12 lg:h-10 rounded-xl hover:bg-neutral-700"
         >
-          <IoMdAdd />
+          <IoMdAdd /> Related item
           <Hotkey is="A" />
         </button>
       )}

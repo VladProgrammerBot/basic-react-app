@@ -11,7 +11,7 @@ export const Button = ({
   return (
     <button
       className={
-        "py-1 px-4 -1 cursor-pointer flex items-center gap-1 rounded-xl bg-neutral-700 hover:bg-neutral-600 duration-150 " +
+        "py-1 px-4 -1 cursor-pointer flex items-center gap-1 rounded-xl g-neutral-700 hover:bg-neutral-700 duration-150 " +
         className
       }
       {...props}

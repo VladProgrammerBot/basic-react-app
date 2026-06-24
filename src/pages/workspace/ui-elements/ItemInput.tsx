@@ -22,7 +22,7 @@ export const Input = ({
   const designMode = store.use.designMode();
 
   return (
-    <div className="border border-neutral-700 relative rounded-xl border-dashed flex items-center w-full pr-1 py-1">
+    <div className="order border-neutral-700 relative rounded-xl border-dashed flex items-center w-full pr-1 py-1">
       <textarea
         ref={inputRef}
         onKeyDown={handleKeyDown}
