@@ -65,6 +65,7 @@ npm run dev
 ```
 
 🛣️ API Endpoints
+<<<<<<< HEAD
 
     POST /api/auth/register - Register a new user
 
@@ -108,3 +109,35 @@ Data Routes (e.g., Posts)
 - **Portfolio:** [yourportfolio.com](https://yourportfolio.com)
 - **Email:** garbuz.vlada4@gmail.com
 - **LinkedIn:** [linkedin.com/in/username](https://linkedin.com/in/username)
+=======
+
+    POST /api/auth/register - Register a new user
+
+    POST /api/auth/login - Login user and return JWT
+
+Data Routes (e.g., Posts)
+
+    GET /api/posts - Get all posts
+
+    POST /api/posts - Create a new post (Protected)
+
+    DELETE /api/posts/:id - Delete a specific post (Protected)
+
+🧠 Key Learnings & Challenges
+## Архітектурні та інженерні рішення
+* **Map замість array,** тому що найчастіша операція - пошук по індексу
+* **Доступ виключно із:** для обмеження
+
+## Продуктові та дизайнерські рішення
+* **Керування виключно з клавіатури:** значно пришвидшує взаємодію з мозком через зовнішній інтерфейс, враховуючи високу частоту введення.
+* **Демо без авторизації:** спробувати завжди в пріорітеті
+* **Режим концентрації:** керування клавіатурою виключає потребу у ui елементах
+* **Guide writing animation:** Знижує когнітивне навантаження, привертає увагу, виглядає сучасно як у chatGPT
+* **Bento style (модульний UI):** Сучасний дизайн інтерфейсів характерний для Google та Apple
+* **Авторизація та віддалене зберігання:** незалежність від пристрою
+* **Markdown export:** Можливість використовувати зовнішні інструменти (як от LLMs для аналізу)
+
+👤 Author
+
+    Your Name - GitHub | LinkedIn
+>>>>>>> dev
